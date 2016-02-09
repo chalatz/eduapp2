@@ -17,19 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('email/send', function(){
-
-    $user = App\User::find(1);
-
-    Mail::send('emails.test', ['user' => $user], function ($message) use ($user) {
-        $message->from('info@eduwebawards.gr', 'ΔΕΕΙ');
-
-        $message->to($user->email, 'chalatz')->subject('Γεια σου!');
-    });
-
-    return "Email probably sent";
-
-});
+Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
 
 /*
 |--------------------------------------------------------------------------
