@@ -32,6 +32,7 @@ class UsersController extends Controller
 
         alert()->success('Το email σας έχει επιβεβαιωθεί με επιτυχία! Μπορείτε τώρα να συνδεθείτε.')
                 ->persistent('Εντάξει');
+                
         return redirect('/');
 
     }
