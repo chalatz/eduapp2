@@ -11,13 +11,6 @@
 |
 */
 
-//use Mail;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +28,15 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 Route::group(['middleware' => 'web'], function () {
+
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
 });
