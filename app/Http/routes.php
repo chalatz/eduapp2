@@ -31,12 +31,15 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
 
+    Route::get('/', ['as' => 'home', 'uses' => 'PagesController@index']);
+
     Route::get('/home', 'HomeController@index');
 
     Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
 
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    // Route::get('/', function () {
+    //     return view('welcome');
+    // });
+
 
 });
