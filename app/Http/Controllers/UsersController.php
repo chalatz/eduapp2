@@ -32,8 +32,25 @@ class UsersController extends Controller
 
         alert()->success('Το email σας έχει επιβεβαιωθεί με επιτυχία! Μπορείτε τώρα να συνδεθείτε.')
                 ->persistent('Εντάξει');
-                
+
         return redirect('/');
+
+    }
+
+    public function send_verification()
+    {
+        $user = Auth::user();
+
+        $user->verification_token = str_random(40);
+
+        $user->save();
+
+        $user->sendVerificationEmail();
+
+        alert()->success('Σας έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. Μόλις έλθει (μπορεί κα να καθυστερήσει έως 30 λεπτά), παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.', 'Επιτυχής Αποστολή')
+                ->persistent('Το κατάλαβα');
+
+        return redirect()->route('home');
 
     }
 

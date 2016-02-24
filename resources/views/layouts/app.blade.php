@@ -68,15 +68,7 @@
         <hr>
     </div>
 
-    @if(Auth::check() && !Auth::user()->verified)
-        <div class="container">
-          <div class="row">
-              <div class="alert alert-danger">
-                  Δεν έχετε επιβεβαιώσει το email σας.
-              </div>
-          </div>
-        </div>
-    @endif
+    @include('partials/check_verification')
 
     @include('flash::message')
 
