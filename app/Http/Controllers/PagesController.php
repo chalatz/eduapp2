@@ -13,4 +13,11 @@ class PagesController extends Controller
     {
         return view('pages.index');
     }
+
+    public function test()
+    {
+        return view('pages.test');
+    }
+
+
 }
