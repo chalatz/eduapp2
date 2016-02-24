@@ -28,7 +28,6 @@ class User extends Authenticatable
     public function sendVerificationEmail()
     {
         $data = [
-            'thetitle' => 'Χρήστης',
             'verification_token' => $this->verification_token,
             'verification_url' => route('user.verify', ['verification_token' => $this->verification_token]),
         ];
