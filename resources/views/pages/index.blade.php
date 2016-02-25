@@ -23,7 +23,7 @@
                     <a class="btn btn-link" href="{{ url('/password/reset') }}">Ξέχασα τον Κωδικό Πρόσβασής μου</a>
                 </p>
                 <p>
-                    <a type="button" class="btn btn-success btn-lg btn-block">
+                    <a href="{{ url('/register') }}" type="button" class="btn btn-success btn-lg btn-block">
                         Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 8ου ΔΕΕΙ
                     </a>
                 </p>

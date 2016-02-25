@@ -22,6 +22,9 @@ class MustBeVerified
             return $next($request);
         }
 
+        alert()->error('Άρνηση Πρόσβασης.')
+                ->persistent('Εντάξει');
+                
         return redirect()->route('home');
     }
 }
