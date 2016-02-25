@@ -68,6 +68,9 @@ class AuthController extends Controller
             'verification_token' => str_random(40),
         ]);
 
+        // Give the user the role of user(id: 5)
+        $user->roles()->attach(5);
+
         $user->sendVerificationEmail();
 
         alert()->success('Σας έχει σταλεί ένα e-mail στον λογαριασμό που έχετε δηλώσει. Μόλις έλθει (μπορεί κα να καθυστερήσει έως 30 λεπτά), παρακαλούμε ανοίξτε αυτό το e-mail και πατήστε στον σύνδεσμο που θα βρείτε, προκειμένου να επιβεβαιώσετε το e-mail σας.', 'Επιτυχής Εγγραφή')
