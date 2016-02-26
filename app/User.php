@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Mail;
 use App\Role;
+use App\Site;
 
 class User extends Authenticatable
 {
@@ -29,6 +30,11 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimeStamps();
+    }
+
+    public function site()
+    {
+        return $this->hasOne(Site::class);
     }
 
     public function sendVerificationEmail()
