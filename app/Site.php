@@ -10,9 +10,10 @@ class Site extends Model
 {
 
     protected $fillable = [
-        'site_url',
+        'url',
         'title',
         'cat_id',
+        'user_id',
     ];
 
     public function site()

@@ -16,7 +16,7 @@ class CreateSitesTable extends Migration
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            $table->string('site_url', 255);
+            $table->string('url');
             $table->string('title');
             $table->tinyInteger('cat_id')->unsigned();
 
