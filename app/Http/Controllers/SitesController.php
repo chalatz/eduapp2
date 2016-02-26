@@ -56,7 +56,7 @@ class SitesController extends Controller
         // Give the user the role of site(id: 1)
         $user->roles()->attach(1);
 
-        alert()->success('Επιτυχής Υποβολή Υποψηφιότητας. Μπορείτε να επεξεργάζεστε τα στοιχεία της υποψηφιότητάς σας όποτε επιθυμείτε.', 'Επιτυχία!')
+        alert()->success('Μην ξεχνάτε ότι μπορείτε να επεξεργάζεστε τα στοιχεία της υποψηφιότητάς σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή Υποψηφιότητας!')
                 ->persistent('Το κατάλαβα');
 
         return redirect()->route('home');
