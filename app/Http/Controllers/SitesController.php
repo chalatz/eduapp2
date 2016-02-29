@@ -34,7 +34,14 @@ class SitesController extends Controller
      */
     public function create()
     {
-        return view('sites.create');
+        $user = Auth::user();
+
+        // if the user already has a site, redirect to the edit form
+        if($user->site){
+            return redirect()->route('sites.edit', ['sites' => $user->site->id]);
+        }
+
+        return view('sites.forms.create');
     }
 
     /**
@@ -82,7 +89,9 @@ class SitesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $site = Site::find($id);
+
+        return view('sites.edit', compact('site'));
     }
 
     /**

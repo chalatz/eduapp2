@@ -156,6 +156,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        'Collective\Html\HtmlServiceProvider',
+
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         'Laracasts\Flash\FlashServiceProvider',
 
@@ -205,7 +207,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Alert'     => UxWeb\SweetAlert\SweetAlert::class,
-        'Flash' => 'Laracasts\Flash\Flash'
+        'Flash' => 'Laracasts\Flash\Flash',
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
 
     ],
 
