@@ -27,9 +27,9 @@
                         {{ Form::label('title', 'Ονομασία') }}
                         {{ Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) }}
 
-                        @if ($errors->has('url'))
+                        @if ($errors->has('title'))
                             <span class="help-block">
-                                <strong>{{ $errors->first('url') }}</strong>
+                                <strong>{{ $errors->first('title') }}</strong>
                             </span>
                         @endif
                     </div>
