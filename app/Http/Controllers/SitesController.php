@@ -11,12 +11,16 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateSiteRequest;
+use App\Http\Requests\EditSiteRequest;
 
 class SitesController extends Controller
 {
     public function __construct()
     {
         $this->middleware('verified');
+
+        $this->middleware('must_own_site', ['only' => 'edit']);
+
     }
 
     /**
@@ -94,7 +98,7 @@ class SitesController extends Controller
     {
         $site = Site::find($id);
 
-        return view('sites.edit', compact('site'));
+        return view('sites.forms.edit', compact('site'));
     }
 
     /**
@@ -104,9 +108,16 @@ class SitesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditSiteRequest $request, $id)
     {
-        //
+        $site = Site::findOrFail($id);
+        $input = $request->all();
+
+        $site->fill($input)->save();
+
+        alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
+
+        return redirect()->back();
     }
 
     /**

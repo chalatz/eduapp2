@@ -6,19 +6,20 @@ use App\Http\Requests\Request;
 
 use App\Site;
 
-class CreateSiteRequest extends Request
+class EditSiteRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Make sure the User is the owner of the Site
      *
      * @return bool
      */
     public function authorize()
     {
-        // the user must be verified
-        $user = Request::user();
+        $site_id = $this->route()->parameter('sites');
 
-        return $user && $user->verified;
+        $site = Site::find($site_id);
+
+        return $this->user()->id == $site->user_id;
     }
 
     /**

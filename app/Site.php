@@ -21,4 +21,10 @@ class Site extends Model
         return $this->hasOne(User::class);
     }
 
+    public static $rules = [
+        'url' => 'required|url',
+        'title' => 'required',
+        'cat_id' => 'required',
+    ];
+
 }
