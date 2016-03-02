@@ -23,6 +23,8 @@ return [
         'secret' => env('MANDRILL_SECRET'),
     ],
 
+    'postmark' => env('POSTMARK_SECRET'),
+
     'ses' => [
         'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),

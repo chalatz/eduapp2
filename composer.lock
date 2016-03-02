@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5f72611e0e5656496776c3a90a79dfd7",
-    "content-hash": "9e52a7573b6fde47e111de3fc05188e8",
+    "hash": "9a8c20f54b51f9bfd04db0beb468080a",
+    "content-hash": "9e1fa3cb9e9320fff8fc9987ea1ab507",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2138,6 +2138,80 @@
                 "environment"
             ],
             "time": "2015-12-29 15:10:30"
+        },
+        {
+            "name": "wildbit/laravel-postmark-provider",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wildbit/laravel-postmark-provider.git",
+                "reference": "b80815602f618abe24030ea6d3f117da49a72885"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wildbit/laravel-postmark-provider/zipball/b80815602f618abe24030ea6d3f117da49a72885",
+                "reference": "b80815602f618abe24030ea6d3f117da49a72885",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/mail": "~5.2",
+                "wildbit/swiftmailer-postmark": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Postmark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "An officially supported mail provider to send mail from Laravel through Postmark, see instructions for integrating it here: https://github.com/wildbit/laravel-postmark-provider/blob/master/README.md",
+            "time": "2016-02-10 14:15:58"
+        },
+        {
+            "name": "wildbit/swiftmailer-postmark",
+            "version": "2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wildbit/swiftmailer-postmark.git",
+                "reference": "3673ace0473ec72de31bc7e62d78e8b8f95d15f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wildbit/swiftmailer-postmark/zipball/3673ace0473ec72de31bc7e62d78e8b8f95d15f0",
+                "reference": "3673ace0473ec72de31bc7e62d78e8b8f95d15f0",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0",
+                "swiftmailer/swiftmailer": "~5.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "suggest": {
+                "wildbit/laravel-postmark-provider": "~1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Postmark\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Postmark",
+                    "email": "support@postmarkapp.com"
+                }
+            ],
+            "description": "A Swiftmailer Transport for Postmark.",
+            "time": "2015-11-30 18:23:03"
         }
     ],
     "packages-dev": [
