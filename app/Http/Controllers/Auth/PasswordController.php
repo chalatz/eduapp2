@@ -21,6 +21,8 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     protected $subject = "Αλλαγή Κωδικού Πρόσβασης";
+    
+    protected $redirectTo = '/';
 
     /**
      * Create a new password controller instance.
