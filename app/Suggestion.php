@@ -12,7 +12,7 @@ class Suggestion extends Model
         'grader_email',
         'user_id',
         'personal_msg',
-        'suggestor',
+        'suggestor_name',
         'suggestor_email',
         'unique_string',
         'accepted',
@@ -23,7 +23,7 @@ class Suggestion extends Model
         $data = [
             'unique_url' => route('user.suggest', ['unique_string' => $this->unique_string]),
             'suggestor_name' => $this->suggestor_name,
-            'suggestor_email' => $this->suggestor_name,
+            'suggestor_email' => $this->suggestor_email,
             'personal_msg' => $this->personal_msg,
         ];
 
