@@ -45,7 +45,7 @@ class User extends Authenticatable
         ];
 
         Mail::send('emails.verify_user', ['data' => $data], function ($message) use ($data) {
-            $message->to($this->email, $this->email)->subject('Επιβεβαιώστε το email σας. Edu Web Awards 2017');
+            $message->to($this->email, $this->email)->subject('Επιβεβαιώστε το email σας.');
         });
     }
 
