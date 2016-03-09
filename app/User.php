@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Mail;
 use App\Role;
 use App\Site;
+use App\Grader;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'verification_token'
+        'email', 'password', 'verification_token', 'verified'
     ];
 
     /**
@@ -35,6 +36,11 @@ class User extends Authenticatable
     public function site()
     {
         return $this->hasOne(Site::class);
+    }
+
+    public function grader()
+    {
+        return $this->hasOne(Grader::class);
     }
 
     public function sendVerificationEmail()
