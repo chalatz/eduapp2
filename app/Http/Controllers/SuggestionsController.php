@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\SuggestOtherGraderRequest;
 use App\Http\Requests\CreateOtherGraderRequest;
 
 use App\Suggestion;
@@ -18,18 +19,17 @@ class SuggestionsController extends Controller
   public function __construct()
   {
       $this->middleware('verified',
-        ['except' => ['handle_suggestion', 'handle_suggestion_answer', 'store_other_grader']]
+        ['only' => ['do_suggest_other_grader']]
       );
+
+      $this->middleware('has_not_accepted',
+        ['only' => ['handle_suggestion_answer', 'handle_suggestion']]
+      );
+
   }
 
-  public function do_suggest_other_grader(Request $request)
+  public function do_suggest_other_grader(SuggestOtherGraderRequest $request)
   {
-      $this->validate($request,[
-          'suggestor_name' => 'required',
-          'grader_email' => 'required|email',
-          'personal_msg' => 'required',
-      ]);
-
       $data['user_id'] = $request->user()->id;
       $data['grader_email'] = $request->grader_email;
       $data['suggestor_name'] = $request->suggestor_name;
@@ -42,7 +42,7 @@ class SuggestionsController extends Controller
 
       $suggestion->sendSuggestionEmail();
 
-      alert()->success('Έχει ασταλεί το email.')
+      alert()->success('Έχει αποσταλεί το email.')
               ->persistent('Εντάξει');
 
       return redirect('/');
@@ -58,6 +58,8 @@ class SuggestionsController extends Controller
 
   public function handle_suggestion_answer($answer, $unique_string)
   {
+    Auth::logout();
+
     // The grader has accepted
     if($answer == 'yes'){
 
@@ -75,6 +77,8 @@ class SuggestionsController extends Controller
 
   public function store_other_grader(CreateOtherGraderRequest $request)
   {
+    Auth::logout();
+
     $unique_string = $request->unique_string;
 
     // find the suggestion
@@ -109,6 +113,12 @@ class SuggestionsController extends Controller
     $data['first_name'] = $request->first_name;
 
     $grader = Grader::create($data);
+
+    // Notify the user
+    $suggestion->sendAcceptanceEmail($request->last_name, $request->first_name);
+
+    alert()->success('Ο Υποψήφιος θα ενημερωθεί για την αποδοχή σας. Μην ξεχνάτε ότι μπορείτε να επεξεργάζεστε τα στοιχεία σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή!')
+            ->persistent('Το κατάλαβα');
 
     return redirect()->route('home');
 

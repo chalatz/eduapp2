@@ -50,5 +50,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \App\Http\Middleware\MustBeVerified::class,
         'must_own_site' => \App\Http\Middleware\MustOwnSite::class,
+        'has_not_accepted' => \App\Http\Middleware\HasNotAccepted::class,
     ];
 }

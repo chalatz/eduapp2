@@ -32,4 +32,18 @@ class Suggestion extends Model
         });
     }
 
+    public function sendAcceptanceEmail($last_name, $first_name)
+    {
+      $data = [
+        'last_name' => $last_name,
+        'first_name' => $first_name,
+        'grader_email' => $this->grader_email,
+      ];
+
+      Mail::send('emails.send_acceptance', ['data' => $data], function ($message) use ($data) {
+          $message->to($this->suggestor_email, $this->suggestor_email)->subject('Αποδοχή από τον Αξιολογητή Α που προτείνατε.');
+      });
+
+    }
+
 }

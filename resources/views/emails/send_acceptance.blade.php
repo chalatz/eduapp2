@@ -37,18 +37,13 @@
                                     <table class="twelve columns">
                                        <tr>
                                           <td>
-                                             <h3>Επιβεβαίωση Εγγραφής</h3>
+                                             <h3>Αποδοχή Αξιολογητή Α</h3>
                                              <p>
-                                                Έχετε προταθεί ως <strong>Αξιολογητής Α</strong> από τον <strong>{{ $data['suggestor_name'] }}</strong>, με email {{ $data['suggestor_email'] }}.
+                                                Σας ενημερώνουμε ότι ο/η <strong>{{ $data['last_name'] }} {{ $data['first_name'] }}</strong> και με email {{ $data['grader_email'] }} <strong>έχει αποδεχθεί</strong> την πρόσκλησή σας για Αξιολογητής Α.
                                              </p>
                                              <p>
-                                                <strong>Προσωπικό μήνυμα από τον υποψήφιο:</strong>
+                                                Μπορείτε τώρα να συνδεθείτε στο <a href="{{ route('home') }}">Πληροφοριακό Σύστημα του Διαγωνισμού</a> και να καταχωρίσετε την Υποψηφιότητά σας.
                                              </p>
-                                             <p>
-                                                {!! nl2br(e($data['personal_msg'])) !!}
-                                             </p>
-                                             <p>Για να να αποδεχτείτε ή όχι, παρακαλούμε πατήστε στον παρακάτω σύνδεσμο:</p>
-                                             <p><a href="{{ $data['unique_url'] }}">{{ $data['unique_url'] }}</a></p>
                                           </td>
                                           <td class="expander"></td>
                                        </tr>
