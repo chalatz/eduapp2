@@ -24,5 +24,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('do-suggest-other-grader', ['as' => 'do_suggest_other_grader', 'uses' => 'SuggestionsController@do_suggest_other_grader']);
     Route::post('store-other-grader', ['as' => 'store_other_grader', 'uses' => 'SuggestionsController@store_other_grader']);
 
+    Route::resource('graders', 'GradersController');
 
 });

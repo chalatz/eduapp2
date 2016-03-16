@@ -67,7 +67,7 @@ class SitesController extends Controller
 
         Site::create($data);
 
-        // Give the user the role of site(id: 1)
+        // Give the user the role of Site (id: 1)
         $user->roles()->attach(1);
 
         alert()->success('Μην ξεχνάτε ότι μπορείτε να επεξεργάζεστε τα στοιχεία της υποψηφιότητάς σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή Υποψηφιότητας!')

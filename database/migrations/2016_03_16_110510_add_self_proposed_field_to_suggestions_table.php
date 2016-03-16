@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGraderIdToSitesTable extends Migration
+class AddSelfProposedFieldToSuggestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class AddGraderIdToSitesTable extends Migration
      */
     public function up()
     {
-        Schema::table('sites', function (Blueprint $table) {
-            $table->integer('grader_id')->unsigned()->after('user_id');
+        Schema::table('suggestions', function (Blueprint $table) {
+            $table->string('self_proposed', 10)->default('na')->after('accepted');
         });
     }
 
@@ -24,8 +24,8 @@ class AddGraderIdToSitesTable extends Migration
      */
     public function down()
     {
-        Schema::table('sites', function (Blueprint $table) {
-            $table->dropColumn('grader_id');
+        Schema::table('suggestions', function (Blueprint $table) {
+            $table->dropColumn('self_proposed');
         });
     }
 }

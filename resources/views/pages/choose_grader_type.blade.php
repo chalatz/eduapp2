@@ -9,6 +9,10 @@
                 Προτείνω Άλλον
             </a>
 
+            <a href="{{ route('graders.create') }}" type="button" class="btn btn-success btn-lg btn-block">
+                Προτείνω Εμένα
+            </a>
+
         </div>
     </div>
 </div>
