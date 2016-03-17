@@ -38,6 +38,8 @@ class SuggestionsController extends Controller
       $data['unique_string'] = str_random(50);
       $data['personal_msg'] = $request->personal_msg;
 
+      $data['self_proposed'] = "no"; 
+
       $suggestion = Suggestion::create($data);
 
       $suggestion->sendSuggestionEmail();
@@ -51,14 +53,12 @@ class SuggestionsController extends Controller
 
   public function handle_suggestion($unique_string)
   {
-    Auth::logout();
 
     return view('suggestions.handle_new', compact('unique_string'));
   }
 
   public function handle_suggestion_answer($answer, $unique_string)
   {
-    Auth::logout();
 
     // The grader has accepted
     if($answer == 'yes'){
@@ -66,6 +66,24 @@ class SuggestionsController extends Controller
       // find the suggestion
       $suggestion = Suggestion::where('unique_string', $unique_string)->first();
       $grader_email = $suggestion->grader_email;
+
+      // There is already a grader with this email
+      $user = User::where('email', $grader_email)->first();
+      if($user->hasRole('grader_a')){
+        $user->grader_status .= ',accepted';
+        $user->save();
+        
+        $suggestion->accepted = 'yes';
+        $suggestion->save();
+        
+        $grader = Grader::where('user_id', $user->id)->first();
+        $suggestions_count =  $grader->suggestions_count;
+        $suggestions_count = $suggestions_count + 1;
+        $grader->suggestions_count = $suggestions_count;
+        $grader->save();
+        
+        return redirect()->route('home');
+      }
 
       return view('graders.new_grader_other', compact('grader_email', 'unique_string'));
 
@@ -88,7 +106,7 @@ class SuggestionsController extends Controller
     // Update the suggestor
     $suggestor_email = $suggestion->suggestor_email;
     $suggestor = User::where('email', $suggestor_email)->first();
-    $suggestor->grader_status = 'accepted';
+    $suggestor->grader_status .= ',accepted';
     $suggestor->save();
 
     // Update the Suggestion

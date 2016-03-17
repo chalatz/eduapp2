@@ -28,7 +28,7 @@ class SuggestOtherGraderRequest extends Request
     {
         return [
             'suggestor_name' => 'required',
-            'grader_email' => 'required|email|max:255|unique:users,email',
+            'grader_email' => 'required|email|max:255',
             'personal_msg' => 'required',
         ];
     }

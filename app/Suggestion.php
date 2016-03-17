@@ -16,6 +16,7 @@ class Suggestion extends Model
         'suggestor_email',
         'unique_string',
         'accepted',
+        'self_proposed',
     ];
 
     public function sendSuggestionEmail()

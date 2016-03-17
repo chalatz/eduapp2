@@ -13,7 +13,7 @@ class AddStatusFieldToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('grader_status', 50)->default('na')->after('verified');
+            $table->string('grader_status', 150)->default('na')->after('verified');
         });
     }
 

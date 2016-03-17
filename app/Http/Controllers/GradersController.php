@@ -58,6 +58,9 @@ class GradersController extends Controller
 
       // Give the user the role of grader A (id: 2)
       $user->roles()->attach(2);
+      
+      $user->grader_status .= ',self_proposed';
+      $user->save();
 
       alert()->success('Μπορείτε τώρα να υποβάλετε υποψηφιότητα. Μην ξεχνάτε επίσης ότι μπορείτε να επεξεργάζεστε τα στοιχεία σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή!')
               ->persistent('Το κατάλαβα');
@@ -76,6 +79,7 @@ class GradersController extends Controller
       $data['personal_msg'] = "Self proposed";
       $data['unique_string'] = "Self proposed";
       $data['accepted'] = "yes";
+      $data['self_proposed'] = 'yes';
 
       $suggestion = Suggestion::create($data);
 
