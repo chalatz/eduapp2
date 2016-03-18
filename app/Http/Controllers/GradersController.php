@@ -19,6 +19,10 @@ class GradersController extends Controller
   public function __construct()
   {
       $this->middleware('verified');
+      
+      $this->middleware('grader_has_not_accepted', ['only' => [
+            'create',
+        ]]);
 
   }
 

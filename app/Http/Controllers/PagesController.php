@@ -19,6 +19,11 @@ class PagesController extends Controller
             'choose_grader_type',
             'suggest_other_grader'
         ]]);
+        
+        $this->middleware('grader_has_not_accepted', ['only' => [
+            'choose_grader_type',
+            'suggest_other_grader',
+        ]]);
     }
 
     public function index()

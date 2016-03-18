@@ -51,5 +51,6 @@ class Kernel extends HttpKernel
         'verified' => \App\Http\Middleware\MustBeVerified::class,
         'must_own_site' => \App\Http\Middleware\MustOwnSite::class,
         'has_not_accepted' => \App\Http\Middleware\HasNotAccepted::class,
+        'grader_has_not_accepted' => \App\Http\Middleware\GraderHasNotAccepted::class,
     ];
 }

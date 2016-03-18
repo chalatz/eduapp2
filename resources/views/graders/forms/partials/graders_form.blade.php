@@ -1,6 +1,6 @@
 <div class="col-md-12 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
     {{ Form::label('last_name', 'Επώνυμο') }}
-    {{ Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name']) }}
+    {{ Form::text('last_name', null, ['class' => 'form-control', 'id' => 'last_name', 'required']) }}
 
     @if ($errors->has('last_name'))
         <span class="help-block">
@@ -11,7 +11,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
     {{ Form::label('first_name', 'Όνομα') }}
-    {{ Form::text('first_name', null, ['class' => 'form-control', 'id' => 'first_name']) }}
+    {{ Form::text('first_name', null, ['class' => 'form-control', 'id' => 'first_name', 'required']) }}
 
     @if ($errors->has('first_name'))
         <span class="help-block">
