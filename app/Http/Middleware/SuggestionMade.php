@@ -4,12 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use App\Grader;
+use App\Suggestion;
 
-class GraderHasNotAccepted
+class SuggestionMade
 {
     /**
-     * The suggested grader has not accepted yet
+     * The current user has already suggested someone, regardless if he/she has accepted.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -18,14 +18,12 @@ class GraderHasNotAccepted
     public function handle($request, Closure $next)
     {
         $user = $request->user();
-        $grader = Grader::where('user_id', $user->id)->first();
+        $suggestion = Suggestion::where('suggestor_email', $user->email)->first();
 
-        if(!$grader){
+        if($suggestion){
             return $next($request);
         }
 
         return redirect()->route('home');
-
     }
-
 }

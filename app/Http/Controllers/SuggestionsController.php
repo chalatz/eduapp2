@@ -48,11 +48,12 @@ class SuggestionsController extends Controller
 
     // // check if the suggested user has already accpeted 3 times
     $suggested_user = User::where('email', $grader_email)->first();
-    $times_accepted = $suggested_user->grader->suggestions_count;
-    if($times_accepted >= 3){
-      //flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="{{ route("other_grader_email") }}">προτείνετε κάποιον άλλον.</a> ή <a href="{{ route("graders.create") }}">τον εαυτό σας.</a>');
-      flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="'.route("other_grader_email").'">προτείνετε κάποιον άλλον</a> ή <a href="'.route("graders.create").'">τον εαυτό σας</a>');
-      return redirect()->back();
+    if($suggested_user && $suggested_user->grader){
+      $times_accepted = $suggested_user->grader->suggestions_count;
+      if($times_accepted >= 3){
+        flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="'.route("other_grader_email").'">προτείνετε κάποιον άλλον</a> ή <a href="'.route("graders.create").'">τον εαυτό σας</a>');
+        return redirect()->back();
+      }
     }
 
     return view('pages.suggest_other_grader', compact('grader_email'));
@@ -61,7 +62,6 @@ class SuggestionsController extends Controller
 
   public function do_suggest_other_grader(SuggestOtherGraderRequest $request)
   {
-
       $data['user_id'] = $request->user()->id;
       $data['grader_email'] = $request->grader_email;
       $data['suggestor_name'] = $request->suggestor_name;
@@ -85,7 +85,6 @@ class SuggestionsController extends Controller
 
   public function handle_suggestion($unique_string)
   {
-
     return view('suggestions.handle_new', compact('unique_string'));
   }
 

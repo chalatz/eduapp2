@@ -52,5 +52,7 @@ class Kernel extends HttpKernel
         'must_own_site' => \App\Http\Middleware\MustOwnSite::class,
         'has_not_accepted' => \App\Http\Middleware\HasNotAccepted::class,
         'grader_has_not_accepted' => \App\Http\Middleware\GraderHasNotAccepted::class,
+        'suggestion_made' => \App\Http\Middleware\SuggestionMade::class,
+        'suggestion_not_made' => \App\Http\Middleware\SuggestionNotMade::class,
     ];
 }

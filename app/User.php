@@ -7,6 +7,7 @@ use Mail;
 use App\Role;
 use App\Site;
 use App\Grader;
+use App\Suggestion;
 
 class User extends Authenticatable
 {
@@ -41,6 +42,32 @@ class User extends Authenticatable
     public function grader()
     {
         return $this->hasOne(Grader::class);
+    }
+
+    // the user has suggested someone
+    public function hasSuggested()
+    {
+        $suggestion = Suggestion::where('suggestor_email', $this->email)->first();
+
+        if($suggestion){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    // the one user has suggested, has accepted
+    public function hasNotAcceptedYet()
+    {
+        $suggestion = Suggestion::where('suggestor_email', $this->email)->first();
+
+        if($suggestion->accepted == 'na'){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public function sendVerificationEmail()
