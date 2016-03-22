@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
-            <a href="{{ route('suggest_other_grader') }}" type="button" class="btn btn-info btn-lg btn-block">
+            <a href="{{ route('other_grader_email') }}" type="button" class="btn btn-info btn-lg btn-block">
                 Προτείνω κάποιον άλλον
             </a>
 

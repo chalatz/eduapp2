@@ -19,7 +19,7 @@ class SuggestionsController extends Controller
   public function __construct()
   {
       $this->middleware('verified',
-        ['only' => ['do_suggest_other_grader']]
+        ['only' => ['do_suggest_other_grader', 'do_other_grader_email']]
       );
 
       $this->middleware('has_not_accepted',
@@ -28,8 +28,31 @@ class SuggestionsController extends Controller
 
   }
 
+  public function do_other_grader_email(Request $request)
+  {
+    $this->validate($request, ['grader_email' => 'required|email']);
+
+    // check if the user has submitted his own email
+    if($request->user()->email == $request->grader_email){
+      flash()->error('Έχετε υποβάλλει το δικό σας email. Παρακαλούμε υποβάλλετε κάποιο άλλο, ή <a href="{{ route("graders.create") }}">προτείνετε τον εαυτό σας.</a>');
+      return redirect()->back();
+    }
+
+    // check if the suggested user has already been suggested by another site
+    $suggestions_count = Suggestion::where('grader_email', $request->grader_email)->count();
+    if($suggestions_count > 0){
+      flash()->warning('Ο Αξιολογητής που έχετε προτείνει έχει προταθεί και από άλλον υποψήφιο, οπότε είναι πιθανό <strong>να μην αποδεχθεί την πρόσκλησή σας.</strong>');
+    }
+
+    $grader_email = $request->grader_email;
+
+    return view('pages.suggest_other_grader', compact('grader_email'));
+
+  }
+
   public function do_suggest_other_grader(SuggestOtherGraderRequest $request)
   {
+
       $data['user_id'] = $request->user()->id;
       $data['grader_email'] = $request->grader_email;
       $data['suggestor_name'] = $request->suggestor_name;
@@ -38,14 +61,14 @@ class SuggestionsController extends Controller
       $data['unique_string'] = str_random(50);
       $data['personal_msg'] = $request->personal_msg;
 
-      $data['self_proposed'] = "no"; 
+      $data['self_proposed'] = "no";
 
       $suggestion = Suggestion::create($data);
 
       $suggestion->sendSuggestionEmail();
 
       alert()->success('Έχει αποσταλεί το email.')
-              ->persistent('Εντάξει');
+        ->persistent('Εντάξει');      
 
       return redirect('/');
 
@@ -72,16 +95,16 @@ class SuggestionsController extends Controller
       if($user->hasRole('grader_a')){
         $user->grader_status .= ',accepted';
         $user->save();
-        
+
         $suggestion->accepted = 'yes';
         $suggestion->save();
-        
+
         $grader = Grader::where('user_id', $user->id)->first();
         $suggestions_count =  $grader->suggestions_count;
         $suggestions_count = $suggestions_count + 1;
         $grader->suggestions_count = $suggestions_count;
         $grader->save();
-        
+
         return redirect()->route('home');
       }
 

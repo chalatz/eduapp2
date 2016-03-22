@@ -17,9 +17,10 @@ class PagesController extends Controller
     {
         $this->middleware('verified', ['only' => [
             'choose_grader_type',
-            'suggest_other_grader'
+            'suggest_other_grader',
+            'other_grader_email',
         ]]);
-        
+
         $this->middleware('grader_has_not_accepted', ['only' => [
             'choose_grader_type',
             'suggest_other_grader',
@@ -39,6 +40,11 @@ class PagesController extends Controller
     public function suggest_other_grader()
     {
         return view('pages.suggest_other_grader');
+    }
+
+    public function other_grader_email()
+    {
+        return view('pages.other_grader_email');
     }
 
     public function test()
