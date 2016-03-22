@@ -32,9 +32,11 @@ class SuggestionsController extends Controller
   {
     $this->validate($request, ['grader_email' => 'required|email']);
 
+    $grader_email = $request->grader_email;
+
     // check if the user has submitted his own email
     if($request->user()->email == $request->grader_email){
-      flash()->error('Έχετε υποβάλλει το δικό σας email. Παρακαλούμε υποβάλλετε κάποιο άλλο, ή <a href="{{ route("graders.create") }}">προτείνετε τον εαυτό σας.</a>');
+      flash()->error('Έχετε υποβάλλει το δικό σας email. Παρακαλούμε υποβάλλετε κάποιο άλλο, ή <a href="'.route("graders.create").'">προτείνετε τον εαυτό σας.</a>');
       return redirect()->back();
     }
 
@@ -44,7 +46,14 @@ class SuggestionsController extends Controller
       flash()->warning('Ο Αξιολογητής που έχετε προτείνει έχει προταθεί και από άλλον υποψήφιο, οπότε είναι πιθανό <strong>να μην αποδεχθεί την πρόσκλησή σας.</strong>');
     }
 
-    $grader_email = $request->grader_email;
+    // // check if the suggested user has already accpeted 3 times
+    $suggested_user = User::where('email', $grader_email)->first();
+    $times_accepted = $suggested_user->grader->suggestions_count;
+    if($times_accepted >= 3){
+      //flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="{{ route("other_grader_email") }}">προτείνετε κάποιον άλλον.</a> ή <a href="{{ route("graders.create") }}">τον εαυτό σας.</a>');
+      flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="'.route("other_grader_email").'">προτείνετε κάποιον άλλον</a> ή <a href="'.route("graders.create").'">τον εαυτό σας</a>');
+      return redirect()->back();
+    }
 
     return view('pages.suggest_other_grader', compact('grader_email'));
 
@@ -68,7 +77,7 @@ class SuggestionsController extends Controller
       $suggestion->sendSuggestionEmail();
 
       alert()->success('Έχει αποσταλεί το email.')
-        ->persistent('Εντάξει');      
+        ->persistent('Εντάξει');
 
       return redirect('/');
 
