@@ -37,9 +37,9 @@
                                     <table class="twelve columns">
                                        <tr>
                                           <td>
-                                             <h3>Επιβεβαίωση Εγγραφής</h3>
+                                             <h3>{{ $data['title'] }}</h3>
                                              <p>
-                                                Έχετε προταθεί ως <strong>Αξιολογητής Α</strong> από τον <strong>{{ $data['suggestor_name'] }}</strong>, με email {{ $data['suggestor_email'] }}.
+                                                {{ $data['text'] }} <strong>Αξιολογητής Α</strong> από τον <strong>{{ $data['suggestor_name'] }}</strong>, με email {{ $data['suggestor_email'] }}.
                                              </p>
                                              <p>
                                                 <strong>Προσωπικό μήνυμα από τον υποψήφιο:</strong>

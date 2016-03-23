@@ -19,7 +19,7 @@ class Suggestion extends Model
         'self_proposed',
     ];
 
-    public function sendSuggestionEmail()
+    public function sendSuggestionEmail($type)
     {
         $data = [
             'unique_url' => route('user.suggest', ['unique_string' => $this->unique_string]),
@@ -28,9 +28,23 @@ class Suggestion extends Model
             'personal_msg' => $this->personal_msg,
         ];
 
-        Mail::send('emails.send_suggestion', ['data' => $data], function ($message) use ($data) {
-            $message->to($this->grader_email, $this->grader_email)->subject('Πρόταση για Αξιολογητής Α.');
-        });
+        if($type == 'initial_request'){
+          $data['title'] = 'Πρόταση για Αξιολογητής Α';
+          $data['text'] = 'Έχετε προταθεί ως';
+
+          Mail::send('emails.send_suggestion', ['data' => $data], function ($message) use ($data) {
+              $message->to($this->grader_email, $this->grader_email)->subject('Πρόταση για Αξιολογητής Α');
+          });
+        }
+
+        if($type == 'reminder'){
+          $data['title'] = 'Υπενθύμιση Πρότασης για Αξιολογητής Α';
+          $data['text'] = 'Σας υπενθυμίζουμε ότι έχετε προταθεί ως';
+
+          Mail::send('emails.send_suggestion', ['data' => $data], function ($message) use ($data) {
+              $message->to($this->grader_email, $this->grader_email)->subject('Υπενθύμιση Πρότασης για Αξιολογητής Α');
+          });
+        }
     }
 
     public function sendAcceptanceEmail($last_name, $first_name)

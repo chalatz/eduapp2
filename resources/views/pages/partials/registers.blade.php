@@ -24,13 +24,13 @@
                 </blockquote>
             </div>
             <div class="row">
-                <a href="#" type="button" class="btn btn-primary btn-lg btn-block">
-                    Αποστολή email υπενθύμισης
+                <a href="{{ route('send_reminder_to_grader_a_from_site') }}" type="button" class="btn btn-primary btn-lg btn-block">
+                    <i class="fa fa-envelope"></i> Αποστολή email υπενθύμισης
                 </a>
             </div>
             <div class="row">
-                <a href="#" type="button" class="btn btn-primary btn-lg btn-block">
-                    Επιλογή νέου Αξιολογητή
+                <a href="#" type="button" class="btn btn-warning btn-lg btn-block">
+                    <i class="fa fa-pencil-square"></i> Επιλογή νέου Αξιολογητή
                 </a>
             </div>
 

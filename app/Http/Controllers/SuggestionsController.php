@@ -74,7 +74,7 @@ class SuggestionsController extends Controller
 
       $suggestion = Suggestion::create($data);
 
-      $suggestion->sendSuggestionEmail();
+      $suggestion->sendSuggestionEmail('initial_request');
 
       alert()->success('Έχει αποσταλεί το email.')
         ->persistent('Εντάξει');
@@ -170,6 +170,21 @@ class SuggestionsController extends Controller
             ->persistent('Το κατάλαβα');
 
     return redirect()->route('home');
+
+  }
+
+  public function send_reminder_to_grader_a_from_site()
+  {
+    $user = Auth::user();
+
+    $suggestion = Suggestion::where('user_id', $user->id)->first();
+
+    $suggestion->sendSuggestionEmail('reminder');
+
+    alert()->success('Έχει αποσταλεί το email.')
+      ->persistent('Εντάξει');
+
+    return redirect('/');
 
   }
 
