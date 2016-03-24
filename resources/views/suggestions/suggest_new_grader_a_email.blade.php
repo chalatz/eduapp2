@@ -6,13 +6,17 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading"><h4>Email Αξιολογητή Α</h4></div>
+                <div class="panel-heading"><h4>Email Νέου Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::open(['route' => ['do_other_grader_email', 'create'], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  <p>
+                      Email Αξιολογητή που έχετε προτείνει: <strong>{{ $suggestion->grader_email }}</strong>
+                  </p>
+
+                  {!! Form::open(['route' => ['do_other_grader_email', 'edit'], 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email') ? ' has-error' : '' }}">
-                          {{ Form::label('grader_email', 'Το email του Αξιολογητή που προτείνετε') }}
+                          {{ Form::label('grader_email', 'Το email του νέου Αξιολογητή που προτείνετε') }}
                           {{ Form::email('grader_email', null, ['class' => 'form-control', 'id' => 'grader_email']) }}
 
                           @if ($errors->has('grader_email'))

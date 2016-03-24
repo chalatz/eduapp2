@@ -29,7 +29,7 @@
                           </div>
 
                           <div class="col-md-12 form-group{{ $errors->has('personal_msg') ? ' has-error' : '' }}">
-                              {{ Form::label('personal_msg', 'Προσωπικό μήνυνα προς τον Αξιολογητή') }}
+                              {{ Form::label('personal_msg', 'Προσωπικό μήνυμα προς τον Αξιολογητή') }}
                               {{ Form::textarea('personal_msg', null, ['rows' => '3', 'columns' => '50', 'class' => 'form-control', 'id' => 'personal_msg']) }}
 
                               @if ($errors->has('personal_msg'))

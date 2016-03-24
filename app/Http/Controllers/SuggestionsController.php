@@ -19,16 +19,21 @@ class SuggestionsController extends Controller
   public function __construct()
   {
       $this->middleware('verified',
-        ['only' => ['do_suggest_other_grader', 'do_other_grader_email']]
-      );
+        ['only' => [
+          'do_suggest_other_grader',
+          'do_other_grader_email',
+          'suggest_new_grader_a',
+        ]]);
 
       $this->middleware('has_not_accepted',
         ['only' => ['handle_suggestion_answer', 'handle_suggestion']]
       );
 
+      $this->middleware('suggestion_made', ['only' => ['suggest_new_grader_a']]);
+
   }
 
-  public function do_other_grader_email(Request $request)
+  public function do_other_grader_email(Request $request, $action = 'create')
   {
     $this->validate($request, ['grader_email' => 'required|email']);
 
@@ -46,12 +51,22 @@ class SuggestionsController extends Controller
       flash()->warning('Ο Αξιολογητής που έχετε προτείνει έχει προταθεί και από άλλον υποψήφιο, οπότε είναι πιθανό <strong>να μην αποδεχθεί την πρόσκλησή σας.</strong>');
     }
 
-    // // check if the suggested user has already accpeted 3 times
+    // check if the suggested user has already accpeted 3 times
     $suggested_user = User::where('email', $grader_email)->first();
     if($suggested_user && $suggested_user->grader){
       $times_accepted = $suggested_user->grader->suggestions_count;
       if($times_accepted >= 3){
         flash()->error('Ο Αξιολογητής έχει ήδη αποδεχθεί 3 προσκλήσεις. Παρακαλούμε <a href="'.route("other_grader_email").'">προτείνετε κάποιον άλλον</a> ή <a href="'.route("graders.create").'">τον εαυτό σας</a>');
+        return redirect()->back();
+      }
+    }
+
+    // a new grader is suggested
+    if($action == 'edit'){
+      // check if the user suggests the same grader again
+      $suggestion = Suggestion::where('user_id', $request->user()->id)->first();
+      if ($suggestion->grader_email == $grader_email) {
+        flash()->error('Επιχειρήτε να προτείνετε πάλι το ίδιο email.');
         return redirect()->back();
       }
     }
@@ -185,6 +200,16 @@ class SuggestionsController extends Controller
       ->persistent('Εντάξει');
 
     return redirect('/');
+
+  }
+
+  public function suggest_new_grader_a_email()
+  {
+    $user = Auth::user();
+
+    $suggestion = Suggestion::where('user_id', $user->id)->first();
+
+    return view('suggestions.suggest_new_grader_a_email', compact('suggestion'));
 
   }
 

@@ -29,7 +29,7 @@
                 </a>
             </div>
             <div class="row">
-                <a href="#" type="button" class="btn btn-warning btn-lg btn-block">
+                <a href="{{ route('suggest_new_grader_a_email') }}" type="button" class="btn btn-warning btn-lg btn-block">
                     <i class="fa fa-pencil-square"></i> Επιλογή νέου Αξιολογητή
                 </a>
             </div>

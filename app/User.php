@@ -62,7 +62,7 @@ class User extends Authenticatable
     {
         $suggestion = Suggestion::where('suggestor_email', $this->email)->first();
 
-        if($suggestion->accepted == 'na'){
+        if($suggestion && $suggestion->accepted == 'na'){
             return true;
         } else {
             return false;
