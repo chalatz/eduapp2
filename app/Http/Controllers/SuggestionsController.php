@@ -63,13 +63,17 @@ class SuggestionsController extends Controller
 
     // a new grader is suggested
     if($action == 'edit'){
+
       // check if the user suggests the same grader again
-      $suggestion = Suggestion::where('user_id', $request->user()->id)->first();
-      if ($suggestion->grader_email == $grader_email) {
-        flash()->error('Επιχειρήτε να προτείνετε πάλι το ίδιο email.');
+      $old_suggestion = Suggestion::where('user_id', $request->user()->id)->first();
+      if ($old_suggestion->grader_email == $grader_email) {
+        flash()->error('Επιχειρείτε να προτείνετε πάλι το ίδιο email.');
         return redirect()->back();
       }
-    }
+
+      return view('pages.suggest_other_grader', compact('grader_email', 'old_suggestion'));
+
+    } // end edit action
 
     return view('pages.suggest_other_grader', compact('grader_email'));
 
@@ -91,6 +95,15 @@ class SuggestionsController extends Controller
 
       $suggestion->sendSuggestionEmail('initial_request');
 
+      // A new grader is being suggested. Delete the old suggestion.
+      if(isset($request->old_suggestion_id)){
+        Suggestion::destroy($request->old_suggestion_id);
+        alert()->success('Έχει αποσταλεί το email και έχει διαγραφεί η προηγούμενη πρόταση.')
+          ->persistent('Εντάξει');
+
+        return redirect('/');
+      }
+
       alert()->success('Έχει αποσταλεί το email.')
         ->persistent('Εντάξει');
 
@@ -100,11 +113,14 @@ class SuggestionsController extends Controller
 
   public function handle_suggestion($unique_string)
   {
+    Auth::logout();
+
     return view('suggestions.handle_new', compact('unique_string'));
   }
 
   public function handle_suggestion_answer($answer, $unique_string)
   {
+    Auth::logout();
 
     // The grader has accepted
     if($answer == 'yes'){
@@ -115,7 +131,7 @@ class SuggestionsController extends Controller
 
       // There is already a grader with this email
       $user = User::where('email', $grader_email)->first();
-      if($user->hasRole('grader_a')){
+      if($user && $user->hasRole('grader_a')){
         $user->grader_status .= ',accepted';
         $user->save();
 

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('do-suggest-other-grader', ['as' => 'do_suggest_other_grader', 'uses' => 'SuggestionsController@do_suggest_other_grader']);
     Route::post('store-other-grader', ['as' => 'store_other_grader', 'uses' => 'SuggestionsController@store_other_grader']);
-    Route::post('do-other-grader-email/{action}', ['as' => 'do_other_grader_email', 'uses' => 'SuggestionsController@do_other_grader_email']);
+    Route::post('do-other-grader-email/{actio}', ['as' => 'do_other_grader_email', 'uses' => 'SuggestionsController@do_other_grader_email']);
 
     Route::resource('graders', 'GradersController');
 

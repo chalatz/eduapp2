@@ -39,6 +39,17 @@
                               @endif
                           </div>
 
+                          @if(isset($old_suggestion))
+                              {{ Form::hidden('old_suggestion_id', $old_suggestion->id) }}
+                              <div class="form-group">
+                                  <div class="col-md-12">
+                                      <div class="alert alert-danger" role="alert">
+                                          <strong>Προσοχή!</strong> Η πρότασή σας στον Αξιολογητή με email <strong>{{ $old_suggestion->grader_email }}</strong> θα διαγραφεί και δε θα μπορεί πλέον να αποδεχθεί την πρότασή σας.
+                                      </div>
+                                  </div>
+                              </div>
+                          @endif
+
                           <div class="form-group">
                               <div class="col-md-12">
                                   {{ Form::button('Αποστολή email στον Αξιολογητή', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
