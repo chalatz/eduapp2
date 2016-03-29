@@ -35,7 +35,7 @@ class SuggestionsController extends Controller
 
   public function do_other_grader_email(Request $request, $action = 'create')
   {
-    $this->validate($request, ['grader_email' => 'required|email']);
+    $this->validate($request, ['grader_email' => 'required|email|confirmed']);
 
     $grader_email = $request->grader_email;
 
@@ -183,7 +183,8 @@ class SuggestionsController extends Controller
               'verified' => 1,
             ]);
 
-    // Give the user the role of grader A (id: 2)
+    // Give the user the roles of user (id: 5) and grader A (id: 2)
+    $user->roles()->attach(5);
     $user->roles()->attach(2);
 
     // Create the grader
@@ -191,6 +192,7 @@ class SuggestionsController extends Controller
     $data['user_id'] = $user->id;
     $data['last_name'] = $request->last_name;
     $data['first_name'] = $request->first_name;
+    $data['suggestions_count'] = 1;
 
     $grader = Grader::create($data);
 

@@ -1,10 +1,10 @@
 @if(Auth::check() && Auth::user()->verified)
 
-    @if(Auth::user()->grader)
+    @if(Auth::user()->suggestion && Auth::user()->suggestion->accepted == 'yes')
         <p>Υποβολή Υποψηφιότητας</p>
     @else
 
-        @if(!Auth::user()->hasSuggested())
+        @if(!Auth::user()->suggestion)
             <div class="row">
                 <blockquote class="lead">
                     Προκειμένου να δηλώσετε την υποψηφιότητά σας, θα πρέπει πρώτα να προτείνετε Αξιολογητή Α.
@@ -17,7 +17,7 @@
             </div>
         @endif
 
-        @if(Auth::user()->hasNotAcceptedYet())
+        @if(Auth::user()->suggestion && Auth::user()->suggestion->accepted == 'na')
             <div class="row">
                 <blockquote class="lead">
                     Ο Αξιολογητής Α δεν έχει αποδεχθεί ακόμη.

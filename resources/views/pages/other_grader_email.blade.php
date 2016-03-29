@@ -22,6 +22,17 @@
                           @endif
                       </div>
 
+                      <div class="col-md-12 form-group{{ $errors->has('grader_email_confirmation') ? ' has-error' : '' }}">
+                          {{ Form::label('grader_email_confirmation', 'Επιβεβαίωση email του Αξιολογητή που προτείνετε') }}
+                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation']) }}
+
+                          @if ($errors->has('grader_email_confirmation'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('grader_email_confirmation') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+
                       <div class="form-group">
                           <div class="col-md-12">
                               {{ Form::button('Συνέχεια <i class="fa fa-arrow-circle-right"></i>', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}

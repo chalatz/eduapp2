@@ -19,6 +19,11 @@ class Suggestion extends Model
         'self_proposed',
     ];
 
+    public function user()
+    {
+      return $this->belongsTo('App\User');
+    }
+
     public function sendSuggestionEmail($type)
     {
         $data = [

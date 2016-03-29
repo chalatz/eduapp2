@@ -44,6 +44,11 @@ class User extends Authenticatable
         return $this->hasOne(Grader::class);
     }
 
+    public function suggestion()
+    {
+        return $this->hasOne(Suggestion::class);
+    }
+
     // the user has suggested someone
     public function hasSuggested()
     {
