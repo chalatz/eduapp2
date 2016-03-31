@@ -101,36 +101,69 @@ class SuggestionsController extends Controller
         alert()->success('Έχει αποσταλεί το email και έχει διαγραφεί η προηγούμενη πρόταση.')
           ->persistent('Εντάξει');
 
-        return redirect('/');
+        return redirect()->route('home');
       }
 
       alert()->success('Έχει αποσταλεί το email.')
         ->persistent('Εντάξει');
 
-      return redirect('/');
+      return redirect()->route('home');
 
   }
 
   public function handle_suggestion($unique_string)
   {
-    Auth::logout();
+    // the grader is already a user
+    $suggestion = Suggestion::where('unique_string',$unique_string)->first();
+    if($suggestion){
+      $suggestion->logOutOtherUser();
+    }
 
     return view('suggestions.handle_new', compact('unique_string'));
   }
 
   public function handle_suggestion_answer($answer, $unique_string)
   {
-    Auth::logout();
+    //Auth::logout();
 
     // The grader has accepted
     if($answer == 'yes'){
 
       // find the suggestion
       $suggestion = Suggestion::where('unique_string', $unique_string)->first();
+
+      $suggestion->logOutOtherUser();
+
       $grader_email = $suggestion->grader_email;
 
-      // There is already a grader with this email
+      // Check if the grader has already registered
       $user = User::where('email', $grader_email)->first();
+
+      // There is already a user with this email
+      // The user is verified
+      if($user && $user->verified){
+        // check if the user is logged in
+        if(Auth::check()){
+          return view('graders.forms.create');
+        } else {
+          Auth::login($user);
+          return view('graders.forms.create');
+        }
+      }
+
+      // The user in not verified
+      if($user && !$user->verified){
+        // check if the user is logged in
+        if(Auth::check()){
+          flash()->error('<strong>Το email σας δεν έχει επιβεβαιωθεί. Παρακαλούμε επιβεβεβαιώστε το email σας ή ζητήστε να σας έλθει εκ νέου το email επιβεβαίωσης.</strong>');
+          return redirect()->route('home');
+        } else {
+          flash()->error('<strong>Έχει βρεθεί λογαριασμός με αυτό το email, αλλά το email δεν έχει επιβεβαιωθεί. Παρακαλούμε επιβεβεβαιώστε το email σας ή συνδεθείτε και ζητήστε να σας έλθει εκ νέου το email επιβεβαίωσης.</strong>');
+          return redirect()->route('home');
+        }
+      }
+
+      // There is already a grader with this email
       if($user && $user->hasRole('grader_a')){
         $user->grader_status .= ',accepted';
         $user->save();
@@ -157,12 +190,13 @@ class SuggestionsController extends Controller
 
   public function store_other_grader(CreateOtherGraderRequest $request)
   {
-    Auth::logout();
+    // find the suggestion
+    $suggestion = Suggestion::where('unique_string', $unique_string)->first();
+
+    $suggestion->logOutOtherUser();
 
     $unique_string = $request->unique_string;
 
-    // find the suggestion
-    $suggestion = Suggestion::where('unique_string', $unique_string)->first();
     $grader_email = $suggestion->grader_email;
 
     // Update the suggestor
@@ -217,7 +251,7 @@ class SuggestionsController extends Controller
     alert()->success('Έχει αποσταλεί το email.')
       ->persistent('Εντάξει');
 
-    return redirect('/');
+    return redirect()->route('home');
 
   }
 

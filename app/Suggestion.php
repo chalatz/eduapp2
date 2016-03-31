@@ -4,7 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\User;
+
 use Mail;
+
+use Auth;
 
 class Suggestion extends Model
 {
@@ -64,6 +68,15 @@ class Suggestion extends Model
           $message->to($this->suggestor_email, $this->suggestor_email)->subject('Αποδοχή από τον Αξιολογητή Α που προτείνατε.');
       });
 
+    }
+
+    public function logOutOtherUser()
+    {
+      $user = User::where('email', $this->grader_email)->first();
+      // if there is a different logged in user, log him out
+      if(Auth::check() && Auth::user()->id != $user->id){
+        Auth::logout();
+      }
     }
 
 }
