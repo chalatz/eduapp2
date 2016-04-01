@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <a href="{{ route('send_reminder_to_grader_a_from_site') }}" type="button" class="btn btn-primary btn-lg btn-block">
-                    <i class="fa fa-envelope"></i> Αποστολή email υπενθύμισης
+                    <i class="fa fa-envelope"></i> Αποστολή email υπενθύμισης (σας έχουν απομείνει {{ Auth::user()->suggestion->reminders_count }} αποστολές)
                 </a>
             </div>
             <div class="row">

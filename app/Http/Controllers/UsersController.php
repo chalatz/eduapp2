@@ -14,8 +14,6 @@ class UsersController extends Controller
 
     public function verify($verification_token)
     {
-        Auth::logout();
-
         // try to find a user that has that string
         $user = User::whereVerification_token($verification_token)->firstOrFail();
 
@@ -30,7 +28,14 @@ class UsersController extends Controller
         $user->verified = 1;
         $user->save();
 
-        alert()->success('Το email σας έχει επιβεβαιωθεί με επιτυχία! Μπορείτε τώρα να συνδεθείτε.')
+        // keep the user logged in
+        if(Auth::check()){
+            if($user->id != Auth::user()->id){
+                Auth::logout();
+            }
+        }
+
+        alert()->success('Το email σας έχει επιβεβαιωθεί με επιτυχία!')
                 ->persistent('Εντάξει');
 
         return redirect('/');
@@ -40,6 +45,15 @@ class UsersController extends Controller
     public function send_verification()
     {
         $user = Auth::user();
+
+        if($user->reminders_count == 0){
+            alert()->error('Έχετε υπερβεί το όριο αποστολής αυτού του είδους email. Παρακαλούμε επικοινωνήστε μαζί μας για επιπλέον βοήθεια.', 'Σφάλμα')
+                    ->persistent('Εντάξει');
+
+            return redirect()->route('home');
+        }
+
+        $user->reminders_count--;
 
         $user->verification_token = str_random(40);
 

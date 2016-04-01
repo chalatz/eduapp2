@@ -18,9 +18,11 @@ class SuggestionNotMade
     public function handle($request, Closure $next)
     {
         $user = $request->user();
+
         $suggestion = Suggestion::where('suggestor_email', $user->email)->first();
 
         if(!$suggestion){
+            
             return $next($request);
         }
 

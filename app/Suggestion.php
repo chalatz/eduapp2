@@ -47,12 +47,25 @@ class Suggestion extends Model
         }
 
         if($type == 'reminder'){
+          if($this->reminders_count == 0){
+            alert()->error('Έχετε υπερβεί το όριο αποστολής αυτού του είδους email. Παρακαλούμε επικοινωνήστε μαζί μας για επιπλέον βοήθεια.', 'Σφάλμα')
+                    ->persistent('Εντάξει');
+
+            return redirect()->route('home');
+          }
+
           $data['title'] = 'Υπενθύμιση Πρότασης για Αξιολογητής Α';
           $data['text'] = 'Σας υπενθυμίζουμε ότι έχετε προταθεί ως';
 
           Mail::send('emails.send_suggestion', ['data' => $data], function ($message) use ($data) {
               $message->to($this->grader_email, $this->grader_email)->subject('Υπενθύμιση Πρότασης για Αξιολογητής Α');
           });
+
+          $this->reminders_count--;
+          $this->save();
+
+          alert()->success('Έχει αποσταλεί το email.')
+            ->persistent('Εντάξει');
         }
     }
 
@@ -73,8 +86,11 @@ class Suggestion extends Model
     public function logOutOtherUser()
     {
       $user = User::where('email', $this->grader_email)->first();
+      if(!$user){
+        Auth::logout();
+      }
       // if there is a different logged in user, log him out
-      if(Auth::check() && Auth::user()->id != $user->id){
+      if(Auth::check() && $user && Auth::user()->id != $user->id){
         Auth::logout();
       }
     }

@@ -20,9 +20,13 @@ class GraderHasNotAccepted
         $user = $request->user();
         $grader = Grader::where('user_id', $user->id)->first();
 
-        if(!$grader){
+        if($user->grader_status == 'na' || str_contains($user->grader_status, 'not_accepted')){
             return $next($request);
         }
+
+        // if(!$grader){
+        //     return $next($request);
+        // }
 
         return redirect()->route('home');
 

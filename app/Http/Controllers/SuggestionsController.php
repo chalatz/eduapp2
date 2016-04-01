@@ -190,12 +190,12 @@ class SuggestionsController extends Controller
 
   public function store_other_grader(CreateOtherGraderRequest $request)
   {
+    $unique_string = $request->unique_string;
+
     // find the suggestion
     $suggestion = Suggestion::where('unique_string', $unique_string)->first();
 
     $suggestion->logOutOtherUser();
-
-    $unique_string = $request->unique_string;
 
     $grader_email = $suggestion->grader_email;
 
@@ -247,9 +247,6 @@ class SuggestionsController extends Controller
     $suggestion = Suggestion::where('user_id', $user->id)->first();
 
     $suggestion->sendSuggestionEmail('reminder');
-
-    alert()->success('Έχει αποσταλεί το email.')
-      ->persistent('Εντάξει');
 
     return redirect()->route('home');
 
