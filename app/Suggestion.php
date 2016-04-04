@@ -83,6 +83,19 @@ class Suggestion extends Model
 
     }
 
+    public function sendDenialEmail()
+    {
+      $data = [
+        'name' => $this->suggestor_name,
+        'email' => $this->suggestor_email
+      ];
+
+      Mail::send('emails.send_denial', ['data' => $data], function ($message) use ($data) {
+          $message->to($this->suggestor_email, $this->suggestor_email)->subject('Άρνηση από τον Αξιολογητή Α που προτείνατε.');
+      });
+
+    }
+
     public function logOutOtherUser()
     {
       $user = User::where('email', $this->grader_email)->first();

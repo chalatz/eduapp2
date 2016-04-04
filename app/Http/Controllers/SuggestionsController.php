@@ -124,13 +124,11 @@ class SuggestionsController extends Controller
 
   public function handle_suggestion_answer($answer, $unique_string)
   {
-    //Auth::logout();
+    // find the suggestion
+    $suggestion = Suggestion::where('unique_string', $unique_string)->first();
 
     // The grader has accepted
     if($answer == 'yes'){
-
-      // find the suggestion
-      $suggestion = Suggestion::where('unique_string', $unique_string)->first();
 
       $suggestion->logOutOtherUser();
 
@@ -184,6 +182,15 @@ class SuggestionsController extends Controller
 
     } else {
       // The grader has NOT accepted
+
+      // Notify the user
+      $suggestion->sendDenialEmail();
+
+      // Delete the suggestion
+      Suggestion::destroy($suggestion->id);
+
+      return redirect()->route('home');
+
     }
 
   }
