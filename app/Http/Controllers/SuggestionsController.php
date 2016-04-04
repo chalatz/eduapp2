@@ -139,6 +139,23 @@ class SuggestionsController extends Controller
       // Check if the grader has already registered
       $user = User::where('email', $grader_email)->first();
 
+      // There is already a grader with this email
+      if($user && $user->hasRole('grader_a')){
+        $user->grader_status .= ',accepted';
+        $user->save();
+
+        $suggestion->accepted = 'yes';
+        $suggestion->save();
+
+        $grader = Grader::where('user_id', $user->id)->first();
+        $suggestions_count =  $grader->suggestions_count;
+        $suggestions_count = $suggestions_count + 1;
+        $grader->suggestions_count = $suggestions_count;
+        $grader->save();
+
+        return redirect()->route('home');
+      }
+
       // There is already a user with this email
       // The user is verified
       if($user && $user->verified){
@@ -161,23 +178,6 @@ class SuggestionsController extends Controller
           flash()->error('<strong>Έχει βρεθεί λογαριασμός με αυτό το email, αλλά το email δεν έχει επιβεβαιωθεί. Παρακαλούμε επιβεβεβαιώστε το email σας ή συνδεθείτε και ζητήστε να σας έλθει εκ νέου το email επιβεβαίωσης.</strong>');
           return redirect()->route('home');
         }
-      }
-
-      // There is already a grader with this email
-      if($user && $user->hasRole('grader_a')){
-        $user->grader_status .= ',accepted';
-        $user->save();
-
-        $suggestion->accepted = 'yes';
-        $suggestion->save();
-
-        $grader = Grader::where('user_id', $user->id)->first();
-        $suggestions_count =  $grader->suggestions_count;
-        $suggestions_count = $suggestions_count + 1;
-        $grader->suggestions_count = $suggestions_count;
-        $grader->save();
-
-        return redirect()->route('home');
       }
 
       return view('graders.new_grader_other', compact('grader_email', 'unique_string'));

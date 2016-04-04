@@ -85,7 +85,7 @@ class GradersController extends Controller
       // Give the user the role of grader A (id: 2)
       $user->roles()->attach(2);
 
-      if($suggestion){
+      if($suggestion->self_proposed != 'yes'){
         // Notify the user
         $suggestion->sendAcceptanceEmail($request->last_name, $request->first_name);
         alert()->success('Ο Υποψήφιος θα ενημερωθεί για την αποδοχή σας. Μην ξεχνάτε ότι μπορείτε να επεξεργάζεστε τα στοιχεία σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή!')
