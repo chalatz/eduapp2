@@ -23,13 +23,19 @@ class SuggestionsController extends Controller
           'do_suggest_other_grader',
           'do_other_grader_email',
           'suggest_new_grader_a',
+          'send_reminder_to_grader_a_from_site',
         ]]);
 
       $this->middleware('has_not_accepted',
-        ['only' => ['handle_suggestion_answer', 'handle_suggestion']]
-      );
+        ['only' => [
+          'handle_suggestion_answer',
+          'handle_suggestion',
+        ]]);
 
-      $this->middleware('suggestion_made', ['only' => ['suggest_new_grader_a']]);
+      $this->middleware('suggestion_made',
+        ['only' => [
+          'suggest_new_grader_a',
+        ]]);
 
   }
 
@@ -253,6 +259,13 @@ class SuggestionsController extends Controller
 
     $suggestion = Suggestion::where('user_id', $user->id)->first();
 
+    if($suggestion && $suggestion->hasAccepted()){
+      alert()->info('Ο Αξιολογητής που έχετε προτείνει έχει ήδη αποδεχτεί')
+              ->persistent('Εντάξει');
+
+      return redirect()->route('home');
+    }
+
     $suggestion->sendSuggestionEmail('reminder');
 
     return redirect()->route('home');
@@ -264,6 +277,13 @@ class SuggestionsController extends Controller
     $user = Auth::user();
 
     $suggestion = Suggestion::where('user_id', $user->id)->first();
+
+    if($suggestion && $suggestion->hasAccepted()){
+      alert()->info('Ο Αξιολογητής που έχετε προτείνει έχει ήδη αποδεχτεί')
+              ->persistent('Εντάξει');
+
+      return redirect()->route('home');
+    }
 
     return view('suggestions.suggest_new_grader_a_email', compact('suggestion'));
 

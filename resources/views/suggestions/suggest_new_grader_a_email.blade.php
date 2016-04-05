@@ -17,11 +17,22 @@
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email') ? ' has-error' : '' }}">
                           {{ Form::label('grader_email', 'Το email του νέου Αξιολογητή που προτείνετε') }}
-                          {{ Form::email('grader_email', null, ['class' => 'form-control', 'id' => 'grader_email']) }}
+                          {{ Form::email('grader_email', null, ['class' => 'form-control', 'id' => 'grader_email', 'required']) }}
 
                           @if ($errors->has('grader_email'))
                               <span class="help-block">
                                   <strong>{{ $errors->first('grader_email') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+
+                      <div class="col-md-12 form-group{{ $errors->has('grader_email_confirmation') ? ' has-error' : '' }}">
+                          {{ Form::label('grader_email_confirmation', 'Επιβεβαίωση email του Αξιολογητή που προτείνετε') }}
+                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation', 'required']) }}
+
+                          @if ($errors->has('grader_email_confirmation'))
+                              <span class="help-block">
+                                  <strong>{{ $errors->first('grader_email_confirmation') }}</strong>
                               </span>
                           @endif
                       </div>

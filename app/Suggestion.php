@@ -69,6 +69,12 @@ class Suggestion extends Model
         }
     }
 
+    // the suggested grader has accepted
+    public function hasAccepted()
+    {
+      return $this->accepted == 'yes';
+    }
+
     public function sendAcceptanceEmail($last_name, $first_name)
     {
       $data = [
