@@ -18,7 +18,7 @@ class CreateGraderRequest extends Request
         // the user must be verified
         $user = Request::user();
 
-        // there must not be a grader for the user
+        // there must NOT be a grader for the user
         $grader = Grader::where('user_id', $user->id)->first();
 
         return $user && $user->verified && !$grader;

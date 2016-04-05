@@ -92,6 +92,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'password' => [
+            'confirmed' => 'Οι Κωδικοί Πρόσβασης πρέπει να ταιριάζουν.',
+        ],
+        'grader_email' => [
+            'confirmed' => 'Τα email πρέπει να ταιριάζουν.',
+        ],
     ],
 
     /*
