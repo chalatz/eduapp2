@@ -99,6 +99,31 @@ class GradersController extends Controller
 
   }
 
+  /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function edit($id)
+  {
+      $grader = Grader::find($id);
+
+      return view('graders.forms.edit', compact('grader'));
+  }
+
+  public function update(Request $request, $id)
+  {
+      // $site = Site::findOrFail($id);
+      // $input = $request->all();
+      //
+      // $site->fill($input)->save();
+      //
+      // alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
+
+      return redirect()->back();
+  }
+
   private function addSuggestion($user_id, $grader_email)
   {
       // check if there already is such a suggestion

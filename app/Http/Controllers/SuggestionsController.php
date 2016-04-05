@@ -121,8 +121,17 @@ class SuggestionsController extends Controller
   {
     // the grader is already a user
     $suggestion = Suggestion::where('unique_string',$unique_string)->first();
+
     if($suggestion){
       $suggestion->logOutOtherUser();
+
+      // warn the user if he has accepted before
+      $user = User::where('email', $suggestion->grader_email)->first();
+      if($user && $user->grader){
+        $suggestions_count = $user->grader->suggestions_count;
+
+        return view('suggestions.handle_new', compact('unique_string', 'suggestions_count'));
+      }
     }
 
     return view('suggestions.handle_new', compact('unique_string'));
