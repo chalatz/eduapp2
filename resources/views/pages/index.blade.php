@@ -7,9 +7,9 @@
 
             @if(Auth::check())
 
+                @include('pages.partials.info')
+
                 @include('pages.partials.registers')
-
-
 
             @else
 
