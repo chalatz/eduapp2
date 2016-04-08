@@ -4,12 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use App\Suggestion;
-
-class SuggestionNotMade
+class MustOwnGrader
 {
     /**
-     * The current user has not suggested anyone.
+     * Make sure the User is the owner of the Grader.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -18,16 +16,17 @@ class SuggestionNotMade
     public function handle($request, Closure $next)
     {
         $user = $request->user();
+        
+        $grader = $user->grader;
 
-        // $suggestion = Suggestion::where('suggestor_email', $user->email)->first();
-
-        $suggestion = $user->suggestion;
-
-        if(!$suggestion){
-
+        if($user->id == $grader->user_id){
             return $next($request);
         }
 
+        alert()->error('Άρνηση Πρόσβασης.')
+                ->persistent('Εντάξει');
+
         return redirect()->route('home');
+
     }
 }

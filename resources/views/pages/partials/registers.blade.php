@@ -12,7 +12,7 @@
             </div>
             <div class="row">
                 <a href="{{ route('choose_grader_type') }}" type="button" class="btn btn-primary btn-lg btn-block">
-                    Προτείνετε Αξιολογητή Α
+                    <i class="fa fa-dot-circle-o"></i> Προτείνετε Αξιολογητή Α
                 </a>
             </div>
         @endif

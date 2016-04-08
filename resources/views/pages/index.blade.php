@@ -5,6 +5,8 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
+            @include('partials.check_suggestion')
+
             @if(Auth::check())
 
                 @include('pages.partials.info')
@@ -26,7 +28,7 @@
                 </p>
                 <p>
                     <a href="{{ url('/register') }}" type="button" class="btn btn-success btn-lg btn-block">
-                        Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 8ου ΔΕΕΙ
+                        <i class="fa fa-user-plus"></i>&nbsp;&nbsp;Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 8ου ΔΕΕΙ
                     </a>
                 </p>
 

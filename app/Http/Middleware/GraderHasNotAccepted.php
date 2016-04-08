@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 
 use App\Grader;
+use App\Suggestion;
 
 class GraderHasNotAccepted
 {
@@ -18,15 +19,21 @@ class GraderHasNotAccepted
     public function handle($request, Closure $next)
     {
         $user = $request->user();
+
+        //$suggestion = Suggestion::where('suggestor_email', $user->email)->first();
+
+        //$suggestion = $user->suggestion;
+
+        $user = $request->user();
         $grader = Grader::where('user_id', $user->id)->first();
 
-        if($user->grader_status == 'na' || str_contains($user->grader_status, 'not_accepted')){
-            return $next($request);
-        }
-
-        // if(!$grader){
+        // if($user->grader_status == 'na' || str_contains($user->grader_status, 'not_accepted')){
         //     return $next($request);
         // }
+
+        if(!$grader){
+            return $next($request);
+        }
 
         return redirect()->route('home');
 

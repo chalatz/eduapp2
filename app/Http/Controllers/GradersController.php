@@ -12,13 +12,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateGraderRequest;
-//use App\Http\Requests\EditSiteRequest;
+use App\Http\Requests\EditGraderRequest;
 
 class GradersController extends Controller
 {
   public function __construct()
   {
       $this->middleware('verified');
+
+      $this->middleware('must_own_grader', ['only' => 'edit']);
 
       $this->middleware('grader_has_not_accepted', ['only' => [
             'create',
@@ -112,7 +114,7 @@ class GradersController extends Controller
       return view('graders.forms.edit', compact('grader'));
   }
 
-  public function update(Request $request, $id)
+  public function update(EditGraderRequest $request, $id)
   {
       // $site = Site::findOrFail($id);
       // $input = $request->all();

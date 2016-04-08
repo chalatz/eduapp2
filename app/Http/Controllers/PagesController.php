@@ -29,7 +29,7 @@ class PagesController extends Controller
         $this->middleware('grader_has_not_accepted', ['only' => [
             //'choose_grader_type',
             'suggest_other_grader',
-            'other_grader_email',
+            //'other_grader_email',
         ]]);
 
     }

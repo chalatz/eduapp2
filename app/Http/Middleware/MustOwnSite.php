@@ -18,6 +18,7 @@ class MustOwnSite
     public function handle($request, Closure $next)
     {
         $user = $request->user();
+        
         $site = $user->site;
 
         if($user->id == $site->user_id){

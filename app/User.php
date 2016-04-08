@@ -75,6 +75,17 @@ class User extends Authenticatable
 
     }
 
+    // the user is suggested by someone and has not responded yet
+    public function hasSuggestionToRespondTo()
+    {
+        $suggestion = Suggestion::where('grader_email', $this->email)
+            ->where('accepted', '!=', 'yes')
+            ->where('self_proposed', 'no')
+            ->first();
+
+        return $suggestion;
+    }
+
     public function sendVerificationEmail()
     {
         $data = [
