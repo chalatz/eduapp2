@@ -7,7 +7,7 @@
         <div class="col-md-10 col-md-offset-1">
 
             @if(Auth::user()->hasRole('grader_a'))
-                <a href="{{ route('graders.edit', Auth::user()->grader->id) }}" type="button" class="btn btn-success btn-lg btn-block">
+                <a href="{{ route('graders.edit', [Auth::user()->grader->id, 'after-proposal']) }}" type="button" class="btn btn-success btn-lg btn-block">
             @else
                 <a href="{{ route('graders.create') }}" type="button" class="btn btn-success btn-lg btn-block">
             @endif

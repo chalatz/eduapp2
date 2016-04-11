@@ -9,7 +9,7 @@ use App\Grader;
 class EditGraderRequest extends Request
 {
     /**
-     * DMake sure the User is the owner of the Grader
+     * Make sure the User is the owner of the Grader
      *
      * @return bool
      */

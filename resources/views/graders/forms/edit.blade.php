@@ -11,6 +11,8 @@
 
                   {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
+                    {{ Form::hidden('proposal_status', $proposal_status) }}
+
                     @include('graders.forms.partials.graders_form')
 
                   {!! Form::close() !!}

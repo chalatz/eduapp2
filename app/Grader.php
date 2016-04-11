@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use app\Suggestion;
+use App\Suggestion;
 
 class Grader extends Model
 {
@@ -12,7 +12,7 @@ class Grader extends Model
     'user_id',
     'last_name',
     'first_name',
-    'suggestions_count'
+    'suggestions_count',
   ];
 
   public function user()
@@ -25,16 +25,17 @@ class Grader extends Model
       return $this->belongsToMany(Role::class)->withTimeStamps();
   }
 
-  public function addSuggestion($user_id, $grader_email)
+  public function addSuggestion()
   {
     $data = [];
-    $data['user_id'] = $user_id;
-    $data['grader_email'] = $grader_email;
-    $data['suggestor_name'] = $grader_email;
-    $data['suggestor_email'] = $grader_email;
+    $data['user_id'] = $this->user->id;
+    $data['grader_email'] = $this->user->email;
+    $data['suggestor_name'] = $this->user->email;
+    $data['suggestor_email'] = $this->user->email;
     $data['personal_msg'] = "Self proposed";
     $data['unique_string'] = "Self proposed";
     $data['accepted'] = "yes";
+    $data['self_proposed'] = "yes";
 
     $suggestion = Suggestion::create($data);
 

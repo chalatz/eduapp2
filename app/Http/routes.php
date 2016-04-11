@@ -30,5 +30,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('do-other-grader-email/{actio}', ['as' => 'do_other_grader_email', 'uses' => 'SuggestionsController@do_other_grader_email']);
 
     Route::resource('graders', 'GradersController');
+    Route::get('graders/{graders}/edit/{proposal_status}', ['as' => 'graders.edit', 'uses' => 'GradersController@edit']);
 
 });

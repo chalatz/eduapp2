@@ -52,21 +52,16 @@ class GradersController extends Controller
       $user_id = $user->id;
       $user_email = $user->email;
 
+      $data = $request->all();
+
       // check if there already is such a suggestion
       $suggestion = Suggestion::where('grader_email', $user_email)->first();
 
-      $data = $request->all();
-
       if($suggestion){
 
-        $suggestion->accepted = 'yes';
-        $suggestion->user->grader_status .= ',accepted';
-        $suggestion->user->save();
+        $suggestion->checkSuggestion('yes', 'accepted');
 
-        $suggestion->accepted = 'yes';
-        $suggestion->save();
-
-        $data['suggestions_count'] = $suggestion->suggestions_count +1;
+        $data['suggestions_count'] = $suggestion->suggestions_count + 1;
 
       } else {
 
@@ -107,23 +102,36 @@ class GradersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id)
+  public function edit($id, $proposal_status)
   {
       $grader = Grader::find($id);
 
-      return view('graders.forms.edit', compact('grader'));
+      return view('graders.forms.edit', compact('grader', 'proposal_status'));
   }
 
   public function update(EditGraderRequest $request, $id)
   {
-      // $site = Site::findOrFail($id);
-      // $input = $request->all();
-      //
-      // $site->fill($input)->save();
-      //
-      // alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
+      $grader = Grader::findOrFail($id);
+
+      $input = $request->all();
+
+      $grader->fill($input)->save();
+
+      // the user has suggested himself
+      if($request->proposal_status == 'after-proposal'){
+        // Create new suggestion
+        $suggestion = $grader->addSuggestion();
+        $grader->user->grader_status .= ',self_proposed';
+        $grader->user->save();
+
+        $grader->suggestions_count++;
+        $grader->save();
+      }
+
+      alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
 
       return redirect()->back();
+
   }
 
   private function addSuggestion($user_id, $grader_email)
@@ -140,7 +148,7 @@ class GradersController extends Controller
         $data['personal_msg'] = "Self proposed";
         $data['unique_string'] = "Self proposed";
         $data['accepted'] = "yes";
-        $data['self_proposed'] = 'yes';
+        $data['self_proposed'] = "yes";
 
         $suggestion = Suggestion::create($data);
       }

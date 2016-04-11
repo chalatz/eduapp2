@@ -75,6 +75,18 @@ class Suggestion extends Model
       return $this->accepted == 'yes';
     }
 
+    public function checkSuggestion($accepted, $grader_status)
+    {
+          $this->accepted = $accepted;
+          $this->user->grader_status .= ',' . $grader_status;
+          $this->user->save();
+
+          $this->save();
+
+          return $this;
+
+    }
+
     public function sendAcceptanceEmail($last_name, $first_name)
     {
       $data = [
