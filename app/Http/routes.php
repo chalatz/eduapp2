@@ -31,6 +31,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('graders', 'GradersController');
 
-    Route::get('graderr/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);
+    Route::get('graders/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);
 
 });

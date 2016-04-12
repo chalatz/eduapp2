@@ -20,7 +20,7 @@
         @if(Auth::user()->suggestion && Auth::user()->suggestion->accepted == 'na')
             <div class="row">
                 <blockquote class="lead">
-                    Ο Αξιολογητής Α δεν έχει αποδεχθεί ακόμη.
+                    Ο Αξιολογητής Α ({{ Auth::user()->suggestion->grader_email }}) δεν έχει αποδεχθεί ακόμη.
                 </blockquote>
             </div>
             <div class="row">
