@@ -31,6 +31,10 @@ class GraderHasNotAccepted
         //     return $next($request);
         // }
 
+        if($grader && !$user->hasRole('grader_a')){
+            return $next($request);
+        }
+
         if(!$grader){
             return $next($request);
         }
