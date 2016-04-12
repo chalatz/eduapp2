@@ -11,7 +11,9 @@
 
                   {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
-                    {{ Form::hidden('proposal_status', $proposal_status) }}
+                    @if(isset($edit_and_suggest_self) && $edit_and_suggest_self)
+                        {{ Form::hidden('edit_and_suggest_self', 'yes') }}
+                    @endif
 
                     @include('graders.forms.partials.graders_form')
 

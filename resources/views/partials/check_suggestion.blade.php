@@ -10,7 +10,7 @@
 
     <div class="row">
         <a href="{{ route('user.suggest', Auth::user()-> hasSuggestionToRespondTo()->unique_string) }}" type="button" class="btn btn-primary btn-lg btn-block">
-            Αποδοχή ή όχι της πρόκλησης
+            Αποδοχή ή όχι της πρόσκλησης
         </a>
     </div>
 

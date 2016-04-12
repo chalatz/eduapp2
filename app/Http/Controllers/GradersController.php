@@ -20,10 +20,17 @@ class GradersController extends Controller
   {
       $this->middleware('verified');
 
-      $this->middleware('must_own_grader', ['only' => 'edit']);
+      $this->middleware('must_own_grader', ['only' => [
+        'edit',
+        'edit_and_suggest_self',
+      ]]);
 
       $this->middleware('grader_has_not_accepted', ['only' => [
             'create',
+        ]]);
+
+      $this->middleware('edit_and_suggest_self', ['only' => [
+            'edit_and_suggest_self',
         ]]);
 
   }
@@ -102,11 +109,20 @@ class GradersController extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function edit($id, $proposal_status)
+  public function edit($id)
   {
       $grader = Grader::find($id);
 
-      return view('graders.forms.edit', compact('grader', 'proposal_status'));
+      return view('graders.forms.edit', compact('grader'));
+  }
+
+  public function edit_and_suggest_self($id)
+  {
+      $grader = Grader::find($id);
+
+      $edit_and_suggest_self = true;
+
+      return view('graders.forms.edit', compact('grader', 'edit_and_suggest_self'));
   }
 
   public function update(EditGraderRequest $request, $id)
@@ -118,7 +134,7 @@ class GradersController extends Controller
       $grader->fill($input)->save();
 
       // the user has suggested himself
-      if($request->proposal_status == 'after-proposal'){
+      if($request->edit_and_suggest_self && $request->edit_and_suggest_self == 'yes'){
         // Create new suggestion
         $suggestion = $grader->addSuggestion();
         $grader->user->grader_status .= ',self_proposed';

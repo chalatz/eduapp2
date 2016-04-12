@@ -23,6 +23,10 @@
 
 <div class="form-group">
     <div class="col-md-12">
-        {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+        @if(isset($edit_and_suggest_self) && $edit_and_suggest_self)
+            {{ Form::button('Αποδοχή και Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+        @else
+            {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+        @endif
     </div>
 </div>
