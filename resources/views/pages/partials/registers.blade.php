@@ -1,7 +1,11 @@
 @if(Auth::check() && Auth::user()->verified)
 
-    @if(Auth::user()->suggestion && Auth::user()->suggestion->accepted == 'yes')
-        <p>Υποβολή Υποψηφιότητας</p>
+    @if(Auth::user()->canCreateSite())
+        <div class="row">
+            <a href="{{ route('sites.create') }}" type="button" class="btn btn-success btn-lg btn-block">
+                <i class="fa fa-plus-square"></i> Υποβολή Υποψηφιότητας Ιστότοπου
+            </a>
+        </div>
     @else
 
         @if(!Auth::user()->suggestion)

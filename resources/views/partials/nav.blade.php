@@ -19,7 +19,25 @@
       <div class="collapse navbar-collapse" id="app-navbar-collapse">
           <!-- Left Side Of Navbar -->
           <ul class="nav navbar-nav">
+
               <li><a href="{{ route('home') }}">Αρχική</a></li>
+
+              @if(Auth::user()->site)
+                <li>
+                  <a href="{{ route('sites.edit', ['sites' => Auth::user()->site->id]) }}">
+                    Καρτέλα Υποψηφίου
+                  </a>
+                </li>
+              @endif
+
+              @if(Auth::user()->grader && Auth::user()->hasRole('grader_a'))
+                <li>
+                  <a href="{{ route('graders.edit', ['sites' => Auth::user()->grader->id]) }}">
+                    Καρτέλα Αξιολογητή Α
+                  </a>
+                </li>
+              @endif
+
           </ul>
 
           <!-- Right Side Of Navbar -->

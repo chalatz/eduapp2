@@ -18,7 +18,7 @@ class CreateSiteRequest extends Request
         // the user must be verified
         $user = Request::user();
 
-        return $user && $user->verified;
+        return $user && $user->verified && $user->suggestion->accepted == 'yes';
     }
 
     /**

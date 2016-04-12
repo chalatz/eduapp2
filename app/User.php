@@ -49,6 +49,12 @@ class User extends Authenticatable
         return $this->hasOne(Suggestion::class);
     }
 
+    // the user can create a Site
+    public function canCreateSite()
+    {
+        return $this->verified && $this->suggestion && $this->suggestion->accepted == 'yes' && !$this->site;
+    }
+
     // the user has suggested someone
     public function hasSuggested()
     {

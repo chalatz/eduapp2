@@ -21,6 +21,8 @@ class SitesController extends Controller
 
         $this->middleware('must_own_site', ['only' => 'edit']);
 
+        $this->middleware('can_create_site', ['only' => 'create']);
+
     }
 
     /**
@@ -111,6 +113,7 @@ class SitesController extends Controller
     public function update(EditSiteRequest $request, $id)
     {
         $site = Site::findOrFail($id);
+        
         $input = $request->all();
 
         $site->fill($input)->save();
