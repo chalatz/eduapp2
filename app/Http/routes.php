@@ -12,6 +12,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
     Route::get('send-verification', ['as' => 'user.send_verification', 'uses' => 'UsersController@send_verification']);
+    // Change Password
+    Route::get('change-password', ['as' => 'user.change_password', 'uses' => 'UsersController@change_password'])->middleware('auth');
+    Route::post('change-password', ['as' => 'user.do_change_password', 'uses' => 'UsersController@do_change_password']);
 
     Route::get('suggest/{unique_string}', ['as' => 'user.suggest', 'uses' => 'SuggestionsController@handle_suggestion']);
     Route::get('suggest-answer/{answer}/{unique_string}', ['as' => 'user.suggest_answer', 'uses' => 'SuggestionsController@handle_suggestion_answer']);

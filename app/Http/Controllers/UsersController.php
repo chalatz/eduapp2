@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -65,6 +66,42 @@ class UsersController extends Controller
                 ->persistent('Το κατάλαβα');
 
         return redirect()->route('home');
+
+    }
+
+    public function change_password()
+    {
+        return view('auth.passwords.change');
+    }
+
+    public function do_change_password(Request $request)
+    {
+        if(Auth::guest()){
+            return redirect()->route('home');
+        }
+
+        $this->validate($request, [
+            'current_password' => 'required',
+            'new_password' => 'required|confirmed|min:6',
+        ], [
+            'confirmed' => 'Οι Κωδικοί Πρόσβασης πρέπει να ταιριάζουν',
+        ]);
+
+
+        if(Hash::check($request->current_password, Auth::user()->password)){
+
+            $user = User::find(Auth::user()->id);
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+
+            alert()->success('Επιτυχής Αλλαγή!');
+
+            return redirect()->route('home');
+
+        } else {
+            alert()->error('Λανθασμένος Τρέχων Κωδικός Πρόσβασης')->persistent('Εντάξει');
+            return redirect()->back();
+        }
 
     }
 

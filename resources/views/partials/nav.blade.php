@@ -57,7 +57,8 @@
                       </a>
 
                       <ul class="dropdown-menu" role="menu">
-                          <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Αποσύνδεση</a></li>
+                        <li><a href="{{ url('/change-password') }}">Αλλαγή Κωδικού Πρόσβασης</a></li>
+                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Αποσύνδεση</a></li>
                       </ul>
                   </li>
               @endif
