@@ -42,4 +42,15 @@
 
     @endif
 
+    <div class="row">
+        <blockquote class="lead">
+            Μπορείτε να δηλώσετε συμμετοχή και ως Αξιολογητής Β.
+        </blockquote>
+    </div>
+    <div class="row">
+        <a href="{{ route('graders.create_b') }}" type="button" class="btn btn-info btn-lg btn-block">
+            <i class="fa fa-user"></i> Υποβολή Συμμετοχής ως Αξιολογητής Β
+        </a>
+    </div>
+
 @endif

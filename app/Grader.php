@@ -13,6 +13,7 @@ class Grader extends Model
     'last_name',
     'first_name',
     'suggestions_count',
+    'personal_xp',
   ];
 
   public function user()
@@ -52,6 +53,7 @@ class Grader extends Model
   public static $rules = [
     'last_name' => 'required',
     'first_name' => 'required',
+    'personal_xp' => 'sometimes|required',
   ];
 
 }

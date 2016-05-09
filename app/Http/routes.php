@@ -32,6 +32,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('store-other-grader', ['as' => 'store_other_grader', 'uses' => 'SuggestionsController@store_other_grader']);
     Route::post('do-other-grader-email/{actio}', ['as' => 'do_other_grader_email', 'uses' => 'SuggestionsController@do_other_grader_email']);
 
+    Route::get('graders/create_b', ['as' => 'graders.create_b', 'uses' => 'GradersController@create_b']);
+    Route::post('graders/store_b', ['as' => 'graders.store_b', 'uses' => 'GradersController@store_b']);
+
     Route::resource('graders', 'GradersController');
 
     Route::get('graders/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);

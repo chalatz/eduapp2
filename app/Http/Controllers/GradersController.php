@@ -46,6 +46,14 @@ class GradersController extends Controller
 
   }
 
+  public function create_b()
+  {
+    // if the user is alreadey a grader, redirect to the edit form
+    # TODO: If the user has already the role of grader, redirect create to grader edit page.
+
+    return view('graders.forms.create_b');
+  }
+
   /**
    * Store a newly created resource in storage.
    *
@@ -55,7 +63,7 @@ class GradersController extends Controller
   public function store(CreateGraderRequest $request)
   {
 
-      $user = $user_id = $request->user();
+      $user = $request->user();
       $user_id = $user->id;
       $user_email = $user->email;
 
@@ -100,6 +108,24 @@ class GradersController extends Controller
       }
 
       return redirect()->route('home');
+
+  }
+
+  public function store_b(CreateGraderRequest $request)
+  {
+    $user = $request->user();
+
+    $request->request->add(['user_id' => $user->id]);
+
+    $grader = Grader::create($request->all());
+
+    // Give the user the role of grader B (id: 3)
+    $user->roles()->attach(3);
+
+    alert()->success('Μην ξεχνάτε ότι μπορείτε να επεξεργάζεστε τα στοιχεία σας όποτε επιθυμείτε.', 'Επιτυχής Υποβολή!')
+            ->persistent('Το κατάλαβα');
+
+    return redirect()->route('home');
 
   }
 
