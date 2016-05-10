@@ -49,7 +49,9 @@ class GradersController extends Controller
   public function create_b()
   {
     // if the user is alreadey a grader, redirect to the edit form
-    # TODO: If the user has already the role of grader, redirect create to grader edit page.
+    if(Auth::user()->grader){
+        return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
+    }
 
     return view('graders.forms.create_b');
   }
