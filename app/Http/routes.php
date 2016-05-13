@@ -36,7 +36,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('graders/store_b', ['as' => 'graders.store_b', 'uses' => 'GradersController@store_b']);
 
     Route::get('graders/edit_b/{graders}', ['as' => 'graders.edit_b', 'uses' => 'GradersController@edit_b']);
-    Route::post('graders/update_b', ['as' => 'graders.update_b', 'uses' => 'GradersController@update_b']);
+    Route::put('graders/b/{graders}', ['as' => 'graders.update_b', 'uses' => 'GradersController@update_b']);
 
     Route::resource('graders', 'GradersController');
 

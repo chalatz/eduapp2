@@ -22,6 +22,7 @@ class GradersController extends Controller
 
       $this->middleware('must_own_grader', ['only' => [
         'edit',
+        'edit_b',
         'edit_and_suggest_self',
       ]]);
 
@@ -42,15 +43,20 @@ class GradersController extends Controller
    */
   public function create()
   {
-      return view('graders.forms.create');
+    // if the user is already a grader, redirect to the edit form
+    if(Auth::user()->grader){
+        return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
+    }
+
+    return view('graders.forms.create');
 
   }
 
   public function create_b()
   {
-    // if the user is alreadey a grader, redirect to the edit form
-    if(Auth::user()->grader){
-        return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
+    // if the user is already a grader B, redirect to the edit form
+    if(Auth::user()->hasRole('grader_b')){
+        return redirect()->route('graders.edit_b', ['graders' => Auth::user()->grader->id]);
     }
 
     return view('graders.forms.create_b');
@@ -64,7 +70,6 @@ class GradersController extends Controller
    */
   public function store(CreateGraderRequest $request)
   {
-
       $user = $request->user();
       $user_id = $user->id;
       $user_email = $user->email;
@@ -144,6 +149,13 @@ class GradersController extends Controller
       return view('graders.forms.edit', compact('grader'));
   }
 
+  public function edit_b($id)
+  {
+      $grader = Grader::find($id);
+
+      return view('graders.forms.edit_b', compact('grader'));
+  }
+
   public function edit_and_suggest_self($id)
   {
       $grader = Grader::find($id);
@@ -171,6 +183,20 @@ class GradersController extends Controller
         $grader->suggestions_count++;
         $grader->save();
       }
+
+      alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
+
+      return redirect()->back();
+
+  }
+
+  public function update_b(EditGraderRequest $request, $id)
+  {
+      $grader = Grader::findOrFail($id);
+
+      $input = $request->all();
+
+      $grader->fill($input)->save();
 
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
 

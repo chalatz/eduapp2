@@ -21,7 +21,7 @@ class CreateGraderRequest extends Request
         // there must NOT be a grader for the user
         $grader = Grader::where('user_id', $user->id)->first();
 
-        return $user && $user->verified && !$grader;
+        return $user && $user->verified && !$user->hasRole('grader_a');
     }
 
     /**
