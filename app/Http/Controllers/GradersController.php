@@ -44,9 +44,9 @@ class GradersController extends Controller
   public function create()
   {
     // if the user is already a grader, redirect to the edit form
-    if(Auth::user()->grader){
-        return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
-    }
+    // if(Auth::user()->grader){
+    //     return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
+    // }
 
     return view('graders.forms.create');
 
@@ -96,10 +96,21 @@ class GradersController extends Controller
 
       }
 
-      // Create the grader
       $data['user_id'] = $user_id;
 
-      $grader = Grader::create($data);
+      // Check if the user is already a Grader B
+      if($user->grader){
+
+        $grader = $user->grader;
+
+        $grader->fill($data)->save();
+
+      } else {
+
+        // Create the grader
+        $grader = Grader::create($data);
+
+      }
 
       // Give the user the role of grader A (id: 2)
       $user->roles()->attach(2);
