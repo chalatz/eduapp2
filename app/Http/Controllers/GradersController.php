@@ -43,11 +43,6 @@ class GradersController extends Controller
    */
   public function create()
   {
-    // if the user is already a grader, redirect to the edit form
-    if(Auth::user()->grader){
-        return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
-    }
-
     return view('graders.forms.create');
 
   }
