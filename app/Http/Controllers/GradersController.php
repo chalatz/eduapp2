@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateGraderRequest;
+use App\Http\Requests\CreateGraderBRequest;
 use App\Http\Requests\EditGraderRequest;
 
 class GradersController extends Controller
@@ -43,6 +44,14 @@ class GradersController extends Controller
    */
   public function create()
   {
+<<<<<<< HEAD
+=======
+    // if the user is already a grader, redirect to the edit form
+    // if(Auth::user()->grader){
+    //     return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
+    // }
+
+>>>>>>> grader_b_try
     return view('graders.forms.create');
 
   }
@@ -91,10 +100,21 @@ class GradersController extends Controller
 
       }
 
-      // Create the grader
       $data['user_id'] = $user_id;
 
-      $grader = Grader::create($data);
+      // Check if the user is already a Grader B
+      if($user->grader){
+
+        $grader = $user->grader;
+
+        $grader->fill($data)->save();
+
+      } else {
+
+        // Create the grader
+        $grader = Grader::create($data);
+
+      }
 
       // Give the user the role of grader A (id: 2)
       $user->roles()->attach(2);
@@ -113,7 +133,7 @@ class GradersController extends Controller
 
   }
 
-  public function store_b(CreateGraderRequest $request)
+  public function store_b(CreateGraderBRequest $request)
   {
     $user = $request->user();
 
