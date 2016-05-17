@@ -12,6 +12,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\CreateGraderRequest;
+use App\Http\Requests\CreateGraderBRequest;
 use App\Http\Requests\EditGraderRequest;
 
 class GradersController extends Controller
@@ -129,7 +130,7 @@ class GradersController extends Controller
 
   }
 
-  public function store_b(CreateGraderRequest $request)
+  public function store_b(CreateGraderBRequest $request)
   {
     $user = $request->user();
 
