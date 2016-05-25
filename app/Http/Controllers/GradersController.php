@@ -44,14 +44,11 @@ class GradersController extends Controller
    */
   public function create()
   {
-<<<<<<< HEAD
-=======
     // if the user is already a grader, redirect to the edit form
     // if(Auth::user()->grader){
     //     return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
     // }
 
->>>>>>> grader_b_try
     return view('graders.forms.create');
 
   }
@@ -61,6 +58,11 @@ class GradersController extends Controller
     // if the user is already a grader B, redirect to the edit form
     if(Auth::user()->hasRole('grader_b')){
         return redirect()->route('graders.edit_b', ['graders' => Auth::user()->grader->id]);
+    }
+
+    if(Auth::user()->hasRole('grader_a')){
+      $grader = Auth::user()->grader;
+      return view('graders.forms.create_b', compact('grader'));
     }
 
     return view('graders.forms.create_b');
