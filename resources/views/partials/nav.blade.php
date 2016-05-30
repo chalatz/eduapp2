@@ -40,6 +40,14 @@
                   </li>
                 @endif
 
+                @if(Auth::user()->grader && Auth::user()->hasRole('grader_b'))
+                  <li>
+                    <a href="{{ route('graders.edit_b', ['sites' => Auth::user()->grader->id]) }}">
+                      Καρτέλα Αξιολογητή Β
+                    </a>
+                  </li>
+                @endif
+
               @endif
 
           </ul>

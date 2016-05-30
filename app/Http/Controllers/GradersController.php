@@ -82,6 +82,10 @@ class GradersController extends Controller
 
       $data = $request->all();
 
+      if(isset($data['desired_category'])){
+        $data['desired_category'] = implode('|', $data['desired_category']);
+      }
+
       // check if there already is such a suggestion
       $suggestion = Suggestion::where('grader_email', $user_email)->first();
 
@@ -141,7 +145,21 @@ class GradersController extends Controller
 
     $request->request->add(['user_id' => $user->id]);
 
-    $grader = Grader::create($request->all());
+    // Check if the user is already a Grader A
+    if($user->grader){
+
+      $grader = $user->grader;
+
+      $grader->fill($request->all())->save();
+
+    } else {
+
+      // Create the grader
+      $grader = Grader::create($request->all());
+
+    }
+
+    // $grader = Grader::create($request->all());
 
     // Give the user the role of grader B (id: 3)
     $user->roles()->attach(3);
@@ -187,6 +205,10 @@ class GradersController extends Controller
       $grader = Grader::findOrFail($id);
 
       $input = $request->all();
+
+      if(isset($input['desired_category'])){
+        $input['desired_category'] = implode('|', $input['desired_category']);
+      }
 
       $grader->fill($input)->save();
 

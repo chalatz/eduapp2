@@ -14,6 +14,23 @@ class Grader extends Model
     'first_name',
     'suggestions_count',
     'personal_xp',
+    'specialty_id',
+    'district_id',
+    'address',
+    'desired_category',
+    'past_grader',
+    'past_grader_more',
+    'wants_to_be_grader_b',
+    'english',
+    'french',
+    'german',
+    'italian',
+    'english_level',
+    'french_level',
+    'german_level',
+    'italian_level',
+    'languages_other',
+    'languages_other_level',
   ];
 
   public function user()
