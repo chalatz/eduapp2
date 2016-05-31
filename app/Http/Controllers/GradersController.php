@@ -206,8 +206,25 @@ class GradersController extends Controller
 
       $input = $request->all();
 
-      if(isset($input['desired_category'])){
+      if($request->has('desired_category')){
         $input['desired_category'] = implode('|', $input['desired_category']);
+      }
+
+      if(!$request->has('english')){
+        $input['english'] = 0;
+        $input['english_level'] = null;
+      }
+      if(!$request->has('french')){
+        $input['french'] = 0;
+        $input['french_level'] = null;
+      }
+      if(!$request->has('german')){
+        $input['german'] = 0;
+        $input['german_level'] = null;
+      }
+      if(!$request->has('italian')){
+        $input['italian'] = 0;
+        $input['italian_level'] = null;
       }
 
       $grader->fill($input)->save();
