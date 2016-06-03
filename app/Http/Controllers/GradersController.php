@@ -145,6 +145,10 @@ class GradersController extends Controller
 
     $request->request->add(['user_id' => $user->id]);
 
+    if($request->has('desired_category')){
+      $request->request->add(['desired_category' => implode('|', $request->desired_category)]);
+    }
+
     // Check if the user is already a Grader A
     if($user->grader){
 
@@ -251,6 +255,27 @@ class GradersController extends Controller
       $grader = Grader::findOrFail($id);
 
       $input = $request->all();
+
+      if($request->has('desired_category')){
+        $input['desired_category'] = implode('|', $input['desired_category']);
+      }
+
+      if(!$request->has('english')){
+        $input['english'] = 0;
+        $input['english_level'] = null;
+      }
+      if(!$request->has('french')){
+        $input['french'] = 0;
+        $input['french_level'] = null;
+      }
+      if(!$request->has('german')){
+        $input['german'] = 0;
+        $input['german_level'] = null;
+      }
+      if(!$request->has('italian')){
+        $input['italian'] = 0;
+        $input['italian_level'] = null;
+      }
 
       $grader->fill($input)->save();
 
