@@ -2,7 +2,12 @@
 
 @section('content')
 
+
+@inject('specialties', 'App\Http\Utilities\Specialty')
+@inject('districts', 'App\Http\Utilities\District')
 @inject('categories', 'App\Http\Utilities\Category')
+@inject('lang_levels', 'App\Http\Utilities\Lang_level')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
