@@ -244,11 +244,13 @@ class SuggestionsController extends Controller
     $user->roles()->attach(2);
 
     // Create the grader
-    $data = [];
+    $data = $request->all();
     $data['user_id'] = $user->id;
-    $data['last_name'] = $request->last_name;
-    $data['first_name'] = $request->first_name;
     $data['suggestions_count'] = 1;
+
+    if(isset($data['desired_category'])){
+      $data['desired_category'] = implode('|', $data['desired_category']);
+    }
 
     $grader = Grader::create($data);
 

@@ -25,6 +25,6 @@ class CreateOtherGraderRequest extends Request
      */
     public function rules()
     {
-        return Grader::$other_grader_rules;
+        return Grader::$rules;
     }
 }

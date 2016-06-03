@@ -68,6 +68,7 @@ class Grader extends Model
   ];
 
   public static $rules = [
+    'password' => 'sometimes|required|confirmed|min:6',
     'last_name' => 'required',
     'first_name' => 'required',
     'personal_xp' => 'sometimes|required',
