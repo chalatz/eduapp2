@@ -127,7 +127,7 @@ class SuggestionsController extends Controller
 
       // warn the user if he has accepted before
       $user = User::where('email', $suggestion->grader_email)->first();
-      if($user && $user->grader){
+      if($user && $user->grader && $user->hasRole('grader_a')){
         $suggestions_count = $user->grader->suggestions_count;
 
         return view('suggestions.handle_new', compact('unique_string', 'suggestions_count'));
@@ -152,7 +152,7 @@ class SuggestionsController extends Controller
       // Check if the grader has already registered
       $user = User::where('email', $grader_email)->first();
 
-      // There is already a grader with this email
+      // There is already a grader A with this email
       if($user && $user->hasRole('grader_a')){
         $user->grader_status .= ',accepted';
         $user->save();
@@ -173,12 +173,17 @@ class SuggestionsController extends Controller
       // The user is verified
       if($user && $user->verified){
         // check if the user is logged in
-        if(Auth::check()){
-          return view('graders.forms.create');
-        } else {
+        if(!Auth::check()){
           Auth::login($user);
-          return view('graders.forms.create');
         }
+
+        if(Auth::user()->hasRole('grader_b')){
+          $grader = Auth::user()->grader;
+          return view('graders.forms.create', compact('grader'));
+        }
+
+        return view('graders.forms.create');
+
       }
 
       // The user in not verified
