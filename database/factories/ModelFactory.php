@@ -13,9 +13,25 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+        'verified' => 1,
+
+    ];
+});
+
+$factory->define(App\Grader::class, function (Faker\Generator $faker) {
+    return [
+        'last_name' => $faker->lastname,
+        'first_name' => $faker->firstname,
+        'specialty_id' => $faker->numberBetween(1, 20),
+        'district_id' => $faker->numberBetween(1, 14),
+    ];
+});
+
+$factory->define(App\Suggestion::class, function (Faker\Generator $faker) {
+    return [
+
     ];
 });
