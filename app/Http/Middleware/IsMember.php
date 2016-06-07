@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class MustBeVerified
+class IsMember
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class MustBeVerified
     {
         $user = $request->user();
 
-        // if the user is logged in AND verified
-        if ($user && $user->verified) {
+        // if the user is logged in AND is stuff
+        if ($user && $user->hasRole('stuff')) {
             return $next($request);
         }
 

@@ -31,16 +31,12 @@ class UserogradersTableSeeder extends Seeder
                 'unique_string' => 'Self proposed',
             ]);
 
-            $i = 0;
-
-            if($i < 20){
+            if($u->id <= 25){
                 DB::table('role_user')->insert([
                     'user_id' => $u->id,
                     'role_id' => 2,
                 ]);
             }
-
-            $i++;
 
         });
 

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 @inject('specialties', 'App\Http\Utilities\Specialty')
 @inject('districts', 'App\Http\Utilities\District')
 @inject('categories', 'App\Http\Utilities\Category')

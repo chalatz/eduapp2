@@ -57,5 +57,6 @@ class Kernel extends HttpKernel
         'suggestion_not_made' => \App\Http\Middleware\SuggestionNotMade::class,
         'edit_and_suggest_self' => \App\Http\Middleware\EditAndSuggestSelf::class,
         'can_create_site' => \App\Http\Middleware\CanCreateSite::class,
+        'is_member' => \App\Http\Middleware\IsMember::class,
     ];
 }
