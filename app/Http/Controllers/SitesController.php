@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Site;
+use App\Grader;
+use App\User;
 use Auth;
 
 use Illuminate\Http\Request;
@@ -66,6 +68,7 @@ class SitesController extends Controller
         $data = $request->all();
 
         $data['user_id'] = $user->id;
+        $data['grader_id'] = $user->suggestedGrader()->id;
 
         Site::create($data);
 
@@ -113,7 +116,7 @@ class SitesController extends Controller
     public function update(EditSiteRequest $request, $id)
     {
         $site = Site::findOrFail($id);
-        
+
         $input = $request->all();
 
         $site->fill($input)->save();

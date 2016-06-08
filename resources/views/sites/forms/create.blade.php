@@ -3,21 +3,44 @@
 @section('content')
 
 @inject('categories', 'App\Http\Utilities\Category')
+@inject('districts', 'App\Http\Utilities\District')
+@inject('counties', 'App\Http\Utilities\County')
+@inject('countries', 'App\Http\Utilities\Country')
+@inject('languages', 'App\Http\Utilities\Language')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Στοιχεία Υποψηφιότητας</h4></div>
-                <div class="panel-body">
 
-                  {!! Form::open(['route' => 'sites.store', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+            <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
-                    @include('sites.forms.partials.sites_form')
+            {!! Form::open(['route' => 'sites.store', 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
-                  {!! Form::close() !!}
+              @include('sites.forms.partials.sites_info_form')
+              @include('sites.forms.partials.sites_contact_info_form')
 
-                </div>
-            </div>
+              <div class="col-md-12 form-group{{ $errors->has('i_agree') ? ' has-error' : '' }}">
+                  {{ Form::checkbox('i_agree', 1, false, ['id' => 'i_agree', 'required']) }}
+                  <label for="i_agree">
+                       Έχω διαβάσει τους <a href="http://www.eduwebawards.gr/requirements/" target="_blank">Όρους συμμετοχής</a> και συμφωνώ με αυτούς
+                   </label>
+
+                  @if ($errors->has('i_agree'))
+                      <span class="help-block">
+                          <strong>{{ $errors->first('i_agree') }}</strong>
+                      </span>
+                  @endif
+
+              </div>
+
+              <div class="form-group">
+                  <div class="col-md-12">
+                      {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                  </div>
+              </div>
+
+            {!! Form::close() !!}
+
         </div>
     </div>
 </div>
