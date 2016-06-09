@@ -5,13 +5,13 @@
 @inject('specialties', 'App\Http\Utilities\Specialty')
 @inject('districts', 'App\Http\Utilities\District')
 @inject('categories', 'App\Http\Utilities\Category')
-@inject('lang_levels', 'App\Http\Utilities\Lang_level')   
+@inject('lang_levels', 'App\Http\Utilities\Lang_level')
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Στοιχεία Αξιολογητή Α</h4></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Καρτέλα Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
                   {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}

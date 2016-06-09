@@ -10,8 +10,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Στοιχεία Αξιολογητή Β</h4></div>
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4>Καρτέλα Αξιολογητή Β</h4></div>
                 <div class="panel-body">
 
                   {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update_b', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
