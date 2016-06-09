@@ -141,7 +141,7 @@
             @endif
         </div>
 
-        <div class="col-md-12 form-group{{ $errors->has('received_permission') ? ' has-error' : '' }}">
+        <div id="received_permission_wrapper" class="col-md-12 form-group{{ $errors->has('received_permission') ? ' has-error' : '' }}">
             {{ Form::label('received_permission', 'Εάν ναι, έχετε λάβει γραπτή άδεια για να εμφανίζονται προσωπικά δεδομένα των παιδιών;') }}
 
             {{ Form::select('received_permission', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'received_permission']) }}
@@ -165,7 +165,7 @@
             @endif
         </div>
 
-        <div class="col-md-12 form-group{{ $errors->has('restricted_access_details') ? ' has-error' : '' }}">
+        <div id="restricted_access_details_wrapper" class="col-md-12 form-group{{ $errors->has('restricted_access_details') ? ' has-error' : '' }}">
             {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης') }}
             {{ Form::textarea('restricted_access_details', null, ['class' => 'form-control', 'id' => 'restricted_access_details', 'rows' => 3, 'placeholder' => 'Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση']) }}
 

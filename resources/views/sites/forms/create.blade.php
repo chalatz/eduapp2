@@ -14,7 +14,7 @@
 
             <h1>Υποβολή Υποψηφιότητας Ιστότοπου</h1>
 
-            {!! Form::open(['route' => 'sites.store', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+            {!! Form::open(['route' => 'sites.store', 'class' => 'site-form form-horizontal', 'role' => 'form']) !!}
 
               @include('sites.forms.partials.sites_info_form')
               @include('sites.forms.partials.sites_contact_info_form')
