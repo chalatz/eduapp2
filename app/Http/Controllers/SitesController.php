@@ -66,6 +66,7 @@ class SitesController extends Controller
         $data = $request->all();
 
         $data['user_id'] = $user->id;
+        $data['grader_id'] = $user->suggestedGrader()->id;
 
         Site::create($data);
 
