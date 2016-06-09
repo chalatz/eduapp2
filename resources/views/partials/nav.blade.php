@@ -27,7 +27,7 @@
                 @if(Auth::user()->site)
                   <li>
                     <a href="{{ route('sites.edit', ['sites' => Auth::user()->site->id]) }}">
-                      Υποψηφιότητα
+                      Καρτέλα Υποψηφίου
                     </a>
                   </li>
                 @endif
@@ -35,7 +35,7 @@
                 @if(Auth::user()->grader && Auth::user()->hasRole('grader_a'))
                   <li>
                     <a href="{{ route('graders.edit', ['sites' => Auth::user()->grader->id]) }}">
-                      Αξιολογητής Α
+                      Καρτέλα Αξιολογητή Α
                     </a>
                   </li>
                 @endif
@@ -43,7 +43,7 @@
                 @if(Auth::user()->grader && Auth::user()->hasRole('grader_b'))
                   <li>
                     <a href="{{ route('graders.edit_b', ['sites' => Auth::user()->grader->id]) }}">
-                      Αξιολογητής Β
+                      Καρτέλα Αξιολογητή Β
                     </a>
                   </li>
                 @endif

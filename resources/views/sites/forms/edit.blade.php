@@ -3,32 +3,22 @@
 @section('content')
 
 @inject('categories', 'App\Http\Utilities\Category')
-@inject('districts', 'App\Http\Utilities\District')
-@inject('counties', 'App\Http\Utilities\County')
-@inject('countries', 'App\Http\Utilities\Country')
-@inject('languages', 'App\Http\Utilities\Language')
-
-@inject('categories', 'App\Http\Utilities\Category')
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Καρτέλα Ιστότοπου</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h4>Στοιχεία Υποψηφιότητας</h4></div>
+                <div class="panel-body">
 
-            {!! Form::model($site, ['method' => 'PUT', 'route' => ['sites.update', $site->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::model($site, ['method' => 'PUT', 'route' => ['sites.update', $site->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
 
-            @include('sites.forms.partials.sites_info_form')
-            @include('sites.forms.partials.sites_contact_info_form')
+                    @include('sites.forms.partials.sites_form')
 
-            <div class="form-group">
-                <div class="col-md-12">
-                    {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                  {!! Form::close() !!}
+
                 </div>
             </div>
-
-            {!! Form::close() !!}
-
         </div>
-
     </div>
 </div>
 
