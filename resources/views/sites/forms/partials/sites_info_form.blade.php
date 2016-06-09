@@ -118,13 +118,13 @@
             @endif
         </div>
 
-        <div class="col-md-12 form-group{{ $errors->has('languages_id') ? ' has-error' : '' }}">
-            {{ Form::label('languages_id', 'Γλώσσα Ιστότοπου') }}
-            {{ Form::select('languages_id', $languages::all(), null, ['class' => 'form-control', 'id' => 'languages_id']) }}
+        <div class="col-md-12 form-group{{ $errors->has('language_id') ? ' has-error' : '' }}">
+            {{ Form::label('language_id', 'Γλώσσα Ιστότοπου') }}
+            {{ Form::select('language_id', $languages::all(), null, ['class' => 'form-control', 'id' => 'language_id']) }}
 
-            @if ($errors->has('languages_id'))
+            @if ($errors->has('language_id'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('languages_id') }}</strong>
+                    <strong>{{ $errors->first('language_id') }}</strong>
                 </span>
             @endif
         </div>

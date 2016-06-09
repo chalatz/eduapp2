@@ -30,11 +30,6 @@
 
   }; // end langs()
 
-  langs($('#english'), $('#english_level'));
-  langs($('#french'), $('#french_level'));
-  langs($('#german'), $('#german_level'));
-  langs($('#italian'), $('#italian_level'));
-
   // --- Data tables
 
   // Graders -----
@@ -100,6 +95,9 @@
   depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
   depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
 
-
+  langs($('#english'), $('#english_level'));
+  langs($('#french'), $('#french_level'));
+  langs($('#german'), $('#german_level'));
+  langs($('#italian'), $('#italian_level'));
 
 })(jQuery);
