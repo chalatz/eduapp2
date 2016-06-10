@@ -18,6 +18,7 @@
 
             @include('sites.forms.partials.sites_info_form')
             @include('sites.forms.partials.sites_contact_info_form')
+            @include('sites.partials.grader_a_info')
 
             <div class="form-group">
                 <div class="col-md-12">

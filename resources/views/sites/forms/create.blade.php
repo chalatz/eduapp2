@@ -18,6 +18,7 @@
 
               @include('sites.forms.partials.sites_info_form')
               @include('sites.forms.partials.sites_contact_info_form')
+              @include('sites.partials.grader_a_info')
 
               <div class="col-md-12 form-group{{ $errors->has('i_agree') ? ' has-error' : '' }}">
                   {{ Form::checkbox('i_agree', 1, false, ['id' => 'i_agree', 'required']) }}
