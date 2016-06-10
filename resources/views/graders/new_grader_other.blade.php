@@ -10,8 +10,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading"><h4>Στοιχεία Αξιολογητή Α</h4></div>
+            <div class="panel panel-primary">
+                <div class="panel-heading"><h4>Εγγραφή Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
                   {!! Form::open(['route' => 'store_other_grader', 'class' => 'form-horizontal', 'role' => 'form']) !!}

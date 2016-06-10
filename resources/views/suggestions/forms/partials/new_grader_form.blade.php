@@ -1,5 +1,5 @@
 <div class="col-md-12 form-group">
-    <strong>Email:</strong> <span class="lead">{{ $grader_email }}</span>
+    <strong>Email:</strong> <span class="lead text-primary">{{ $grader_email }}</span>
 </div>
 
 {{ Form::hidden('unique_string', $unique_string) }}
