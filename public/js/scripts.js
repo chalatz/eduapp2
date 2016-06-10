@@ -101,4 +101,6 @@
   langs($('#german'), $('#german_level'));
   langs($('#italian'), $('#italian_level'));
 
+  $('body .dropdown-toggle').dropdown();
+
 })(jQuery);
