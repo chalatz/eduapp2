@@ -2,6 +2,18 @@
 
 @section('content')
 <div class="container">
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
+            <button type="button" class="text-danger btn btn-link btn-lg btn-block" data-toggle="modal" data-target="#what-is-grader-a-modal">
+                <i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>&nbsp;
+                <span class="text-danger">Τι Είναι ο Αξιολογητής Α και ποιες οι υποχρεώσεις του</span>
+            </button>
+
+        </div>
+    </div> 
+
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
@@ -28,5 +40,8 @@
 
         </div>
     </div>
+
+    @include('partials.what_is_grader_a')
+
 </div>
 @endsection

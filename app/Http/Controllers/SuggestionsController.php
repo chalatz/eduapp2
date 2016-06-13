@@ -110,7 +110,7 @@ class SuggestionsController extends Controller
         return redirect()->route('home');
       }
 
-      alert()->success('Έχει αποσταλεί το email.')
+      alert()->success('Εάν αποδεχτεί ο προτεινόμενος Αξιολογητής Α, θα μπορείτε να υποβάλλετε την υποψηφιότητά σας', 'Έχει αποσταλεί το email.')
         ->persistent('Εντάξει');
 
       return redirect()->route('home');
