@@ -104,14 +104,14 @@ class User extends Authenticatable
         });
     }
 
-       // Find the suggested Grader A
-        public function suggestedGrader()
-        {
-            $grader_email = $this->suggestion->grader_email;
-            $suggested_user = User::where('email', $grader_email)->first();
-            $grader = $suggested_user->grader;
-            return $grader;
-        }
+    // Find the suggested Grader A
+    public function suggestedGrader()
+    {
+        $grader_email = $this->suggestion->grader_email;
+        $suggested_user = User::where('email', $grader_email)->first();
+        $grader = $suggested_user->grader;
+        return $grader;
+    }
 
     /**
     * Find out if user has a specific role

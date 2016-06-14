@@ -51,7 +51,15 @@
           <td>{{ $grader->last_name }}</td>
           <td>{{ $grader->first_name }}</td>
           <td>{{ $grader->user->email }}</td>
-          <td>TODO</td>
+          <td>
+            @if($grader->sites->count() > 0)
+              @foreach($grader->sites as $site)
+                {{ $site->contact_phone }}<br>
+              @endforeach
+            @else
+             na
+            @endif
+          </td>
           <td>{{ $specialties::all()[$grader->specialty_id] }}</td>
           <td>{{ $districts::all()[$grader->district_id] }}</td>
           <td>{{ $grader->address }}</td>
@@ -63,10 +71,37 @@
             @include('partials.languages')
           </td>
           <td>{{ $grader->languages_other }} {{ $grader->languages_other_level }}</td>
-          <td>TODO</td>
+          <td>
+            @if($grader->sites->count() > 0)
+              @foreach($grader->sites as $site)
+                {{ $site->title }}
+                <br>---<br>
+              @endforeach
+            @else
+             na
+            @endif
+          </td>
           <td>{{ $grader->user->suggestion->suggestor_email }}</td>
-          <td>TODO</td>
-          <td>TODO</td>
+          <td>
+            @if($grader->sites->count() > 0)
+              @foreach($grader->sites as $site)
+                {{ $site->contact_email }}
+                <br>---<br>
+              @endforeach
+            @else
+             na
+            @endif              
+          </td>                    
+          <td>
+          @if($grader->sites->count() > 0)
+            @foreach($grader->sites as $site)
+              {{ $districts::all()[$site->district_id] }}
+              <br>---<br>
+            @endforeach 
+          @else
+            na
+          @endif
+          </td>
           <td>{{ $grader->user->suggestion->self_proposed }}</td>
           <td>{{ $grader->user->suggestion->accepted }}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>

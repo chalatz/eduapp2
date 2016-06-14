@@ -40,7 +40,7 @@ class Grader extends Model
 
   public function sites()
   {
-      return $this->belongsToMany(Role::class)->withTimeStamps();
+      return $this->hasMany(Site::class);
   }
 
   public function addSuggestion()
