@@ -43,6 +43,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('graders/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);
 
     // ----- MEMBERS ------ //
-    Route::get('admin/graders/a', ['as' => 'stuff.graders_a', 'uses' => 'MembersController@graders_a']);
+    Route::get('admin/graders/a', ['as' => 'members.graders_a', 'uses' => 'MembersController@graders_a']);
 
 });

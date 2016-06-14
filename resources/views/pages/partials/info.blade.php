@@ -23,7 +23,7 @@
   @if(Auth::user()->hasRole('grader_b'))
     <li><strong>Αξιολογητής Β</strong></li>
   @endif
-  @if(Auth::user()->hasRole('stuff'))
+  @if(Auth::user()->hasRole('member'))
     <li><strong>Μέλος Επιτροπής</strong></li>
   @endif
   @if(Auth::user()->hasRole('admin'))

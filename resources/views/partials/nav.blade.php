@@ -48,6 +48,18 @@
                   </li>
                 @endif
 
+                @if(Auth::user()->hasRole('member'))
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          Διαχειριστικά <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url('/admin/graders/a') }}">Αξιολογητές Α</a></li>
+                      </ul>
+                  </li>
+                @endif
+
               @endif
 
           </ul>

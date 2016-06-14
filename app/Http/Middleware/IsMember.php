@@ -18,7 +18,7 @@ class IsMember
         $user = $request->user();
 
         // if the user is logged in AND is stuff
-        if ($user && $user->hasRole('stuff')) {
+        if ($user && $user->hasRole('member')) {
             return $next($request);
         }
 

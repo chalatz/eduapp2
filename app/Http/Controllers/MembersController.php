@@ -23,7 +23,7 @@ class MembersController extends Controller
   {
     $graders = Grader::with('user')->get();
 
-    return view('stuff.graders_a', compact('graders'));
+    return view('members.graders_a', compact('graders'));
   }
 
 }

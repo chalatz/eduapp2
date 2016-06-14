@@ -7,6 +7,8 @@
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
 
+<h1 class="bg-primary" style="padding: .5em 1em; margin-bottom: 1.5em">Αξιολογητές Α</h1>
+
 <table id="graders-table" class="table table-striped admin-table">
 
   <thead>
