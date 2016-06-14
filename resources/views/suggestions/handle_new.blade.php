@@ -6,6 +6,20 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
 
+            <p class="lead">
+                Σας έχει προτείνει ο υποψήφιος με ονομασία <strong class="bg-info">{{ $suggestion->suggestor_name }}</strong> και email <strong class="bg-info">{{ $suggestion->suggestor_email }}</strong>.
+            </p>
+            <p class="lead">
+                Προσωπικό μήνυμα από τον υποψήφιο:
+            </p>
+            <p class="lead bg-info" style="padding: .2em 1em">{!! nl2br(e($suggestion->personal_msg)) !!}</p>         
+
+        </div>
+    </div> 
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+
             <button type="button" class="text-danger btn btn-link btn-lg btn-block" data-toggle="modal" data-target="#what-is-grader-a-modal">
                 <i class="fa fa-exclamation-triangle text-danger" aria-hidden="true"></i>&nbsp;
                 <span class="text-danger">Τι Είναι ο Αξιολογητής Α και ποιες οι υποχρεώσεις του</span>

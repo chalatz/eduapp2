@@ -49,6 +49,12 @@ class GradersController extends Controller
     //     return redirect()->route('graders.edit', ['graders' => Auth::user()->grader->id]);
     // }
 
+    // the user has a pending suggestion
+    if(Auth::user()->hasSuggestionToRespondTo()){
+      $suggestion = Auth::user()->hasSuggestionToRespondTo();
+      return view('pages.handle_pending_suggestion', compact('suggestion'));
+    }
+
     return view('graders.forms.create');
 
   }

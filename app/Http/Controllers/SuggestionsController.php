@@ -130,11 +130,11 @@ class SuggestionsController extends Controller
       if($user && $user->grader && $user->hasRole('grader_a')){
         $suggestions_count = $user->grader->suggestions_count;
 
-        return view('suggestions.handle_new', compact('unique_string', 'suggestions_count'));
+        return view('suggestions.handle_new', compact('unique_string', 'suggestions_count', 'suggestion'));
       }
     }
 
-    return view('suggestions.handle_new', compact('unique_string'));
+    return view('suggestions.handle_new', compact('unique_string', 'suggestion'));
   }
 
   public function handle_suggestion_answer($answer, $unique_string)
