@@ -61,6 +61,27 @@ class Grader extends Model
 
   }
 
+  public function code()
+  {
+        $grader_code = '';
+
+        if($this->user->hasRole('grader_a')){
+            $grader_code = 'Α' . sprintf("%03d", $this->id);
+        }
+        if($this->approved && $this->user->hasRole('grader_b')){
+            $grader_code = 'Β' . sprintf("%03d", $this->id);
+        }
+        if($this->user->hasRole('grader_a') && ($this->approved && $this->user->hasRole('grader_b'))){
+            $grader_code = 'ΑΒ' . sprintf("%03d", $this->id);
+        }
+        if($this->user->hasRole('member')){
+            $grader_code = 'Γ' . sprintf("%03d", $this->id);
+        }
+
+        return $grader_code;
+
+  }  
+
   public static $other_grader_rules = [
     'password' => 'required|confirmed|min:6',
     'last_name' => 'required',

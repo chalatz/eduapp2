@@ -47,7 +47,7 @@
       @if($grader->user->hasRole('grader_a'))
 
         <tr>
-          <td>{{ $grader->id }}</td>
+          <td>{{ $grader->code() }}</td>
           <td>{{ $grader->last_name }}</td>
           <td>{{ $grader->first_name }}</td>
           <td>{{ $grader->user->email }}</td>
