@@ -26,4 +26,11 @@ class MembersController extends Controller
     return view('members.graders_a', compact('graders'));
   }
 
+  public function graders_b()
+  {
+    $graders = Grader::with('user')->get();
+
+    return view('members.graders_b', compact('graders'));
+  }  
+
 }

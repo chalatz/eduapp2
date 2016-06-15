@@ -44,5 +44,6 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- MEMBERS ------ //
     Route::get('admin/graders/a', ['as' => 'members.graders_a', 'uses' => 'MembersController@graders_a']);
+    Route::get('admin/graders/b', ['as' => 'members.graders_b', 'uses' => 'MembersController@graders_b']);
 
 });
