@@ -31,6 +31,8 @@ class Grader extends Model
     'italian_level',
     'languages_other',
     'languages_other_level',
+    'approved',
+    'approved_at',
   ];
 
   public function user()

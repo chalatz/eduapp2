@@ -15,6 +15,7 @@ class AddApprovedFieldToGradersTable extends Migration
         Schema::table('graders', function (Blueprint $table) {
             
             $table->boolean('approved')->default(0);
+            $table->timestamp('approved_at');
 
         });
     }
@@ -29,6 +30,7 @@ class AddApprovedFieldToGradersTable extends Migration
         Schema::table('graders', function (Blueprint $table) {
             
             $table->dropColumn('approved');
+            $table->dropColumn('approved_at');
 
         });
     }
