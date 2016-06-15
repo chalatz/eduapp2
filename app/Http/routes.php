@@ -46,4 +46,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/graders/a', ['as' => 'members.graders_a', 'uses' => 'MembersController@graders_a']);
     Route::get('admin/graders/b', ['as' => 'members.graders_b', 'uses' => 'MembersController@graders_b']);
 
+    Route::get('admin/approve/grader/{grader_id}', ['as' => 'members.approve', 'uses' => 'MembersController@approve']);
+
 });

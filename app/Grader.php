@@ -32,6 +32,7 @@ class Grader extends Model
     'languages_other',
     'languages_other_level',
     'approved',
+    'approver_email',
     'approved_at',
   ];
 

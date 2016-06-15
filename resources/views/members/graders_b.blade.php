@@ -46,7 +46,13 @@
           @if(Auth::user()->hasRole('ninja'))
             <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
           @endif
-          <td>Έγκριση</td>
+          <td>
+            @if($grader->approved)
+              Έχει Εγκριθεί από: <em>{{$grader->approver_email}}</em>
+            @else
+              <a href="{{ route('members.approve', $grader->id) }}">Εγκρίνω</a>
+            @endif
+          </td>
           <td>{{ $grader->code() }}</td>
           <td>{{ $grader->last_name }}</td>
           <td>{{ $grader->first_name }}</td>
