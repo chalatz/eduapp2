@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
@@ -7,18 +7,7 @@
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
 
-<h1 class="bg-primary" style="padding: .5em 1em; margin-bottom: 1.5em">Αξιολογητές Α</h1>
-
-<div class="row">
-    <div class="col-md-8 col-md-offset-1">
-        <a href="{{ route('members.graders_a_print') }}" target="_blank" type="button" class="btn btn-primary btn-lg">
-          <i class="fa fa-print" aria-hidden="true"></i> Εκτυπώσιμη Μορφή
-        </a>
-        <em>Ανοίγει σε νέο παράθυρο και μετά Επιλογή Όλων (CTRL + A), αντιγραφή και επικόλληση στο Excel.</em>
-    </div>
-</div>
-
-<table id="graders-table" class="table table-striped admin-table">
+<table class="table table-striped">
 
   <thead>
     <tr>
@@ -43,10 +32,6 @@
       <th>Αυτοπροτάθηκε</th>
       <th>Αποδέχτηκε</th>
       <th>Δημιουργήθηκε</th>
-      @if(Auth::user()->hasRole('ninja'))
-          <th>Μεταμφίεση</th>
-      @endif
-
     </tr>
   </thead>
 
@@ -99,14 +84,14 @@
               @endforeach
             @else
              na
-            @endif
-          </td>
+            @endif              
+          </td>                    
           <td>
           @if($grader->sites->count() > 0)
             @foreach($grader->sites as $site)
               {{ $districts::all()[$site->district_id] }}
               <br>---<br>
-            @endforeach
+            @endforeach 
           @else
             na
           @endif
@@ -114,40 +99,12 @@
           <td>{{ $grader->user->suggestion->self_proposed }}</td>
           <td>{{ $grader->user->suggestion->accepted }}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
-          @if(Auth::user()->hasRole('ninja'))
-              <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}  </td>
-          @endif
-
         </tr>
 
       @endif
 
     @endforeach
   </tbody>
-
-  <tfoot>
-    <th>Κωδικός</th>
-    <th>Eπώνυμο</th>
-    <th>Όνομα</th>
-    <th>Email</th>
-    <th>Τηλ. Ιστότοπου που τον πρότεινε</th>
-    <th>Ειδικότητα</th>
-    <th>Περιφέρεια</th>
-    <th>Ταχ. Διεύθυνση</th>
-    <th>Κατηγορίες που επιθυμεί</th>
-    <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
-    <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
-    <th>Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β</th>
-    <th>Ξένες Γλώσσες</th>
-    <th>Άλλες Ξένες Γλώσσες</th>
-    <th>Ιστότοπος που τον πρότεινε</th>
-    <th>Email Ιστότοπου</th>
-    <th>Κατηγορία Ιστότοπου</th>
-    <th>Περιφέρεια Ιστότοπου</th>
-    <th>Αυτοπροτάθηκε</th>
-    <th>Αποδέχτηκε</th>
-    <th>Δημιουργήθηκε</th>
-</tfoot>
 
 </table>
 

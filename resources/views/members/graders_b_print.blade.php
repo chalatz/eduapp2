@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
@@ -7,24 +7,10 @@
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
 
-<h1 class="bg-info" style="padding: .5em 1em; margin-bottom: 1.5em">Αξιολογητές Β</h1>
-
-<div class="row">
-    <div class="col-md-8 col-md-offset-1">
-        <a href="{{ route('members.graders_b_print') }}" target="_blank" type="button" class="btn btn-primary btn-lg">
-          <i class="fa fa-print" aria-hidden="true"></i> Εκτυπώσιμη Μορφή
-        </a>
-        <em>Ανοίγει σε νέο παράθυρο και μετά Επιλογή Όλων (CTRL + A), αντιγραφή και επικόλληση στο Excel.</em>
-    </div>
-</div>
-
-<table id="graders-table" class="table table-striped admin-table">
+<table class="table table-striped admin-table">
 
   <thead>
     <tr>
-      @if(Auth::user()->hasRole('ninja'))
-        <th>Μεταμφίεση</th>
-      @endif
       <th>Έγκριση</th>
       <th>Κωδικός</th>
       <th>Eπώνυμο</th>
@@ -39,10 +25,6 @@
       <th>Ξένες Γλώσσες</th>
       <th>Άλλες Ξένες Γλώσσες</th>
       <th>Δημιουργήθηκε</th>
-      @if(Auth::user()->hasRole('ninja'))
-          <th>Μεταμφίεση</th>
-      @endif
-
     </tr>
   </thead>
 
@@ -52,9 +34,6 @@
       @if($grader->user->hasRole('grader_b'))
 
         <tr>
-          @if(Auth::user()->hasRole('ninja'))
-            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
-          @endif
           <td>
             @if($grader->approved)
               Έχει Εγκριθεί από: <em>{{$grader->approver_email}}</em>
@@ -77,36 +56,12 @@
           </td>
           <td>{{ $grader->languages_other }} {{ $grader->languages_other_level }}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
-          @if(Auth::user()->hasRole('ninja'))
-              <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
-          @endif
-
         </tr>
 
       @endif
 
     @endforeach
   </tbody>
-
-  <tfoot>
-    @if(Auth::user()->hasRole('ninja'))
-        <th></th>
-    @endif
-    <th></th>
-    <th>Κωδικός</th>
-    <th>Eπώνυμο</th>
-    <th>Όνομα</th>
-    <th>Email</th>
-    <th>Ειδικότητα</th>
-    <th>Περιφέρεια</th>
-    <th>Ταχ. Διεύθυνση</th>
-    <th>Κατηγορίες που επιθυμεί</th>
-    <th>Αξιολογητής Α στον προηγούμενο διαγωνισμό</th>
-    <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
-    <th>Ξένες Γλώσσες</th>
-    <th>Άλλες Ξένες Γλώσσες</th>
-    <th>Δημιουργήθηκε</th>
-</tfoot>
 
 </table>
 

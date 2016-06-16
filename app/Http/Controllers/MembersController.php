@@ -30,11 +30,25 @@ class MembersController extends Controller
     return view('members.graders_a', compact('graders'));
   }
 
+  public function graders_a_print()
+  {
+    $graders = Grader::with('user', 'sites')->get();
+
+    return view('members.graders_a_print', compact('graders'));
+  }
+
   public function graders_b()
   {
     $graders = Grader::with('user')->get();
 
     return view('members.graders_b', compact('graders'));
+  }
+
+  public function graders_b_print()
+  {
+    $graders = Grader::with('user')->get();
+
+    return view('members.graders_b_print', compact('graders'));
   }
 
   public function approve($grader_id)
@@ -50,8 +64,8 @@ class MembersController extends Controller
         alert()->success('Μην ξεχνάς ότι ξέρουμε ποιος είσαι.', 'Επιτυχής Έκγριση!')
                 ->persistent('Το κατάλαβα');
 
-        return redirect()->back();      
+        return redirect()->back();
 
-  } 
+  }
 
 }
