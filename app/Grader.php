@@ -34,6 +34,10 @@ class Grader extends Model
     'approved',
     'approver_email',
     'approved_at',
+    'propose_myself',
+    'why_propose_myself',
+    'personal_url',
+    'comments',
   ];
 
   public function user()
@@ -83,7 +87,7 @@ class Grader extends Model
 
         return $grader_code;
 
-  }  
+  }
 
   public static $other_grader_rules = [
     'password' => 'required|confirmed|min:6',

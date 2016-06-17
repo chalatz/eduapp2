@@ -14,7 +14,7 @@
                 <div class="panel-heading"><h4>Καρτέλα Αξιολογητή Β</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update_b', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update_b', $grader->id], 'class' => 'grader-form form-horizontal', 'role' => 'form']) !!}
 
                     @include('graders.forms.partials.graders_form')
 

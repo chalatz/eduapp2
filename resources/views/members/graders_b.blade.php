@@ -38,6 +38,7 @@
       <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
       <th>Ξένες Γλώσσες</th>
       <th>Άλλες Ξένες Γλώσσες</th>
+      <th>Γιατί αυτοπροτείνεται</th>
       <th>Δημιουργήθηκε</th>
       @if(Auth::user()->hasRole('ninja'))
           <th>Μεταμφίεση</th>
@@ -76,6 +77,7 @@
             @include('partials.languages')
           </td>
           <td>{{ $grader->languages_other }} {{ $grader->languages_other_level }}</td>
+          <td>{!! nl2br(e($grader->why_propose_myself)) !!}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
           @if(Auth::user()->hasRole('ninja'))
               <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
@@ -105,6 +107,7 @@
     <th>Αξιολογητής σε περισσότερους από έναν διαγωνισμούς</th>
     <th>Ξένες Γλώσσες</th>
     <th>Άλλες Ξένες Γλώσσες</th>
+    <th>Γιατί αυτοπροτείνεται</th>
     <th>Δημιουργήθηκε</th>
 </tfoot>
 

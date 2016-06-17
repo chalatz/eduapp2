@@ -283,6 +283,11 @@ class GradersController extends Controller
         $input['italian_level'] = null;
       }
 
+      if(!$request->has('propose_myself')){
+        $input['propose_myself'] = 0;
+        $input['why_propose_myself'] = null;
+      }
+
       $grader->fill($input)->save();
 
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');

@@ -18,6 +18,22 @@
 
   }; // end depandable_fields()
 
+  var checkbox_toggle_visibility = function(thebox, wrapper) {
+    wrapper.hide();
+
+    if($(this).is(':checked')){
+        wrapper.show();
+    }
+
+    thebox.on('click', function(){
+        if($(this).is(':checked')){
+            wrapper.fadeIn();
+        } else {
+            wrapper.fadeOut();
+        }
+    });
+}; // end checkbox_toggle_visibility()
+
   var langs = function(thebox, theselect){
 
     theselect.on('change', function(){
@@ -95,6 +111,11 @@
 
   depandable_fields($('#received_permission_wrapper'), $('.site-form select#uses_private_data'), $('#received_permission'), 'yes');
   depandable_fields($('#restricted_access_details_wrapper'), $('.site-form select#restricted_access'), $('#restricted_access_details'), 'yes');
+
+  checkbox_toggle_visibility($('input[name=propose_myself]'), $('#why_propose_myself_wrapper'));
+  if($('input[name=propose_myself]').is(':checked') === true){
+      $('#why_propose_myself_wrapper').show();
+  }
 
   langs($('#english'), $('#english_level'));
   langs($('#french'), $('#french_level'));
