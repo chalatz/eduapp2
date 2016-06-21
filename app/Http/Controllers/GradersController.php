@@ -288,6 +288,10 @@ class GradersController extends Controller
         $input['why_propose_myself'] = null;
       }
 
+      if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
+          $input['personal_cv_path'] = $grader->addPersonalCV($request);
+      }
+
       $grader->fill($input)->save();
 
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');

@@ -38,6 +38,7 @@ class Grader extends Model
     'why_propose_myself',
     'personal_url',
     'comments',
+    'personal_cv_path',
   ];
 
   public function user()
@@ -86,6 +87,20 @@ class Grader extends Model
         }
 
         return $grader_code;
+
+  }
+
+  public function addPersonalCV($request)
+  {
+      $file = $request->file('personal_cv');
+
+      $fileName = $this->id .'--'. time() .'--'. $file->getClientOriginalName();
+
+      $destinationPath = base_path() . '/storage/grader_files';
+
+      $file->move($destinationPath, $fileName);
+
+      return $fileName;
 
   }
 
