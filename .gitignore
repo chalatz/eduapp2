@@ -5,5 +5,4 @@ Homestead.json
 .env
 /.vscode
 .sass-cache
-php.ini
-.c9
+storage/grader_files

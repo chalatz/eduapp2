@@ -38,6 +38,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('graders/edit_b/{graders}', ['as' => 'graders.edit_b', 'uses' => 'GradersController@edit_b']);
     Route::put('graders/b/{graders}', ['as' => 'graders.update_b', 'uses' => 'GradersController@update_b']);
 
+    Route::get('grader/cv/{file}',['as' => 'graders.get_cv', 'uses' => 'GradersController@get_cv']);
+
     Route::resource('graders', 'GradersController');
 
     Route::get('graders/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);

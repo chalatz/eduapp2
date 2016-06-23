@@ -114,15 +114,3 @@
 </div>
 
 @include('graders.forms.partials.languages')
-
-<div class="col-md-12 form-group{{ $errors->has('personal_cv_path') ? ' has-error' : '' }}">
-    {{ Form::label('personal_cv_path', 'Υποβολή Βιογραφικού') }}
-
-    {{ Form::file('personal_cv') }}
-
-    @if ($errors->has('personal_cv_path'))
-        <span class="help-block">
-            <strong>{{ $errors->first('personal_cv_path') }}</strong>
-        </span>
-    @endif
-</div>

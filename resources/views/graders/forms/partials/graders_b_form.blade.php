@@ -37,6 +37,30 @@
     </span>
 </div>
 
+<div class="col-md-12 form-group{{ $errors->has('personal_cv') ? ' has-error' : '' }}">
+    {{ Form::label('personal_cv', 'Υποβολή Βιογραφικού') }}
+
+    @if($grader->personal_cv)
+        <p>
+            <a class="lead" href="{{ route('graders.get_cv', $grader->personal_cv) }}">
+                Βιογραφικό που υποβλήθηκε
+            </a>
+        </p>
+    @endif
+
+    {{ Form::file('personal_cv') }}
+
+    @if ($errors->has('personal_cv'))
+        <span class="help-block">
+            <strong>{{ $errors->first('personal_cv') }}</strong>
+        </span>
+    @endif
+
+    <span class="help-block">
+        Επιτρεπόμενες επεκτάσεις αρχείων: <strong>pdf,doc,docx,odt</strong>
+    </span>
+</div>
+
 <div class="col-md-12 form-group{{ $errors->has('personal_xp') ? ' has-error' : '' }}">
     {{ Form::label('personal_xp', 'Εμπειρία Δημιουργίας - Αξιολόγησης Ιστότοπων') }}
     {{ Form::textarea('personal_xp', null, ['class' => 'form-control', 'id' => 'personal_xp', 'rows' => 5, 'required' ]) }}

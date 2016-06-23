@@ -14,7 +14,7 @@ class AddPersonalCvPathFieldToGradersTable extends Migration
     {
         Schema::table('graders', function (Blueprint $table) {
 
-            $table->string('personal_cv_path')->nullable();
+            $table->string('personal_cv')->nullable();
 
         });
     }
@@ -28,7 +28,7 @@ class AddPersonalCvPathFieldToGradersTable extends Migration
     {
         Schema::table('graders', function (Blueprint $table) {
 
-            $table->dropColumn('personal_cv_path');
+            $table->dropColumn('personal_cv');
 
         });
     }

@@ -289,7 +289,7 @@ class GradersController extends Controller
       }
 
       if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
-          $input['personal_cv_path'] = $grader->addPersonalCV($request);
+          $input['personal_cv'] = $grader->addPersonalCV($request);
       }
 
       $grader->fill($input)->save();
@@ -297,6 +297,14 @@ class GradersController extends Controller
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
 
       return redirect()->back();
+
+  }
+
+  public function get_cv($file)
+  {
+    $pathToFile = base_path() . '/storage/grader_files/' . $file;
+
+    return response()->download($pathToFile);
 
   }
 

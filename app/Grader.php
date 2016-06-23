@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Suggestion;
 
+use App\Http\Utilities\Transliteration;
+
 class Grader extends Model
 {
   protected $fillable = [
@@ -38,7 +40,7 @@ class Grader extends Model
     'why_propose_myself',
     'personal_url',
     'comments',
-    'personal_cv_path',
+    'personal_cv',
   ];
 
   public function user()
@@ -94,7 +96,9 @@ class Grader extends Model
   {
       $file = $request->file('personal_cv');
 
-      $fileName = $this->id .'--'. time() .'--'. $file->getClientOriginalName();
+      $originalFileName = $this->id .'--'. time() .'--'. $file->getClientOriginalName();
+
+      $fileName = Transliteration::rename($originalFileName);
 
       $destinationPath = base_path() . '/storage/grader_files';
 
@@ -115,6 +119,7 @@ class Grader extends Model
     'last_name' => 'required',
     'first_name' => 'required',
     'personal_xp' => 'sometimes|required',
+    'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048'
   ];
 
 }
