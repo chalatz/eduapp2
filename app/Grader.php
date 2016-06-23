@@ -118,6 +118,8 @@ class Grader extends Model
     'french_level' => 'required_if:french,1',
     'german_level' => 'required_if:german,1',
     'italian_level' => 'required_if:italian,1',
+    'languages_other_level' => 'required_with:languages_other',
+    'languages_other' => 'required_with:languages_other_level',
     'personal_xp' => 'sometimes|required',
     'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048'
   ];
