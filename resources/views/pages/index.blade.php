@@ -20,11 +20,11 @@
                 </p>
 
                 <p>
-                    <a class="btn btn-link" href="{{ url('/login') }}">Συνδεθείτε</a> ή <a class="btn btn-link" href="{{ url('/register') }}">Εγγραφείτε</a>
+                    <a class="btn btn-link btn-lg" href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Συνδεθείτε</a> ή <a class="btn btn-link btn-lg" href="{{ url('/register') }}"><i class="fa fa-btn fa-user-plus"></i> Εγγραφείτε</a>
                 </p>
 
                 <p>
-                    <a class="btn btn-link" href="{{ url('/password/reset') }}">Ξέχασα τον Κωδικό Πρόσβασής μου</a>
+                    <a class="btn btn-link btn-lg" href="{{ url('/password/reset') }}"><i class="fa fa-btn fa-unlock-alt"></i> Ξέχασα τον Κωδικό Πρόσβασής μου</a>
                 </p>
                 <p>
                     <a href="{{ url('/register') }}" type="button" class="btn btn-success btn-lg btn-block">

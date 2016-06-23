@@ -108,16 +108,16 @@ class Grader extends Model
 
   }
 
-  public static $other_grader_rules = [
-    'password' => 'required|confirmed|min:6',
-    'last_name' => 'required',
-    'first_name' => 'required',
-  ];
-
   public static $rules = [
     'password' => 'sometimes|required|confirmed|min:6',
     'last_name' => 'required',
     'first_name' => 'required',
+    'specialty_id' => 'required',
+    'district_id' => 'required',
+    'english_level' => 'required_if:english,1',
+    'french_level' => 'required_if:french,1',
+    'german_level' => 'required_if:german,1',
+    'italian_level' => 'required_if:italian,1',
     'personal_xp' => 'sometimes|required',
     'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048'
   ];

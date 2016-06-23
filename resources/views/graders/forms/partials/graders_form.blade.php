@@ -1,6 +1,6 @@
 <div class="col-md-12 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
     {{ Form::label('last_name', 'Επώνυμο *') }}
-    {{ Form::text('last_name', isset($grader) ? $grader->last_name : null, ['class' => 'form-control', 'id' => 'last_name', 'required']) }}
+    {{ Form::text('last_name', isset($grader) ? $grader->last_name : null, ['class' => 'form-control', 'id' => 'last_name', ]) }}
 
     @if ($errors->has('last_name'))
         <span class="help-block">
@@ -11,7 +11,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
     {{ Form::label('first_name', 'Όνομα *') }}
-    {{ Form::text('first_name', isset($grader) ? $grader->first_name : null, ['class' => 'form-control', 'id' => 'first_name', 'required']) }}
+    {{ Form::text('first_name', isset($grader) ? $grader->first_name : null, ['class' => 'form-control', 'id' => 'first_name', ]) }}
 
     @if ($errors->has('first_name'))
         <span class="help-block">
@@ -22,7 +22,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('specialty_id') ? ' has-error' : '' }}">
     {{ Form::label('specialty_id', 'Εδικότητα *') }}
-    {{ Form::select('specialty_id', $specialties::all(), isset($grader) ? $grader->specialty_id : null, ['class' => 'form-control', 'id' => 'specialty_id']) }}
+    {{ Form::select('specialty_id', $specialties::all(), isset($grader) ? $grader->specialty_id : null, ['class' => 'form-control', 'id' => 'specialty_id', ]) }}
 
     @if ($errors->has('specialty_id'))
         <span class="help-block">
@@ -101,16 +101,18 @@
     @endif
 </div>
 
-<div class="col-md-12 form-group{{ $errors->has('wants_to_be_grader_b') ? ' has-error' : '' }}">
-    {{ Form::label('wants_to_be_grader_b', 'Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β') }}
+@if(\Request::route()->getName() == 'graders.create'|| \Request::route()->getName() == 'graders.edit')
+    <div class="col-md-12 form-group{{ $errors->has('wants_to_be_grader_b') ? ' has-error' : '' }}">
+        {{ Form::label('wants_to_be_grader_b', 'Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β') }}
 
-    {{ Form::select('wants_to_be_grader_b', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->wants_to_be_grader_b : null, ['class' => 'form-control', 'id' => 'wants_to_be_grader_b']) }}
+        {{ Form::select('wants_to_be_grader_b', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->wants_to_be_grader_b : null, ['class' => 'form-control', 'id' => 'wants_to_be_grader_b']) }}
 
-    @if ($errors->has('wants_to_be_grader_b'))
-        <span class="help-block">
-            <strong>{{ $errors->first('wants_to_be_grader_b') }}</strong>
-        </span>
-    @endif
-</div>
+        @if ($errors->has('wants_to_be_grader_b'))
+            <span class="help-block">
+                <strong>{{ $errors->first('wants_to_be_grader_b') }}</strong>
+            </span>
+        @endif
+    </div>
+@endif
 
 @include('graders.forms.partials.languages')
