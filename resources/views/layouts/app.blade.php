@@ -31,6 +31,14 @@
         @include('flash::message')
     </div>
 
+    @if(isset($errors) && $errors->count() > 0)
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                <strong>Υπάρχουν κάποια προβλήματα με την υποβολή της φόρμας. Παρακαλούμε δείτε τα παρακάτω.</strong>
+            </div>
+        </div>
+    @endif
+
     @yield('content')
 
     <!-- JavaScripts -->
