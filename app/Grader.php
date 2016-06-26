@@ -120,6 +120,7 @@ class Grader extends Model
     'italian_level' => 'required_if:italian,1',
     'languages_other_level' => 'required_with:languages_other',
     'languages_other' => 'required_with:languages_other_level',
+    'why_propose_myself' => 'sometimes|required_if:propose_myself,1',
     'personal_xp' => 'sometimes|required',
     'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048'
   ];
