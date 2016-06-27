@@ -53,7 +53,8 @@
     @endif
 
     <span class="help-block">
-        Επιτρεπόμενες επεκτάσεις αρχείων: <strong>pdf,doc,docx,odt</strong>
+        Επιτρεπόμενες επεκτάσεις αρχείων: <strong>pdf,doc,docx,odt</strong><br>
+        Μέγιστο μέγεθος αρχείου: <strong>2MB</strong>
     </span>
 </div>
 
