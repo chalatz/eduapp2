@@ -27,6 +27,10 @@ class GradersController extends Controller
         'edit_and_suggest_self',
       ]]);
 
+      $this->middleware('must_own_grader_or_is_member', ['only' => [
+        'get_cv',
+      ]]);
+
       $this->middleware('grader_has_not_accepted', ['only' => [
             'create',
         ]]);
