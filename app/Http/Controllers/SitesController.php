@@ -114,8 +114,15 @@ class SitesController extends Controller
     public function update(EditSiteRequest $request, $id)
     {
         $site = Site::findOrFail($id);
-        
+
         $input = $request->all();
+
+        if($request->uses_private_data == 'no'){
+            $input['received_permission'] = null;
+        }
+        if($request->restricted_access == 'no'){
+            $input['restricted_access_details'] = null;
+        }
 
         $site->fill($input)->save();
 

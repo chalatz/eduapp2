@@ -20,8 +20,9 @@
               @include('sites.forms.partials.sites_contact_info_form')
               @include('sites.partials.grader_a_info')
 
+              {{ Form::hidden('i_agree', 0) }}
               <div class="col-md-12 form-group{{ $errors->has('i_agree') ? ' has-error' : '' }}">
-                  {{ Form::checkbox('i_agree', 1, false, ['id' => 'i_agree', 'required']) }}
+                  {{ Form::checkbox('i_agree', 1, 0, ['id' => 'i_agree']) }}
                   <label for="i_agree">
                        Έχω διαβάσει τους <a href="http://www.eduwebawards.gr/requirements/" target="_blank">Όρους συμμετοχής</a> και συμφωνώ με αυτούς
                    </label>
@@ -47,4 +48,3 @@
 </div>
 
 @endsection
-

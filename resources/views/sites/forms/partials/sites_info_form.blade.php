@@ -130,7 +130,7 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('uses_private_data') ? ' has-error' : '' }}">
-            {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών;') }}
+            {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών; *') }}
 
             {{ Form::select('uses_private_data', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'uses_private_data']) }}
 
@@ -154,7 +154,7 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('restricted_access') ? ' has-error' : '' }}">
-            {{ Form::label('restricted_access', 'Έχει ο ιστότοπος περιορισμένη πρόσβαση;') }}
+            {{ Form::label('restricted_access', 'Έχει ο ιστότοπος περιορισμένη πρόσβαση; *') }}
 
             {{ Form::select('restricted_access', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'restricted_access']) }}
 
