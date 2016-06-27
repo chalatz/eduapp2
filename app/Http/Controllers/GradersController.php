@@ -169,6 +169,11 @@ class GradersController extends Controller
 
     }
 
+    if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
+        $grader->personal_cv = $grader->addPersonalCV($request);
+        $grader->save();
+    }
+
     // $grader = Grader::create($request->all());
 
     // Give the user the role of grader B (id: 3)
