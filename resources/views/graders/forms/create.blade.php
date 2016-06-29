@@ -14,7 +14,7 @@
                 <div class="panel-heading"><h4>Εγγραφή Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::open(['route' => 'graders.store', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::open(['route' => 'graders.store', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                     @include('graders.forms.partials.graders_form')
 

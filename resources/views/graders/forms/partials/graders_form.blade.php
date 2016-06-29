@@ -1,6 +1,6 @@
 <div class="col-md-12 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
     {{ Form::label('last_name', 'Επώνυμο *') }}
-    {{ Form::text('last_name', isset($grader) ? $grader->last_name : null, ['class' => 'form-control', 'id' => 'last_name', ]) }}
+    {{ Form::text('last_name', isset($grader) ? $grader->last_name : null, ['class' => 'form-control', 'id' => 'last_name', 'required']) }}
 
     @if ($errors->has('last_name'))
         <span class="help-block">
@@ -11,7 +11,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
     {{ Form::label('first_name', 'Όνομα *') }}
-    {{ Form::text('first_name', isset($grader) ? $grader->first_name : null, ['class' => 'form-control', 'id' => 'first_name', ]) }}
+    {{ Form::text('first_name', isset($grader) ? $grader->first_name : null, ['class' => 'form-control', 'id' => 'first_name', 'required']) }}
 
     @if ($errors->has('first_name'))
         <span class="help-block">
@@ -22,7 +22,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('specialty_id') ? ' has-error' : '' }}">
     {{ Form::label('specialty_id', 'Εδικότητα *') }}
-    {{ Form::select('specialty_id', $specialties::all(), isset($grader) ? $grader->specialty_id : null, ['class' => 'form-control', 'id' => 'specialty_id', ]) }}
+    {{ Form::select('specialty_id', $specialties::all(), isset($grader) ? $grader->specialty_id : null, ['class' => 'form-control', 'id' => 'specialty_id', 'required']) }}
 
     @if ($errors->has('specialty_id'))
         <span class="help-block">
@@ -33,7 +33,7 @@
 
 <div class="col-md-12 form-group{{ $errors->has('district_id') ? ' has-error' : '' }}">
     {{ Form::label('district_id', 'Περιφέρεια *') }}
-    {{ Form::select('district_id', $districts::all(), isset($grader) ? $grader->district_id : null, ['class' => 'form-control', 'id' => 'district_id']) }}
+    {{ Form::select('district_id', $districts::all(), isset($grader) ? $grader->district_id : null, ['class' => 'form-control', 'id' => 'district_id', 'required']) }}
 
     @if ($errors->has('district_id'))
         <span class="help-block">
