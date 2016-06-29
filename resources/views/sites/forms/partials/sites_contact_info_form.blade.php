@@ -4,7 +4,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('contact_last_name') ? ' has-error' : '' }}">
             {{ Form::label('contact_last_name', 'Επώνυμο Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
-            {{ Form::text('contact_last_name', null, ['class' => 'form-control', 'id' => 'contact_last_name', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους']) }}
+            {{ Form::text('contact_last_name', null, ['class' => 'form-control', 'id' => 'contact_last_name', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους', 'required']) }}
 
             @if ($errors->has('contact_last_name'))
                 <span class="help-block">
@@ -19,7 +19,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('contact_first_name') ? ' has-error' : '' }}">
             {{ Form::label('contact_first_name', 'Όνομα Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
-            {{ Form::text('contact_first_name', null, ['class' => 'form-control', 'id' => 'contact_first_name', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους']) }}
+            {{ Form::text('contact_first_name', null, ['class' => 'form-control', 'id' => 'contact_first_name', 'placeholder' => 'Παρακαλούμε γράψτε με το πρώτο γράμμα κεφαλαίο και τα υπόλοιπα πεζά με τόνους', 'required']) }}
 
             @if ($errors->has('contact_first_name'))
                 <span class="help-block">
@@ -34,7 +34,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('contact_email') ? ' has-error' : '' }}">
             {{ Form::label('contact_email', 'E-mail επικοινωνίας υποψηφιότητας *') }}
-            {{ Form::email('contact_email', null, ['class' => 'form-control', 'id' => 'contact_email', ]) }}
+            {{ Form::email('contact_email', null, ['class' => 'form-control', 'id' => 'contact_email', 'required']) }}
 
             @if ($errors->has('contact_email'))
                 <span class="help-block">
@@ -45,7 +45,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('contact_phone') ? ' has-error' : '' }}">
             {{ Form::label('contact_phone', 'Τηλέφωνα επικοινωνίας *') }}
-            {{ Form::text('contact_phone', null, ['class' => 'form-control', 'id' => 'contact_phone', ]) }}
+            {{ Form::text('contact_phone', null, ['class' => 'form-control', 'id' => 'contact_phone', 'required']) }}
 
             @if ($errors->has('contact_phone'))
                 <span class="help-block">
@@ -56,7 +56,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('contact_address') ? ' has-error' : '' }}">
             {{ Form::label('contact_address', 'Ταχ. Διεύθυνση') }}
-            {{ Form::text('contact_address', null, ['class' => 'form-control', 'id' => 'contact_address', ]) }}
+            {{ Form::text('contact_address', null, ['class' => 'form-control', 'id' => 'contact_address']) }}
 
             @if ($errors->has('contact_address'))
                 <span class="help-block">

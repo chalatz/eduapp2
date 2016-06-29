@@ -1,0 +1,48 @@
+input.parsley-success,
+select.parsley-success,
+textarea.parsley-success {
+  border-color: #3c763d;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  &:focus {
+    border-color: #2b542c !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #67b168;
+  }
+}
+
+input.parsley-error,
+select.parsley-error,
+textarea.parsley-error,
+{
+  border-color: #a94442;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  &:focus {
+    border-color: #843534 !important;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #ce8483 !important;
+  }
+}
+
+.parsley-error label {
+  color: #a94442;
+  font-weight: 700;
+}
+
+.parsley-errors-list {
+  color: #a94442;
+  font-weight: 700;
+  margin: 0.5em 0 1em 0.3em;
+  padding: 0;
+  list-style-type: none;
+  font-size: 1.2em;
+  line-height: 0.8em;
+  opacity: 0;
+  font-style: oblique;
+
+  transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+}
+
+.parsley-errors-list.filled {
+  opacity: 1;
+}

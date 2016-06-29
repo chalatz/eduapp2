@@ -9,7 +9,7 @@
                 <div class="panel-heading"><h4>Προτείνετε Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                    {!! Form::open(['route' => 'do_suggest_other_grader', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                    {!! Form::open(['route' => 'do_suggest_other_grader', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                         <div class="col-md-12 form-group">
                             <strong>Το email του Αξιολογητή που προτείνετε:</strong> <span class="lead">{{ $grader_email }}</span>
@@ -19,7 +19,7 @@
 
                         <div class="col-md-12 form-group{{ $errors->has('suggestor_name') ? ' has-error' : '' }}">
                               {{ Form::label('suggestor_name', 'Το Όνομά σας') }}
-                              {{ Form::text('suggestor_name', null, ['class' => 'form-control', 'id' => 'suggestor_name']) }}
+                              {{ Form::text('suggestor_name', null, ['class' => 'form-control', 'id' => 'suggestor_name', 'required']) }}
 
                               @if ($errors->has('suggestor_name'))
                                   <span class="help-block">
@@ -30,7 +30,7 @@
 
                           <div class="col-md-12 form-group{{ $errors->has('personal_msg') ? ' has-error' : '' }}">
                               {{ Form::label('personal_msg', 'Προσωπικό μήνυμα προς τον Αξιολογητή') }}
-                              {{ Form::textarea('personal_msg', null, ['rows' => '3', 'columns' => '50', 'class' => 'form-control', 'id' => 'personal_msg']) }}
+                              {{ Form::textarea('personal_msg', null, ['rows' => '3', 'columns' => '50', 'class' => 'form-control', 'id' => 'personal_msg', 'required']) }}
 
                               @if ($errors->has('personal_msg'))
                                   <span class="help-block">

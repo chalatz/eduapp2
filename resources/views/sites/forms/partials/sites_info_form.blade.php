@@ -4,7 +4,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('url') ? ' has-error' : '' }}">
             {{ Form::label('url', 'URL Ιστοσελίδας *') }}
-            {{ Form::url('url', null, ['class' => 'form-control', 'id' => 'url']) }}
+            {{ Form::url('url', null, ['class' => 'form-control', 'id' => 'url', 'required']) }}
 
             @if ($errors->has('url'))
                 <span class="help-block">
@@ -19,7 +19,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('title') ? ' has-error' : '' }}">
             {{ Form::label('title', 'Επωνυμία Ιστότοπου *') }}
-            {{ Form::text('title', null, ['class' => 'form-control', 'id' => 'title']) }}
+            {{ Form::text('title', null, ['class' => 'form-control', 'id' => 'title', 'required']) }}
 
             @if ($errors->has('title'))
                 <span class="help-block">
@@ -34,7 +34,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('cat_id') ? ' has-error' : '' }}">
             {{ Form::label('cat_id', 'Κατηγορία *') }}
-            {{ Form::select('cat_id', $categories::all(), null, ['class' => 'form-control', 'id' => 'cat_id']) }}
+            {{ Form::select('cat_id', $categories::all(), null, ['class' => 'form-control', 'id' => 'cat_id', 'required']) }}
 
             @if ($errors->has('cat_id'))
                 <span class="help-block">
@@ -48,7 +48,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('creator') ? ' has-error' : '' }}">
             {{ Form::label('creator', 'Δημιουργός / Δημιουργοί / Συντηρητές *') }}
-            {{ Form::text('creator', null, ['class' => 'form-control', 'id' => 'creator']) }}
+            {{ Form::text('creator', null, ['class' => 'form-control', 'id' => 'creator', 'required']) }}
 
             @if ($errors->has('creator'))
                 <span class="help-block">
@@ -62,7 +62,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('responsible') ? ' has-error' : '' }}">
             {{ Form::label('responsible', 'Νομικά υπεύθυνος *') }}
-            {{ Form::text('responsible', null, ['class' => 'form-control', 'id' => 'responsible']) }}
+            {{ Form::text('responsible', null, ['class' => 'form-control', 'id' => 'responsible', 'required']) }}
 
             @if ($errors->has('responsible'))
                 <span class="help-block">
@@ -73,7 +73,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('responsible_type') ? ' has-error' : '' }}">
             {{ Form::label('responsible_type', 'Ιδιότητα νομικά υπεύθυνου *') }}
-            {{ Form::text('responsible_type', null, ['class' => 'form-control', 'id' => 'responsible_type']) }}
+            {{ Form::text('responsible_type', null, ['class' => 'form-control', 'id' => 'responsible_type', 'required']) }}
 
             @if ($errors->has('responsible_type'))
                 <span class="help-block">
@@ -87,7 +87,7 @@
 
         <div class="col-md-12 form-group{{ $errors->has('district_id') ? ' has-error' : '' }}">
             {{ Form::label('district_id', 'Περιφέρεια *') }}
-            {{ Form::select('district_id', $districts::all(), null, ['class' => 'form-control', 'id' => 'district_id']) }}
+            {{ Form::select('district_id', $districts::all(), null, ['class' => 'form-control', 'id' => 'district_id', 'required']) }}
 
             @if ($errors->has('district_id'))
                 <span class="help-block">
@@ -132,7 +132,7 @@
         <div class="col-md-12 form-group{{ $errors->has('uses_private_data') ? ' has-error' : '' }}">
             {{ Form::label('uses_private_data', 'Προβάλλει ο ιστότοπος προσωπικά δεδομένα παιδιών; *') }}
 
-            {{ Form::select('uses_private_data', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'uses_private_data']) }}
+            {{ Form::select('uses_private_data', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'uses_private_data', 'required']) }}
 
             @if ($errors->has('uses_private_data'))
                 <span class="help-block">
@@ -156,7 +156,7 @@
         <div class="col-md-12 form-group{{ $errors->has('restricted_access') ? ' has-error' : '' }}">
             {{ Form::label('restricted_access', 'Έχει ο ιστότοπος περιορισμένη πρόσβαση; *') }}
 
-            {{ Form::select('restricted_access', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'restricted_access']) }}
+            {{ Form::select('restricted_access', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], null, ['class' => 'form-control', 'id' => 'restricted_access', 'required']) }}
 
             @if ($errors->has('restricted_access'))
                 <span class="help-block">

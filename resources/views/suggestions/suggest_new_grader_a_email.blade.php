@@ -13,7 +13,7 @@
                       Email Αξιολογητή που έχετε προτείνει: <strong>{{ $suggestion->grader_email }}</strong>
                   </p>
 
-                  {!! Form::open(['route' => ['do_other_grader_email', 'edit'], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::open(['route' => ['do_other_grader_email', 'edit'], 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email') ? ' has-error' : '' }}">
                           {{ Form::label('grader_email', 'Το email του νέου Αξιολογητή που προτείνετε') }}

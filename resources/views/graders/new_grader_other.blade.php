@@ -14,7 +14,7 @@
                 <div class="panel-heading"><h4>Εγγραφή Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::open(['route' => 'store_other_grader', 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::open(['route' => 'store_other_grader', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                     @include('suggestions.forms.partials.new_grader_form')
 

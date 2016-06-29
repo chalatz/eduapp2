@@ -9,7 +9,7 @@
                 <div class="panel-heading"><h4>Email Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::open(['route' => ['do_other_grader_email', 'create'], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::open(['route' => ['do_other_grader_email', 'create'], 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email') ? ' has-error' : '' }}">
                           {{ Form::label('grader_email', 'Το email του Αξιολογητή που προτείνετε') }}
@@ -24,7 +24,7 @@
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email_confirmation') ? ' has-error' : '' }}">
                           {{ Form::label('grader_email_confirmation', 'Επιβεβαίωση email του Αξιολογητή που προτείνετε') }}
-                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation', 'required']) }}
+                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation', 'required', 'data-parsley-equalto' => '#grader_email', 'data-parsley-error-message' => 'Τα email πρέπει να ταιριάζουν']) }}
 
                           @if ($errors->has('grader_email_confirmation'))
                               <span class="help-block">

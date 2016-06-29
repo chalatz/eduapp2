@@ -14,7 +14,7 @@
                 <div class="panel-heading"><h4>Καρτέλα Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update', $grader->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+                  {!! Form::model($grader, ['method' => 'PUT', 'route' => ['graders.update', $grader->id], 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                     @if(isset($edit_and_suggest_self) && $edit_and_suggest_self)
                         {{ Form::hidden('edit_and_suggest_self', 'yes') }}

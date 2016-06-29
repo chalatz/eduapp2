@@ -14,7 +14,7 @@
         <div class="col-md-12">
             <h1>Καρτέλα Ιστότοπου</h1>
 
-            {!! Form::model($site, ['method' => 'PUT', 'route' => ['sites.update', $site->id], 'class' => 'site-form form-horizontal', 'role' => 'form']) !!}
+            {!! Form::model($site, ['method' => 'PUT', 'route' => ['sites.update', $site->id], 'class' => 'site-form form-horizontal', 'role' => 'form','data-parsley-validate']) !!}
 
             @include('sites.forms.partials.sites_info_form')
             @include('sites.forms.partials.sites_contact_info_form')
@@ -34,4 +34,3 @@
 </div>
 
 @endsection
-
