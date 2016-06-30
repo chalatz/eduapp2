@@ -5,8 +5,8 @@
 {{ Form::hidden('unique_string', $unique_string) }}
 
 <div class="col-md-12 form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-    {{ Form::label('password', 'Επιθυμητός Κωδικός Πρόσβασης') }}
-    {{ Form::password('password', ['class' => 'form-control', 'id' => 'password']) }}
+    {{ Form::label('password', 'Επιθυμητός Κωδικός Πρόσβασης *') }}
+    {{ Form::password('password', ['class' => 'form-control', 'id' => 'password', 'required', 'minlength' => 6, 'data-parsley-minlength' => 6]) }}
 
     @if ($errors->has('password'))
         <span class="help-block">
@@ -16,8 +16,8 @@
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-    {{ Form::label('password_confirmation', 'Επιβεβαίωση Κωδικού Πρόσβασης') }}
-    {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation']) }}
+    {{ Form::label('password_confirmation', 'Επιβεβαίωση Κωδικού Πρόσβασης *') }}
+    {{ Form::password('password_confirmation', ['class' => 'form-control', 'id' => 'password_confirmation', 'required', 'data-parsley-equalto' => '#password']) }}
 
     @if ($errors->has('password_confirmation'))
         <span class="help-block">

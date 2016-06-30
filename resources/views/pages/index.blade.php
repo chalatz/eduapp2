@@ -20,13 +20,6 @@
                 </p>
 
                 <p>
-                    <a class="btn btn-link btn-lg" href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Συνδεθείτε</a> ή <a class="btn btn-link btn-lg" href="{{ url('/register') }}"><i class="fa fa-btn fa-user-plus"></i> Εγγραφείτε</a>
-                </p>
-
-                <p>
-                    <a class="btn btn-link btn-lg" href="{{ url('/password/reset') }}"><i class="fa fa-btn fa-unlock-alt"></i> Ξέχασα τον Κωδικό Πρόσβασής μου</a>
-                </p>
-                <p>
                     <a href="{{ url('/register') }}" type="button" class="btn btn-success btn-lg btn-block">
                         <i class="fa fa-user-plus"></i>&nbsp;&nbsp;Εγγραφή Χρήστη στο Πληροφοριακό Σύστημα του 8ου ΔΕΕΙ
                     </a>
@@ -37,6 +30,14 @@
                         Για να χρησιμοποιήσετε το Πληροφοριακό Σύστημα του 8ου ΔΕΕΙ και να υποβάλετε υποψηφιότητα στο διαγωνισμό ή να γίνετε αξιολογητής, θα πρέπει πρώτα να συνδεθείτε. Για να συνδεθείτε, θα πρέπει πρώτα να έχετε εγγραφεί και να επιβεβαιώσετε το email σας στο αυτοματοποιημένο email που θα σας έλθει, πατώντας στον σύνδεσμο που περιέχει.
                     </p>
                 </blockquote>
+
+                <p>
+                    <a class="btn btn-link btn-lg" href="{{ url('/login') }}"><i class="fa fa-btn fa-sign-in"></i> Συνδεθείτε</a> ή <a class="btn btn-link btn-lg" href="{{ url('/register') }}"><i class="fa fa-btn fa-user-plus"></i> Εγγραφείτε</a>
+                </p>
+
+                <p>
+                    <a class="btn btn-link btn-lg" href="{{ url('/password/reset') }}"><i class="fa fa-btn fa-unlock-alt"></i> Ξέχασα τον Κωδικό Πρόσβασής μου</a>
+                </p>
 
             @endif
 

@@ -78,9 +78,9 @@
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('past_grader') ? ' has-error' : '' }}">
-    {{ Form::label('past_grader', 'Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό;') }}
+    {{ Form::label('past_grader', 'Ήμουν αξιολογητής Α στον προηγούμενο διαγωνισμό; *') }}
 
-    {{ Form::select('past_grader', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->past_grader : null, ['class' => 'form-control', 'id' => 'past_grader']) }}
+    {{ Form::select('past_grader', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->past_grader : null, ['class' => 'form-control', 'id' => 'past_grader', 'required']) }}
 
     @if ($errors->has('past_grader'))
         <span class="help-block">
@@ -90,9 +90,9 @@
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('past_grader_more') ? ' has-error' : '' }}">
-    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς Ιστοτόπων;') }}
+    {{ Form::label('past_grader_more', 'Ήμουν αξιολογητής σε περισσότερους από έναν διαγωνισμούς Ιστοτόπων; *') }}
 
-    {{ Form::select('past_grader_more', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->past_grader_more : null, ['class' => 'form-control', 'id' => 'past_grader_more']) }}
+    {{ Form::select('past_grader_more', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->past_grader_more : null, ['class' => 'form-control', 'id' => 'past_grader_more', 'required']) }}
 
     @if ($errors->has('past_grader_more'))
         <span class="help-block">

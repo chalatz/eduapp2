@@ -28,7 +28,7 @@
 
                       <div class="col-md-12 form-group{{ $errors->has('grader_email_confirmation') ? ' has-error' : '' }}">
                           {{ Form::label('grader_email_confirmation', 'Επιβεβαίωση email του Αξιολογητή που προτείνετε') }}
-                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation', 'required']) }}
+                          {{ Form::email('grader_email_confirmation', null, ['class' => 'form-control', 'id' => 'grader_email_confirmation', 'required', 'data-parsley-equalto' => '#grader_email']) }}
 
                           @if ($errors->has('grader_email_confirmation'))
                               <span class="help-block">

@@ -198,6 +198,7 @@ class SuggestionsController extends Controller
         }
       }
 
+      // There is not such a user
       return view('graders.new_grader_other', compact('grader_email', 'unique_string'));
 
     } else {
