@@ -12,10 +12,10 @@
             <p class="lead">
                 Προσωπικό μήνυμα από τον υποψήφιο:
             </p>
-            <p class="lead bg-info" style="padding: .2em 1em">{!! nl2br(e($suggestion->personal_msg)) !!}</p>         
+            <p class="lead bg-info" style="padding: .2em 1em">{!! nl2br(e($suggestion->personal_msg)) !!}</p>
 
         </div>
-    </div> 
+    </div>
 
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
@@ -26,13 +26,11 @@
             </button>
 
         </div>
-    </div> 
+    </div>
 
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-
-            @if(isset($suggestions_count))
-
+    @if(isset($suggestions_count))
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="alert alert-warning lead" role="alert">
                     @if($suggestions_count == 1)
                         Έχετε ήδη αποδεχθεί πρόσκληση Αξιολογητή άλλη μία φορά. Παρακαλούμε αποδεχτείτε μόνον εάν είστε διατεθιμένος να αξιολογήσετε ισάριθμους Ιστότοπους, μέσα στους προβλεπόμενους χρόνους.
@@ -41,17 +39,23 @@
                         Έχετε ήδη αποδεχθεί προσκλήσεις Αξιολογητή άλλες {{ $suggestions_count }} φορές. Παρακαλούμε αποδεχτείτε μόνον εάν είστε διατεθιμένος να αξιολογήσετε ισάριθμους Ιστότοπους, μέσα στους προβλεπόμενους χρόνους.
                     @endif
                 </div>
+            </div>
+        </div>
+    @endif
 
-            @endif
-
-            <a href="{{ route('user.suggest_answer', ['answer' => 'yes', 'unique_string' => $unique_string]) }}" type="button" class="btn btn-success btn-lg btn-block">
-                Αποδέχομαι
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <a href="{{ route('user.suggest_answer', ['answer' => 'yes', 'unique_string' => $unique_string]) }}" type="button" class="btn btn-success btn-lg btn-block" onclick="return confirm('Εϊστε σίγουρος ότι αποδέχεστε;');">
+                <i class="fa fa-check" aria-hidden="true"></i> Αποδέχομαι
             </a>
+        </div>
+    </div>
 
-            <a href="{{ route('user.suggest_answer', ['answer' => 'no', 'unique_string' => $unique_string]) }}" type="button" class="btn btn-danger btn-lg btn-block">
-                Δεν Αποδέχομαι
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <a href="{{ route('user.suggest_answer', ['answer' => 'no', 'unique_string' => $unique_string]) }}" type="button" class="btn btn-danger btn-lg btn-block" onclick="return confirm('Εϊστε σίγουρος ότι ΔΕΝ αποδέχεστε;');">
+                <i class="fa fa-times" aria-hidden="true"></i> Δεν Αποδέχομαι
             </a>
-
         </div>
     </div>
 

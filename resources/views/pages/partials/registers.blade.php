@@ -37,6 +37,11 @@
                     <i class="fa fa-pencil-square"></i> Επιλογή νέου Αξιολογητή
                 </a>
             </div>
+            <div class="row">
+                <a href="{{ route('suggest_myself_as_new_grader_a') }}" type="button" class="btn btn-success btn-lg btn-block">
+                    <i class="fa fa-user"></i> Προτείνω τον εαυτό μου
+                </a>
+            </div>
 
         @endif
 

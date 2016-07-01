@@ -27,6 +27,7 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('send-reminder-to-grader-a-from-site', ['as' => 'send_reminder_to_grader_a_from_site', 'uses' => 'SuggestionsController@send_reminder_to_grader_a_from_site']);
     Route::get('suggest-new-grader-a-email', ['as' => 'suggest_new_grader_a_email', 'uses' => 'SuggestionsController@suggest_new_grader_a_email']);
+    Route::get('suggest-myself-as-new-grader-a', ['as' => 'suggest_myself_as_new_grader_a', 'uses' => 'SuggestionsController@suggest_myself_as_new_grader_a']);
 
     Route::post('do-suggest-other-grader', ['as' => 'do_suggest_other_grader', 'uses' => 'SuggestionsController@do_suggest_other_grader']);
     Route::post('store-other-grader', ['as' => 'store_other_grader', 'uses' => 'SuggestionsController@store_other_grader']);

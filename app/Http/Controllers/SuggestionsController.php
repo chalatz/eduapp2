@@ -306,4 +306,9 @@ class SuggestionsController extends Controller
 
   }
 
+  public function suggest_myself_as_new_grader_a()
+  {
+    return 'yo';
+  }
+
 }
