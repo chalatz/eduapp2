@@ -87,7 +87,7 @@ class User extends Authenticatable
         $suggestion = Suggestion::where('grader_email', $this->email)
             ->where('accepted', '!=', 'yes')
             ->where('self_proposed', 'no')
-            ->first();
+            ->get();
 
         return $suggestion;
     }
