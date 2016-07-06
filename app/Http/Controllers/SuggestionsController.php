@@ -24,6 +24,7 @@ class SuggestionsController extends Controller
           'do_other_grader_email',
           'suggest_new_grader_a',
           'send_reminder_to_grader_a_from_site',
+          'delete_suggestion',
         ]]);
 
       $this->middleware('has_not_accepted',
@@ -57,7 +58,7 @@ class SuggestionsController extends Controller
       flash()->warning('Ο Αξιολογητής που έχετε προτείνει έχει προταθεί και από άλλον υποψήφιο, οπότε είναι πιθανό <strong>να μην αποδεχθεί την πρόσκλησή σας.</strong>');
     }
 
-    // check if the suggested user has already accpeted 3 times
+    // check if the suggested user has already accepeted 3 times
     $suggested_user = User::where('email', $grader_email)->first();
     if($suggested_user && $suggested_user->grader){
       $times_accepted = $suggested_user->grader->suggestions_count;
@@ -69,6 +70,9 @@ class SuggestionsController extends Controller
 
     // a new grader is suggested
     if($action == 'edit'){
+
+      // -- DEPRECATED
+      return redirect()->route('home');
 
       // check if the user suggests the same grader again
       $old_suggestion = Suggestion::where('user_id', $request->user()->id)->first();
@@ -291,6 +295,9 @@ class SuggestionsController extends Controller
 
   public function suggest_new_grader_a_email()
   {
+    // -- DEPRECATED
+    //return redirect()->route('home');
+
     $user = Auth::user();
 
     $suggestion = Suggestion::where('user_id', $user->id)->first();
@@ -306,9 +313,23 @@ class SuggestionsController extends Controller
 
   }
 
-  public function suggest_myself_as_new_grader_a()
+  public function delete_suggestion()
   {
-    return 'yo';
+    $suggestion = Auth::user()->suggestion;
+
+    if($suggestion && $suggestion->accepted != 'yes'){
+
+      $suggestion->delete();
+        alert()->success('Τώρα μπορείτε να επιλέξετε εκ νέου είτε νέο αξιολογητή είτε τον εαυτό σας.', 'Επιτυχής διαγραφή')->persistent('Εντάξει');
+
+    } else {
+
+      alert()->error('Αδύνατη η διαγραφή της πρότασης')->persistent('Εντάξει');
+
+    }
+
+    return redirect()->route('home');
+
   }
 
 }

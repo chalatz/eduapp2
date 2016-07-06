@@ -33,13 +33,8 @@
                 </a>
             </div>
             <div class="row">
-                <a href="{{ route('suggest_new_grader_a_email') }}" type="button" class="btn btn-warning btn-lg btn-block">
-                    <i class="fa fa-pencil-square"></i> Επιλογή νέου Αξιολογητή
-                </a>
-            </div>
-            <div class="row">
-                <a href="{{ route('suggest_myself_as_new_grader_a') }}" type="button" class="btn btn-success btn-lg btn-block">
-                    <i class="fa fa-user"></i> Προτείνω τον εαυτό μου
+                <a href="{{ route('delete_suggestion') }}" type="button" class="btn btn-danger btn-lg btn-block" onclick="return confirm('Εϊστε σίγουρος ότι επιθυμείτε τη διαγραφή της πρότασης;');">
+                    <i class="fa fa-exclamation-triangle"></i> Διαγραφή Πρότασης <span style="text-decoration: underline">(Η ενέργεια δε θα μπορεί να αναιρεθεί)</span>
                 </a>
             </div>
 
