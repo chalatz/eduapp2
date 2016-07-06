@@ -75,7 +75,7 @@ return [
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
     'unique'               => 'Η τιμή για το πεδίο υπάρχει ήδη.',
-    'url'                  => 'The :attribute format is invalid.',
+    'url'                  => 'Μη έγκυρη διεύθυνση URL.',
 
     /*
     |--------------------------------------------------------------------------

@@ -186,7 +186,7 @@ class SuggestionsController extends Controller
           return view('graders.forms.create', compact('grader'));
         }
 
-        return view('graders.forms.create');
+        return view('graders.forms.create', compact('answer'));
 
       }
 

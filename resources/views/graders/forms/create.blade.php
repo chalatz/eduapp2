@@ -16,6 +16,12 @@
 
                   {!! Form::open(['route' => 'graders.store', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
+                    @if(isset($answer) && $answer == 'yes')
+                        <div class="alert alert-info" role="alert">
+                            <strong>Η αποδοχή σας θα καταχωρηθεί μόνο αφού συμπληρώσετε τα στοιχεία σας και πατήσετε Αποθήκευση.</strong>
+                        </div>
+                    @endif
+
                     @include('graders.forms.partials.graders_form')
 
                     <div class="form-group">

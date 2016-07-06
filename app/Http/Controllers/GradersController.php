@@ -54,7 +54,7 @@ class GradersController extends Controller
     // }
 
     // the user has a pending suggestion
-    if(Auth::user()->hasSuggestionToRespondTo()){
+    if(Auth::user()->hasSuggestionToRespondTo()->count() > 0){
       $suggestion = Auth::user()->hasSuggestionToRespondTo();
       return view('pages.handle_pending_suggestion', compact('suggestion'));
     }

@@ -1,6 +1,6 @@
 @if(Auth::check() && Auth::user()->verified)
 
-  @if(Auth::user()->hasSuggestionToRespondTo() && Auth::user()->hasSuggestionToRespondTo()->count() > 0)
+  @if(Auth::user()->hasSuggestionToRespondTo()->count() > 0)
 
     @foreach(Auth::user()->hasSuggestionToRespondTo() as $suggestion)
 

@@ -16,6 +16,10 @@
 
                   {!! Form::open(['route' => 'store_other_grader', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
+                    <div class="alert alert-info" role="alert">
+                        <strong>Η αποδοχή σας θα καταχωρηθεί μόνο αφού συμπληρώσετε τα στοιχεία σας και πατήσετε Αποθήκευση.</strong>
+                    </div>
+
                     @include('suggestions.forms.partials.new_grader_form')
 
                   {!! Form::close() !!}
