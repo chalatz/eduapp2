@@ -20,6 +20,8 @@
 
     @include('partials.nav')
 
+    @include('partials.check_masquerade')
+
     <div class="container">
         <h2>Πληροφοριακό Σύστημα 8ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         <hr>

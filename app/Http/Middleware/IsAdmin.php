@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class IsMember
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class IsMember
     {
         $user = $request->user();
 
-        // if the user is logged in AND is member
-        if ($user && $user->hasRole('member')) {
+        // if the user is logged in AND is admin
+        if ($user && $user->hasRole('admin')) {
             return $next($request);
         }
 
