@@ -47,6 +47,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- MEMBERS ------ //
     Route::get('admin/sites', ['as' => 'members.sites', 'uses' => 'MembersController@sites']);
+    Route::get('admin/sites/print', ['as' => 'members.sites_print', 'uses' => 'MembersController@sites_print']);
     Route::get('admin/graders/a', ['as' => 'members.graders_a', 'uses' => 'MembersController@graders_a']);
     Route::get('admin/graders/a/print', ['as' => 'members.graders_a_print', 'uses' => 'MembersController@graders_a_print']);
     Route::get('admin/graders/b', ['as' => 'members.graders_b', 'uses' => 'MembersController@graders_b']);

@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.bare')
 
 @section('content')
 
@@ -8,18 +8,7 @@
 @inject('countries', 'App\Http\Utilities\Country')
 @inject('languages', 'App\Http\Utilities\Language')
 
-<h1 class="bg-primary" style="padding: .5em 1em; margin-bottom: 1.5em">Υποψήφιοι Ιστότοποι</h1>
-
-<div class="row">
-    <div class="col-md-8 col-md-offset-1">
-        <a href="{{ route('members.sites_print') }}" target="_blank" type="button" class="btn btn-primary btn-lg">
-          <i class="fa fa-print" aria-hidden="true"></i> Εκτυπώσιμη Μορφή
-        </a>
-        <em>Ανοίγει σε νέο παράθυρο και μετά Επιλογή Όλων (CTRL + A), αντιγραφή και επικόλληση στο Excel.</em>
-    </div>
-</div>
-
-<table id="sites-table" class="table table-striped admin-table">
+<table class="table table-striped admin-table">
 
   <thead>
     <tr>
@@ -80,30 +69,6 @@
 
     @endforeach
   </tbody>
-
-  <tfoot>
-    <th>Κωδικός</th>
-    <th>Επωνυμία</th>
-    <th>URL</th>
-    <th>Κατηγορία</th>
-    <th>Δημιουργός/οί</th>
-    <th>Νομικά υπεύθυνος</th>
-    <th>Ιδιότητα Νομικά υπεύθυνου</th>
-    <th>Περιφέρεια</th>
-    <th>Χώρα</th>
-    <th>Γλώσσα</th>
-    <th>Προσωπικά Δεδομένα</th>
-    <th>Έχει λάβει άδεια;</th>
-    <th>Περιορισμένη Πρόσβαση</th>
-    <th>Λεπτομέρειες Εισόδου</th>
-    <th>Επώνυμο Υπεύθυνου επικοινωνίας</th>
-    <th>Όνομα Υπεύθυνου επικοινωνίας</th>
-    <th>Email Επικοινωνίας</th>
-    <th>Τηλέφωνα</th>
-    <th>Ταχ. Διεύθυνση</th>
-    <th>Αυτοπροτείνεται</th>
-    <th>Δημιουργήθηκε</th>
-</tfoot>
 
 </table>
 

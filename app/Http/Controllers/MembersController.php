@@ -32,6 +32,14 @@ class MembersController extends Controller
 
   }
 
+  public function sites_print()
+  {
+      $sites = Site::with('user')->get();
+
+      return view('members.sites_print', compact('sites'));
+
+  }
+
   public function graders_a()
   {
     $graders = Grader::with('user', 'sites')->get();
