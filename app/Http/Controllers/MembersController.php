@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 use Auth;
 
+use App\Site;
 use App\Grader;
 
 use Illuminate\Http\Request;
@@ -20,6 +21,14 @@ class MembersController extends Controller
       $this->middleware('verified');
 
       $this->middleware('is_member');
+
+  }
+
+  public function sites()
+  {
+      $sites = Site::with('user')->get();
+
+      return view('members.sites', compact('sites'));
 
   }
 
