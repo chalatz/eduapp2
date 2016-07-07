@@ -20,14 +20,14 @@ class AdminController extends Controller
           'masquerade',
         ]]);
 
-        
-
     }
 
     public function masquerade(Request $request, $user_id)
     {
         if($user_id == Auth::user()->id){
+
             flash()->error('Προπαθείτε να μεταμφιεστείτε ως ο εαυτός σας!');
+
         } else {
 
             // store the id of the ninja user

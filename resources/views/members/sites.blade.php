@@ -8,7 +8,7 @@
 @inject('countries', 'App\Http\Utilities\Country')
 @inject('languages', 'App\Http\Utilities\Language')
 
-<h1 class="bg-primary" style="padding: .5em 1em; margin-bottom: 1.5em">Υποψήφιοι Ιστότοποι</h1>
+<h1 class="bg-success" style="padding: .5em 1em; margin-bottom: 1.5em">Υποψήφιοι Ιστότοποι</h1>
 
 <div class="row">
     <div class="col-md-8 col-md-offset-1">
@@ -44,6 +44,9 @@
       <th>Ταχ. Διεύθυνση</th>
       <th>Αυτοπροτείνεται</th>
       <th>Δημιουργήθηκε</th>
+      @if(Auth::user()->hasRole('admin'))
+          <th>Μεταμφίεση</th>
+      @endif
     </tr>
   </thead>
 
@@ -74,6 +77,11 @@
           <td>{{ $site->contact_address }}</td>
           <td>{{ $site->user->suggestion->self_proposed }}</td>
           <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
+          @if(Auth::user()->hasRole('admin'))
+              <td>
+                  <a href="{{ route('admin.masquerade', $site->user->id) }}" target="_blank">Μεταμφίεση</a>
+              </td>
+          @endif
         </tr>
 
       @endif
@@ -103,6 +111,9 @@
     <th>Ταχ. Διεύθυνση</th>
     <th>Αυτοπροτείνεται</th>
     <th>Δημιουργήθηκε</th>
+    @if(Auth::user()->hasRole('admin'))
+        <th>Μεταμφίεση</th>
+    @endif
 </tfoot>
 
 </table>

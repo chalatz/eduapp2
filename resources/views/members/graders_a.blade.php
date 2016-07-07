@@ -43,7 +43,7 @@
       <th>Αυτοπροτάθηκε</th>
       <th>Αποδέχτηκε</th>
       <th>Δημιουργήθηκε</th>
-      @if(Auth::user()->hasRole('ninja'))
+      @if(Auth::user()->hasRole('admin'))
           <th>Μεταμφίεση</th>
       @endif
 
@@ -114,8 +114,10 @@
           <td>{{ $grader->user->suggestion->self_proposed }}</td>
           <td>{{ $grader->user->suggestion->accepted }}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
-          @if(Auth::user()->hasRole('ninja'))
-              <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}  </td>
+          @if(Auth::user()->hasRole('admin'))
+              <td>
+                  <a href="{{ route('admin.masquerade', $grader->user->id) }}" target="_blank">Μεταμφίεση</a>
+              </td>
           @endif
 
         </tr>
@@ -147,6 +149,9 @@
     <th>Αυτοπροτάθηκε</th>
     <th>Αποδέχτηκε</th>
     <th>Δημιουργήθηκε</th>
+    @if(Auth::user()->hasRole('admin'))
+        <th>Μεταμφίεση</th>
+    @endif
 </tfoot>
 
 </table>

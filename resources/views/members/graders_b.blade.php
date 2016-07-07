@@ -40,7 +40,7 @@
       <th>Άλλες Ξένες Γλώσσες</th>
       <th>Γιατί αυτοπροτείνεται</th>
       <th>Δημιουργήθηκε</th>
-      @if(Auth::user()->hasRole('ninja'))
+      @if(Auth::user()->hasRole('admin'))
           <th>Μεταμφίεση</th>
       @endif
 
@@ -53,14 +53,13 @@
       @if($grader->user->hasRole('grader_b'))
 
         <tr>
-          @if(Auth::user()->hasRole('ninja'))
-            <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
-          @endif
           <td>
             @if($grader->approved)
               Έχει Εγκριθεί από: <em>{{$grader->approver_email}}</em>
             @else
-              <a href="{{ route('members.approve', $grader->id) }}">Εγκρίνω</a>
+              <a href="{{ route('members.approve', $grader->id) }}" onclick="return confirm('Εϊστε σίγουρος;');">
+                  Εγκρίνω
+              </a>
             @endif
           </td>
           <td>{{ $grader->code() }}</td>
@@ -79,8 +78,10 @@
           <td>{{ $grader->languages_other }} {{ $grader->languages_other_level }}</td>
           <td>{!! nl2br(e($grader->why_propose_myself)) !!}</td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
-          @if(Auth::user()->hasRole('ninja'))
-              <td>{{ link_to('/admin/masquerade/'.$grader->user_id, 'Μεταμφίεση') }}</td>
+          @if(Auth::user()->hasRole('admin'))
+              <td>
+                  <a href="{{ route('admin.masquerade', $grader->user->id) }}" target="_blank">Μεταμφίεση</a>
+              </td>
           @endif
 
         </tr>
@@ -109,6 +110,9 @@
     <th>Άλλες Ξένες Γλώσσες</th>
     <th>Γιατί αυτοπροτείνεται</th>
     <th>Δημιουργήθηκε</th>
+    @if(Auth::user()->hasRole('admin'))
+        <th>Μεταμφίεση</th>
+    @endif
 </tfoot>
 
 </table>
