@@ -72,7 +72,7 @@
           <td>{{ $site->contact_email }}</td>
           <td>{{ $site->contact_phone }}</td>
           <td>{{ $site->contact_address }}</td>
-          <td>{{ Auth::user()->suggestion->self_proposed }}</td>
+          <td>{{ $site->user->suggestion->self_proposed }}</td>
           <td>{{ date('d / m / Y', strtotime($site->created_at)) }}</td>
         </tr>
 

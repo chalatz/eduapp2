@@ -49,6 +49,58 @@
 
   // --- Data tables
 
+  // Sites -----
+  // Setup - add a text input to each footer cell
+  $('#sites-table tfoot th').each( function () {
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="'+title+'" />' );
+  } );
+
+  var sites_table = $('#sites-table').DataTable({
+    initComplete: function ()
+      {
+        var r = $('#sites-table tfoot tr');
+        r.find('th').each(function(){
+          $(this).css('padding', 8);
+        });
+        $('#sites-table thead').append(r);
+        $('#search_0').css('text-align', 'center');
+      },
+    "dom": 'lfriptip',
+    "language": {
+        "sProcessing":   "Επεξεργασία...",
+        "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
+        "sZeroRecords":  "Δεν βρέθηκαν εγγραφές που να ταιριάζουν",
+        "sInfo":         "Εμφανίζονται _START_ εως _END_ από _TOTAL_ εγγραφές",
+        "sInfoEmpty":    "Εμφανίζονται 0 έως 0 από 0 εγγραφές",
+        "sInfoFiltered": "(φιλτραρισμένες από _MAX_ συνολικά εγγραφές)",
+        "sInfoPostFix":  "",
+        "sSearch":       "Αναζήτηση:",
+        "sUrl":          "",
+        "oPaginate": {
+            "sFirst":    "Πρώτη",
+            "sPrevious": "Προηγούμενη",
+            "sNext":     "Επόμενη",
+            "sLast":     "Τελευταία"
+        }
+    },
+    "pageLength": 100
+  });
+
+  // Apply the search
+  sites_table.columns().every( function () {
+      var that = this;
+
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+          if ( that.search() !== this.value ) {
+              that
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+  } );
+  // End Sites -----
+
   // Graders -----
   // Setup - add a text input to each footer cell
   $('#graders-table tfoot th').each( function () {
@@ -56,7 +108,7 @@
       $(this).html( '<input type="text" placeholder="'+title+'" />' );
   } );
 
-  var table = $('#graders-table').DataTable({
+  var graders_table = $('#graders-table').DataTable({
     initComplete: function ()
       {
         var r = $('#graders-table tfoot tr');
@@ -88,7 +140,7 @@
   });
 
   // Apply the search
-  table.columns().every( function () {
+  graders_table.columns().every( function () {
       var that = this;
 
       $( 'input', this.footer() ).on( 'keyup change', function () {
