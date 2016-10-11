@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\User;
+use App\Suggestion;
 
 use Auth;
 
@@ -18,6 +19,7 @@ class AdminController extends Controller
 
         $this->middleware('is_admin', ['only' => [
           'masquerade',
+          'destroy_suggestion_a',
         ]]);
 
     }
@@ -55,6 +57,24 @@ class AdminController extends Controller
             return redirect()->route('home');
 
         }
+
+    }
+
+    public function destroy_suggestion_a($user_id)
+    {
+        // get the candidate user id
+        $user = User::find($user_id);
+
+        $user->grader_status = 'na';
+
+        // get the suggestion
+        $suggestion = Suggestion::find($user->suggestion->id);
+
+        $suggestion->delete();
+
+        dd($suggestion->id);
+
+        $user->save();
 
     }
 

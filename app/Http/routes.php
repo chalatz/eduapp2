@@ -59,4 +59,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/masquerade/{user_id}', ['as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
     Route::get('admin/switch-back', ['as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);
 
+    Route::get('admin/destroy-suggestion-a/{user_id}', ['as' => 'admin.destroy_suggestion_a', 'uses' => 'AdminController@destroy_suggestion_a']);    
+
 });
