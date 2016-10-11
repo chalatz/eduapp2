@@ -45,10 +45,6 @@ class MembersController extends Controller
   {
     $graders = Grader::with('user', 'sites')->get();
 
-    //$graders->first()->user->id
-
-    //dd(Suggestion::where('grader_email', $graders->first()->user->email)->first()->id);
-
     return view('members.graders_a', compact('graders'));
   }
 
