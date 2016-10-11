@@ -90,7 +90,12 @@
              na
             @endif
           </td>
-          <td>{{ $grader->user->suggestion->suggestor_email }}</td>
+          <td>
+            @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
+              {{ $suggestion->suggestor_email }}
+              <br>---<br>
+            @endforeach
+          </td>
           <td>
             @if($grader->sites->count() > 0)
               @foreach($grader->sites as $site)
@@ -111,8 +116,18 @@
             na
           @endif
           </td>
-          <td>{{ $grader->user->suggestion->self_proposed }}</td>
-          <td>{{ $grader->user->suggestion->accepted }}</td>
+          <td>
+            @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
+              {{ $suggestion->self_proposed }}
+              <br>---<br>
+            @endforeach
+          </td>
+          <td>
+            @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
+              {{ $suggestion->accepted }}
+              <br>---<br>
+            @endforeach
+          </td>
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
           @if(Auth::user()->hasRole('admin'))
               <td>

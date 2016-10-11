@@ -8,6 +8,7 @@ use Auth;
 
 use App\Site;
 use App\Grader;
+use App\Suggestion;
 
 use Illuminate\Http\Request;
 
@@ -43,6 +44,10 @@ class MembersController extends Controller
   public function graders_a()
   {
     $graders = Grader::with('user', 'sites')->get();
+
+    //$graders->first()->user->id
+
+    //dd(Suggestion::where('grader_email', $graders->first()->user->email)->first()->id);
 
     return view('members.graders_a', compact('graders'));
   }
