@@ -5,3 +5,6 @@ Homestead.json
 .env
 /.vscode
 .sass-cache
+composer.json
+composer.lock
+composer.phar
