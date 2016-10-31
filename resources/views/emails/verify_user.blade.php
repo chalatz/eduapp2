@@ -21,8 +21,8 @@
                                     <table class="twelve columns">
                                        <tr>
                                           <td>
+                                             <img class="img-responsive center-block" src="http://www.eduwebawards.gr/app2/public/img/edu-header.jpg" alt="Edu Web Awards 2017 logo">                                          
                                              <h1>8ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015</h1>
-                                             <img class="img-responsive center-block" src="http://www.eduwebawards.gr/app2/public/img/edu-header.jpg" alt="Edu Web Awards 2017 logo">
                                           </td>
                                           <td class="expander"></td>
                                        </tr>
