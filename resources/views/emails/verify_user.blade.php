@@ -22,7 +22,7 @@
                                        <tr>
                                           <td>
                                              <h1>8ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2015</h1>
-                                             <img width="580" height="300" src="http://placehold.it/580x300">
+                                             <img class="img-responsive center-block" src="http://www.eduwebawards.gr/app2/public/img/edu-header.jpg" alt="Edu Web Awards 2017 logo">
                                           </td>
                                           <td class="expander"></td>
                                        </tr>
