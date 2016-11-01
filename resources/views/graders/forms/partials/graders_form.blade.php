@@ -32,12 +32,23 @@
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('district_id') ? ' has-error' : '' }}">
-    {{ Form::label('district_id', 'Περιφέρεια *') }}
+    {{ Form::label('district_id', 'Περιφερειακή Διεύθυνση Εκπαίδευσης στην οποία ανήκω το τρέχον σχολικό έτος *') }}
     {{ Form::select('district_id', $districts::all(), isset($grader) ? $grader->district_id : null, ['class' => 'form-control', 'id' => 'district_id', 'required']) }}
 
     @if ($errors->has('district_id'))
         <span class="help-block">
             <strong>{{ $errors->first('district_id') }}</strong>
+        </span>
+    @endif
+</div>
+
+<div class="col-md-12 form-group{{ $errors->has('county_id') ? ' has-error' : '' }}">
+    {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός) *') }}
+    {{ Form::select('county_id', $counties::all(), isset($grader) ? $grader->county_id : null, ['class' => 'form-control', 'id' => 'county_id', 'required']) }}
+
+    @if ($errors->has('county_id'))
+        <span class="help-block">
+            <strong>{{ $errors->first('county_id') }}</strong>
         </span>
     @endif
 </div>
@@ -54,7 +65,9 @@
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('desired_category') ? ' has-error' : '' }}">
-    {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στην παρακάτω κατηγορία:') }}
+    {{ Form::label('desired_category', 'Θα προτιμούσα να είμαι αξιολογητής στις παρακάτω κατηγορίες:') }}
+
+    <span class="help-block"><strong>Επιλέξτε όσες περισσότερες κατηγορίες επιθυμείτε</strong></span>
 
     @foreach($categories::all() as $cat_id => $category)
         @if($cat_id != '')
@@ -67,7 +80,6 @@
         @endif
     @endforeach
 
-    <span class="help-block"><strong>Επιλέξτε όσες κατηγορίες επιθυμείτε</strong></span>
     <span class="help-block">** Υποστηρικτικές δομές εκπαίδευσης: ΚΕΠΛΗΝΕΤ, ΕΚΦΕ, ΣΣΝ, ΚΠΕ, ΚΕΣΥΠ, ΚΕΔΔΥ, Γραφεία Σχολικών Δραστηριοτήτων, Αγωγής Υγείας, Περιβαλλοντικής Εκπαίδευσης, Πολιτιστικών θεμάτων, ομάδων Φυσικής Αγωγής της Δ/νσης Β/θμιας Εκπ/σης.</span>
 
     @if ($errors->has('desired_category'))

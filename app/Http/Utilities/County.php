@@ -91,7 +91,7 @@ class County {
         $counties_array[$county['district_name']][$county['id']] = $county['county_name'];
     }
 
-    return $counties_array = ['0' => 'Επιλέξτε Περιφερειακή Ενότητα...'] + $counties_array;
+    return $counties_array = ['' => 'Επιλέξτε Περιφερειακή Ενότητα...'] + $counties_array;
   }
 
 }

@@ -4,6 +4,7 @@
 
 @inject('specialties', 'App\Http\Utilities\Specialty')
 @inject('districts', 'App\Http\Utilities\District')
+@inject('counties', 'App\Http\Utilities\County')
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
 

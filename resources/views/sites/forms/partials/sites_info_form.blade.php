@@ -97,8 +97,8 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('county_id') ? ' has-error' : '' }}">
-            {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός)') }}
-            {{ Form::select('county_id', $counties::all(), null, ['class' => 'form-control', 'id' => 'county_id']) }}
+            {{ Form::label('county_id', 'Περιφερειακή Ενότητα (πρώην Νομός) *') }}
+            {{ Form::select('county_id', $counties::all(), null, ['class' => 'form-control', 'id' => 'county_id', 'required']) }}
 
             @if ($errors->has('county_id'))
                 <span class="help-block">

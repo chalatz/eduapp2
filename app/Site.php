@@ -48,6 +48,7 @@ class Site extends Model
         'responsible' => 'required',
         'responsible_type' => 'required',
         'district_id' => 'required',
+        'county_id' => 'required',
         'uses_private_data' => 'required',
         'received_permission' => 'required_if:uses_private_data,yes',
         'restricted_access' => 'required',
