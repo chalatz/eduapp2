@@ -1,5 +1,10 @@
 <div class="col-md-12 form-group">
-    {{ Form::label(null, 'Ξένες γλώσσες που γνωρίζω') }}
+    <div class="col-md-7">
+        {{ Form::label(null, 'Ξένες γλώσσες που γνωρίζω') }}
+    </div>
+        <div class="col-md-5 text-center">
+        {{ Form::label(null, 'Επιθυμώ να αξιολογήσω Ιστότοπους σε αυτήν την γλώσσα') }}
+    </div>
 </div>
 
 <div class="col-md-12">
@@ -27,6 +32,17 @@
                 <strong>{{ $errors->first('english_level') }}</strong>
             </span>
         @endif
+    </div>
+
+    <div class="col-md-5 text-center form-group{{ $errors->has('lang_pref_english') ? ' has-error' : '' }}">
+        {{ Form::checkbox('lang_pref_english', 1, isset($grader) ? $grader->lang_pref_english : null, ['id' => 'lang_pref_english']) }}
+
+        @if ($errors->has('lang_pref_english'))
+            <span class="help-block">
+                <strong>{{ $errors->first('lang_pref_english') }}</strong>
+            </span>
+        @endif
+
     </div>
 </div>
 

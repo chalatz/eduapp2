@@ -246,6 +246,19 @@ class GradersController extends Controller
         $input['italian_level'] = null;
       }
 
+      if(!$request->has('lang_pref_english')){
+        $input['lang_pref_english'] = 0;
+      }
+      if(!$request->has('lang_pref_french')){
+        $input['lang_pref_french'] = 0;
+      }
+      if(!$request->has('lang_pref_german')){
+        $input['lang_pref_german'] = 0;
+      }
+      if(!$request->has('lang_pref_italian')){
+        $input['lang_pref_italian'] = 0;
+      }                      
+
       $grader->fill($input)->save();
 
       // the user has suggested himself
@@ -296,6 +309,19 @@ class GradersController extends Controller
         $input['propose_myself'] = 0;
         $input['why_propose_myself'] = null;
       }
+
+      if(!$request->has('lang_pref_english')){
+        $input['lang_pref_english'] = 0;
+      }
+      if(!$request->has('lang_pref_french')){
+        $input['lang_pref_french'] = 0;
+      }
+      if(!$request->has('lang_pref_german')){
+        $input['lang_pref_german'] = 0;
+      }
+      if(!$request->has('lang_pref_italian')){
+        $input['lang_pref_italian'] = 0;
+      }        
 
       if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
           $input['personal_cv'] = $grader->addPersonalCV($request);

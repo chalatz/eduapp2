@@ -115,7 +115,7 @@
 
 @if(\Request::route()->getName() == 'graders.create'|| \Request::route()->getName() == 'graders.edit')
     <div class="col-md-12 form-group{{ $errors->has('wants_to_be_grader_b') ? ' has-error' : '' }}">
-        {{ Form::label('wants_to_be_grader_b', 'Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β') }}
+       <label for="wants_to_be_grader_b">Θα ήθελα να συμμετάσχω <u>ΚΑΙ</u> ως Αξιολογητής Β</label>
 
         {{ Form::select('wants_to_be_grader_b', ['' => 'Επιλέξτε...', 'yes' => 'Ναι', 'no' => 'Όχι',], isset($grader) ? $grader->wants_to_be_grader_b : null, ['class' => 'form-control', 'id' => 'wants_to_be_grader_b']) }}
 
