@@ -232,18 +232,27 @@ class GradersController extends Controller
       if(!$request->has('english')){
         $input['english'] = 0;
         $input['english_level'] = null;
+        $input['lang_pref_english'] = 0;
       }
       if(!$request->has('french')){
         $input['french'] = 0;
         $input['french_level'] = null;
+        $input['lang_pref_french'] = 0;
       }
       if(!$request->has('german')){
         $input['german'] = 0;
         $input['german_level'] = null;
+        $input['lang_pref_german'] = 0;
       }
       if(!$request->has('italian')){
         $input['italian'] = 0;
         $input['italian_level'] = null;
+        $input['lang_pref_italian'] = 0;
+      }
+
+      if(!$request->has('propose_myself')){
+        $input['propose_myself'] = 0;
+        $input['why_propose_myself'] = null;
       }
 
       if(!$request->has('lang_pref_english')){
@@ -257,7 +266,7 @@ class GradersController extends Controller
       }
       if(!$request->has('lang_pref_italian')){
         $input['lang_pref_italian'] = 0;
-      }                      
+      }                     
 
       $grader->fill($input)->save();
 
@@ -291,18 +300,22 @@ class GradersController extends Controller
       if(!$request->has('english')){
         $input['english'] = 0;
         $input['english_level'] = null;
+        $input['lang_pref_english'] = 0;
       }
       if(!$request->has('french')){
         $input['french'] = 0;
         $input['french_level'] = null;
+        $input['lang_pref_french'] = 0;
       }
       if(!$request->has('german')){
         $input['german'] = 0;
         $input['german_level'] = null;
+        $input['lang_pref_german'] = 0;
       }
       if(!$request->has('italian')){
         $input['italian'] = 0;
         $input['italian_level'] = null;
+        $input['lang_pref_italian'] = 0;
       }
 
       if(!$request->has('propose_myself')){

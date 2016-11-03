@@ -54,7 +54,7 @@
                                     <i class="fa fa-btn fa-sign-in"></i> Σύνδεση
                                 </button>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Ξέχασα τον Κωδικό Πρόσβασής μου</a>
+                                <a class="btn btn-link" href="{{ url('/password/reset') }}"><i class="fa fa-btn fa-unlock-alt"></i> Ξέχασα τον Κωδικό Πρόσβασής μου</a>
                             </div>
                         </div>
                     </form>

@@ -1,134 +1,197 @@
-<div class="col-md-12 form-group">
-    <div class="col-md-7">
-        {{ Form::label(null, 'Ξένες γλώσσες που γνωρίζω') }}
-    </div>
-        <div class="col-md-5 text-center">
-        {{ Form::label(null, 'Επιθυμώ να αξιολογήσω Ιστότοπους σε αυτήν την γλώσσα') }}
-    </div>
-</div>
+<table class="table table-striped">
 
-<div class="col-md-12">
-    <div class="col-md-3 form-group{{ $errors->has('english') ? ' has-error' : '' }}">
-        <div class="checkbox">
-            <label>
-                {{ Form::checkbox('english', 1, isset($grader) ? $grader->english : null, ['id' => 'english']) }}
-                Αγγλικά
-            </label>
-        </div>
+    <thead>
+        <th colspan="2">Ξένες γλώσσες που γνωρίζω</th>
+        <th class="text-center">Επιθυμώ να αξιολογήσω Ιστότοπους σε αυτήν την γλώσσα</th>
+    </thead>
 
-        @if ($errors->has('english'))
-            <span class="help-block">
-                <strong>{{ $errors->first('english') }}</strong>
-            </span>
-        @endif
-    </div>
+    <tbody>
+    
+        <tr>
+        
+            <td>
+                <div class="col-md-12 form-group{{ $errors->has('english') ? ' has-error' : '' }}">
+                    <div class="checkbox">
+                        <label>
+                            {{ Form::checkbox('english', 1, isset($grader) ? $grader->english : null, ['id' => 'english']) }}
+                            Αγγλικά
+                        </label>
+                    </div>
 
-    <div class="col-md-4 form-group{{ $errors->has('english_level') ? ' has-error' : '' }}">
+                    @if ($errors->has('english'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('english') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </td>
 
-        {{ Form::select('english_level', $lang_levels::all(), isset($grader) ? $grader->english_level : null, ['class' => 'form-control', 'id' => 'english_level']) }}
+            <td>
+                <div class="col-md-12 form-group{{ $errors->has('english_level') ? ' has-error' : '' }}">
+                    {{ Form::select('english_level', $lang_levels::all(), isset($grader) ? $grader->english_level : null, ['class' => 'form-control', 'id' => 'english_level']) }}
 
-        @if ($errors->has('english_level'))
-            <span class="help-block">
-                <strong>{{ $errors->first('english_level') }}</strong>
-            </span>
-        @endif
-    </div>
+                    @if ($errors->has('english_level'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('english_level') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </td>
 
-    <div class="col-md-5 text-center form-group{{ $errors->has('lang_pref_english') ? ' has-error' : '' }}">
-        {{ Form::checkbox('lang_pref_english', 1, isset($grader) ? $grader->lang_pref_english : null, ['id' => 'lang_pref_english']) }}
+            <td>
+                <div class="col-md-12 text-center form-group{{ $errors->has('lang_pref_english') ? ' has-error' : '' }}">
+                    {{ Form::checkbox('lang_pref_english', 1, isset($grader) ? $grader->lang_pref_english : null, ['id' => 'lang_pref_english']) }}
 
-        @if ($errors->has('lang_pref_english'))
-            <span class="help-block">
-                <strong>{{ $errors->first('lang_pref_english') }}</strong>
-            </span>
-        @endif
+                    @if ($errors->has('lang_pref_english'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('lang_pref_english') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </td>
 
-    </div>
-</div>
+        </tr>
 
-<div class="col-md-12">
-    <div class="col-md-3 form-group{{ $errors->has('french') ? ' has-error' : '' }}">
-        <div class="checkbox">
-            <label>
-                {{ Form::checkbox('french', 1, isset($grader) ? $grader->french : 0, ['id' => 'french']) }}
-                Γαλλικά
-            </label>
-        </div>
+        <tr>
+        
+        <td>
+            <div class="col-md-12 form-group{{ $errors->has('french') ? ' has-error' : '' }}">
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('french', 1, isset($grader) ? $grader->french : 0, ['id' => 'french']) }}
+                        Γαλλικά
+                    </label>
+                </div>
 
-        @if ($errors->has('french'))
-            <span class="help-block">
-                <strong>{{ $errors->first('french') }}</strong>
-            </span>
-        @endif
-    </div>
+                @if ($errors->has('french'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('french') }}</strong>
+                    </span>
+                @endif
+            </div>    
+        </td>
 
-    <div class="col-md-4 form-group{{ $errors->has('french_level') ? ' has-error' : '' }}">
+        <td>
+            <div class="col-md-12 form-group{{ $errors->has('french_level') ? ' has-error' : '' }}">
 
-        {{ Form::select('french_level', $lang_levels::all(), isset($grader) ? $grader->french_level : null, ['class' => 'form-control', 'id' => 'french_level']) }}
+                {{ Form::select('french_level', $lang_levels::all(), isset($grader) ? $grader->french_level : null, ['class' => 'form-control', 'id' => 'french_level']) }}
 
-        @if ($errors->has('french_level'))
-            <span class="help-block">
-                <strong>{{ $errors->first('french_level') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
+                @if ($errors->has('french_level'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('french_level') }}</strong>
+                    </span>
+                @endif
+            </div>    
+        </td>
 
-<div class="col-md-12">
-    <div class="col-md-3 form-group{{ $errors->has('german') ? ' has-error' : '' }}">
-        <div class="checkbox">
-            <label>
-                {{ Form::checkbox('german', 1, isset($grader) ? $grader->german : 0, ['id' => 'german']) }}
-                Γερμανικά
-            </label>
-        </div>
+        <td>
+            <div class="col-md-12 text-center form-group{{ $errors->has('lang_pref_french') ? ' has-error' : '' }}">
+                {{ Form::checkbox('lang_pref_french', 1, isset($grader) ? $grader->lang_pref_french : null, ['id' => 'lang_pref_french']) }}
 
-        @if ($errors->has('german'))
-            <span class="help-block">
-                <strong>{{ $errors->first('german') }}</strong>
-            </span>
-        @endif
-    </div>
+                @if ($errors->has('lang_pref_french'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('lang_pref_french') }}</strong>
+                    </span>
+                @endif
+            </div>    
+        </td>
+        
+        </tr>
 
-    <div class="col-md-4 form-group{{ $errors->has('german_level') ? ' has-error' : '' }}">
+        <tr>
+        
+            <td>
+                <div class="col-md-12 form-group{{ $errors->has('german') ? ' has-error' : '' }}">
+                    <div class="checkbox">
+                        <label>
+                            {{ Form::checkbox('german', 1, isset($grader) ? $grader->german : 0, ['id' => 'german']) }}
+                            Γερμανικά
+                        </label>
+                    </div>
 
-        {{ Form::select('german_level', $lang_levels::all(), isset($grader) ? $grader->german_level : null, ['class' => 'form-control', 'id' => 'german_level']) }}
+                    @if ($errors->has('german'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('german') }}</strong>
+                        </span>
+                    @endif
+                </div>            
+            </td>
 
-        @if ($errors->has('german_level'))
-            <span class="help-block">
-                <strong>{{ $errors->first('german_level') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
+            <td>
+                <div class="col-md-12 form-group{{ $errors->has('german_level') ? ' has-error' : '' }}">
+                    {{ Form::select('german_level', $lang_levels::all(), isset($grader) ? $grader->german_level : null, ['class' => 'form-control', 'id' => 'german_level']) }}
 
-<div class="col-md-12">
-    <div class="col-md-3 form-group{{ $errors->has('italian') ? ' has-error' : '' }}">
-        <div class="checkbox">
-            <label>
-                {{ Form::checkbox('italian', 1, isset($grader) ? $grader->italian : 0, ['id' => 'italian']) }}
-                Ιταλικά
-            </label>
-        </div>
+                    @if ($errors->has('german_level'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('german_level') }}</strong>
+                        </span>
+                    @endif
+                </div>            
+            </td>
 
-        @if ($errors->has('italian'))
-            <span class="help-block">
-                <strong>{{ $errors->first('italian') }}</strong>
-            </span>
-        @endif
-    </div>
+        <td>
+            <div class="col-md-12 text-center form-group{{ $errors->has('lang_pref_german') ? ' has-error' : '' }}">
+                {{ Form::checkbox('lang_pref_german', 1, isset($grader) ? $grader->lang_pref_german : null, ['id' => 'lang_pref_german']) }}
 
-    <div class="col-md-4 form-group{{ $errors->has('italian_level') ? ' has-error' : '' }}">
+                @if ($errors->has('lang_pref_german'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('lang_pref_german') }}</strong>
+                    </span>
+                @endif
+            </div>    
+        </td>            
+        
+        </tr>
 
-        {{ Form::select('italian_level', $lang_levels::all(), isset($grader) ? $grader->italian_level : null, ['class' => 'form-control', 'id' => 'italian_level']) }}
+        <tr>
+        
+        <td>
+            <div class="col-md-12 form-group{{ $errors->has('italian') ? ' has-error' : '' }}">
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('italian', 1, isset($grader) ? $grader->italian : 0, ['id' => 'italian']) }}
+                        Ιταλικά
+                    </label>
+                </div>
 
-        @if ($errors->has('italian_level'))
-            <span class="help-block">
-                <strong>{{ $errors->first('italian_level') }}</strong>
-            </span>
-        @endif
-    </div>
-</div>
+                @if ($errors->has('italian'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('italian') }}</strong>
+                    </span>
+                @endif
+            </div>            
+        </td>
+
+        <td>
+            <div class="col-md-12 form-group{{ $errors->has('italian_level') ? ' has-error' : '' }}">
+
+                {{ Form::select('italian_level', $lang_levels::all(), isset($grader) ? $grader->italian_level : null, ['class' => 'form-control', 'id' => 'italian_level']) }}
+
+                @if ($errors->has('italian_level'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('italian_level') }}</strong>
+                    </span>
+                @endif
+            </div>        
+        </td>
+
+        <td>
+            <div class="col-md-12 text-center form-group{{ $errors->has('lang_pref_italian') ? ' has-error' : '' }}">
+                {{ Form::checkbox('lang_pref_italian', 1, isset($grader) ? $grader->lang_pref_italian : null, ['id' => 'lang_pref_italian']) }}
+
+                @if ($errors->has('lang_pref_italian'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('lang_pref_italian') }}</strong>
+                    </span>
+                @endif
+            </div>    
+        </td>         
+        
+        </tr>
+
+    </tbody>
+
+</table>
 
 <div class="col-md-12 form-group{{ $errors->has('languages_other') ? ' has-error' : '' }}">
     {{ Form::label('languages_other', 'Άλλες Ξένες Γλώσσες') }}
