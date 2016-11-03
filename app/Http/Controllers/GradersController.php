@@ -132,6 +132,11 @@ class GradersController extends Controller
 
       }
 
+      if($request->hasFile('photo') && $request->file('photo')->isValid()){
+          $grader->photo = $grader->addPhoto($request);
+          $grader->save();
+      }
+
       // Give the user the role of grader A (id: 2)
       $user->roles()->attach(2);
 
@@ -266,7 +271,11 @@ class GradersController extends Controller
       }
       if(!$request->has('lang_pref_italian')){
         $input['lang_pref_italian'] = 0;
-      }                     
+      }
+
+      if($request->hasFile('photo') && $request->file('photo')->isValid()){
+          $input['photo'] = $grader->addPhoto($request);
+      }           
 
       $grader->fill($input)->save();
 

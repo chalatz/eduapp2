@@ -128,3 +128,29 @@
 @endif
 
 @include('graders.forms.partials.languages')
+
+<div class="col-md-12 form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
+    {{ Form::label('photo', 'Υποβολή Φωτογραφίας') }}
+
+    @if(isset($grader) && $grader->photo)
+        <p>
+            <img src="{{ route('graders.get_cv', $grader->photo) }}" width="200">
+               
+            </img>
+        </p>
+    @endif
+
+    {{ Form::file('photo') }}
+
+    @if ($errors->has('photo'))
+        <span class="help-block">
+            <strong>{{ $errors->first('photo') }}</strong>
+        </span>
+    @endif
+
+    <span class="help-block">
+        Επιτρεπόμενες επεκτάσεις αρχείων: <strong>jpg,jpeg,png</strong><br>
+        Μέγιστες διαστάσεις φωτογραφίας: 600x600
+        Μέγιστο μέγεθος αρχείου: <strong>2MB</strong>
+    </span>
+</div>

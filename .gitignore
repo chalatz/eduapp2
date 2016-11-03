@@ -8,3 +8,4 @@ Homestead.json
 composer.json
 composer.lock
 composer.phar
+/storage/grader_files

@@ -113,6 +113,22 @@ class Grader extends Model
 
   }
 
+  public function addPhoto($request)
+  {
+      $file = $request->file('photo');
+
+      $originalFileName = $this->id .'--'. time() .'--'. $file->getClientOriginalName();
+
+      $fileName = Transliteration::rename($originalFileName);
+
+      $destinationPath = base_path() . '/storage/grader_files';
+
+      $file->move($destinationPath, $fileName);
+
+      return $fileName;
+
+  }  
+
   public static $rules = [
     'password' => 'sometimes|required|confirmed|min:6',
     'last_name' => 'required',
@@ -128,7 +144,8 @@ class Grader extends Model
     'languages_other' => 'required_with:languages_other_level',
     'why_propose_myself' => 'sometimes|required_if:propose_myself,1',
     'personal_xp' => 'sometimes|required',
-    'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048'
+    'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048',
+    'photo' => 'mimes:jpg,jpeg,png|max:2048|dimensions:max_width=600,max_height=600'
   ];
 
 }

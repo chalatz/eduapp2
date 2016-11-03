@@ -15,7 +15,7 @@
                 <div class="panel-heading"><h4>Εγγραφή Αξιολογητή Α</h4></div>
                 <div class="panel-body">
 
-                  {!! Form::open(['route' => 'graders.store', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
+                  {!! Form::open(['route' => 'graders.store', 'class' => 'form-horizontal', 'role' => 'form', 'files' => true, 'data-parsley-validate']) !!}
 
                     @if(isset($answer) && $answer == 'yes')
                         <div class="alert alert-info" role="alert">
