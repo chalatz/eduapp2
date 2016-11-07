@@ -40,6 +40,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::put('graders/b/{graders}', ['as' => 'graders.update_b', 'uses' => 'GradersController@update_b']);
 
     Route::get('grader/cv/{file}',['as' => 'graders.get_cv', 'uses' => 'GradersController@get_cv']);
+    Route::get('grader/photo/{file}',['as' => 'graders.get_photo', 'uses' => 'GradersController@get_photo']);
+
+    Route::get('grader/{file}',['as' => 'graders.get_file', 'uses' => 'GradersController@get_file']);
 
     Route::resource('graders', 'GradersController');
 

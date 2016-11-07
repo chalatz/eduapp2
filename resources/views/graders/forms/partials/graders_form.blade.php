@@ -130,15 +130,26 @@
 @include('graders.forms.partials.languages')
 
 <div class="col-md-12 form-group{{ $errors->has('photo') ? ' has-error' : '' }}">
-    {{ Form::label('photo', 'Υποβολή Φωτογραφίας') }}
 
     @if(isset($grader) && $grader->photo)
+
+        <p><strong>Η φωτογραφία μου</strong></p>
+    
         <p>
-            <img src="{{ route('graders.get_cv', $grader->photo) }}" width="200">
-               
-            </img>
+            <img src="{{ route('graders.get_file', $grader->photo) }}" width="200"></img>
         </p>
+
+        <div class="has-error" style="margin: .5em 0; font-size: 1.1em">
+            <div class="checkbox">
+            <label>
+                {{ Form::checkbox('delete_photo', 'delete_me') }}
+                <strong>Διαγραφή φωτογραφίας</strong>
+            </label>
+            </div>
+        </div>
     @endif
+
+    {{ Form::label('photo', 'Υποβολή Φωτογραφίας') }}
 
     {{ Form::file('photo') }}
 

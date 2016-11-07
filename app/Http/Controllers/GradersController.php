@@ -28,7 +28,7 @@ class GradersController extends Controller
       ]]);
 
       $this->middleware('must_own_grader_or_is_member', ['only' => [
-        'get_cv',
+        'get_file',
       ]]);
 
       $this->middleware('grader_has_not_accepted', ['only' => [
@@ -273,10 +273,6 @@ class GradersController extends Controller
         $input['lang_pref_italian'] = 0;
       }
 
-      if($request->hasFile('photo') && $request->file('photo')->isValid()){
-          $input['photo'] = $grader->addPhoto($request);
-      }           
-
       $grader->fill($input)->save();
 
       // the user has suggested himself
@@ -288,6 +284,16 @@ class GradersController extends Controller
 
         $grader->suggestions_count++;
         $grader->save();
+      }
+
+      if($request->delete_photo == 'delete_me'){
+        $grader->photo = null;
+        $grader->save();
+      }
+
+      if($request->hasFile('photo') && $request->file('photo')->isValid()){
+          $grader->photo = $grader->addPhoto($request);
+          $grader->save();
       }
 
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
@@ -349,6 +355,21 @@ class GradersController extends Controller
           $input['personal_cv'] = $grader->addPersonalCV($request);
       }
 
+      if($request->delete_cv == 'delete_me'){
+        $grader->personal_cv = null;
+        $grader->save();
+      }      
+
+      if($request->delete_photo == 'delete_me'){
+        $grader->photo = null;
+        $grader->save();
+      }
+
+      if($request->hasFile('photo') && $request->file('photo')->isValid()){
+          $grader->photo = $grader->addPhoto($request);
+          $grader->save();
+      }
+
       $grader->fill($input)->save();
 
       alert()->success('Τα στοιχεία σας ενημερώθηκαν επιτυχώς!', 'Επιτυχία');
@@ -357,13 +378,13 @@ class GradersController extends Controller
 
   }
 
-  public function get_cv($file)
+  public function get_file($file)
   {
     $pathToFile = base_path() . '/storage/grader_files/' . $file;
 
     return response()->download($pathToFile);
 
-  }
+  }  
 
   private function addSuggestion($user_id, $grader_email)
   {

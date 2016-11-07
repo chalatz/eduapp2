@@ -38,10 +38,19 @@
 
     @if(isset($grader) && $grader->personal_cv)
         <p>
-            <a class="lead" href="{{ route('graders.get_cv', $grader->personal_cv) }}">
+            <a class="lead" href="{{ route('graders.get_file', $grader->personal_cv) }}">
                 Βιογραφικό που υποβλήθηκε
             </a>
         </p>
+
+        <div class="has-error" style="margin: .5em 0; font-size: 1.1em">
+            <div class="checkbox">
+            <label>
+                {{ Form::checkbox('delete_cv', 'delete_me') }}
+                <strong>Διαγραφή Βιογραφικού</strong>
+            </label>
+            </div>
+        </div>
     @endif
 
     {{ Form::file('personal_cv') }}
