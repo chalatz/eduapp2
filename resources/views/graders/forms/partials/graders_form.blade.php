@@ -161,7 +161,6 @@
 
     <span class="help-block">
         Επιτρεπόμενες επεκτάσεις αρχείων: <strong>jpg,jpeg,png</strong><br>
-        Μέγιστες διαστάσεις φωτογραφίας: 600x600
         Μέγιστο μέγεθος αρχείου: <strong>2MB</strong>
     </span>
 </div>

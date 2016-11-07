@@ -2,5 +2,8 @@
 *.doc
 *.docx
 *.odt
+*.jpg
+*.jpeg
+*.png
 
 !.gitignore

@@ -264,6 +264,11 @@ class SuggestionsController extends Controller
 
     $grader = Grader::create($data);
 
+    if($request->hasFile('photo') && $request->file('photo')->isValid()){
+      $grader->photo = $grader->addPhoto($request);
+      $grader->save();
+    }
+
     // Notify the user
     $suggestion->sendAcceptanceEmail($request->last_name, $request->first_name);
 

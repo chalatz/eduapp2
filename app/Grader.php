@@ -145,7 +145,7 @@ class Grader extends Model
     'why_propose_myself' => 'sometimes|required_if:propose_myself,1',
     'personal_xp' => 'sometimes|required',
     'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048',
-    'photo' => 'mimes:jpg,jpeg,png|max:2048|dimensions:max_width=600,max_height=600'
+    'photo' => 'mimes:jpg,jpeg,png|max:2048',
   ];
 
 }
