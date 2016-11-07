@@ -183,6 +183,11 @@ class GradersController extends Controller
         $grader->save();
     }
 
+    if($request->hasFile('photo') && $request->file('photo')->isValid()){
+        $grader->photo = $grader->addPhoto($request);
+        $grader->save();
+    }
+
     // $grader = Grader::create($request->all());
 
     // Give the user the role of grader B (id: 3)
