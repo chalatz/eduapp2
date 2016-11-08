@@ -31,7 +31,7 @@
                 <h4>Στοιχεία πρότασης προς Αξιολογητή Α:</h4>
                 <ul style="font-size: 1.2em;">
                     <li>Ονοματεπώνυμο: <strong>{{ Auth::user()->suggestion->suggestor_name }}</strong></li>
-                    <li>URL: <strong><a target="_blank" href="{{ Auth::user()->suggestion->suggestor_url }}">{{ Auth::user()->suggestion->suggestor_url }}</a></strong></li>
+                    <li>URL: <strong>{{ Auth::user()->suggestion->suggestor_url }}</strong></li>
                     @if(Auth::user()->suggestion->suggestor_phone)
                         <li>Τηλέφωνο: <strong>{{ Auth::user()->suggestion->suggestor_phone }}</strong></li>
                     @endif

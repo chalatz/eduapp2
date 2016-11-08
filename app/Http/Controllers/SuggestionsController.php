@@ -172,6 +172,9 @@ class SuggestionsController extends Controller
         $grader->suggestions_count = $suggestions_count;
         $grader->save();
 
+        // Notify the user
+        $suggestion->sendAcceptanceEmail($grader->last_name, $grader->first_name);
+
         return redirect()->route('home');
       }
 
@@ -192,7 +195,7 @@ class SuggestionsController extends Controller
 
       }
 
-      // The user in not verified
+      // The user is not verified
       if($user && !$user->verified){
         // check if the user is logged in
         if(Auth::check()){

@@ -28,7 +28,7 @@ class SuggestOtherGraderRequest extends Request
      */
     public function rules()
     {
-        return Suggestion::$rules;
+        return [];
 
     }
 }
