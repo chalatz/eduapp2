@@ -39,8 +39,16 @@
                                           <td>
                                              <h3>{{ $data['title'] }}</h3>
                                              <p>
-                                                {{ $data['text'] }} <strong>Αξιολογητής Α</strong> από τον <strong>{{ $data['suggestor_name'] }}</strong>, με email {{ $data['suggestor_email'] }}.
+                                                {{ $data['text'] }} <strong>Αξιολογητής Α</strong> από τον/την <strong>{{ $data['suggestor_name'] }}</strong>, με email {{ $data['suggestor_email'] }}.
                                              </p>
+                                             <p>
+                                                URL υποψήφιου Ιστότοπου: <strong><a href="{{ $data['suggestor_url'] }}">{{ $data['suggestor_url'] }}</a></strong>
+                                             </p>
+                                             @if($data['suggestor_url'])
+                                                <p>
+                                                    Τηλέφωνο υποψήφιου Ιστότοπου: <strong>{{ $data['suggestor_phone'] }}</strong>
+                                                </p>
+                                             @endif
                                              <p>
                                                 <strong>Προσωπικό μήνυμα από τον υποψήφιο:</strong>
                                              </p>

@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
+use App\Suggestion;
+
 class SuggestOtherGraderRequest extends Request
 {
     /**
@@ -26,10 +28,7 @@ class SuggestOtherGraderRequest extends Request
      */
     public function rules()
     {
-        return [
-            'suggestor_name' => 'required',
-            'grader_email' => 'required|email|max:255',
-            'personal_msg' => 'required',
-        ];
+        return Suggestion::$rules;
+
     }
 }

@@ -95,6 +95,8 @@ class SuggestionsController extends Controller
       $data['grader_email'] = $request->grader_email;
       $data['suggestor_name'] = $request->suggestor_name;
       $data['suggestor_email'] = $request->user()->email;
+      $data['suggestor_url'] = $request->suggestor_url;
+      $data['suggestor_phone'] = $request->suggestor_phone;
 
       $data['unique_string'] = str_random(50);
       $data['personal_msg'] = $request->personal_msg;

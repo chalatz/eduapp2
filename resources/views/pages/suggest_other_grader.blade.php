@@ -18,7 +18,7 @@
                         {{ Form::hidden('grader_email', $grader_email) }}
 
                         <div class="col-md-12 form-group{{ $errors->has('suggestor_name') ? ' has-error' : '' }}">
-                              {{ Form::label('suggestor_name', 'Το Όνομά σας') }}
+                              {{ Form::label('suggestor_name', 'Το Όνοματεπώνυμό σας') }}
                               {{ Form::text('suggestor_name', null, ['class' => 'form-control', 'id' => 'suggestor_name', 'required']) }}
 
                               @if ($errors->has('suggestor_name'))
@@ -27,6 +27,28 @@
                                   </span>
                               @endif
                           </div>
+
+                        <div class="col-md-12 form-group{{ $errors->has('suggestor_url') ? ' has-error' : '' }}">
+                              {{ Form::label('suggestor_url', 'Το URL του υποψήφιου Ιστότοπού σας') }}
+                              {{ Form::url('suggestor_url', null, ['class' => 'form-control', 'id' => 'suggestor_url', 'required']) }}
+
+                              @if ($errors->has('suggestor_url'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('suggestor_url') }}</strong>
+                                  </span>
+                              @endif
+                          </div>
+
+                        <div class="col-md-12 form-group{{ $errors->has('suggestor_phone') ? ' has-error' : '' }}">
+                              {{ Form::label('suggestor_phone', 'Το Τηλέφωνό σας (προαιρετικά)') }}
+                              {{ Form::text('suggestor_phone', null, ['class' => 'form-control', 'id' => 'suggestor_phone']) }}
+
+                              @if ($errors->has('suggestor_phone'))
+                                  <span class="help-block">
+                                      <strong>{{ $errors->first('suggestor_phone') }}</strong>
+                                  </span>
+                              @endif
+                          </div>                                              
 
                           <div class="col-md-12 form-group{{ $errors->has('personal_msg') ? ' has-error' : '' }}">
                               {{ Form::label('personal_msg', 'Προσωπικό μήνυμα προς τον Αξιολογητή') }}

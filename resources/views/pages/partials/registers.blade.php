@@ -28,6 +28,20 @@
                 </blockquote>
             </div>
             <div class="row">
+                <h4>Στοιχεία πρότασης προς Αξιολογητή Α:</h4>
+                <ul style="font-size: 1.2em;">
+                    <li>Ονοματεπώνυμο: <strong>{{ Auth::user()->suggestion->suggestor_name }}</strong></li>
+                    <li>URL: <strong><a target="_blank" href="{{ Auth::user()->suggestion->suggestor_url }}">{{ Auth::user()->suggestion->suggestor_url }}</a></strong></li>
+                    @if(Auth::user()->suggestion->suggestor_phone)
+                        <li>Τηλέφωνο: <strong>{{ Auth::user()->suggestion->suggestor_phone }}</strong></li>
+                    @endif
+                    <li>
+                        Προσωπικό μήνυμα από τον υποψήφιο:
+                        <p>{!! nl2br(e(Auth::user()->suggestion->personal_msg)) !!}</p>
+                        </li>
+                </ul>
+            </div>
+            <div class="row">
                 <a href="{{ route('send_reminder_to_grader_a_from_site') }}" type="button" class="btn btn-primary btn-lg btn-block">
                     <i class="fa fa-envelope"></i> Αποστολή email υπενθύμισης (σας έχουν απομείνει {{ Auth::user()->suggestion->reminders_count }} αποστολές)
                 </a>

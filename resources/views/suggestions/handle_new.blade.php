@@ -9,6 +9,16 @@
             <p class="lead">
                 Σας έχει προτείνει ο υποψήφιος με ονομασία <strong class="bg-info">{{ $suggestion->suggestor_name }}</strong> και email <strong class="bg-info">{{ $suggestion->suggestor_email }}</strong>.
             </p>
+
+            <p class="lead">
+                URL υποψήφιου Ιστότοπου: <strong><a href="{{ $suggestion->suggestor_url }}">{{ $suggestion->suggestor_url }}</a></strong>
+            </p>
+
+            @if($suggestion->suggestor_phone)
+                <p class="lead">
+                    Τηλέφωνο υποψήφιου Ιστότοπου: <strong>{{ $suggestion->suggestor_phone }}</strong>
+                </p>
+            @endif
             <p class="lead">
                 Προσωπικό μήνυμα από τον υποψήφιο:
             </p>

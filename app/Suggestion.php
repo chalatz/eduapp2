@@ -18,6 +18,8 @@ class Suggestion extends Model
         'personal_msg',
         'suggestor_name',
         'suggestor_email',
+        'suggestor_url',
+        'suggestor_phone',
         'unique_string',
         'accepted',
         'self_proposed',
@@ -34,6 +36,8 @@ class Suggestion extends Model
             'unique_url' => route('user.suggest', ['unique_string' => $this->unique_string]),
             'suggestor_name' => $this->suggestor_name,
             'suggestor_email' => $this->suggestor_email,
+            'suggestor_url' => $this->suggestor_url,
+            'suggestor_phone' => $this->suggestor_phone,
             'personal_msg' => $this->personal_msg,
         ];
 
@@ -125,5 +129,12 @@ class Suggestion extends Model
         Auth::logout();
       }
     }
+
+    public static $rules = [
+            'suggestor_name' => 'required',
+            'suggestor_url' => 'required|url',
+            'grader_email' => 'required|email|max:255',
+            'personal_msg' => 'required',
+        ];
 
 }
