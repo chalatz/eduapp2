@@ -164,3 +164,24 @@
         Μέγιστο μέγεθος αρχείου: <strong>2MB</strong>
     </span>
 </div>
+
+<div class="col-md-12 form-group{{ $errors->has('teaching_xp') ? ' has-error' : '' }}">
+    {{ Form::label('teaching_xp', 'Έχω εμπειρία ως διδάσκων σε:') }}
+
+    @foreach($teaching_xp::all() as $xp_id => $xp_item)
+        @if($xp_id != '')
+            <div class="checkbox">
+                <label>
+                    {{ Form::checkbox('teaching_xp['. $xp_id .']', $xp_id, (isset($grader) && in_array($xp_id ,explode('|', $grader->teaching_xp))) ? 1 : 0) }}
+                    {{ $xp_item }}
+                </label>
+            </div>
+        @endif
+    @endforeach
+
+    @if ($errors->has('teaching_xp'))
+        <span class="help-block">
+            <strong>{{ $errors->first('teaching_xp') }}</strong>
+        </span>
+    @endif
+</div>

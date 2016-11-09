@@ -46,6 +46,7 @@ class Grader extends Model
     'personal_url',
     'comments',
     'personal_cv',
+    'teaching_xp',
   ];
 
   public function user()
@@ -146,6 +147,8 @@ class Grader extends Model
     'personal_xp' => 'sometimes|required',
     'personal_cv' => 'sometimes|mimes:pdf,doc,docx,odt|max:2048',
     'photo' => 'mimes:jpg,jpeg,png|max:2048',
+    'desired_category' => 'required',
+    'teaching_xp' => 'required',
   ];
 
 }

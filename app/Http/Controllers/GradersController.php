@@ -96,6 +96,10 @@ class GradersController extends Controller
         $data['desired_category'] = implode('|', $data['desired_category']);
       }
 
+      if(isset($data['teaching_xp'])){
+        $data['teaching_xp'] = implode('|', $data['teaching_xp']);
+      }     
+
       // check if there already is such a suggestion
       $suggestion = Suggestion::where('grader_email', $user_email)->first();
 
@@ -163,6 +167,10 @@ class GradersController extends Controller
     if($request->has('desired_category')){
       $request->request->add(['desired_category' => implode('|', $request->desired_category)]);
     }
+
+    if($request->has('teaching_xp')){
+      $request->request->add(['teaching_xp' => implode('|', $request->teaching_xp)]);
+    }      
 
     // Check if the user is already a Grader A
     if($user->grader){
@@ -237,6 +245,10 @@ class GradersController extends Controller
 
       if($request->has('desired_category')){
         $input['desired_category'] = implode('|', $input['desired_category']);
+      }
+
+      if($request->has('teaching_xp')){
+        $input['teaching_xp'] = implode('|', $input['teaching_xp']);
       }
 
       if(!$request->has('english')){
@@ -316,6 +328,10 @@ class GradersController extends Controller
       if($request->has('desired_category')){
         $input['desired_category'] = implode('|', $input['desired_category']);
       }
+
+      if($request->has('teaching_xp')){
+        $input['teaching_xp'] = implode('|', $input['teaching_xp']);
+      }      
 
       if(!$request->has('english')){
         $input['english'] = 0;

@@ -7,6 +7,7 @@
 @inject('counties', 'App\Http\Utilities\County')
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
+@inject('teaching_xp', 'App\Http\Utilities\Teaching_xp')
 
 <div class="container">
     <div class="row">
