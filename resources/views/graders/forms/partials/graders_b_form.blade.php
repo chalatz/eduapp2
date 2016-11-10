@@ -22,15 +22,34 @@
     @endif
 </div>
 
-<div class="col-md-12 form-group{{ $errors->has('personal_url') ? ' has-error' : '' }}">
-    {{ Form::label('personal_url', 'URL Προσωπικού Ιστότοπου') }}
-    {{ Form::text('personal_url', null, ['class' => 'form-control', 'id' => 'personal_url']) }}
+<div class="col-md-12 form-group }}">
+    {{ Form::label('URL Ιστότοπων που έχω δημιουργήσει ή συντηρώ') }}
 
-    @if ($errors->has('personal_url'))
-        <span class="help-block">
-            <strong>{{ $errors->first('personal_url') }}</strong>
-        </span>
-    @endif
+    <div class="form-group">
+        <label for="personal_url" class="col-sm-1 control-label">1.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url', null, ['class' => 'form-control', 'id' => 'personal_url']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_2" class="col-sm-1 control-label">2.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_2', null, ['class' => 'form-control', 'id' => 'personal_url_2']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_3" class="col-sm-1 control-label">3.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_3', null, ['class' => 'form-control', 'id' => 'personal_url_3']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_4" class="col-sm-1 control-label">4.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_4', null, ['class' => 'form-control', 'id' => 'personal_url_4']) }}
+        </div>
+    </div>             
+
 </div>
 
 <div class="col-md-12 form-group{{ $errors->has('personal_cv') ? ' has-error' : '' }}">

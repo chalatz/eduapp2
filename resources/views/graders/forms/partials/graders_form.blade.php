@@ -1,3 +1,7 @@
+@if(Auth::check())
+    <h3 style= "margin-left: 1em">email: <span style="text-decoration: underline">{{ Auth::user()->email }}<span></h3>
+@endif
+
 <div class="col-md-12 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
     {{ Form::label('last_name', 'Επώνυμο *') }}
     {{ Form::text('last_name', isset($grader) ? $grader->last_name : null, ['class' => 'form-control', 'id' => 'last_name', 'required']) }}
