@@ -1,3 +1,20 @@
 .row {
     margin-bottom: 1.5em;
 }
+
+.padded {
+    padding: 1em 0;
+}
+
+.footer {
+    color: #fff;
+    font-size: 1.3em;
+
+    a {
+        color: yellow;
+        text-decoration: underline;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
