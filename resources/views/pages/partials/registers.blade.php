@@ -3,7 +3,9 @@
     @if(Auth::user()->canCreateSite())
         <div class="row">
             <a href="{{ route('sites.create') }}" type="button" class="btn btn-success btn-lg btn-block">
-                <i class="fa fa-plus-square"></i> Υποβολή Υποψηφιότητας Ιστότοπου
+            <span style="white-space: normal">
+                <i class="fa fa-plus-square"></i> Καταχώριση Στοιχείων για Οριστικοποίηση Υποψηφιότητας
+            </span>
             </a>
         </div>
     @else

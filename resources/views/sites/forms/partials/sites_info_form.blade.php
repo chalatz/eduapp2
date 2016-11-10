@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-            {{ Form::label('title', 'Επωνυμία Ιστότοπου *') }}
+            {{ Form::label('title', 'Τίτλος Ιστότοπου *') }}
             {{ Form::text('title', null, ['class' => 'form-control', 'id' => 'title', 'required']) }}
 
             @if ($errors->has('title'))
@@ -28,12 +28,12 @@
             @endif
 
             <span class="help-block">
-                Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας (π.χ. 2ο Δημοτικό Σχολείο Σύρου)
+                Δηλώστε έναν χαρακτηριστικό τίτλο για τη συμμετοχή σας (π.χ. 2ο Δημοτικό Σχολείο Σύρου ή Προσωπικός Ιστότοπος Γιάννη Παπαδόπουλου)
             </span>
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('cat_id') ? ' has-error' : '' }}">
-            {{ Form::label('cat_id', 'Κατηγορία *') }}
+            {{ Form::label('cat_id', 'Κατηγορία που ανήκει ο Ιστότοπος *') }}
             {{ Form::select('cat_id', $categories::all(), null, ['class' => 'form-control', 'id' => 'cat_id', 'required']) }}
 
             @if ($errors->has('cat_id'))
@@ -166,7 +166,7 @@
         </div>
 
         <div id="restricted_access_details_wrapper" class="col-md-12 form-group{{ $errors->has('restricted_access_details') ? ' has-error' : '' }}">
-            {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης') }}
+            {{ Form::label('restricted_access_details', 'Πληροφορίες πρόσβασης (π.χ. username ή/και password)') }}
             {{ Form::textarea('restricted_access_details', null, ['class' => 'form-control', 'id' => 'restricted_access_details', 'rows' => 3, 'placeholder' => 'Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση']) }}
 
             @if ($errors->has('restricted_access_details'))
@@ -175,12 +175,13 @@
                 </span>
             @endif
             <span class="help-block">
-                Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση
+                Δώστε λεπτομέρειες σχετικά με την είσοδο στον ιστότοπο με περιορισμένη πρόσβαση<br>
+                <strong>ΠΡΟΣΟΧΗ: Να ελέγξετε από πριν ότι τα στοιχεία πρόσβασης είναι έγκυρα!</strong>
             </span>
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('purpose') ? ' has-error' : '' }}">
-            {{ Form::label('purpose', 'Σκοπός - Στόχοι') }}
+            {{ Form::label('purpose', 'Σκοπός - Στόχοι Ιστότοπου') }}
             {{ Form::textarea('purpose', null, ['class' => 'form-control', 'id' => 'purpose', 'rows' => 5, 'placeholder' => 'Εφόσον στον Ιστότοπο δεν αναφέρονται ρητά ο σκοπός και οι στόχοι του, δηλώστε τους εδώ' ]) }}
 
             @if ($errors->has('purpose'))

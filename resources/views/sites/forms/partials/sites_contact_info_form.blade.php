@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('contact_email') ? ' has-error' : '' }}">
-            {{ Form::label('contact_email', 'E-mail επικοινωνίας υποψηφιότητας *') }}
+            {{ Form::label('contact_email', 'E-mail Υπεύθυνου επικοινωνίας υποψηφιότητας *') }}
             {{ Form::email('contact_email', null, ['class' => 'form-control', 'id' => 'contact_email', 'required']) }}
 
             @if ($errors->has('contact_email'))
