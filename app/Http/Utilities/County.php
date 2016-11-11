@@ -80,6 +80,7 @@ class County {
     ['id' => '72','county_name' => 'Ευρυτανίας','district_id' => '13','district_name' => 'Στερεά Ελλάδα'],
     ['id' => '73','county_name' => 'Φθιώτιδας','district_id' => '13','district_name' => 'Στερεά Ελλάδα'],
     ['id' => '74','county_name' => 'Φωκίδας','district_id' => '13','district_name' => 'Στερεά Ελλάδα'],
+    ['id' => '75','county_name' => 'Εκτός Ελλάδας','district_id' => '14','district_name' => 'Εκτός Ελλάδας'],
 
   ];
 

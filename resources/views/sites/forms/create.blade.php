@@ -24,7 +24,7 @@
               <div class="col-md-12 form-group{{ $errors->has('i_agree') ? ' has-error' : '' }}">
                   {{ Form::checkbox('i_agree', 1, 0, ['id' => 'i_agree', 'required', 'data-parsley-required-message' => 'Πριν συνεχίσετε, θα πρέπει πρώτα να συμφωνήσετε.']) }}
                   <label for="i_agree">
-                       Έχω διαβάσει τους <a href="http://www.eduwebawards.gr/requirements/" target="_blank">Όρους συμμετοχής</a> και συμφωνώ με αυτούς
+                       Έχω διαβάσει τους <a href="http://2017.eduwebawards.gr/requirements/" target="_blank">Όρους συμμετοχής</a> και συμφωνώ με αυτούς
                    </label>
 
                   @if ($errors->has('i_agree'))

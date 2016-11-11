@@ -153,6 +153,21 @@
   } );
   // End Graders -----
 
+  // If the site selects other country, the county gets selected
+  var other_country = function(){
+
+      $('#district_id').on('change', function(){
+          $this = $(this);
+
+          if($this.val() === '14'){
+              $('#county_id').val('75');
+          } else {
+              $('#county_id').val('');
+          }
+      });
+
+  };
+
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');
   $('.dataTables_wrapper .dataTables_filter').addClass('col-sm-8').css('text-align', 'left');
@@ -173,6 +188,8 @@
   langs($('#french'), $('#french_level'));
   langs($('#german'), $('#german_level'));
   langs($('#italian'), $('#italian_level'));
+
+  other_country();
 
   $('body .dropdown-toggle').dropdown();
 

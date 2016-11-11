@@ -19,7 +19,7 @@ class AddFieldsToSitesTable extends Migration
             $table->string('responsible_type', 150);
             $table->integer('district_id')->unsigned();
             $table->integer('county_id')->unsigned()->nullable();
-            $table->integer('country_id')->unsigned();
+            $table->integer('country_id')->unsigned()->default(1);
             $table->integer('language_id')->unsigned();
             $table->string('uses_private_data', 10)->nullable();
             $table->string('received_permission', 10)->nullable();
