@@ -267,6 +267,10 @@ class SuggestionsController extends Controller
       $data['desired_category'] = implode('|', $data['desired_category']);
     }
 
+    if(isset($data['teaching_xp'])){
+      $data['teaching_xp'] = implode('|', $data['teaching_xp']);
+    }
+
     $grader = Grader::create($data);
 
     if($request->hasFile('photo') && $request->file('photo')->isValid()){

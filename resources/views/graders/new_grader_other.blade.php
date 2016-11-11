@@ -21,8 +21,16 @@
                     <div class="alert alert-info" role="alert">
                         <strong>Η αποδοχή σας θα καταχωρηθεί μόνο αφού συμπληρώσετε τα στοιχεία σας και πατήσετε Αποθήκευση.</strong>
                     </div>
+                    
+                    <p class="lead bg-success box">
+                        Μετά την υποβολή της φόρμας, θα μπορείτε να συνδέεστε με το email σας ({{ $grader_email }}) και με τον Κωδικό Πρόσβασης που θα ορίσετε παρακάτω.
+                    </p>
 
                     @include('suggestions.forms.partials.new_grader_form')
+
+                    <p class="lead bg-success box">
+                        Μετά την υποβολή της φόρμας, θα μπορείτε να συνδέεστε με το email σας ({{ $grader_email }}) και με τον Κωδικό Πρόσβασης που έχετε ορίσει παραπάνω.
+                    </p>
 
                   {!! Form::close() !!}
 
