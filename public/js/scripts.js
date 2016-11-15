@@ -244,9 +244,9 @@
 
   other_country();
 
-    $( window ).load(function() {
-        funky_charts();
-    });
+    // $( window ).load(function() {
+    //     funky_charts();
+    // });
 
   $('body .dropdown-toggle').dropdown();
 
