@@ -8,6 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Suggestion;
+use App\Site;
+
+use App\Http\Utilities\Category;
+use App\Http\Utilities\District;
 
 use Auth;
 
@@ -53,6 +57,23 @@ class PagesController extends Controller
     {
         return view('pages.other_grader_email');
     }
+
+    public function statitics()
+    {
+
+        $sites = Site::all();
+        $cats = Category::all();
+        $districts = District::all();
+
+        $cats_total = 0;
+
+        foreach($cats as $cat_id => $cat_name){
+            
+            $cats_total += Site::where('cat_id', '=', $cat_id)->count();
+        }        
+
+        return view('pages.statitics', compact(['sites', 'cats', 'districts', 'cats_total']));
+    }    
 
     public function test()
     {

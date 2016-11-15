@@ -22,6 +22,10 @@
 
               <li><a href="{{ route('home') }}">Αρχική</a></li>
 
+              <li>
+              <a href="{{ route('statitics') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</a>
+              </li>
+
               @if(Auth::check())
 
                 @if(Auth::user()->site)
