@@ -1,5 +1,5 @@
 @if(Auth::check())
-    <h3 style= "margin-left: 1em">email: <span style="text-decoration: underline">{{ Auth::user()->email }}<span></h3>
+    <h4>email: <span style="text-decoration: underline">{{ Auth::user()->email }}<span></h4>
 @endif
 
 <div class="col-md-12 form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
@@ -169,8 +169,38 @@
     </span>
 </div>
 
+<div class="col-md-12 form-group }}">
+    {{ Form::label('URL Ιστότοπων που έχω δημιουργήσει ή συντηρώ') }}
+
+    <div class="form-group">
+        <label for="personal_url" class="col-sm-1 control-label">1.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url', null, ['class' => 'form-control', 'id' => 'personal_url']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_2" class="col-sm-1 control-label">2.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_2', null, ['class' => 'form-control', 'id' => 'personal_url_2']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_3" class="col-sm-1 control-label">3.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_3', null, ['class' => 'form-control', 'id' => 'personal_url_3']) }}
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="personal_url_4" class="col-sm-1 control-label">4.</label>
+        <div class="col-sm-11">
+            {{ Form::url('personal_url_4', null, ['class' => 'form-control', 'id' => 'personal_url_4']) }}
+        </div>
+    </div>             
+
+</div>
+
 <div class="col-md-12 form-group{{ $errors->has('teaching_xp') ? ' has-error' : '' }}">
-    {{ Form::label('teaching_xp', 'Έχω εμπειρία ως διδάσκων σε:') }}
+    {{ Form::label('teaching_xp', 'Έχω εμπειρία ως διδάσκων ή υπάλληλος σε:') }}
 
     @foreach($teaching_xp::all() as $xp_id => $xp_item)
         @if($xp_id != '')
@@ -188,4 +218,38 @@
             <strong>{{ $errors->first('teaching_xp') }}</strong>
         </span>
     @endif
+</div>
+
+<div class="col-md-12 form-group{{ $errors->has('personal_cv') ? ' has-error' : '' }}">
+    {{ Form::label('personal_cv', 'Υποβολή Βιογραφικού') }}
+
+    @if(isset($grader) && $grader->personal_cv)
+        <p>
+            <a class="lead" href="{{ route('graders.get_file', $grader->personal_cv) }}">
+                <i class="fa fa-file-text-o" aria-hidden="true"></i> Βιογραφικό που υποβλήθηκε
+            </a>
+        </p>
+
+        <div class="has-error" style="margin: .5em 0; font-size: 1.1em">
+            <div class="checkbox">
+            <label>
+                {{ Form::checkbox('delete_cv', 'delete_me') }}
+                <strong>Διαγραφή Βιογραφικού</strong>
+            </label>
+            </div>
+        </div>
+    @endif
+
+    {{ Form::file('personal_cv') }}
+
+    @if ($errors->has('personal_cv'))
+        <span class="help-block">
+            <strong>{{ $errors->first('personal_cv') }}</strong>
+        </span>
+    @endif
+
+    <span class="help-block">
+        Επιτρεπόμενες επεκτάσεις αρχείων: <strong>pdf,doc,docx,odt</strong><br>
+        Μέγιστο μέγεθος αρχείου: <strong>2MB</strong>
+    </span>
 </div>

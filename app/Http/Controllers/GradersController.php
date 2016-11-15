@@ -136,6 +136,11 @@ class GradersController extends Controller
 
       }
 
+    if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
+        $grader->personal_cv = $grader->addPersonalCV($request);
+        $grader->save();
+    }      
+
       if($request->hasFile('photo') && $request->file('photo')->isValid()){
           $grader->photo = $grader->addPhoto($request);
           $grader->save();
@@ -302,6 +307,15 @@ class GradersController extends Controller
         $grader->suggestions_count++;
         $grader->save();
       }
+
+      if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
+          $input['personal_cv'] = $grader->addPersonalCV($request);
+      }
+
+      if($request->delete_cv == 'delete_me'){
+        $grader->personal_cv = null;
+        $grader->save();
+      }       
 
       if($request->delete_photo == 'delete_me'){
         $grader->photo = null;

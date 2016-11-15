@@ -273,6 +273,11 @@ class SuggestionsController extends Controller
 
     $grader = Grader::create($data);
 
+    if($request->hasFile('personal_cv') && $request->file('personal_cv')->isValid()){
+      $grader->personal_cv = $grader->addPersonalCV($request);
+      $grader->save();
+    }
+
     if($request->hasFile('photo') && $request->file('photo')->isValid()){
       $grader->photo = $grader->addPhoto($request);
       $grader->save();

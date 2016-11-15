@@ -4,7 +4,7 @@
         <div class="row">
             <a href="{{ route('sites.create') }}" type="button" class="btn btn-success btn-lg btn-block">
             <span style="white-space: normal">
-                <i class="fa fa-plus-square"></i> Καταχώριση Στοιχείων για Οριστικοποίηση Υποψηφιότητας
+                <i class="fa fa-plus-square"></i> Καταχώρηση Αίτησης - Στοιχείων Υποψηφιότητας Ιστότοπου
             </span>
             </a>
         </div>
