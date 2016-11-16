@@ -22,9 +22,6 @@
 
   <thead>
     <tr>
-      @if(Auth::user()->hasRole('ninja'))
-        <th>Μεταμφίεση</th>
-      @endif
       <th>Έγκριση</th>
       <th>Κωδικός</th>
       <th>Eπώνυμο</th>
@@ -92,9 +89,6 @@
   </tbody>
 
   <tfoot>
-    @if(Auth::user()->hasRole('ninja'))
-        <th></th>
-    @endif
     <th></th>
     <th>Κωδικός</th>
     <th>Eπώνυμο</th>
