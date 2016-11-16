@@ -19,7 +19,7 @@
     <hr>
 
     <h2>Κατηγορίες</h2>
-    <table class="table table-striped stats-table cats-stats-table">
+    <table id="cats-stats-table" class="table table-striped stats-table cats-stats-table">
         <thead>
             <tr>
                 <th>Κατηγορία</th>
@@ -58,7 +58,7 @@
             <div class="ct-chart ct-golden-section cats-bars-chart"></div>            
         </div>
         <div class="col-md-4">
-          <div class="pie-legend">
+          <div id="cats-pie-legend" class="pie-legend">
             @foreach($cats as $cat_id => $cat_name)
                 @if($cat_id != '')
                     <div class="pie-legend-item" id="pie-legend-item-{{$cat_id}}">{{ $cat_name }}</div>
@@ -71,7 +71,7 @@
     <hr>
 
     <h2>Περιφέρειες</h2>
-    <table class="table table-striped stats-table cats-stats-table">
+    <table class="table table-striped stats-table districts-stats-table">
         <thead>
             <tr>
                 <th>Περιφέρεια</th>

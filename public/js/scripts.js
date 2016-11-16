@@ -172,54 +172,7 @@
         paging: false,
         searching: false,
         info: false
-    });  
-
-    var funky_charts = function(){
-        
-        var pie_pieces = [],
-            rows = [],
-            legend_items = [];
-        
-        $('.ct-chart-pie .ct-series').each(function(index){
-            pie_pieces[index] = '.' + $(this).attr('class').replace(' ', '.');
-            console.log(index);
-        });
-        pie_pieces.reverse();
-        
-        $('.stats-cats-row').each(function(index){
-           rows[index] = $(this).attr('id');
-        });
-        
-        $('.pie-legend-item').each(function(index){
-            legend_items[index] = $(this).attr('id');
-        });
-        
-        $('.pie-legend-item').on('mouseover', function(){
-            var $this = $(this),
-                legend_item_id = $this.attr('id'),
-                the_index = legend_items.indexOf(legend_item_id);
-            
-            $(pie_pieces[the_index]).siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
-        });
-        
-        $('.pie-legend-item').on('mouseleave', function(){
-            $('.ct-series').css({'opacity':'1'});
-        });
-        
-        $('.stats-cats-row').on('mouseover', function(){
-            var $this = $(this),
-                row_id = $this.attr('id'),
-                the_index = rows.indexOf(row_id);
-            
-            $(pie_pieces[the_index]).siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
-            
-        });
-        
-        $('.stats-cats-row').on('mouseleave', function(){
-            $('.ct-series').css({'opacity':'1'});
-        });
-         
-    };  
+    }); 
 
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');
@@ -244,9 +197,45 @@
 
   other_country();
 
-    // $( window ).load(function() {
-    //     funky_charts();
-    // });
+  var funky_charts = function(){
+
+    // hovering the table
+    $('#cats-stats-table .stats-cats-row').on('mouseover', function(){
+          
+        var $this = $(this),
+            cats_row = $this.attr('id'),
+            cats_row_index = cats_row.substr(cats_row.length - 1),
+            pie_piece = $('.cats-bars-chart .ct-series').eq(cats_row_index - 1);
+
+            pie_piece.siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
+
+        });
+
+        $('#cats-stats-table .stats-cats-row').on('mouseleave', function(){
+            $('.ct-series').css({'opacity':'1'});
+        });
+
+    // hovering the legend
+    $('#cats-pie-legend .pie-legend-item').on('mouseover', function(){
+          
+        var $this = $(this),
+            legend_row_id = $this.attr('id'),
+            legend_row_index = legend_row_id.substr(legend_row_id.length - 1),
+            pie_piece = $('.cats-bars-chart .ct-series').eq(legend_row_index - 1);
+
+            pie_piece.siblings('.ct-chart-pie .ct-series').css({'opacity':'.2'});
+
+        });     
+
+        $('#cats-pie-legend .pie-legend-item').on('mouseleave', function(){
+            $('.ct-series').css({'opacity':'1'});
+        });           
+
+  };
+
+    $( window ).load(function() {
+        funky_charts();
+    });
 
   $('body .dropdown-toggle').dropdown();
 
