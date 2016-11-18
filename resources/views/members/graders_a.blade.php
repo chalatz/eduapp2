@@ -60,7 +60,7 @@
           <td>
             @if(strlen($grader->photo) > 0)
               <a class="enlarge-me" href="{{ route('graders.get_file', $grader->photo) }}">
-                <img src="{{ route('graders.get_file', $grader->photo) }}" width="150" height="150" alt="{{ $grader->last_name }} {{ $grader->firt_name }}" title="{{ $grader->last_name }} {{ $grader->firt_name }}"></img>
+                <img src="{{ route('graders.get_file', $grader->photo) }}" width="100" height="100" alt="{{ $grader->last_name }} {{ $grader->firt_name }}" title="{{ $grader->last_name }} {{ $grader->firt_name }}"></img>
               </a>
             @else
               χωρίς φωτό
