@@ -45,7 +45,11 @@
     <script src="{{ URL::asset('js/sweetalert.js') }}"></script>
     @include('sweet::alert')
     
-    <script type="text/javascript" src="https://cdn.datatables.net/u/bs-3.3.6/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/u/bs-3.3.6/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+    <script src="{{ URL::asset('js/fluidbox.js') }}"></script>
+    <script>
+        jQuery('.enlarge-me').fluidbox();
+    </script>
     <script src="{{ URL::asset('js/scripts.js') }}"></script>
 
 </body>

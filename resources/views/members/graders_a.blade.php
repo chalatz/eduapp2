@@ -22,6 +22,7 @@
 
   <thead>
     <tr>
+      <th>Φωτό</th>
       <th>Κωδικός</th>
       <th>Eπώνυμο</th>
       <th>Όνομα</th>
@@ -56,6 +57,15 @@
       @if($grader->user->hasRole('grader_a'))
 
         <tr>
+          <td>
+            @if(strlen($grader->photo) > 0)
+              <a class="enlarge-me" href="{{ route('graders.get_file', $grader->photo) }}">
+                <img src="{{ route('graders.get_file', $grader->photo) }}" width="200" alt="{{ $grader->last_name }} {{ $grader->firt_name }}" title="{{ $grader->last_name }} {{ $grader->firt_name }}"></img>
+              </a>
+            @else
+              χωρίς φωτό
+            @endif
+          </td>
           <td>{{ $grader->code() }}</td>
           <td>{{ $grader->last_name }}</td>
           <td>{{ $grader->first_name }}</td>
@@ -143,6 +153,7 @@
   </tbody>
 
   <tfoot>
+    <th></th>
     <th>Κωδικός</th>
     <th>Eπώνυμο</th>
     <th>Όνομα</th>
