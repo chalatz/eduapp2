@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-md-12 form-group{{ $errors->has('contact_phone') ? ' has-error' : '' }}">
-            {{ Form::label('contact_phone', 'Τηλέφωνα επικοινωνίας *') }}
+            {{ Form::label('contact_phone', 'Τηλέφωνα επικοινωνίας Υπεύθυνου επικοινωνίας υποψηφιότητας*') }}
             {{ Form::text('contact_phone', null, ['class' => 'form-control', 'id' => 'contact_phone', 'required']) }}
 
             @if ($errors->has('contact_phone'))

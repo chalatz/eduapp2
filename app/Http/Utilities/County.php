@@ -95,4 +95,16 @@ class County {
     return $counties_array = ['' => 'Επιλέξτε Περιφερειακή Ενότητα...'] + $counties_array;
   }
 
+  public static function flat_counties()
+  {
+    $counties_flat_array =[];
+
+    foreach(static::$counties as $key => $value){
+        $counties_flat_array[$value['id']] = $value['county_name'];
+    }
+
+    return $counties_flat_array;
+
+  }
+
 }
