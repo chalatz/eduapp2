@@ -36,6 +36,10 @@ class PagesController extends Controller
             //'other_grader_email',
         ]]);
 
+        $this->middleware('is_member', ['only' => [
+            'statitics',
+        ]]);
+
     }
 
     public function index()
