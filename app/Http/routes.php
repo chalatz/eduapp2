@@ -66,4 +66,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('admin/destroy-suggestion-a/{user_id}', ['as' => 'admin.destroy_suggestion_a', 'uses' => 'AdminController@destroy_suggestion_a']);    
 
+
+    // ----- TESTING ----- //
+    Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
+    Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
+
 });

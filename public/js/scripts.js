@@ -239,4 +239,22 @@
 
   $('body .dropdown-toggle').dropdown();
 
+  // Ajax test
+  $('#ajax-btn').on('click', function(e){
+
+    e.preventDefault();
+
+    var district_id = $(this).data('district');
+
+    $.ajax({
+        type: 'GET',
+        url: 'ajax-url/' + district_id,
+        success: function(data){
+            $('#ajax-data').append(data);
+            console.log(data);
+        }
+    });
+
+  });
+
 })(jQuery);
