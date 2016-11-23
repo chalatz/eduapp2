@@ -2,13 +2,11 @@
 @inject('categories', 'App\Http\Utilities\Category')
 
 @if($type == 'categories')
-
     <h3>{{ $categories::all()[$id] }}</h3>
-
 @endif
 
 @if($type == 'districts')
-    <h2>Περιφέρεια: </h2>
+    <h3>{{ $districts::all()[$id] }}</h3>
 @endif
 
 <?php $c = 1; ?>

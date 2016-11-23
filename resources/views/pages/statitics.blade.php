@@ -36,7 +36,7 @@
                 
                     <tr class="stats-cats-row" id="stats-cats-row-{{$cat_id}}">
                         <td>
-                            <a href="{{ route('get_sites_stats', ['categories', $cat_id]) }}" data-remote="false" data-toggle="modal" data-target="#sites-modal" id="ajax-btn">
+                            <a href="{{ route('get_sites_stats', ['categories', $cat_id]) }}" data-remote="false" data-toggle="modal" data-target="#sites-modal" id="ajax-btn-categories">
                                 {{ $cat_name }}
                             </a>                            
                         </td>
@@ -87,7 +87,11 @@
             @foreach($districts as $district_id => $district_name)
                 @if($district_id != '')
                     <tr>
-                        <td>{{ $district_name }}</td>
+                        <td>
+                            <a href="{{ route('get_sites_stats', ['districts', $district_id]) }}" data-remote="false" data-toggle="modal" data-target="#sites-modal" id="ajax-btn-districts">
+                                {{ $district_name }}
+                            </a>
+                        </td>
                         <td>{{ App\Site::where('district_id', '=', $district_id)->count() }}</td>
                     </tr>
                     <?php 
