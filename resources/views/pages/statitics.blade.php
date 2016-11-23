@@ -55,7 +55,7 @@
         </tbody>
     </table>
 
-    <p class="lead">Σύνολο: <strong>{{ $cats_total }}</strong></p>
+    <p class="lead stats-sum">Σύνολο: <strong>{{ $cats_total }}</strong></p>
 
     <div class="row">
         <div class="col-md-8">
@@ -109,7 +109,7 @@
         </tbody>
     </table>
 
-    <p class="lead">Σύνολο: <strong>{{ $districts_count }}</strong></p>
+    <p class="lead stats-sum">Σύνολο: <strong>{{ $districts_count }}</strong></p>
 
     <div class="ct-chart ct-golden-section districts-bars-chart"></div>
 
