@@ -20,7 +20,7 @@
           <!-- Left Side Of Navbar -->
           <ul class="nav navbar-nav">
 
-              <li><a href="{{ route('home') }}">Αρχική</a></li>
+              <li><a href="{{ route('home') }}">Αρχική Π.Σ</a></li>
 
               @if(Auth::check())
 
