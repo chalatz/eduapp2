@@ -38,6 +38,7 @@ class PagesController extends Controller
 
         $this->middleware('is_member', ['only' => [
             'statitics',
+            'get_sites_stats',
         ]]);
 
     }
@@ -90,7 +91,7 @@ class PagesController extends Controller
             $sites = Site::where('district_id', $id)->get();
         }
 
-        return view('pages.sites_modal_body', compact('sites', 'type'));
+        return view('pages.sites_modal_body', compact('sites', 'type', 'id'));
 
     }   
 
