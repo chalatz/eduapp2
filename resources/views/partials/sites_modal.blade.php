@@ -8,7 +8,7 @@
             </h4>
         </div>
         <div class="modal-body">
-            ...
+            <i class="fa fa-refresh fa-spin fa-fw"></i> Εάν δεν εμφανίζεται τίποτα εδώ, παρακαλώ <a href="{{ route('statitics') }}">ανανεώστε τη σελίδα</a>            
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">Κλείσιμο</button>

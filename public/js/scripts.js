@@ -233,7 +233,15 @@
 
   };
 
+  var sites_modals = function(){
+    $("#sites-modal").on("show.bs.modal", function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-body").load(link.attr("href"));
+    }); 
+  };
+
   $( window ).load(function() {
+    sites_modals();
     funky_charts();
   });
 
@@ -261,12 +269,6 @@
     // $("#ajax-modal").on("show.bs.modal", function(e) {
     //     var link = $(e.relatedTarget);
     //     $(this).find(".modal-body").load(link.attr("href"));
-    // });
-
-    $("#sites-modal").on("show.bs.modal", function(e) {
-        var link = $(e.relatedTarget);
-        $(this).find(".modal-body").load(link.attr("href"));
-    });    
-
+    // });   
 
 })(jQuery);
