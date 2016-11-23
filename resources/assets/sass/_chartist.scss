@@ -17,6 +17,7 @@ $pie-colors: (#d70206, #F05B4F, #F4C63D, #453D3F) !default;
     .ct-series {
         -webkit-transition: all .2s linear;
         transition: all 0.3s ease-out;
+		stroke: #111;
     }
     
 }

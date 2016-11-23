@@ -1015,7 +1015,8 @@ textarea.parsley-error:focus {
   font-size: 1.2em; }
 .ct-chart-pie .ct-series {
   -webkit-transition: all .2s linear;
-  transition: all 0.3s ease-out; }
+  transition: all 0.3s ease-out;
+  stroke: #111; }
 
 .districts-bars-chart .ct-labels .ct-label {
   color: #000000; }
