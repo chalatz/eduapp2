@@ -11,7 +11,7 @@
           </button>
 
           <!-- Branding Image -->
-          <a class="navbar-brand" href="{{ route('home') }}">
+          <a class="navbar-brand" href="http://2017.eduwebawards.gr/" target="_blank">
               8ος ΔΕΕΙ
           </a>
       </div>
