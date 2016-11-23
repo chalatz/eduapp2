@@ -77,7 +77,22 @@ class PagesController extends Controller
         }        
 
         return view('pages.statitics', compact(['sites', 'cats', 'districts', 'cats_total']));
-    }    
+    }
+
+    public function get_sites_stats($type, $id)
+    {
+        //return view('pages.sites_modal_body', compact('sites', 'type'));
+
+        if($type == 'categories'){
+            $sites = Site::where('cat_id', $id)->get();
+        }
+        if($type == 'districts'){
+            $sites = Site::where('district_id', $id)->get();
+        }
+
+        return view('pages.sites_modal_body', compact('sites', 'type'));
+
+    }   
 
     public function test()
     {

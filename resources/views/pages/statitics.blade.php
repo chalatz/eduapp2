@@ -35,7 +35,11 @@
                     <?php $cat_count_100 = ($cat_count / $cats_total) * 100; ?>    
                 
                     <tr class="stats-cats-row" id="stats-cats-row-{{$cat_id}}">
-                        <td>{{ $cat_name }}</td>
+                        <td>
+                            <a href="{{ route('get_sites_stats', ['categories', $cat_id]) }}" data-remote="false" data-toggle="modal" data-target="#sites-modal" id="ajax-btn">
+                                {{ $cat_name }}
+                            </a>                            
+                        </td>
                         <td>{{ $cat_count }} </td>
                         <td>{{ round($cat_count_100, 2) }}</td>
                     </tr>
@@ -106,6 +110,8 @@
     <div class="ct-chart ct-golden-section districts-bars-chart"></div>
 
     <hr>
+
+    @include('partials.sites_modal')
 
     <script>
         var cats_data = {

@@ -28,6 +28,8 @@ class TestController extends Controller
     {
         $sites = Site::where('district_id', $district_id)->get();
 
+        return view('pages.ajax_modal', compact('sites'));
+
         if($request->ajax()){
             $html = '';
             

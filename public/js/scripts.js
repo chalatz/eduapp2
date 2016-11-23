@@ -240,21 +240,33 @@
   $('body .dropdown-toggle').dropdown();
 
   // Ajax test
-  $('#ajax-btn').on('click', function(e){
+//   $('#ajax-btn').on('click', function(e){
 
-    e.preventDefault();
+//     e.preventDefault();
 
-    var district_id = $(this).data('district');
+//     var district_id = $(this).data('district');
 
-    $.ajax({
-        type: 'GET',
-        url: 'ajax-url/' + district_id,
-        success: function(data){
-            $('#ajax-data').append(data);
-            console.log(data);
-        }
-    });
+//     $.ajax({
+//         type: 'GET',
+//         url: 'ajax-url/' + district_id,
+//         success: function(data){
+//             $('#ajax-data').append(data);
+//             console.log(data);
+//         }
+//     });
 
-  });
+//   });
+
+    // TEST Fill modal with content from link href
+    // $("#ajax-modal").on("show.bs.modal", function(e) {
+    //     var link = $(e.relatedTarget);
+    //     $(this).find(".modal-body").load(link.attr("href"));
+    // });
+
+    $("#sites-modal").on("show.bs.modal", function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-body").load(link.attr("href"));
+    });    
+
 
 })(jQuery);

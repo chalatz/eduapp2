@@ -67,6 +67,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/destroy-suggestion-a/{user_id}', ['as' => 'admin.destroy_suggestion_a', 'uses' => 'AdminController@destroy_suggestion_a']);    
 
 
+    // ----- Modals in statitics ---- //
+    Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);
+    //Route::get('sites-modal-body', ['as' => 'sites_modal_body', 'uses' => 'PagesController@sites_modal_body']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
