@@ -131,7 +131,35 @@ class Grader extends Model
 
       return $fileName;
 
-  }  
+  }
+
+    public function scopeAlpha($query)
+    {
+        $graders = Grader::all();
+
+        $collection = collect([]);
+
+        foreach($graders as $grader){
+            if($grader->user->hasRole('grader_a'))
+                $collection->push($grader);
+            }       
+
+        return $collection;
+    }
+
+    public function scopeBeta($query)
+    {
+        $graders = Grader::all();
+
+        $collection = collect([]);
+
+        foreach($graders as $grader){
+            if($grader->user->hasRole('grader_b'))
+                $collection->push($grader);
+            }       
+
+        return $collection;
+    }     
 
   public static $rules = [
     'password' => 'sometimes|required|confirmed|min:6',

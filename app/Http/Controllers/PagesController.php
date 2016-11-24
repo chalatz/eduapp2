@@ -9,9 +9,12 @@ use App\Http\Controllers\Controller;
 
 use App\Suggestion;
 use App\Site;
+use App\Grader;
+use App\User;
 
 use App\Http\Utilities\Category;
 use App\Http\Utilities\District;
+use App\Http\Utilities\Specialty;
 
 use Auth;
 
@@ -83,9 +86,18 @@ class PagesController extends Controller
 
     public function grader_a_statistics()
     {
-        
+        $graders = Grader::alpha();
+        $specs = Specialty::all();
+        $districts = District::all();
 
-        return view('pages.grader_a_statistics');
+        $specs_total = 0;
+
+        foreach($specs as $spec_id => $spec_name){
+            
+            $specs_total += $graders->where('specialty_id', $spec_id)->count();
+        }
+
+        return view('pages.grader_a_statistics', compact(['graders', 'specs', 'specs_total', 'districts']));
 
     }
 
