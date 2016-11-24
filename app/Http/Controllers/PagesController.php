@@ -90,14 +90,9 @@ class PagesController extends Controller
         $specs = Specialty::all();
         $districts = District::all();
 
-        $specs_total = 0;
+        $graders_total = $graders->count();
 
-        foreach($specs as $spec_id => $spec_name){
-            
-            $specs_total += $graders->where('specialty_id', $spec_id)->count();
-        }
-
-        return view('pages.grader_a_statistics', compact(['graders', 'specs', 'specs_total', 'districts']));
+        return view('pages.grader_a_statistics', compact(['graders', 'specs', 'graders_total', 'districts']));
 
     }
 
