@@ -10,8 +10,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::resource('sites', 'SitesController');
 
-    Route::get('statitics', ['as' => 'statitics', 'uses' => 'PagesController@statitics']);
-
     Route::get('verify/{verification_token}', ['as' => 'user.verify', 'uses' => 'UsersController@verify']);
     Route::get('send-verification', ['as' => 'user.send_verification', 'uses' => 'UsersController@send_verification']);
     // Change Password
@@ -66,6 +64,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('admin/destroy-suggestion-a/{user_id}', ['as' => 'admin.destroy_suggestion_a', 'uses' => 'AdminController@destroy_suggestion_a']);    
 
+    // ----- Statitics ---- //
+    Route::get('statistics', ['as' => 'statistics', 'uses' => 'PagesController@statistics']);
 
     // ----- Modals in statitics ---- //
     Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);

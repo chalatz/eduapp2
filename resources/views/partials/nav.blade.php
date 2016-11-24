@@ -26,7 +26,7 @@
 
                 @if(Auth::user()->hasRole('member'))
                   <li>
-                    <a href="{{ route('statitics') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</a>
+                    <a href="{{ route('statistics') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</a>
                   </li>
                 @endif
 

@@ -37,8 +37,9 @@ class PagesController extends Controller
         ]]);
 
         $this->middleware('is_member', ['only' => [
-            'statitics',
+            'statistics',
             'get_sites_stats',
+            'grader_a_statistics',
         ]]);
 
     }
@@ -63,7 +64,7 @@ class PagesController extends Controller
         return view('pages.other_grader_email');
     }
 
-    public function statitics()
+    public function statistics()
     {
 
         $sites = Site::all();
@@ -77,7 +78,15 @@ class PagesController extends Controller
             $cats_total += Site::where('cat_id', '=', $cat_id)->count();
         }        
 
-        return view('pages.statitics', compact(['sites', 'cats', 'districts', 'cats_total']));
+        return view('pages.statistics', compact(['sites', 'cats', 'districts', 'cats_total']));
+    }
+
+    public function grader_a_statistics()
+    {
+        
+
+        return view('pages.grader_a_statistics');
+
     }
 
     public function get_sites_stats($type, $id)
