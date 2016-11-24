@@ -17,9 +17,11 @@ class MustOwnGraderOrIsMember
     {
         $user = $request->user();
 
-        $grader = $user->grader;
+        if($user->grader){
+            $grader = $user->grader;
+        }
 
-        if(($user->id == $grader->user_id) || $user->hasRole('member')){
+        if(($user->grader && $user->id == $grader->user_id) || $user->hasRole('member')){
             return $next($request);
         }
 
