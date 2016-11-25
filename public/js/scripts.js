@@ -240,8 +240,16 @@
     }); 
   };
 
+  var graders_modals = function(){
+    $("#graders-modal").on("show.bs.modal", function(e) {
+        var link = $(e.relatedTarget);
+        $(this).find(".modal-body").load(link.attr("href"));
+    }); 
+  };  
+
   $( window ).load(function() {
     sites_modals();
+    graders_modals();
     funky_charts();
   });
 

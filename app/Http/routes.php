@@ -70,7 +70,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- Modals in statitics ---- //
     Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);
-    //Route::get('sites-modal-body', ['as' => 'sites_modal_body', 'uses' => 'PagesController@sites_modal_body']);
+    Route::get('get-graders-stats/{type}/{id}', ['as' => 'get_graders_stats', 'uses' => 'PagesController@get_graders_stats']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

@@ -97,9 +97,7 @@ class PagesController extends Controller
     }
 
     public function get_sites_stats($type, $id)
-    {
-        //return view('pages.sites_modal_body', compact('sites', 'type'));
-
+    {        
         if($type == 'categories'){
             $sites = Site::where('cat_id', $id)->get();
         }
@@ -108,6 +106,16 @@ class PagesController extends Controller
         }
 
         return view('pages.sites_modal_body', compact('sites', 'type', 'id'));
+
+    }
+
+    public function get_graders_stats($type, $id)
+    {
+        if($type == 'specialties'){
+            $graders = Grader::where('specialty_id', $id)->get();
+        }
+
+        return view('pages.graders_modal_body', compact('graders', 'type', 'id'));
 
     }   
 

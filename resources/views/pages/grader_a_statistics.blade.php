@@ -28,9 +28,11 @@
                     <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
                 
                     @if($spec_count > 0)
-                        <tr class="stats-cats-row" id="stats-specs-row-{{$spec_id}}">
+                        <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
                             <td>
-                                {{ $spec_name }}                            
+                                <a href="{{ route('get_graders_stats', ['specialties', $spec_id]) }}" data-remote="false" data-toggle="modal" data-target="#graders-modal" id="ajax-btn-specialties">
+                                    {{ $spec_name }}
+                                </a>                            
                             </td>
                             <td>{{ $spec_count }} </td>
                             <td>{{ round($spec_count_100, 2) }}</td>
@@ -42,6 +44,7 @@
         </tbody>
     </table>
    
+    @include('partials.graders_modal')
 
 </div>
 @endsection
