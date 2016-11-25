@@ -27,7 +27,7 @@
             </tr>
         </thead>
         @foreach($graders as $grader)
-            @if($grader->user->hasRole('grader_a'))
+            @if($grader->user->hasRole('grader_'.$grader_type))
                 <tr>
                     <td>
                         {{ $c }}

@@ -66,11 +66,11 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- Statitics ---- //
     Route::get('statistics', ['as' => 'statistics', 'uses' => 'PagesController@statistics']);
-    Route::get('grader-a-statistics', ['as' => 'grader_a_statistics', 'uses' => 'PagesController@grader_a_statistics']);
+    Route::get('grader-statistics/{grader_type}', ['as' => 'grader_statistics', 'uses' => 'PagesController@grader_statistics']);
 
     // ----- Modals in statitics ---- //
     Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);
-    Route::get('get-graders-stats/{type}/{id}', ['as' => 'get_graders_stats', 'uses' => 'PagesController@get_graders_stats']);
+    Route::get('get-graders-stats/{grader_type}/{type}/{id}', ['as' => 'get_graders_stats', 'uses' => 'PagesController@get_graders_stats']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

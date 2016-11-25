@@ -8,7 +8,7 @@
         
     ?>
 
-    <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Αξιολογητές Α</h1>
+    <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Αξιολογητές {{ strtoupper($grader_type) }}</h1>
     <hr>
 
     <h2>Ειδικότητες</h2>
@@ -16,8 +16,8 @@
         <thead>
             <tr>
                 <th>Ειδικότητα</th>
-                <th>Πλήθος Αξ. Α.</th>
-                <th>Πλήθος Αξ. Α. %</th>
+                <th>Πλήθος Αξ. {{ strtoupper($grader_type) }}.</th>
+                <th>Πλήθος Αξ. {{ strtoupper($grader_type) }}. %</th>
             </tr>
         </thead>
         
@@ -30,7 +30,7 @@
                     @if($spec_count > 0)
                         <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
                             <td>
-                                <a href="{{ route('get_graders_stats', ['specialties', $spec_id]) }}" data-remote="false" data-toggle="modal" data-target="#graders-modal" id="ajax-btn-specialties">
+                                <a href="{{ route('get_graders_stats', [$grader_type, 'specialties', $spec_id]) }}" data-remote="false" data-toggle="modal" data-target="#graders-modal" id="ajax-btn-specialties">
                                     {{ $spec_name }}
                                 </a>                            
                             </td>

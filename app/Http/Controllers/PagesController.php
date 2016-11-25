@@ -84,15 +84,20 @@ class PagesController extends Controller
         return view('pages.statistics', compact(['sites', 'cats', 'districts', 'cats_total']));
     }
 
-    public function grader_a_statistics()
+    public function grader_statistics($grader_type)
     {
-        $graders = Grader::alpha();
+        if($grader_type == 'a'){
+            $graders = Grader::alpha();
+        }
+        if($grader_type == 'b'){
+            $graders = Grader::beta();
+        }        
         $specs = Specialty::all();
         $districts = District::all();
 
         $graders_total = $graders->count();
 
-        return view('pages.grader_a_statistics', compact(['graders', 'specs', 'graders_total', 'districts']));
+        return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'graders_total', 'districts']));
 
     }
 
@@ -109,13 +114,13 @@ class PagesController extends Controller
 
     }
 
-    public function get_graders_stats($type, $id)
+    public function get_graders_stats($grader_type, $type, $id)
     {
         if($type == 'specialties'){
             $graders = Grader::where('specialty_id', $id)->get();
         }
 
-        return view('pages.graders_modal_body', compact('graders', 'type', 'id'));
+        return view('pages.graders_modal_body', compact('graders','grader_type', 'type', 'id'));
 
     }   
 
