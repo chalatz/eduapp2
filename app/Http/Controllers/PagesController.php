@@ -97,7 +97,7 @@ class PagesController extends Controller
 
         $graders_total = $graders->count();
 
-        return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'graders_total', 'districts']));
+        return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'districts', 'graders_total']));
 
     }
 
@@ -118,6 +118,9 @@ class PagesController extends Controller
     {
         if($type == 'specialties'){
             $graders = Grader::where('specialty_id', $id)->get();
+        }
+        if($type == 'districts'){
+            $graders = Grader::where('district_id', $id)->get();
         }
 
         return view('pages.graders_modal_body', compact('graders','grader_type', 'type', 'id'));
