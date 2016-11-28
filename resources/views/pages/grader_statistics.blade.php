@@ -28,7 +28,7 @@
                 <?php $spec_count = $graders->where('specialty_id', $spec_id)->count(); ?>
                 <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
             
-                @if($spec_count > 0)
+                {{--@if($spec_count > 0)--}}
                     <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
                         <td>
                             <a href="{{ route('get_graders_stats', [$grader_type, 'specialties', $spec_id]) }}" data-remote="false" data-toggle="modal" data-target="#graders-modal" id="ajax-btn-specialties">
@@ -38,7 +38,7 @@
                         <td>{{ $spec_count }} </td>
                         <td>{{ round($spec_count_100, 2) }}</td>
                     </tr>
-                @endif
+                {{--@endif--}}
             
             @endif
         @endforeach
