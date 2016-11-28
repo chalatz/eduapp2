@@ -56,8 +56,8 @@
 
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ url('/admin/sites') }}">Υποψήφιοι</a></li>
-                        <li><a href="{{ url('/admin/graders/a') }}">Αξιολογητές Α</a></li>
-                        <li><a href="{{ url('/admin/graders/b') }}">Αξιολογητές Β</a></li>
+                        {{--<li><a href="{{ url('/admin/graders/a') }}">Αξιολογητές Α</a></li>
+                        <li><a href="{{ url('/admin/graders/b') }}">Αξιολογητές Β</a></li>--}}
                       </ul>
                   </li>
 
