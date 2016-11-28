@@ -92,8 +92,6 @@ class PagesController extends Controller
         if($grader_type == 'b'){
             $graders = Grader::beta();
         }
-
-        dd($graders);
                 
         $specs = Specialty::all();
         $districts = District::all();
