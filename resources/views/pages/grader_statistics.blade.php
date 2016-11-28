@@ -14,7 +14,7 @@
     <h2>Ειδικότητες</h2>
 
     {{ App\Grader::beta()->count() }}<br>
-    {{ App\Grader::beta()->where('specialty_id', 2)->count() }}<br>
+    {{ App\Grader::beta()->where('specialty_id', 2) }}<br>
     
 
 <table id="specs-stats-table" class="table table-striped stats-table specs-stats-table">
