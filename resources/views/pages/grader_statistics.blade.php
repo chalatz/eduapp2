@@ -29,7 +29,7 @@
                 <?php $spec_count = $graders->where('specialty_id', $spec_id)->count(); ?>
                 <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
             
-                {{ $spec_count }}
+                {{ $spec_id }}
 
                 @if($spec_count > 0)
                     <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
