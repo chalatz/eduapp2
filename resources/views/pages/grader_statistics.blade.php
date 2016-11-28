@@ -25,10 +25,12 @@
     <tbody>
         @foreach($specs as $spec_id => $spec_name)
             @if($spec_id != '')
-            <?php dd($spec_id, $spec_name) ?>
+
                 <?php $spec_count = $graders->where('specialty_id', $spec_id)->count(); ?>
                 <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
             
+                {{ $spec_count }}
+
                 @if($spec_count > 0)
                     <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
                         <td>
