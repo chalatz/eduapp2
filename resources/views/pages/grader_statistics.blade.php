@@ -13,6 +13,8 @@
 
     <h2>Ειδικότητες</h2>
 
+    {{ $graders->where('specialty_id', 2)->count() }}<br>
+
 <table id="specs-stats-table" class="table table-striped stats-table specs-stats-table">
     <thead>
         <tr>
@@ -28,8 +30,6 @@
 
                 <?php $spec_count = $graders->where('specialty_id', $spec_id)->count(); ?>
                 <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
-            
-                {{ $spec_id }}
 
                 @if($spec_count > 0)
                     <tr class="stats-specs-row" id="stats-specs-row-{{$spec_id}}">
