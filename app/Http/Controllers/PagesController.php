@@ -86,11 +86,18 @@ class PagesController extends Controller
 
     public function grader_statistics($grader_type)
     {
-        if($grader_type == 'a'){
-            $graders = Grader::alpha();
-        }
-        if($grader_type == 'b'){
-            $graders = Grader::beta();
+        // if($grader_type == 'a'){
+        //     $graders = Grader::alpha();
+        // }
+        // if($grader_type == 'b'){
+        //     $graders = Grader::beta();
+        // }
+
+        $graders = collect([]);
+        foreach(Grader::all() as $grader){
+            if($grader->user->hasRole('grader_'.$grader_type)){
+                $graders->push($grader);
+            }
         }
                 
         $specs = Specialty::all();

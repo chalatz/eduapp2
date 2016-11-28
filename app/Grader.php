@@ -140,9 +140,10 @@ class Grader extends Model
         $collection = collect([]);
 
         foreach($graders as $grader){
-            if($grader->user->hasRole('grader_a'))
+            if($grader->user->hasRole('grader_b')){
                 $collection->push($grader);
-            }       
+            }
+        }       
 
         return $collection;
     }
