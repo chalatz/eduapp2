@@ -42,7 +42,7 @@ class PagesController extends Controller
         $this->middleware('is_member', ['only' => [
             'statistics',
             'get_sites_stats',
-            'grader_a_statistics',
+            'grader_statistics',
         ]]);
 
     }
@@ -91,7 +91,8 @@ class PagesController extends Controller
         }
         if($grader_type == 'b'){
             $graders = Grader::beta();
-        }        
+        }
+                
         $specs = Specialty::all();
         $districts = District::all();
 
