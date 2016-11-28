@@ -15,7 +15,7 @@
             district_counts = [];
     </script>
 
-	<h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</h1>
+	<h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Υποψήφιοι</h1>
     <hr>
 
     <h2>Κατηγορίες</h2>

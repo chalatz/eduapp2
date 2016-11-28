@@ -24,12 +24,6 @@
 
               @if(Auth::check())
 
-                @if(Auth::user()->hasRole('member'))
-                  <li>
-                    <a href="{{ route('statistics') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</a>
-                  </li>
-                @endif
-
                 @if(Auth::user()->site)
                   <li>
                     <a href="{{ route('sites.edit', ['sites' => Auth::user()->site->id]) }}">
@@ -57,7 +51,7 @@
                 @if(Auth::user()->hasRole('member'))
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                          Διαχειριστικά <span class="caret"></span>
+                          <i class="fa fa-user-secret" aria-hidden="true"></i> Διαχειριστικά <span class="caret"></span>
                       </a>
 
                       <ul class="dropdown-menu" role="menu">
@@ -66,6 +60,18 @@
                         <li><a href="{{ url('/admin/graders/b') }}">Αξιολογητές Β</a></li>
                       </ul>
                   </li>
+
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          <i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url('/statistics') }}">Υποψήφιοι</a></li>
+                        <li><a href="{{ url('/grader-statistics/a') }}">Αξιολογητές Α</a></li>
+                        <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>
+                      </ul>
+                  </li>                  
                 @endif
 
               @endif
