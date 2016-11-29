@@ -68,8 +68,8 @@
 
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ url('/statistics') }}">Υποψήφιοι</a></li>
-                        {{--<li><a href="{{ url('/grader-statistics/a') }}">Αξιολογητές Α</a></li>
-                        <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>--}}
+                        <li><a href="{{ url('/grader-statistics/a') }}">Αξιολογητές Α</a></li>
+                        <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>
                       </ul>
                   </li>                  
                 @endif
