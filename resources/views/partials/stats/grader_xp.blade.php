@@ -37,5 +37,3 @@
         @endforeach
     </tbody>
 </table>
-
-<p class="lead stats-sum">Σύνολο: <strong>{{ $graders_total }}</strong></p>
