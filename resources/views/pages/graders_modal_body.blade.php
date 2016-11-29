@@ -2,6 +2,7 @@
 @inject('counties', 'App\Http\Utilities\County')
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('specialties', 'App\Http\Utilities\Specialty')
+@inject('xp', 'App\Http\Utilities\Teaching_xp')
 
 @if($type == 'specialties')
     <h3>{{ $specialties::all()[$id] }}</h3>
@@ -9,6 +10,10 @@
 
 @if($type == 'districts')
     <h3>{{ $districts::all()[$id] }}</h3>
+@endif
+
+@if($type == 'xp')
+    <h3>{{ $xp::all()[$id] }}</h3>
 @endif
 
 <?php $c = 1; ?>
@@ -21,7 +26,7 @@
                 <th>α/α</th>
                 <th>Ονοματεπώνυμο</th>
                 <th>
-                    @if($type == 'specialties') Περ. -- @endif
+                    @if($type == 'specialties' || $type == 'xp') Περ. -- @endif
                     Περ. Ενότητα
                 </th>
             </tr>
@@ -36,7 +41,7 @@
                         {{ $grader->last_name }} {{ $grader->first_name }}                    
                     </td>
                     <td>
-                        @if($type == 'specialties') {{ $districts::all()[$grader->district_id] }} -- @endif
+                        @if($type == 'specialties' || $type == 'xp') {{ $districts::all()[$grader->district_id] }} -- @endif
                         {{ $counties::flat_counties()[$grader->county_id] }}
                     </td>
                 </tr>

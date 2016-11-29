@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use DB;
+
 use App\Suggestion;
 use App\Site;
 use App\Grader;
@@ -15,6 +17,7 @@ use App\User;
 use App\Http\Utilities\Category;
 use App\Http\Utilities\District;
 use App\Http\Utilities\Specialty;
+use App\Http\Utilities\Teaching_xp;
 
 use Auth;
 
@@ -104,6 +107,7 @@ class PagesController extends Controller
 
         $specs = Specialty::all();
         $districts = District::all();
+        $xp = Teaching_xp::all();
 
         $graders_total = 0;
         foreach($graders as $grader){
@@ -112,7 +116,7 @@ class PagesController extends Controller
             }
         }
 
-        return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'districts', 'graders_total']));
+        return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'districts', 'xp', 'graders_total']));
 
     }
 
@@ -132,10 +136,13 @@ class PagesController extends Controller
     public function get_graders_stats($grader_type, $type, $id)
     {
         if($type == 'specialties'){
-            $graders = Grader::where('specialty_id', $id)->get();
+            $graders = Grader::with('user')->where('specialty_id', $id)->get();
         }
         if($type == 'districts'){
-            $graders = Grader::where('district_id', $id)->get();
+            $graders = Grader::with('user')->where('district_id', $id)->get();
+        }
+        if($type == 'xp'){
+            $graders = Grader::with('user')->where('teaching_xp', 'like', '%'.$id.'%')->get();
         }
 
         return view('pages.graders_modal_body', compact('graders','grader_type', 'type', 'id'));
