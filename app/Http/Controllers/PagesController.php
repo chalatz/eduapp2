@@ -93,17 +93,24 @@ class PagesController extends Controller
         //     $graders = Grader::beta();
         // }
 
-        $graders = collect([]);
-        foreach(Grader::all() as $grader){
-            if($grader->user->hasRole('grader_'.$grader_type)){
-                $graders->push($grader);
-            }
-        }
-                
+        // $graders = collect([]);
+        // foreach(Grader::all() as $grader){
+        //     if($grader->user->hasRole('grader_'.$grader_type)){
+        //         $graders->push($grader);
+        //     }
+        // }
+
+        $graders = Grader::with('user')->get();
+
         $specs = Specialty::all();
         $districts = District::all();
 
-        $graders_total = $graders->count();
+        $graders_total = 0;
+        foreach($graders as $grader){
+            if($grader->user->hasRole('grader_'.$grader_type)){
+                $graders_total++;
+            }
+        }
 
         return view('pages.grader_statistics', compact(['graders','grader_type', 'specs', 'districts', 'graders_total']));
 

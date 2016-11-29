@@ -12,7 +12,12 @@
     <tbody>
         @foreach($specs as $spec_id => $spec_name)
             @if($spec_id != '')
-                <?php $spec_count = $graders->where('specialty_id', $spec_id)->count(); ?>
+                @foreach($graders as $grader)
+                    @if($grader->user->hasRole('grader_'.$grader_type) && $grader->specialty_id == $spec_id )
+                        <?php $spec_count++; ?>
+                    @endif
+                @endforeach
+                
                 <?php $spec_count_100 = ($spec_count / $graders_total) * 100; ?>    
             
                 @if($spec_count > 0)
@@ -28,6 +33,7 @@
                 @endif
             
             @endif
+            <?php $spec_count = 0; $spec_count_100 = 0; ?>
         @endforeach
     </tbody>
 </table>
