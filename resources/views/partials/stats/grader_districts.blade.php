@@ -12,7 +12,13 @@
     <tbody>
         @foreach($districts as $district_id => $district_name)
             @if($district_id != '')
-                <?php $districts_count = $graders->where('district_id', $district_id)->count(); ?>
+                @foreach($graders as $grader)
+                    @if($grader->user->hasRole('grader_'.$grader_type) && $grader->district_id == $district_id )
+                        <?php $districts_count++; ?>
+                    @endif
+                @endforeach
+
+                <?php // $districts_count = $graders->where('district_id', $district_id)->count(); ?>
                 <?php $districts_count_100 = ($districts_count / $graders_total) * 100; ?>    
             
                 @if($districts_count > 0)
@@ -28,6 +34,7 @@
                 @endif
             
             @endif
+            <?php $districts_count = 0; $districts_count_100 = 0; ?>
         @endforeach
     </tbody>
 </table>
