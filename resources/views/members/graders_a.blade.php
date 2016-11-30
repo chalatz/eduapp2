@@ -64,7 +64,10 @@
       @if($grader->user->hasRole('grader_a'))
 
         <tr>
+          {{-- Κωδικός --}}
           <td>{{ $grader->code() }}</td>
+
+          {{-- Φωτό --}}
           <td>
             @if(strlen($grader->photo) > 0)
               <a class="enlarge-me" href="{{ route('graders.get_file', $grader->photo) }}">
@@ -74,9 +77,18 @@
               χωρίς φωτό
             @endif
           </td>
+
+          
+          {{-- Eπώνυμο --}}
           <td>{{ $grader->last_name }}</td>
+          
+          {{-- Όνομα --}}
           <td>{{ $grader->first_name }}</td>
+          
+          {{-- Email --}}
           <td>{{ $grader->user->email }}</td>
+          
+          {{-- Τηλ. Ιστότοπου που τον πρότεινε --}}
           <td>
             @if($grader->sites->count() > 0)
               @foreach($grader->sites as $site)
@@ -86,21 +98,45 @@
              na
             @endif
           </td>
+          
+          {{-- Ειδικότητα --}}
           <td>{{ $specialties::all()[$grader->specialty_id] }}</td>
+          
+          {{-- Περιφέρεια --}}
           <td>{{ $districts::all()[$grader->district_id] }}</td>
+          
+          {{-- Περιφ. Ενότητα --}}
           <td>{{ $counties::flat_counties()[$grader->county_id] }}</td>
+          
+          {{-- Ταχ. Διεύθυνση --}}
           <td>{{ $grader->address }}</td>
+          
+          {{-- Κατηγορίες που επιθυμεί --}}
           <td>{{ $grader->desired_category }}</td>
+          
+          {{-- Αξιολογητής Α στον προηγούμενο διαγωνισμό --}}
           <td>{{ $grader->past_grader }}</td>
+          
+          {{-- Αξιολογητής σε περισσότερους από έναν διαγωνισμούς --}}
           <td>{{ $grader->past_grader_more }}</td>
+          
+          {{-- Θα ήθελα να συμμετάσχω και ως Αξιολογητής Β --}}
           <td>{{ $grader->wants_to_be_grader_b }}</td>
+          
+          {{-- Ξένες Γλώσσες --}}
           <td>
             @include('partials.languages')
           </td>
+          
+          {{-- Ξένες Γλώσσες - Προτιμήσεις --}}
           <td>
             @include('partials.lang_prefs')
           </td>
+          
+          {{-- Άλλες Ξένες Γλώσσες --}}
           <td>{{ $grader->languages_other }} {{ $grader->languages_other_level }}</td>
+          
+          {{-- Ιστότοπος που τον πρότεινε --}}
           <td>
             @if($grader->sites->count() > 0)
               @foreach($grader->sites as $site)
@@ -111,22 +147,28 @@
              na
             @endif
           </td>
+          
+          {{-- Email Ιστότοπου --}}
           <td>
             @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
               {{ $suggestion->suggestor_email }}
               <br>---<br>
             @endforeach
           </td>
+          
+          {{-- Κατηγορία Ιστότοπου --}}
           <td>
             @if($grader->sites->count() > 0)
               @foreach($grader->sites as $site)
-                {{ $site->contact_email }}
+                {{ $site->cat_id }}
                 <br>---<br>
               @endforeach
             @else
              na
             @endif
           </td>
+          
+          {{-- Περιφέρεια Ιστότοπου --}}
           <td>
           @if($grader->sites->count() > 0)
             @foreach($grader->sites as $site)
@@ -137,19 +179,27 @@
             na
           @endif
           </td>
+          
+          {{-- Αυτοπροτάθηκε --}}
           <td>
             @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
               {{ $suggestion->self_proposed }}
               <br>---<br>
             @endforeach
           </td>
+          
+          {{-- Αποδέχτηκε --}}
           <td>
             @foreach(App\Suggestion::where('grader_email', $grader->user->email)->get() as $suggestion)
               {{ $suggestion->accepted }}
               <br>---<br>
             @endforeach
           </td>
+          
+          {{-- Δημιουργήθηκε --}}
           <td>{{ date('d / m / Y', strtotime($grader->created_at)) }}</td>
+          
+          {{-- Εμπειρία --}}
           <td>
             <?php $xps = explode('|', $grader->teaching_xp); ?>
             <ul>
@@ -158,12 +208,16 @@
             @endforeach
             </ul>
           </td>
+          
+          {{-- Προσωπικά URL --}}
           <td>
             <a href="{{ $grader->personal_url }}" target="_blank">{{ $grader->personal_url }}</a><br>
             <a href="{{ $grader->personal_url_2 }}" target="_blank">{{ $grader->personal_url_2 }}</a><br>
             <a href="{{ $grader->personal_url_3 }}" target="_blank">{{ $grader->personal_url_3 }}</a><br>
             <a href="{{ $grader->personal_url_4 }}" target="_blank">{{ $grader->personal_url_4 }}</a>
           </td>
+          
+          {{-- Βιογραφικό --}}
           <td>
             @if(strlen($grader->personal_cv) > 0)
               <a href="{{ route('graders.get_file', $grader->personal_cv) }}">
@@ -173,7 +227,8 @@
               na
             @endif
           </td>
-          @if(Auth::user()->hasRole('admin'))
+          @if(Auth::user()->hasRole('admin'))              
+              {{-- Μεταμφίεση --}}
               <td>
                   <a href="{{ route('admin.masquerade', $grader->user->id) }}" target="_blank">Μεταμφίεση</a>
               </td>

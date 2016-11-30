@@ -94,7 +94,7 @@
           <td>
             @if($grader->sites->count() > 0)
               @foreach($grader->sites as $site)
-                {{ $site->contact_email }}
+                {{ $site->cat_id }}
                 <br>---<br>
               @endforeach
             @else
