@@ -48,6 +48,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('graders/{graders}/edit-and-suggest-self', ['as' => 'graders.edit_and_suggest_self', 'uses' => 'GradersController@edit_and_suggest_self']);
 
+    Route::get('user/account-actions', ['as' => 'user.account_actions', 'uses' => 'UsersController@account_actions'])->middleware('auth');
+
     // ----- MEMBERS ------ //
     Route::get('admin/sites', ['as' => 'members.sites', 'uses' => 'MembersController@sites']);
     Route::get('admin/sites/print', ['as' => 'members.sites_print', 'uses' => 'MembersController@sites_print']);

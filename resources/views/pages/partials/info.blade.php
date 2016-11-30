@@ -3,7 +3,7 @@
 </p>
 
 <p>
-  Έχετε συνδεθεί ως <strong>{{ Auth::user()->email }}</strong>
+  Έχετε συνδεθεί ως <strong><a href="{{ route('user.account_actions') }}">{{ Auth::user()->email }}</a></strong>
 </p>
 
 <p>

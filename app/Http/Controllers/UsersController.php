@@ -105,4 +105,8 @@ class UsersController extends Controller
 
     }
 
+    public function account_actions(){
+        return view('pages.user_account_actions');
+    }
+
 }
