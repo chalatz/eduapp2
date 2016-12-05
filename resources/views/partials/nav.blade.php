@@ -72,9 +72,17 @@
                         <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>
                       </ul>
                   </li>                  
-                @endif
+                @endif                                
 
               @endif
+
+                              @if(Auth::check())
+                  @if(!Auth::user()->hasRole('member') && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('ninja'))
+                    <li><a href="{{ url('/statistics') }}">Στατιστικά</a></li>
+                  @endif
+                @else
+                  <li><a href="{{ url('/statistics') }}"><i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά</a></li>
+                @endif
 
           </ul>
 

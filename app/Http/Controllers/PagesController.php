@@ -43,8 +43,6 @@ class PagesController extends Controller
         ]]);
 
         $this->middleware('is_member', ['only' => [
-            'statistics',
-            'get_sites_stats',
             'grader_statistics',
         ]]);
 
