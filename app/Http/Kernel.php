@@ -60,5 +60,6 @@ class Kernel extends HttpKernel
         'can_create_site' => \App\Http\Middleware\CanCreateSite::class,
         'is_member' => \App\Http\Middleware\IsMember::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
+        'is_ninja' => \App\Http\Middleware\IsNinja::class,
     ];
 }

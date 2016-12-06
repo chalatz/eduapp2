@@ -74,6 +74,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);
     Route::get('get-graders-stats/{grader_type}/{type}/{id}', ['as' => 'get_graders_stats', 'uses' => 'PagesController@get_graders_stats']);
 
+    // ----- Send Emails ---- //
+    Route::get('admin/send-to-past-graders', ['as' => 'admin.send_to_past_graders', 'uses' => 'EmailsController@send_to_past_graders']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
