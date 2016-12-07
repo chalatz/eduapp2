@@ -160,7 +160,17 @@ class Grader extends Model
             }       
 
         return $collection;
-    }     
+    }
+
+    public function hasSite(){
+        if(Site::where('grader_id', $this->id)->count() > 0){
+            return true;
+        } else {
+            return false;
+        }
+           
+    }
+    
 
   public static $rules = [
     'password' => 'sometimes|required|confirmed|min:6',
