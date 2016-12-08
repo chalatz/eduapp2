@@ -76,6 +76,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- Send Emails ---- //
     Route::get('admin/send-to-past-graders', ['as' => 'admin.send_to_past_graders', 'uses' => 'EmailsController@send_to_past_graders']);
+    Route::get('admin/send-to-graders-a-without-sites', ['as' => 'admin.send_to_graders_a_without_sites', 'uses' => 'EmailsController@send_to_graders_a_without_sites']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
