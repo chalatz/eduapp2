@@ -44,4 +44,77 @@ class TestController extends Controller
         }
     }
 
+    public function panormighty()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $graders_all = Grader::all();
+
+            $graders = [];
+            $sites = [];
+
+            $i = 0;
+
+            foreach($graders_all as $grader){
+                if($grader->user->hasRole('grader_a') && $grader->hasSite()){
+                    $graders[$i]['grader_id'] = $grader->id;
+                    $site = Site::where('grader_id', $grader->id)->first();
+                    $graders[$i]['site_id'] = $site->id;
+                    $graders[$i]['cat_id'] = $site->cat_id;
+                    $graders[$i]['district_id'] = $site->district_id;
+                    $graders[$i]['specialty'] = $grader->specialty_id;
+                    $i++;
+                }
+            }
+
+            $sites_all = Site::all();
+
+            $i = 0;
+
+            foreach($sites_all as $site){
+                $sites[$i]['grader_id'] = $site->grader_id;
+                $sites[$i]['id'] = $site->id;
+                $sites[$i]['cat_id'] = $site->cat_id;
+                $sites[$i]['district_id'] = $site->district_id;
+                $i++;
+            }
+
+            $s2 = [];
+            $sIndex = [];
+            foreach ($sites as $s) {
+                $s2[$s['id']] = ["cat" => $s['cat_id'], "district" => $s['district_id'],
+                            "grader" => $s['grader_id']];
+                $sIndex[] = $s['id'];
+            }
+
+            $sites = $s2;
+
+            $g2 = [];
+            $gIndex = [];
+            foreach ($graders as $g) {
+                $g2[$g['grader_id']] = ["cat" => $g['cat_id'], "district" => $g['district_id'],
+                                "site" => $g['site_id'], "specialty" => $g['specialty']];
+                $gIndex[] = $g['grader_id'];
+            }
+
+
+            $graders = $g2;        
+
+            // echo "<pre>";
+            // print_r($graders);
+            // echo "</pre>";
+            
+            // dd(count($graders));
+
+            // file_put_contents('C:\laragon\www\eduapp2\the_graders.inc', serialize($graders));
+            // file_put_contents('C:\laragon\www\eduapp2\the_sites.inc', serialize($sites));            
+
+        } else {
+            return "status: off";
+        }
+
+    }
+
 }
