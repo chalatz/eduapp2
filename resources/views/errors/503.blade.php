@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <meta charset="utf-8">
+        <title>Επιστρέφουμε σε λιγάκι | Edu Web Awards 2017 - Πληροφοριακό Σύστημα.</title>
 
         
 
@@ -17,7 +18,7 @@
                 color: #B0BEC5;
                 display: table;
                 font-weight: 100;
-                font-family: sans-serif;
+                font-family: arial;
             }
 
             .container {
