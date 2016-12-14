@@ -17,6 +17,11 @@ class SitesController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('site_submissions_open', ['only' => [
+            'create',
+            'store',
+        ]]);
+
         $this->middleware('verified');
 
         $this->middleware('must_own_site', ['only' => 'edit']);

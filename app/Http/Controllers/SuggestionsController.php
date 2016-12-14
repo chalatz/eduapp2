@@ -18,6 +18,8 @@ class SuggestionsController extends Controller
 {
   public function __construct()
   {
+      $this->middleware('site_submissions_open');
+
       $this->middleware('verified',
         ['only' => [
           'do_suggest_other_grader',

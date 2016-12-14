@@ -21,6 +21,13 @@ class GradersController extends Controller
   {
       $this->middleware('verified');
 
+      $this->middleware('site_submissions_open', ['only' => [
+        'create',
+        'store',
+        'edit_and_suggest_self',
+        'addSuggestion',
+      ]]);
+
       $this->middleware('must_own_grader', ['only' => [
         'edit',
         'edit_b',

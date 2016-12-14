@@ -25,6 +25,12 @@ class PagesController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('site_submissions_open', ['only' => [
+            'choose_grader_type',
+            'suggest_other_grader',
+            'other_grader_email',
+        ]]);
+
         $this->middleware('verified', ['only' => [
             'choose_grader_type',
             'suggest_other_grader',
