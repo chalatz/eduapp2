@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h4>Σχετικά με την Υποψηφιότητά σας στον 8ο ΔΕΕΙ</h4>
+    <h4>Σχετικά με την Υποψηφιότητά σας στον {{ App\Config::find(1)->index }}ο ΔΕΕΙ</h4>
 
     <p>Αγαπητέ/ή <strong>{{ $grader->last_name }} {{ $grader->first_name }}</strong>,</p>
 

@@ -27,7 +27,7 @@
 
     <div class="container">
         <img class="img-responsive center-block" src="{{ URL::asset('img/edu-header.jpg') }}" alt="Edu Web Awards 2017 logo">
-        <h2>Πληροφοριακό Σύστημα 8ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
+        <h2>Πληροφοριακό Σύστημα {{ App\Config::find(1)->index }}ου Διαγωνισμού Ελληνόφωνων Εκπαιδευτικών Ιστότοπων</h2>
         <hr>
     </div>
 

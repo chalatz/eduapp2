@@ -35,7 +35,7 @@ class EmailsController extends Controller
                     if($grader->id >= $from && $grader->id <= $to ){
                         
                         Mail::send('emails.send_to_past_graders', ['grader' => $grader], function ($message) use ($grader) {                        
-                            $message->to($grader->email, $grader->email)->subject('ΟΡΘΗ ΕΠΑΝΑΛΗΨΗ ως προς ΗΜΕΡΟΜΗΝΙΑ - Πρόσκληση για Αξιολογητής Β Επιπέδου 8ου ΔΕΕΙ');
+                            $message->to($grader->email, $grader->email)->subject('ΟΡΘΗ ΕΠΑΝΑΛΗΨΗ ως προς ΗΜΕΡΟΜΗΝΙΑ - Πρόσκληση για Αξιολογητής Β Επιπέδου {{ App\Config::find(1)->index }}ου ΔΕΕΙ');
                         });
 
                         echo $grader->id .'. '. $grader->email.'<br>';
@@ -64,7 +64,7 @@ class EmailsController extends Controller
                     if($grader->user->hasRole('grader_a') && !$grader->hasSite()){
 
                         Mail::send('emails.send_to_graders_a_without_sites', ['grader' => $grader], function ($message) use ($grader) {                        
-                            $message->to($grader->user->email, $grader->user->email)->subject('Σχετικά με την Υποψηφιότητά σας στον 8ο ΔΕΕΙ');
+                            $message->to($grader->user->email, $grader->user->email)->subject('Σχετικά με την Υποψηφιότητά σας στον {{ App\Config::find(1)->index }}ο ΔΕΕΙ');
                         });
 
                         echo $i . '. ' . $grader->id . '<br>';

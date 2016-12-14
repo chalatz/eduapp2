@@ -12,7 +12,7 @@
 
           <!-- Branding Image -->
           <a class="navbar-brand" href="http://2017.eduwebawards.gr/" target="_blank">
-              8ος ΔΕΕΙ
+              {{ App\Config::find(1)->index }}ος ΔΕΕΙ
           </a>
       </div>
 
