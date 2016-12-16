@@ -11,22 +11,29 @@
     <h1>Υποβολές Υποψηφιότητων</h1>
     <hr>
 
-    <table id="submissions-stats-table" class="table table-striped stats-table submissions-stats-table">
+    <table id="submissions-stats-table" class="table table-striped submissions-stats-table">
 
         <thead>
             <tr>
                 <th>Ημερομηνία</th>
                 <th>Πλήθος Υποβολών</th>
+                <th></th>
             </tr>
         </thead>
 
         <tbody>
         
+            <?php $sites_total = 0; ?>
+
             @foreach($sites as $date => $site)
                 <tr class="submissions-cats-row">
                     <td>{{ $date }}</td>
                     <td>{{ $site->count() }}</td>
+                    <?php $date_arr = explode('-', $date); ?>
+                    <td>{{ $date_arr[2] }}{{ $date_arr[1] }}{{ $date_arr[0] }}</td>
                 </tr>
+
+                <?php $sites_total += $site->count(); ?>
 
                 <script>
                     var the_date = "{{ $date }}",
@@ -41,7 +48,7 @@
 
     </table>
 
-    <p class="lead stats-sum">Σύνολο: <strong>{{ App\Site::all()->count() }}</strong></p>
+    <p class="lead stats-sum">Σύνολο: <strong>{{ $sites_total }}</strong></p>
 
     <div class="chart">
     <div class="ct-chart ct-golden-section"></div>

@@ -151,6 +151,7 @@
           }
       } );
   } );
+
   // End Graders -----
 
   // If the site selects other country, the county gets selected
@@ -172,7 +173,17 @@
         paging: false,
         searching: false,
         info: false
-    }); 
+    });
+
+  $('#submissions-stats-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "columnDefs": [
+            { "orderData": 2, "targets": 0 },
+            { "targets": 2, "visible": false }
+        ]
+  });    
 
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');

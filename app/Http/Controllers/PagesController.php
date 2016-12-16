@@ -167,6 +167,7 @@ class PagesController extends Controller
             });
 
         // foreach($sites as $date => $site){
+        //     dd(explode('-', $date));
         //     echo $date .' '. $site->count() . '<br>';
         // }
 
