@@ -70,13 +70,14 @@
                         <li><a href="{{ url('/statistics') }}">Υποψήφιοι</a></li>
                         <li><a href="{{ url('/grader-statistics/a') }}">Αξιολογητές Α</a></li>
                         <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>
+                        <li><a href="{{ url('submissions') }}">Υποβολές</a></li>
                       </ul>
                   </li>                  
                 @endif                                
 
               @endif
 
-                              @if(Auth::check())
+                @if(Auth::check())
                   @if(!Auth::user()->hasRole('member') && !Auth::user()->hasRole('admin') && !Auth::user()->hasRole('ninja'))
                     <li><a href="{{ url('/statistics') }}">Στατιστικά</a></li>
                   @endif

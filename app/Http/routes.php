@@ -69,6 +69,7 @@ Route::group(['middleware' => 'web'], function () {
     // ----- Statitics ---- //
     Route::get('statistics', ['as' => 'statistics', 'uses' => 'PagesController@statistics']);
     Route::get('grader-statistics/{grader_type}', ['as' => 'grader_statistics', 'uses' => 'PagesController@grader_statistics']);
+    Route::get('submissions', ['as' => 'submissions', 'uses' => 'PagesController@submissions']);
 
     // ----- Modals in statitics ---- //
     Route::get('get-sites-stats/{type}/{id}', ['as' => 'get_sites_stats', 'uses' => 'PagesController@get_sites_stats']);

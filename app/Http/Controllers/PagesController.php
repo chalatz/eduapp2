@@ -19,6 +19,8 @@ use App\Http\Utilities\District;
 use App\Http\Utilities\Specialty;
 use App\Http\Utilities\Teaching_xp;
 
+use Carbon\Carbon;
+
 use Auth;
 
 class PagesController extends Controller
@@ -50,6 +52,7 @@ class PagesController extends Controller
 
         $this->middleware('is_member', ['only' => [
             'grader_statistics',
+            'submissions',
         ]]);
 
     }
@@ -151,7 +154,24 @@ class PagesController extends Controller
 
         return view('pages.graders_modal_body', compact('graders','grader_type', 'type', 'id'));
 
-    }   
+    }
+
+    public function submissions()
+    {
+           
+        $sites = Site::latest()
+            ->get()
+            ->reverse()
+            ->groupBy(function($item){ 
+                return $item->created_at->format('d-m-y'); 
+            });
+
+        // foreach($sites as $date => $site){
+        //     echo $date .' '. $site->count() . '<br>';
+        // }
+
+        return view('pages.submissions', compact('sites'));
+    }
 
     public function test()
     {
