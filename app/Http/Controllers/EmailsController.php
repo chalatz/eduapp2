@@ -51,7 +51,7 @@ class EmailsController extends Controller
 
     public function send_to_graders_a_without_sites()
     {
-        $status = 'off';
+        $status = 'on';
 
         if($status == 'on'){
 
