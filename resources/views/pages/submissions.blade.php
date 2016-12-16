@@ -41,22 +41,24 @@
 
     </table>
 
-<div class="chart">
-  <div class="ct-chart ct-golden-section"></div>
-</div>
+    <p class="lead stats-sum">Σύνολο: <strong>{{ App\Site::all()->count() }}</strong></p>
 
-<script>
+    <div class="chart">
+    <div class="ct-chart ct-golden-section"></div>
+    </div>
 
-new Chartist.Line('.ct-chart', {
-    labels: the_dates,
-    series: [
-        the_site_counts
-    ]
-}, {
-  fullWidth: true,
-});
+    <script>
 
-</script>
-    
-</div>
+        new Chartist.Line('.ct-chart', {
+            labels: the_dates,
+            series: [
+                the_site_counts
+            ]
+        }, {
+        fullWidth: true,
+        });
+
+    </script>
+        
+    </div>
 @endsection
