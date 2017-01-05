@@ -22,7 +22,7 @@
                                        <tr>
                                           <td>
                                             <img class="img-responsive center-block" src="http://www.eduwebawards.gr/app2/public/img/edu-header.jpg" alt="Edu Web Awards 2017 logo">
-                                             <h1>{{ App\Config::find(1)->index }}ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2017</h1>
+                                             <h1>{{ App\Config::first()->index }}ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2017</h1>
                                           </td>
                                           <td class="expander"></td>
                                        </tr>

@@ -21,7 +21,7 @@ class SiteSubmissionsOpen
         return $next($request);
 
         // Check if the site submissions are open
-        // $config = Config::find(1);
+        // $config = Config::first();
 
         // if($config->site_submissions){
         //     return $next($request);

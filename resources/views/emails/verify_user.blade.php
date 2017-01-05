@@ -22,7 +22,7 @@
                                        <tr>
                                           <td>
                                              <img class="img-responsive center-block" src="http://www.eduwebawards.gr/app2/public/img/edu-header.jpg" alt="Edu Web Awards 2017 logo">                                          
-                                             <h1>{{ App\Config::find(1)->index }}ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2017</h1>
+                                             <h1>{{ App\Config::first()->index }}ος Διαγωνισμός Ελληνόφωνων Εκπαιδευτικών Ιστότοπων 2017</h1>
                                           </td>
                                           <td class="expander"></td>
                                        </tr>
@@ -39,7 +39,7 @@
                                           <td>
                                              <h3>Επιβεβαίωση Εγγραφής</h3>
                                              <p>
-                                                Αυτό το μήνυμα έχει σταλεί για να επιβεβαιώσετε την εγγραφή σας στον {{ App\Config::find(1)->index }}ο Διαγωνισμό Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.
+                                                Αυτό το μήνυμα έχει σταλεί για να επιβεβαιώσετε την εγγραφή σας στον {{ App\Config::first()->index }}ο Διαγωνισμό Ελληνόφωνων Εκπαιδευτικών Ιστότοπων.
                                              </p>
                                              <p>Για να επιβεβαιώσετε το e-mail σας, πατήστε σε αυτόν τον σύνδεσμο:</p>
                                              <p><a href="{{ $data['verification_url'] }}">{{ $data['verification_url'] }}</a></p>

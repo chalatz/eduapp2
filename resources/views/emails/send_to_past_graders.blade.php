@@ -2,12 +2,12 @@
 
 @section('content')
 
-    <h3>Πρόσκληση για Αξιολογητές Β’ Επιπέδου {{ App\Config::find(1)->index }}ου ΔΕΕΙ</h3>
+    <h3>Πρόσκληση για Αξιολογητές Β’ Επιπέδου {{ App\Config::first()->index }}ου ΔΕΕΙ</h3>
 
     <p>Αγαπητέ/ή <strong>{{ $grader->name }}</strong>,</p>
 
     <p>
-        Σας προσκαλούμε να συμμετέχετε στον <a href="http://2017.eduwebawards.gr/">{{ App\Config::find(1)->index }}ο Διαγωνισμό Ελληνόφωνων Εκπαιδευτικών Ιστότοπων ({{ App\Config::find(1)->index }}ος ΔΕΕΙ)</a>, ως Αξιολογητής Β’ επιπέδου. 
+        Σας προσκαλούμε να συμμετέχετε στον <a href="http://2017.eduwebawards.gr/">{{ App\Config::first()->index }}ο Διαγωνισμό Ελληνόφωνων Εκπαιδευτικών Ιστότοπων ({{ App\Config::first()->index }}ος ΔΕΕΙ)</a>, ως Αξιολογητής Β’ επιπέδου. 
     </p>
 
     <p>
@@ -27,7 +27,7 @@
     </p>
 
     <p>
-        Για την αποδοχή της πρόσκλησης θα χρειαστεί να εγγραφείτε στο Πληροφοριακό Σύστημα του {{ App\Config::find(1)->index }}ου ΔΕΕΙ από <a href="http://www.eduwebawards.gr/app2/public/">εδώ</a> (<a href="http://www.eduwebawards.gr/app2/public/">http://www.eduwebawards.gr/app2/public/</a>) και αφού συνδεθείτε να συμπληρώσετε τη φόρμα <em>Υποβολή Συμμετοχής ως Αξιολογητής Β</em>, μέχρι τις <strong>24 Δεκεμβρίου 2016</strong>.
+        Για την αποδοχή της πρόσκλησης θα χρειαστεί να εγγραφείτε στο Πληροφοριακό Σύστημα του {{ App\Config::first()->index }}ου ΔΕΕΙ από <a href="http://www.eduwebawards.gr/app2/public/">εδώ</a> (<a href="http://www.eduwebawards.gr/app2/public/">http://www.eduwebawards.gr/app2/public/</a>) και αφού συνδεθείτε να συμπληρώσετε τη φόρμα <em>Υποβολή Συμμετοχής ως Αξιολογητής Β</em>, μέχρι τις <strong>24 Δεκεμβρίου 2016</strong>.
     </p>
 
     <p>
@@ -39,7 +39,7 @@
     </p>
 
     <p>
-        Η συμβολή και η συνεργασία σας θεωρείται πολύτιμη για την επιτυχή διεξαγωγή του {{ App\Config::find(1)->index }}ου ΔΕΕΙ.
+        Η συμβολή και η συνεργασία σας θεωρείται πολύτιμη για την επιτυχή διεξαγωγή του {{ App\Config::first()->index }}ου ΔΕΕΙ.
     </p>   
 
 @endsection
