@@ -1,4 +1,4 @@
-{{-- @if(App\Config::first()->site_submissions) --}}
+@if(App\Config::first()->site_submissions)
 
   @if(Auth::check() && Auth::user()->verified)
 
@@ -24,7 +24,7 @@
 
       @endforeach
 
-    {{-- @endif --}}
+    @endif
 
   @endif
 

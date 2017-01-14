@@ -1,6 +1,6 @@
 @if(Auth::check() && Auth::user()->verified)
 
-    {{-- @if(App\Config::first()->site_submissions) --}}
+    @if(App\Config::first()->site_submissions)
 
         @if(Auth::user()->canCreateSite())
             <div class="row">
@@ -58,7 +58,7 @@
 
             @endif
 
-    {{-- @endif --}}
+    @endif
 
 @endif
 

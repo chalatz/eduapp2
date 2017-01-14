@@ -18,18 +18,18 @@ class SiteSubmissionsOpen
     public function handle($request, Closure $next)
     {
         // this is temporary
-        return $next($request);
+        //return $next($request);
 
-        // Check if the site submissions are open
-        // $config = Config::first();
+        //Check if the site submissions are open
+        $config = Config::first();
 
-        // if($config->site_submissions){
-        //     return $next($request);
-        // }
+        if($config->site_submissions){
+            return $next($request);
+        }
 
-        // alert()->error('Η υποβολή Υποψηφιοτήτων και προτάσεων Αξιολογητών Α έχει λήξει.')
-        //         ->persistent('Εντάξει');
+        alert()->error('Η υποβολή Υποψηφιοτήτων και προτάσεων Αξιολογητών Α έχει λήξει.')
+                ->persistent('Εντάξει');
 
-        // return redirect()->route('home');
+        return redirect()->route('home');
     }
 }
