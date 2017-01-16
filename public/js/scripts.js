@@ -266,6 +266,24 @@
 
   $('body .dropdown-toggle').dropdown();
 
+    // Ajax post
+    $('.handle-sites-form').submit(function(event){
+
+    event.preventDefault();
+
+    var form = $(this),
+        site_id = form.attr('id'),
+        specialty_id = $('#specialty_id-' + site_id).val();
+
+
+    $.post('/handle-sites', { 'specialty_id' : specialty_id, '_token': $('input[name=_token]').val() }, function(data){
+        console.log(data);
+    });
+
+    
+      
+  });
+
   // Ajax test
 //   $('#ajax-btn').on('click', function(e){
 

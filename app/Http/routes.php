@@ -60,6 +60,13 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('admin/approve/grader/{grader_id}', ['as' => 'members.approve', 'uses' => 'MembersController@approve']);
 
+    Route::get('admin/handle-sites/{cat_id}', ['as' => 'admin.handle_sites', 'uses' => 'MembersController@handle_sites']);
+    Route::post('handle-sites', function(){
+        if(Request::ajax()){
+            return Response::json(Request::all());
+        }
+    });
+
     // ----- ADMIN ------ //
     Route::get('admin/masquerade/{user_id}', ['as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
     Route::get('admin/switch-back', ['as' => 'admin.switch_back', 'uses' => 'AdminController@switch_back']);

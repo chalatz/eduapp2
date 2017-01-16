@@ -86,4 +86,18 @@ class MembersController extends Controller
 
   }
 
+  public function handle_sites($cat_id)
+  {
+    $accepted_cat_ids = ['1','2','3','6'];
+
+    if(!in_array($cat_id, $accepted_cat_ids)){
+      return redirect()->route('home');
+    }
+
+    $sites = Site::where('cat_id', $cat_id)->get();
+
+    return view('members.handle_sites', compact('sites', 'cat_id'));
+
+  }
+
 }
