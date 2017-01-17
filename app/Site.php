@@ -33,6 +33,9 @@ class Site extends Model
         'contact_phone',
         'contact_address',
         'i_agree',
+        'specialty_id',
+        'primary_edu_id',
+        'secondary_edu_id',
     ];
 
     public function user()

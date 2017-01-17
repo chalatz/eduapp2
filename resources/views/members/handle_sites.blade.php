@@ -34,10 +34,11 @@
           <form class="handle-sites-form" id="{{ $site->id }}" action="handle-sites">
             <td>
               {{ Form::token() }}
-              {{ Form::select('specialty_id-'.$site->id, $specialties::all(), null, ['class' => 'form-control', 'id' => 'specialty_id-'.$site->id]) }}
+              {{ Form::select('specialty_id-'.$site->id, $specialties::all(), isset($site->specialty_id) ? $site->specialty_id : null, ['class' => 'form-control', 'id' => 'specialty_id-'.$site->id]) }}
             </td>
             <td>
               {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary']) }}
+              <span id="site-ok-{{ $site->id }}" class="label label-success"></span>
             </td>
           </form>
           <td>i{{ sprintf("%03d", $site->id) }}</td>
@@ -61,5 +62,10 @@
 </tfoot>
 
 </table>
+
+<script>
+  var handle_sites_post_url = '{{ route("admin.post_handle_sites") }}';
+  var token = '{{ csrf_token() }}';
+</script>
 
 @endsection

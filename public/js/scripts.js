@@ -272,13 +272,26 @@
     event.preventDefault();
 
     var form = $(this),
-        site_id = form.attr('id'),
-        specialty_id = $('#specialty_id-' + site_id).val();
+        site__id = form.attr('id'),
+        specialty__id = $('#specialty_id-' + site__id).val();
 
-
-    $.post('/handle-sites', { 'specialty_id' : specialty_id, '_token': $('input[name=_token]').val() }, function(data){
-        console.log(data);
+    $.ajax({
+        method: 'POST',
+        url: handle_sites_post_url,
+        data: {
+            site_id: site__id,
+            specialty_id : specialty__id,
+            _token: token
+        },
+    }).done(function(msg){
+        $('#site-ok-' + site__id).html('OK!').fadeIn();
+        console.log(msg['message']);
     });
+
+
+    // $.post(url, { 'specialty_id' : specialty_id, '_token': $('input[name=_token]').val() }, function(data){
+    //     console.log(data);
+    // });
 
     
       

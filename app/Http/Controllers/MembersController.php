@@ -100,4 +100,21 @@ class MembersController extends Controller
 
   }
 
+  public function post_handle_sites(Request $request)
+  {
+    $site_id = $request->site_id;
+
+    $specialty_id = $request->specialty_id;
+
+    $site = Site::find($site_id);
+
+    $site->specialty_id = $specialty_id;
+
+    $site->save();
+
+    return response()->json(['message' => $request['site_id']]);
+
+  }
+  
+
 }

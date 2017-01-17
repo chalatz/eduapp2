@@ -61,11 +61,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/approve/grader/{grader_id}', ['as' => 'members.approve', 'uses' => 'MembersController@approve']);
 
     Route::get('admin/handle-sites/{cat_id}', ['as' => 'admin.handle_sites', 'uses' => 'MembersController@handle_sites']);
-    Route::post('handle-sites', function(){
-        if(Request::ajax()){
-            return Response::json(Request::all());
-        }
-    });
+    Route::post('admin/post-handle-sites', ['as' => 'admin.post_handle_sites', 'uses' => 'MembersController@post_handle_sites']);
+    // Route::post('handle-sites', function(){
+    //     if(Request::ajax()){
+    //         return Response::json(Request::all());
+    //     }
+    // });
 
     // ----- ADMIN ------ //
     Route::get('admin/masquerade/{user_id}', ['as' => 'admin.masquerade', 'uses' => 'AdminController@masquerade']);
