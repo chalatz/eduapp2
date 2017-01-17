@@ -58,6 +58,9 @@
                         <li><a href="{{ url('/admin/sites') }}">Υποψήφιοι</a></li>
                         <li><a href="{{ url('/admin/graders/a') }}">Αξιολογητές Α</a></li>
                         <li><a href="{{ url('/admin/graders/b') }}">Αξιολογητές Β</a></li>
+                        <li><a href="{{ url('admin/handle-sites/1') }}">Πρωτοβάθμια</a></li>
+                        <li><a href="{{ url('admin/handle-sites/3') }}">Δευτεροβάθμια</a></li>
+                        <li><a href="{{ url('admin/handle-sites/6') }}">Προσωπικοί</a></li>
                       </ul>
                   </li>
 
