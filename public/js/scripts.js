@@ -272,29 +272,34 @@
     event.preventDefault();
 
     var form = $(this),
-        site__id = form.attr('id'),
-        specialty__id = $('#specialty_id-' + site__id).val();
+        site__id = form.attr('id');
+        
+        if(handle_sites_cat__id === '6'){
+            property__id = $('#specialty_id-' + site__id).val();
+        }
 
-    $.ajax({
-        method: 'POST',
-        url: handle_sites_post_url,
-        data: {
-            site_id: site__id,
-            specialty_id : specialty__id,
-            _token: token
-        },
-    }).done(function(msg){
-        $('#site-ok-' + site__id).html('OK!').fadeIn();
-        console.log(msg['message']);
-    });
+        if(handle_sites_cat__id === '1'){
+            property__id = $('#primary_edu_id-' + site__id).val();
+        }
 
+        if(handle_sites_cat__id === '3'){
+            property__id = $('#secondary_edu_id-' + site__id).val();
+        }        
 
-    // $.post(url, { 'specialty_id' : specialty_id, '_token': $('input[name=_token]').val() }, function(data){
-    //     console.log(data);
-    // });
+        $.ajax({
+            method: 'POST',
+            url: handle_sites_post_url,
+            data: {
+                site_id: site__id,
+                property_id : property__id,
+                handle_sites_cat_id: handle_sites_cat__id,
+                _token: token
+            },
+        }).done(function(msg){
+            $('#site-ok-' + site__id).html('OK!').fadeIn();
+            console.log(msg['message']);
+        });
 
-    
-      
   });
 
   // Ajax test

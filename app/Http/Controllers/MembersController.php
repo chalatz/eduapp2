@@ -88,7 +88,7 @@ class MembersController extends Controller
 
   public function handle_sites($cat_id)
   {
-    $accepted_cat_ids = ['1','2','3','6'];
+    $accepted_cat_ids = ['1','3','6'];
 
     if(!in_array($cat_id, $accepted_cat_ids)){
       return redirect()->route('home');
@@ -104,11 +104,21 @@ class MembersController extends Controller
   {
     $site_id = $request->site_id;
 
-    $specialty_id = $request->specialty_id;
+    $property_id = $request->property_id;
 
     $site = Site::find($site_id);
 
-    $site->specialty_id = $specialty_id;
+    if($request->handle_sites_cat_id == 6){
+      $site->specialty_id = $property_id;
+    }
+
+    if($request->handle_sites_cat_id == 1){
+      $site->primary_edu_id = $property_id;
+    }
+
+    if($request->handle_sites_cat_id == 3){
+      $site->secondary_edu_id = $property_id;
+    }
 
     $site->save();
 
