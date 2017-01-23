@@ -18,31 +18,49 @@ class AssignmentsController extends Controller
 
         // create the sites array
         $sites = $this->the_sites_array();
+        $sites2 = $this->the_sites_array();
+
+        echo "=================== SITES ==================================<br>";
+        print_r($sites);
+        echo "=================== END SITES ==================================<br>";
 
         // create the graders array
         $graders = $this->the_graders_array();
+        $graders2 = $this->the_graders_array();
+
+        echo "=================== GRADERS ==================================<br>";
+        print_r($graders);
+        echo "=================== END GRADERS ==================================<br>";
 
         $a = [];
 
         $i = 0;
+        $j = 0;
 
         foreach($sites as $site_key => $site){
-            if($site['graders_left'] > 0){
+            if($sites2[$j]['graders_left'] > 0){
                 foreach($graders as $grader_key => $grader){
                     if(
                         $grader['id'] != $site['grader_id'] && 
                         $grader['district_id'] != $site['district_id'] && 
-                        $grader['sites_left'] > 0
+                        $graders2[$i]['sites_left'] > 0
                     ){
                         $a[$i]['site_id'] = $site['id'];
                         $a[$i]['grader_id'] = $grader['id'];
-                        $sites[$site_key]['graders_left'] -= 1;
-                        $graders[$grader_key]['sites_left'] -= 1;
+                        
+                        // $sites[$site_key]['graders_left'] -= 1;
+                        // $graders[$grader_key]['sites_left'] -= 1;
+
+                        $a[$i]['graders_left'] = $site['graders_left'];
+                        $a[$i]['sites_left'] = $grader['sites_left'];
 
                         $i++;
+
                     }
                 }
             }
+
+            $j++;
             
         }
 
@@ -51,14 +69,27 @@ class AssignmentsController extends Controller
 
         // }
 
-        
+        echo "=================== ASSIGNMENTS ==================================<br>";
         print_r($a);
+        echo "=================== ASSIGNMENTS ==================================<br>";
 
         echo "</pre>";
 
 
         //dd($the_graders);
 
+
+    }
+
+    public function assigns_tables()
+    {
+        $status = 'on';
+
+        if($status == 'on'){
+
+            
+
+        }
 
     }
 

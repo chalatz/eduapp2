@@ -88,6 +88,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/send-to-graders-a-without-sites', ['as' => 'admin.send_to_graders_a_without_sites', 'uses' => 'EmailsController@send_to_graders_a_without_sites']);
 
     // ---- ASSIGNMENTS --- //
+    Route::get('assigns', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
     Route::get('assigns', ['as' => 'assigns', 'uses' => 'AssignmentsController@assigns']);
 
     // ----- TESTING ----- //
