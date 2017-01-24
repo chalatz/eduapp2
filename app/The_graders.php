@@ -11,6 +11,8 @@ class The_graders extends Model
     protected $fillable = [
         'grader_id',
         'district_id',
+        'cat_id',
+        'specialty_id',
         'sites_left',
     ];
 

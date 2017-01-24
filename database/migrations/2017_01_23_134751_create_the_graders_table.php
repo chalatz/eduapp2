@@ -17,6 +17,8 @@ class CreateTheGradersTable extends Migration
 
             $table->integer('grader_id')->unsigned()->default(0);
             $table->integer('district_id')->unsigned()->default(0);
+            $table->integer('cat_id')->unsigned()->default(0);
+            $table->integer('specialty_id')->unsigned()->default(0);
             $table->integer('sites_left')->unsigned()->default(0);
 
             $table->timestamps();

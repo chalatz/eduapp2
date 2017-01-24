@@ -17,6 +17,8 @@ class CreateTheSitesTable extends Migration
 
             $table->integer('site_id')->unsigned();
             $table->integer('district_id')->unsigned()->default(0);
+            $table->integer('cat_id')->unsigned()->default(0);
+            $table->integer('specialty_id')->unsigned()->default(0);
             $table->integer('grader_id')->unsigned()->default(0);
             $table->integer('graders_left')->unsigned()->default(0);
 

@@ -11,7 +11,9 @@ class The_sites extends Model
     protected $fillable = [
         'site_id',
         'district_id',
+        'cat_id',
         'grader_id',
+        'specialty_id',
         'graders_left',
     ];
 

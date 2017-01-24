@@ -17,13 +17,19 @@ use App\Http\Requests;
 
 class AssignmentsController extends Controller
 {
-    public function assigns_a()
+    public function assigns_a($type)
     {
-        $sites = The_sites::all();
+        DB::table('assignments')->truncate();
+
+        if($type == 'all'){
+            $sites = The_sites::all();
+        }
+
+        if($type == 'personal'){
+            $sites = The_sites::where('cat_id', 6)->get();
+        }
 
         $graders = The_graders::all();
-
-        DB::table('assignments')->truncate();
 
         foreach($sites as $site){
             if($site->graders_left > 0){
@@ -31,6 +37,7 @@ class AssignmentsController extends Controller
                     if(
                         $grader->grader_id != $site->grader_id &&
                         $grader->district_id != $site->district_id &&
+                        $grader->cat_id != $site->cat_id &&
                         $grader->sites_left > 0
                     ){
                         $data = [];
@@ -57,75 +64,6 @@ class AssignmentsController extends Controller
 
     }
 
-    public function assigns()
-    {
-        echo "<pre>";
-
-        // create the sites array
-        $sites = $this->the_sites_array();
-        $sites2 = $this->the_sites_array();
-
-        echo "=================== SITES ==================================<br>";
-        print_r($sites);
-        echo "=================== END SITES ==================================<br>";
-
-        // create the graders array
-        $graders = $this->the_graders_array();
-        $graders2 = $this->the_graders_array();
-
-        echo "=================== GRADERS ==================================<br>";
-        print_r($graders);
-        echo "=================== END GRADERS ==================================<br>";
-
-        $a = [];
-
-        $i = 0;
-        $j = 0;
-
-        foreach($sites as $site_key => $site){
-            if($sites2[$j]['graders_left'] > 0){
-                foreach($graders as $grader_key => $grader){
-                    if(
-                        $grader['id'] != $site['grader_id'] && 
-                        $grader['district_id'] != $site['district_id'] && 
-                        $graders2[$i]['sites_left'] > 0
-                    ){
-                        $a[$i]['site_id'] = $site['id'];
-                        $a[$i]['grader_id'] = $grader['id'];
-                        
-                        // $sites[$site_key]['graders_left'] -= 1;
-                        // $graders[$grader_key]['sites_left'] -= 1;
-
-                        $a[$i]['graders_left'] = $site['graders_left'];
-                        $a[$i]['sites_left'] = $grader['sites_left'];
-
-                        $i++;
-
-                    }
-                }
-            }
-
-            $j++;
-            
-        }
-
-        // foreach($sites as $key => $value){
-        //     $sites[$key]['graders_left'] = 0;
-
-        // }
-
-        echo "=================== ASSIGNMENTS ==================================<br>";
-        print_r($a);
-        echo "=================== ASSIGNMENTS ==================================<br>";
-
-        echo "</pre>";
-
-
-        //dd($the_graders);
-
-
-    }
-
     public function assigns_tables($type)
     {
         $status = 'on';
@@ -142,6 +80,8 @@ class AssignmentsController extends Controller
                     $data = [];
                     $data['site_id'] = $site->id;
                     $data['district_id'] = $site->district_id;
+                    $data['cat_id'] = $site->cat_id;
+                    $data['specialty_id'] = $site->specialty_id;
                     $data['grader_id'] = $site->grader_id;
                     $data['graders_left'] = 2;
 
@@ -164,6 +104,8 @@ class AssignmentsController extends Controller
                             $data = [];
                             $data['grader_id'] = $grader->id;
                             $data['district_id'] = $grader->district_id;
+                            $data['cat_id'] = $grader->sites->first()->cat_id;
+                            $data['specialty_id'] = $grader->specialty_id;
                             $data['sites_left'] = $grader->suggestions_count * 2;
                         }
                     }
