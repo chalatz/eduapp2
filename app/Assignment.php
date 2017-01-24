@@ -4,14 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class The_graders extends Model
+class Assignment extends Model
 {
-    protected $table = 'the_graders';
-
     protected $fillable = [
+        'site_id',
         'grader_id',
-        'district_id',
-        'sites_left',
     ];
-
 }

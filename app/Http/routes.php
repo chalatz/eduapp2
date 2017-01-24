@@ -88,8 +88,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/send-to-graders-a-without-sites', ['as' => 'admin.send_to_graders_a_without_sites', 'uses' => 'EmailsController@send_to_graders_a_without_sites']);
 
     // ---- ASSIGNMENTS --- //
-    Route::get('assigns', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
+    Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
     Route::get('assigns', ['as' => 'assigns', 'uses' => 'AssignmentsController@assigns']);
+    Route::get('assigns_a', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

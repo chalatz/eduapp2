@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Grader;
 use App\Site;
 use App\Suggestion;
+use App\The_sites;
+use App\The_graders;
+use App\Assignment;
+
+use DB;
 
 use Illuminate\Http\Request;
 
@@ -12,6 +17,46 @@ use App\Http\Requests;
 
 class AssignmentsController extends Controller
 {
+    public function assigns_a()
+    {
+        $sites = The_sites::all();
+
+        $graders = The_graders::all();
+
+        DB::table('assignments')->truncate();
+
+        foreach($sites as $site){
+            if($site->graders_left > 0){
+                foreach($graders as $grader){
+                    if(
+                        $grader->grader_id != $site->grader_id &&
+                        $grader->district_id != $site->district_id &&
+                        $grader->sites_left > 0
+                    ){
+                        $data = [];
+                        $data['site_id'] = $site->id;
+                        $data['grader_id'] = $grader->grader_id;
+                        
+                        Assignment::create($data);
+
+                        $site->graders_left -= 1;
+                        $site->save();
+
+                        $grader->sites_left -= 1;
+                        $grader->save();
+                    }
+
+                        $the_site = The_sites::where('site_id', $site->site_id)->first();
+                        if($the_site->graders_left == 0){
+                            break;
+                        }
+                }
+
+            }
+        }
+
+    }
+
     public function assigns()
     {
         echo "<pre>";
@@ -81,14 +126,57 @@ class AssignmentsController extends Controller
 
     }
 
-    public function assigns_tables()
+    public function assigns_tables($type)
     {
         $status = 'on';
 
         if($status == 'on'){
 
-            
+            if($type=='sites'){
 
+                DB::table('the_sites')->truncate();
+
+                $sites = Site::all();
+
+                foreach($sites as $site){
+                    $data = [];
+                    $data['site_id'] = $site->id;
+                    $data['district_id'] = $site->district_id;
+                    $data['grader_id'] = $site->grader_id;
+                    $data['graders_left'] = 2;
+
+                    The_sites::create($data);
+                    
+                }
+
+                return "sites ok";
+            }
+
+            if($type=='graders_a'){
+
+                DB::table('the_graders')->truncate();
+
+                $graders = Grader::all();
+
+                foreach($graders as $grader){
+                    if(!$grader->user->hasRole('member')){
+                        if($grader->user->hasRole('grader_a') && $grader->hasSite()){
+                            $data = [];
+                            $data['grader_id'] = $grader->id;
+                            $data['district_id'] = $grader->district_id;
+                            $data['sites_left'] = $grader->suggestions_count * 2;
+                        }
+                    }
+
+                    The_graders::create($data);
+                    
+                }
+
+                return "graders A ok";
+            }            
+
+        } else {
+            return "status: off";
         }
 
     }

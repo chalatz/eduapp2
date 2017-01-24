@@ -15,9 +15,9 @@ class CreateTheGradersTable extends Migration
         Schema::create('the_graders', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('grader_id')->unsigned();
-            $table->integer('district_id')->unsigned();
-            $table->integer('sites_left')->unsigned();
+            $table->integer('grader_id')->unsigned()->default(0);
+            $table->integer('district_id')->unsigned()->default(0);
+            $table->integer('sites_left')->unsigned()->default(0);
 
             $table->timestamps();
         });

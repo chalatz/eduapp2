@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTheSitesTable extends Migration
+class CreateAssignmentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateTheSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('the_sites', function (Blueprint $table) {
+        Schema::create('assignments', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('site_id')->unsigned();
-            $table->integer('district_id')->unsigned()->default(0);
-            $table->integer('grader_id')->unsigned()->default(0);
-            $table->integer('graders_left')->unsigned()->default(0);
+            $table->integer('grader_id')->unsigned();
 
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ class CreateTheSitesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('the_sites');
+        Schema::drop('assignments');
     }
 }
