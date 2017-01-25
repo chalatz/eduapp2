@@ -17,6 +17,14 @@ use App\Http\Requests;
 
 class AssignmentsController extends Controller
 {
+  public function __construct()
+    {
+        $this->middleware('verified');
+
+        $this->middleware('is_member');
+
+    }
+
     public function assigns_a($type)
     {
         DB::table('assignments')->truncate();
