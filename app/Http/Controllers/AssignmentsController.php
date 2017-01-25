@@ -30,7 +30,16 @@ class AssignmentsController extends Controller
         $sites = Site::all();
 
         return view('assignments.panel_a', compact('sites'));
-    }   
+    }
+
+    public function assign_site_a($site_id)
+    {
+        $site = Site::find($site_id);
+        $assignments = Assignment::where('site_id', $site->id)->get();
+
+        return view('assignments.assign_site_a', compact('site', 'assignments'));
+
+    }  
 
     public function assigns_a($type)
     {
