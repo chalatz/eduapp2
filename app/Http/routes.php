@@ -91,6 +91,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
     Route::get('assigns_a/{type}', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
 
+    Route::get('panel/assignments/a', ['as' => 'assignments_panel_a', 'uses' => 'AssignmentsController@assignments_panel_a']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

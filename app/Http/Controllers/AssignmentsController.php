@@ -25,6 +25,13 @@ class AssignmentsController extends Controller
 
     }
 
+    public function assignments_panel_a()
+    {
+        $sites = Site::all();
+
+        return view('assignments.panel_a', compact('sites'));
+    }   
+
     public function assigns_a($type)
     {
         DB::table('assignments')->truncate();
@@ -41,9 +48,19 @@ class AssignmentsController extends Controller
 
         foreach($sites as $site){
             if($site->graders_left > 0){
+
                 foreach($graders as $grader){
+                    
+                    if(Assignment::where('site_id', $site->id)->count() > 0){
+                        $assignment = Assignment::where('site_id', $site->id)->first();
+                        $existed_grader_id = $assignment->grader_id;
+                    } else {
+                        $existed_grader_id = 0;
+                    }
+
                     if(
                         $grader->grader_id != $site->grader_id &&
+                        $grader->grader_id != $existed_grader_id &&
                         $grader->district_id != $site->district_id &&
                         $grader->cat_id != $site->cat_id &&
                         $grader->sites_left > 0
@@ -94,7 +111,7 @@ class AssignmentsController extends Controller
                     $data['graders_left'] = 2;
 
                     The_sites::create($data);
-                    
+                    unset($data);
                 }
 
                 return "sites ok";
@@ -115,10 +132,11 @@ class AssignmentsController extends Controller
                             $data['cat_id'] = $grader->sites->first()->cat_id;
                             $data['specialty_id'] = $grader->specialty_id;
                             $data['sites_left'] = $grader->suggestions_count * 2;
+                            
+                            The_graders::create($data);
+                            unset($data);
                         }
                     }
-
-                    The_graders::create($data);
                     
                 }
 
