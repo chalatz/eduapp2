@@ -56,6 +56,58 @@ class AssignmentsController extends Controller
 
         $graders = The_graders::all();
 
+        $this->attempt_a($sites, $graders);
+
+
+    }
+
+    private function attempt_a($sites, $graders){
+
+        foreach($sites as $site){
+            if($site->graders_left > 0){
+
+                foreach($graders as $grader){
+                    
+                    if(Assignment::where('site_id', $site->id)->count() > 0){
+                        $assignment = Assignment::where('site_id', $site->id)->first();
+                        $existed_grader_id = $assignment->grader_id;
+                    } else {
+                        $existed_grader_id = 0;
+                    }
+
+                    if(
+                        $grader->grader_id != $site->grader_id &&
+                        $grader->grader_id != $existed_grader_id &&
+                        $grader->district_id != $site->district_id &&
+                        //$grader->cat_id != $site->cat_id &&
+                        $grader->sites_left > 0
+                    ){
+                        $data = [];
+                        $data['site_id'] = $site->id;
+                        $data['grader_id'] = $grader->grader_id;
+                        
+                        Assignment::create($data);
+
+                        $site->graders_left -= 1;
+                        $site->save();
+
+                        $grader->sites_left -= 1;
+                        $grader->save();
+                    }
+
+                        $the_site = The_sites::where('site_id', $site->site_id)->first();
+                        if($the_site->graders_left == 0){
+                            break;
+                        }
+                }
+
+            }
+        }
+
+    }
+
+    private function attempt_b($sites, $graders){
+
         foreach($sites as $site){
 
             if($site->graders_left > 0){
@@ -150,47 +202,6 @@ class AssignmentsController extends Controller
 
 
         }
-
-        // foreach($sites as $site){
-        //     if($site->graders_left > 0){
-
-        //         foreach($graders as $grader){
-                    
-        //             if(Assignment::where('site_id', $site->id)->count() > 0){
-        //                 $assignment = Assignment::where('site_id', $site->id)->first();
-        //                 $existed_grader_id = $assignment->grader_id;
-        //             } else {
-        //                 $existed_grader_id = 0;
-        //             }
-
-        //             if(
-        //                 $grader->grader_id != $site->grader_id &&
-        //                 $grader->grader_id != $existed_grader_id &&
-        //                 $grader->district_id != $site->district_id &&
-        //                 //$grader->cat_id != $site->cat_id &&
-        //                 $grader->sites_left > 0
-        //             ){
-        //                 $data = [];
-        //                 $data['site_id'] = $site->id;
-        //                 $data['grader_id'] = $grader->grader_id;
-                        
-        //                 Assignment::create($data);
-
-        //                 $site->graders_left -= 1;
-        //                 $site->save();
-
-        //                 $grader->sites_left -= 1;
-        //                 $grader->save();
-        //             }
-
-        //                 $the_site = The_sites::where('site_id', $site->site_id)->first();
-        //                 if($the_site->graders_left == 0){
-        //                     break;
-        //                 }
-        //         }
-
-        //     }
-        // }
 
     }
 
