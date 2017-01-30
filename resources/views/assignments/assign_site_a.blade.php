@@ -14,7 +14,7 @@
 <h1 class="bg-success" style="padding: .5em 1em; margin-bottom: 1.5em">
     Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Α
 </h1>
-<div class="container">
+<div style="padding: 0 2em;">
 
     <div class="row">
         <div class="col-md-12">
@@ -146,6 +146,7 @@
                             <strong>Περ.</strong>   - Περιφέρεια<br>
                             <strong>Κατ.</strong> - Κατηγορία site υποψηφιότητας Αξιολογητή<br>
                             <strong>Ειδ.</strong> - Ειδικότητα<br>
+                            <strong>Επιθυμεί.</strong> - Κατηγορίες που επιθυμεί<br>
                             <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
                             
                         </p>
@@ -165,6 +166,11 @@
                                             Περ. {{ $mygrader->district_id }}, 
                                             Κατ. {{ $mygrader->sites->first()->cat_id }}, 
                                             Ειδ. {{ $specialties::all()[$mygrader->specialty_id] }},
+                                            Επιθυμεί. {{ $mygrader->desired_category }}, 
+                                            Εμπειρία. 
+                                            @foreach(explode('|', $mygrader->teaching_xp) as $xp_index)
+                                                {{ $xp::all()[$xp_index] }}, 
+                                            @endforeach
 
                                             Ξένες Γλώσσες. 
                                             @if($mygrader->english) Αγγλικά - {{ $mygrader->english_level }}, @endif

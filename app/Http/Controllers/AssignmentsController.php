@@ -51,7 +51,7 @@ class AssignmentsController extends Controller
 
         $data = [];
         $data['site_id'] = $request->site_id;
-        $data['grader_id'] = $request->gradder_id;
+        $data['grader_id'] = $request->grader_id;
 
         Assignment::create($data);
 
@@ -150,7 +150,7 @@ class AssignmentsController extends Controller
                 }
 
                 $availables = [];
-                foreach($graders as $grader){
+                foreach(The_graders::all() as $grader){
                     if(Assignment::where('site_id', $site->id)->count() > 0){
                         $assignment = Assignment::where('site_id', $site->id)->first();
                         $existed_grader_id = $assignment->grader_id;
@@ -198,6 +198,11 @@ class AssignmentsController extends Controller
                         $the_grader->save();
 
                         Assignment::create($data);
+
+                        if($the_grader->sites_left == 0){
+                            $the_grader->delete();
+                        }
+
                     } else {
                         exit();
                     }

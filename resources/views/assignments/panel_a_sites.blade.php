@@ -13,7 +13,7 @@
 
 <h1 class="bg-primary" style="padding: .5em 1em; margin-bottom: 1.5em">Αναθέσεις Α - Ιστότοποι</h1>
 
-<table id="assignments-table" class="table table-striped admin-table">
+<table id="assignments-panel-table" class="table table-striped admin-table">
 
   <thead>
     <tr>
@@ -31,6 +31,7 @@
             <td>
                 <p>{{ $site->title }}</p>
                 <p><a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></p>
+                <p><strong>Κωδικός: </strong>{{ $site->id }}</p>                
                 <p><strong>Κατηγορία: </strong>{{ $site->cat_id }}</p>
                 <p><strong>Περιφέρεια: </strong>{{ $site->district_id }}</p>
                 @if($site->cat_id == 6 && $site->specialty_id > 0)
@@ -50,9 +51,17 @@
                 <?php $grader = App\Grader::find($assignment->grader_id); ?>
                     <td @if($site->district_id != $grader->district_id && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif >
                         <p>{{ $grader->last_name }} {{ $grader->first_name }}</p>
+                        <p><strong>Κωδικός: </strong>{{ $grader->id }}</p>
                         <p @if($site->cat_id == $grader->sites->first()->cat_id) style="text-decoration: underline" @endif><strong>Κατηγορία: </strong>{{ $grader->sites->first()->cat_id }}</p>
                         <p @if($site->district_id == $grader->district_id) style="text-decoration: underline" @endif><strong>Περιφέρεια: </strong>{{ $grader->district_id }}</p>
                         <p><strong>Ειδικότητα: </strong>{{ $grader->specialty_id }}</p>
+                        <p><strong>Επιθυμεί: </strong>{{ $grader->desired_category }}</p>
+                        <p>
+                            <strong>Εμπειρία:</strong> 
+                            @foreach(explode('|', $grader->teaching_xp) as $xp_index)
+                                {{ $xp::all()[$xp_index] }},
+                            @endforeach
+                        </p>
                         
                         <p><strong>Ξένες Γλώσσες: </strong><p>
                         @if($grader->english) Αγγλικά - {{ $grader->english_level }}<br> @endif
@@ -88,9 +97,12 @@
     @endforeach
   </tbody>
 
-  <tfoot>
-    
-</tfoot>
+    <tfoot>
+        <th>Ιστότοπος</th>
+        <th>Αξιολογητής 1</th>
+        <th>Αξιολογητής 2</th>
+        <th>Πλήθος</th>
+  </tfoot>
 
 </table>
 
