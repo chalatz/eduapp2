@@ -266,6 +266,8 @@
 
   $('body .dropdown-toggle').dropdown();
 
+  $(".select2").select2();
+
     // Ajax post
     $('.handle-sites-form').submit(function(event){
 

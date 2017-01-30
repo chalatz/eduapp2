@@ -75,7 +75,9 @@
                         <li><a href="{{ url('grader-statistics/b') }}">Αξιολογητές Β</a></li>
                         <li><a href="{{ url('submissions') }}">Υποβολές</a></li>
                       </ul>
-                  </li>                  
+                  </li>
+
+                  <li><a href="{{ route('assignments_panel_a_sites') }}">Αναθέσεις Α</a></li>                 
                 @endif                                
 
               @endif

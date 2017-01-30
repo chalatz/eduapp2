@@ -94,6 +94,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('panel/assignments/a/sites', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
     Route::get('assign/site/a/{site_id}', ['as' => 'assign_site_a', 'uses' => 'AssignmentsController@assign_site_a']);
 
+    Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
+    Route::post('assigns/store-manual-a', ['as' => 'assignments.store_manual_a', 'uses' => 'AssignmentsController@store_manual_a']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

@@ -46,7 +46,9 @@
     @include('sweet::alert')
     
     <script src="https://cdn.datatables.net/u/bs-3.3.6/jq-2.2.3,dt-1.10.12/datatables.min.js"></script>
+    <script src="{{ URL::asset('js/parsley.min.js') }}"></script>
     <script src="{{ URL::asset('js/fluidbox.js') }}"></script>
+    <script src="{{ URL::asset('js/select2.full.min.js') }}"></script>
     <script>
         jQuery('.enlarge-me').fluidbox();
     </script>

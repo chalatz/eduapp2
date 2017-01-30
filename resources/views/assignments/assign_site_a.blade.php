@@ -8,6 +8,8 @@
 @inject('categories', 'App\Http\Utilities\Category')
 @inject('lang_levels', 'App\Http\Utilities\Lang_level')
 @inject('xp', 'App\Http\Utilities\Teaching_xp')
+@inject('primary_schools', 'App\Http\Utilities\PrimaryEdu')
+@inject('secondary_schools', 'App\Http\Utilities\SecondaryEdu')
 
 <h1 class="bg-success" style="padding: .5em 1em; margin-bottom: 1.5em">
     Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Α
@@ -27,6 +29,15 @@
                 </div>
                 <div class="panel-footer">
                     Κατηγορία: {{ $site->cat_id }}, Περιφέρεια: {{ $site->district_id }}, Κωδικός: {{ $site->id }}
+                    @if($site->cat_id == 6 && $site->specialty_id > 0)
+                        <p>Ειδικότητα: {{ $specialties::all()[$site->specialty_id] }}</p>
+                    @endif
+                    @if($site->cat_id == 1 && $site->primary_edu_id > 0)
+                        <p>Βαθμίδα: {{ $primary_schools::all()[$site->primary_edu_id] }}</p>
+                    @endif
+                    @if($site->cat_id == 3 && $site->secondary_edu_id > 0)
+                        <p>Βαθμίδα: {{ $secondary_schools::all()[$site->secondary_edu_id] }}</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -67,7 +78,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή): ΠΕ60 - ΝΗΠΙΑΓΩΓΩΝ
+                        Εδικότητα (από τη δήλωση του προτεινόμενου Αξιολογητή)
                     </h3>
                 </div>
                 <div class="panel-body">
@@ -80,7 +91,126 @@
                 </div>
             </div>
         </div>
-    </div>       
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h2 class="panel-title">
+                        Τρέχουσες αναθέσεις
+                    </h2>
+                </div>
+                <div class="panel-body">
+                    
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Αξιολογητής</th>
+                                <th>Περιφέρεια</th>
+                                <th>Κατηγορία</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            @foreach(App\Assignment::where('site_id', $site->id)->get() as $assignment)
+                                <?php $grader = App\Grader::find($assignment->grader_id); ?>
+                                <tr>
+                                    <td>{{ $grader->last_name }} {{ $grader->first_name }}</td>
+                                    <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
+                                    <td @if($site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->sites->first()->cat_id }}</td>
+                                    <td><a class="btn btn-danger" href="{{ route('assign_delete_a', [$assignment->id, $site->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">Διαγραφή</a></td>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+
+                    </table>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                {!! Form::open(['route' => 'assignments.store_manual_a', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
+
+                <div class="form-group">
+                    <div class="col-md-12">
+
+                        <p class="help-block">
+                            <strong>Περ.</strong>   - Περιφέρεια<br>
+                            <strong>Κατ.</strong> - Κατηγορία site υποψηφιότητας Αξιολογητή<br>
+                            <strong>Ειδ.</strong> - Ειδικότητα<br>
+                            <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
+                            
+                        </p>
+                    
+                        <select name="grader_id" id="grader_id" class="js-example-basic-single select2" "required">
+
+                            <option value="">Επιλέξτε Αξιολογητή Α...</option>
+
+                            @foreach($graders as $mygrader)
+
+                                @if($mygrader->user->hasRole('grader_a') && $mygrader->hasSite())
+
+                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $mygrader->sites->first()->cat_id)
+
+                                        <option value="{{ $mygrader->id }}">
+                                            {{ $mygrader->last_name }} {{ $mygrader->first_name }}, 
+                                            Περ. {{ $mygrader->district_id }}, 
+                                            Κατ. {{ $mygrader->sites->first()->cat_id }}, 
+                                            Ειδ. {{ $specialties::all()[$mygrader->specialty_id] }},
+
+                                            Ξένες Γλώσσες. 
+                                            @if($mygrader->english) Αγγλικά - {{ $mygrader->english_level }}, @endif
+                                            @if($mygrader->french) Γαλλικά - {{ $mygrader->french_level }}, @endif
+                                            @if($mygrader->german) Γερμανικά - {{ $mygrader->german_level }}, @endif
+                                            @if($mygrader->italian) Ιταλικά - {{ $mygrader->italian_level }}, @endif
+
+                                            Ξένες Γλώσσες - Προτιμήσεις. 
+                                            @if($mygrader->lang_pref_english) Αγγλικά, @endif
+                                            @if($mygrader->lang_pref_french) Γαλλικά, @endif
+                                            @if($mygrader->lang_pref_german) Γερμανικά, @endif
+                                            @if($mygrader->lang_pref_italian) Ιταλικά, @endif
+
+                                            Του ανατέθηκαν. {{ App\Assignment::where('grader_id', $mygrader->id)->count() }}, 
+                                            Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
+                                            
+                                        </option>
+
+                                    @endif
+
+                                @endif
+
+                            @endforeach
+
+                        </select>
+
+                        @if ($errors->has('grader_id'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('grader_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                {{ Form::hidden('site_id', $site->id) }}
+                
+                <div class="form-group">
+                    <div class="col-md-12">
+                        {{ Form::button('Υποβολη Ανάθεσης', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                    </div>
+                </div>
+
+                {!! Form::close() !!}
+
+            </div>
+        </div>
 
 </div>
 

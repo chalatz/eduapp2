@@ -30,17 +30,47 @@ class AssignmentsController extends Controller
     {
         $sites = Site::all();
 
-        return view('assignments.panel_a_sites', compact('sites'));
+        $my_graders = Grader::all();
+
+        return view('assignments.panel_a_sites', compact('sites', 'my_graders'));
     }    
 
     public function assign_site_a($site_id)
     {
         $site = Site::find($site_id);
+        $graders = Grader::all();
         $assignments = Assignment::where('site_id', $site->id)->get();
 
-        return view('assignments.assign_site_a', compact('site', 'assignments'));
+        return view('assignments.assign_site_a', compact('site', 'assignments', 'graders'));
 
-    }  
+    }
+
+    public function store_manual_a(Request $request)
+    {
+        $this->validate($request, ['grader_id' => 'required']);
+
+        $data = [];
+        $data['site_id'] = $request->site_id;
+        $data['grader_id'] = $request->gradder_id;
+
+        Assignment::create($data);
+
+        alert()->success('Επιτυχής Υποβολή Ανάθεσης');
+
+        return redirect()->route('assign_site_a', $request->site_id);
+    }
+
+    public function assign_delete_a($assignment_id, $site_id)
+    {
+        $assignment = Assignment::findOrFail($assignment_id);
+
+        $assignment->delete();
+
+        alert()->success('Επιτυχής Διαγραφή');
+
+        return redirect()->route('assign_site_a', $site_id);
+
+    }
 
     public function assigns_a($type)
     {
@@ -79,7 +109,7 @@ class AssignmentsController extends Controller
                         $grader->grader_id != $site->grader_id &&
                         $grader->grader_id != $existed_grader_id &&
                         $grader->district_id != $site->district_id &&
-                        //$grader->cat_id != $site->cat_id &&
+                        $grader->cat_id != $site->cat_id &&
                         $grader->sites_left > 0
                     ){
                         $data = [];
