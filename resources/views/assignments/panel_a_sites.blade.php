@@ -48,37 +48,42 @@
 
             @if(App\Assignment::where('site_id', $site->id)->count() > 0)
                 @foreach(App\Assignment::where('site_id', $site->id)->get() as $assignment)
-                <?php $grader = App\Grader::find($assignment->grader_id); ?>
-                    <td @if($site->district_id != $grader->district_id && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif >
-                        @if($site->grader_id == $grader->id)
-                            <h3 style="background:red; color:white; padding: 6px;">ΠΡΟΣΟΧΗ: Του ανατέθηκε ο Ιστότοπός του!!!</h3>
-                        @endif
-                        <h4>{{ $grader->last_name }} {{ $grader->first_name }}</h4>
-                        <p><strong>Κωδικός: </strong>{{ $grader->id }}</p>
-                        <p @if($site->cat_id == $grader->sites->first()->cat_id) style="background:red; color:white; padding: 6px;" @endif><strong>Κατηγορία: </strong>{{ $grader->sites->first()->cat_id }}</p>
-                        <p @if($site->district_id == $grader->district_id) style="background:red; color:white; padding: 6px;" @endif><strong>Περιφέρεια: </strong>{{ $grader->district_id }}</p>
-                        <p><strong>Ειδικότητα: </strong>{{ $grader->specialty_id }}</p>
-                        <p><strong>Επιθυμεί: </strong>{{ $grader->desired_category }}</p>
-                        <p>
-                            <strong>Εμπειρία:</strong> 
-                            @foreach(explode('|', $grader->teaching_xp) as $xp_index)
-                                {{ $xp::all()[$xp_index] }},
-                            @endforeach
-                        </p>
-                        
-                        <p><strong>Ξένες Γλώσσες: </strong><p>
-                        @if($grader->english) Αγγλικά - {{ $grader->english_level }}<br> @endif
-                        @if($grader->french) Γαλλικά - {{ $grader->french_level }}<br> @endif
-                        @if($grader->german) Γερμανικά - {{ $grader->german_level }}<br> @endif
-                        @if($grader->italian) Ιταλικά - {{ $grader->italian_level }} @endif
+                    @if($assignment)
+                    <?php $grader = App\Grader::find($assignment->grader_id); ?>
+                
+                        <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif >
+                            @if($site->grader_id == $grader->id)
+                                <h3 style="background:red; color:white; padding: 6px;">ΠΡΟΣΟΧΗ: Του ανατέθηκε ο Ιστότοπός του!!!</h3>
+                            @endif
+                            <h4>{{ $grader->last_name }} {{ $grader->first_name }}</h4>
+                            <p><strong>Κωδικός: </strong>{{ $grader->id }}</p>
+                            @if($grader->hasSite())
+                                <p @if($site->cat_id == $grader->sites->first()->cat_id) style="background:red; color:white; padding: 6px;" @endif><strong>Κατηγορία: </strong>{{ $grader->sites->first()->cat_id }}</p>
+                            @endif
+                            <p @if($site->district_id == $grader->district_id) style="background:red; color:white; padding: 6px;" @endif><strong>Περιφέρεια: </strong>{{ $grader->district_id }}</p>
+                            <p><strong>Ειδικότητα: </strong>{{ $grader->specialty_id }}</p>
+                            <p><strong>Επιθυμεί: </strong>{{ $grader->desired_category }}</p>
+                            <p>
+                                <strong>Εμπειρία:</strong> 
+                                @foreach(explode('|', $grader->teaching_xp) as $xp_index)
+                                    {{ $xp::all()[$xp_index] }},
+                                @endforeach
+                            </p>
+                            
+                            <p><strong>Ξένες Γλώσσες: </strong><p>
+                            @if($grader->english) Αγγλικά - {{ $grader->english_level }}<br> @endif
+                            @if($grader->french) Γαλλικά - {{ $grader->french_level }}<br> @endif
+                            @if($grader->german) Γερμανικά - {{ $grader->german_level }}<br> @endif
+                            @if($grader->italian) Ιταλικά - {{ $grader->italian_level }} @endif
 
-                        <p><strong>Ξένες Γλώσσες - Προτιμήσεις: </strong><p>
-                        @if($grader->lang_pref_english) Αγγλικά<br> @endif
-                        @if($grader->lang_pref_french) Γαλλικά<br> @endif
-                        @if($grader->lang_pref_german) Γερμανικά<br> @endif
-                        @if($grader->lang_pref_italian) Ιταλικά @endif
-                        
-                    </td>
+                            <p><strong>Ξένες Γλώσσες - Προτιμήσεις: </strong><p>
+                            @if($grader->lang_pref_english) Αγγλικά<br> @endif
+                            @if($grader->lang_pref_french) Γαλλικά<br> @endif
+                            @if($grader->lang_pref_german) Γερμανικά<br> @endif
+                            @if($grader->lang_pref_italian) Ιταλικά @endif
+                            
+                        </td>
+                    @endif
                 @endforeach
             @else
                 <td>
