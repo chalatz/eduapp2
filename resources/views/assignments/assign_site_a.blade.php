@@ -16,6 +16,10 @@
 </h1>
 <div style="padding: 0 2em;">
 
+        <p style="font-size: 1.5em">
+            <a href="{{ route('assignments_panel_a_sites') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        </p>
+
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-primary">
@@ -120,7 +124,13 @@
                                 <tr>
                                     <td>{{ $grader->last_name }} {{ $grader->first_name }}</td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
-                                    <td @if($site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->sites->first()->cat_id }}</td>
+                                    <td @if($grader->hasSite() && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>
+                                        @if($grader->hasSite()) 
+                                            {{ $grader->sites->first()->cat_id }}
+                                        @else
+                                            Χωρίς κατηγορία (αφού δεν υπάρχει υποψήφιος)
+                                        @endif
+                                    </td>
                                     <td><a class="btn btn-danger" href="{{ route('assign_delete_a', [$assignment->id, $site->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">Διαγραφή</a></td>
                                 </tr>
                             @endforeach
@@ -148,6 +158,7 @@
                             <strong>Ειδ.</strong> - Ειδικότητα<br>
                             <strong>Επιθυμεί.</strong> - Κατηγορίες που επιθυμεί<br>
                             <strong>Κωδ. site.</strong> - Κωδικός site υποψηφιότητας Αξιολογητή<br>
+                            <strong>ΧΥ</strong> - Χωρίς Υποψηφιότητα<br>
                             
                         </p>
                     
@@ -157,14 +168,22 @@
 
                             @foreach($graders as $mygrader)
 
-                                @if($mygrader->user->hasRole('grader_a') && $mygrader->hasSite())
+                                @if($mygrader->user->hasRole('grader_a'))
 
-                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $mygrader->sites->first()->cat_id)
+                                    @if($mygrader->hasSite()))
+                                        <?php $grader_cat_id =  $mygrader->sites->first()->cat_id; ?>
+                                    @else
+                                        <?php $grader_cat_id =  0; ?>
+                                    @endif
 
+                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id)
                                         <option value="{{ $mygrader->id }}">
+                                            @if(!$mygrader->hasSite()) ΧΥ - @endif
                                             {{ $mygrader->last_name }} {{ $mygrader->first_name }}, 
-                                            Περ. {{ $mygrader->district_id }}, 
-                                            Κατ. {{ $mygrader->sites->first()->cat_id }}, 
+                                            Περ. {{ $mygrader->district_id }},
+                                            @if($mygrader->hasSite())                                             
+                                                Κατ. {{ $mygrader->sites->first()->cat_id }}, 
+                                            @endif
                                             Ειδ. {{ $specialties::all()[$mygrader->specialty_id] }},
                                             Επιθυμεί. {{ $mygrader->desired_category }}, 
                                             Εμπειρία. 
@@ -183,9 +202,14 @@
                                             @if($mygrader->lang_pref_french) Γαλλικά, @endif
                                             @if($mygrader->lang_pref_german) Γερμανικά, @endif
                                             @if($mygrader->lang_pref_italian) Ιταλικά, @endif
-
-                                            Του ανατέθηκαν. {{ App\Assignment::where('grader_id', $mygrader->id)->count() }}, 
-                                            Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
+                                            
+                                            @if($mygrader->hasSite())
+                                                Του ανατέθηκαν. {{ App\Assignment::where('grader_id', $mygrader->id)->count() }}, 
+                                                Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
+                                            @else
+                                                Του ανατέθηκαν. 0, 
+                                                Του αναλογούν. 
+                                            @endif
                                             
                                         </option>
 
@@ -217,6 +241,10 @@
 
             </div>
         </div>
+
+        <p style="font-size: 1.5em">
+            <a href="{{ route('assignments_panel_a_sites') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        </p>
 
 </div>
 

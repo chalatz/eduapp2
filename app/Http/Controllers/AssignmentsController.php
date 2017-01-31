@@ -74,20 +74,25 @@ class AssignmentsController extends Controller
 
     public function assigns_a($type)
     {
-        DB::table('assignments')->truncate();
+        $status = 'off';
 
-        if($type == 'all'){
-            $sites = The_sites::all();
+        if ($status == 'on'){
+            DB::table('assignments')->truncate();
+
+            if($type == 'all'){
+                $sites = The_sites::all();
+            }
+
+            if($type == 'personal'){
+                $sites = The_sites::where('cat_id', 6)->get();
+            }
+
+            $graders = The_graders::all();
+
+            $this->attempt_a($sites, $graders);
+        } else {
+            return "status: off";
         }
-
-        if($type == 'personal'){
-            $sites = The_sites::where('cat_id', 6)->get();
-        }
-
-        $graders = The_graders::all();
-
-        $this->attempt_a($sites, $graders);
-
 
     }
 
@@ -242,7 +247,7 @@ class AssignmentsController extends Controller
 
     public function assigns_tables($type)
     {
-        $status = 'on';
+        $status = 'off';
 
         if($status == 'on'){
 
