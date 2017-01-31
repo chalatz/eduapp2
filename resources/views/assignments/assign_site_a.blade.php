@@ -122,7 +122,7 @@
                             @foreach(App\Assignment::where('site_id', $site->id)->get() as $assignment)
                                 <?php $grader = App\Grader::find($assignment->grader_id); ?>
                                 <tr>
-                                    <td>{{ $grader->last_name }} {{ $grader->first_name }}</td>
+                                    <td>{{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}</td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
                                     <td @if($grader->hasSite() && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>
                                         @if($grader->hasSite()) 
