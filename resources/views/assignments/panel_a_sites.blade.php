@@ -15,6 +15,43 @@
 
 <table id="assignments-panel-table" class="table table-striped admin-table">
 
+<div class="row" style="padding: 1em">
+    <div class="col-md-12">
+
+        @if($cat != 'all')
+            <h3>Κατηγορία: {{ $cat }}</h3>
+        @endif
+
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <a href="{{ route('assignments_panel_a_sites', '1') }}" type="button" class="btn btn-primary btn-lg">
+                    Κατηγορία 1
+                </a>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="{{ route('assignments_panel_a_sites', '2') }}" type="button" class="btn btn-success btn-lg">
+                    Κατηγορία 2
+                </a>
+            </div>
+           <div class="btn-group" role="group">
+                <a href="{{ route('assignments_panel_a_sites', '3') }}" type="button" class="btn btn-info btn-lg">
+                    Κατηγορία 3
+                </a>
+            </div>
+           <div class="btn-group" role="group">
+                <a href="{{ route('assignments_panel_a_sites', '4') }}" type="button" class="btn btn-warning btn-lg">
+                    Κατηγορία 4
+                </a>
+            </div>
+           <div class="btn-group" role="group">
+                <a href="{{ route('assignments_panel_a_sites', '6') }}" type="button" class="btn btn-danger btn-lg">
+                    Κατηγορία 6
+                </a>
+            </div>                                  
+        </div>
+    </div>
+</div>
+
   <thead>
     <tr>
       <th>Ιστότοπος</th>
@@ -49,13 +86,28 @@
             @if(App\Assignment::where('site_id', $site->id)->count() > 0)
                 @foreach(App\Assignment::where('site_id', $site->id)->get() as $assignment)
                     @if($assignment)
-                    <?php $grader = App\Grader::find($assignment->grader_id); ?>
+                        <?php $grader = App\Grader::find($assignment->grader_id); ?>
                 
                         <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif >
                             @if($site->grader_id == $grader->id)
                                 <h3 style="background:red; color:white; padding: 6px;">ΠΡΟΣΟΧΗ: Του ανατέθηκε ο Ιστότοπός του!!!</h3>
                             @endif
                             <h4>{{ $grader->last_name }} {{ $grader->first_name }}</h4>
+
+                            <?php $assigned_sites = App\Assignment::where('grader_id', $grader->id)->count(); ?>
+
+                            @if($grader->hasSite())
+                                <?php $his_sites = $grader->suggestions_count * 2; ?>
+                            @else
+                                <?php $his_sites = 2; ?>
+                            @endif
+
+                            <p @if($assigned_sites > $his_sites) style="background: lightcoral; padding: 6px;" @endif >
+                                <strong>Του ανατέθηκαν: </strong>{{ $assigned_sites }}
+                            </p>
+
+                            <p><strong>Του αναλογούν: </strong>{{ $his_sites }}</p>
+
                             <p><strong>Κωδικός: </strong>{{ $grader->id }}</p>
                             @if($grader->hasSite())
                                 <p @if($site->cat_id == $grader->sites->first()->cat_id) style="background:red; color:white; padding: 6px;" @endif><strong>Κατηγορία: </strong>{{ $grader->sites->first()->cat_id }}</p>

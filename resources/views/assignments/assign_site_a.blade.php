@@ -17,7 +17,7 @@
 <div style="padding: 0 2em;">
 
         <p style="font-size: 1.5em">
-            <a href="{{ route('assignments_panel_a_sites') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+            <a href="{{ route('assignments_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
         </p>
 
     <div class="row">
@@ -121,8 +121,21 @@
 
                             @foreach(App\Assignment::where('site_id', $site->id)->get() as $assignment)
                                 <?php $grader = App\Grader::find($assignment->grader_id); ?>
+
+                                <?php $assigned_sites = App\Assignment::where('grader_id', $grader->id)->count(); ?>
+                                @if($grader->hasSite())
+                                    <?php $his_sites = $grader->suggestions_count * 2; ?>
+                                @else
+                                    <?php $his_sites = 2; ?>
+                                @endif
                                 <tr>
-                                    <td>{{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}</td>
+                                    <td>
+                                        {{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}
+                                        <p @if($assigned_sites > $his_sites) style="background: lightcoral; padding: 6px;" @endif>
+                                            Του ανατέθηκαν: {{ $assigned_sites }}<br>
+                                            Του αναλογούν: {{ $his_sites }}
+                                        </p>
+                                    </td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
                                     <td @if($grader->hasSite() && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>
                                         @if($grader->hasSite()) 
@@ -243,7 +256,7 @@
         </div>
 
         <p style="font-size: 1.5em">
-            <a href="{{ route('assignments_panel_a_sites') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+            <a href="{{ route('assignments_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
         </p>
 
 </div>

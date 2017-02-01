@@ -91,7 +91,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
     Route::get('assigns_a/{type}', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
 
-    Route::get('panel/assignments/a/sites', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
+    Route::get('panel/assignments/a/sites/{cat}', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
     Route::get('assign/site/a/{site_id}', ['as' => 'assign_site_a', 'uses' => 'AssignmentsController@assign_site_a']);
 
     Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);

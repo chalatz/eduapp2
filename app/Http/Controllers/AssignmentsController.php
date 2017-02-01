@@ -26,13 +26,17 @@ class AssignmentsController extends Controller
 
     }
 
-    public function assignments_panel_a_sites()
+    public function assignments_panel_a_sites($cat)
     {
-        $sites = Site::all();
+        if($cat == 'all'){
+            $sites = Site::all();            
+        } else {
+            $sites = Site::where('cat_id', $cat)->get();
+        }
 
         $my_graders = Grader::all();
 
-        return view('assignments.panel_a_sites', compact('sites', 'my_graders'));
+        return view('assignments.panel_a_sites', compact('sites', 'my_graders', 'cat'));
     }    
 
     public function assign_site_a($site_id)
