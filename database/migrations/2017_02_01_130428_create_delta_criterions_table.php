@@ -52,6 +52,17 @@ class CreateDeltaCriterionsTable extends Migration
             $table->text('dk5_3_title');
             $table->text('dk5_4_title');
             $table->text('dk5_5_title');
+
+            $table->text('dk3_2_explain');
+            $table->text('dk3_3_explain');
+            $table->text('dk3_4_explain');
+
+            $table->text('dk4_2_explain');
+            $table->text('dk4_3_explain');
+            
+            $table->text('dk5_1_explain');
+            $table->text('dk5_3_explain');
+
             
             $table->integer('weight');
             
