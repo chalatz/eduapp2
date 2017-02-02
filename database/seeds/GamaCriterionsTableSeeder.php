@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GamaCriteriaTableSeeder extends Seeder
+class GamaCriterionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class GamaCriteriaTableSeeder extends Seeder
     public function run()
     {
         
-        GamaCriterion::create([
+        DB::table('gama_criterions')->insert([
 
             'main_title' => 'ΠΕΡΙΕΧΟΜΕΝΟ:<br> (ποιότητα και ποσότητα περιεχομένου, δυνατότητες παιδαγωγικής αξιοποίησής του από το κοινό στο οποίο απευθύνεται, πρωτοτυπία)',
             

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DeltaCriteriaTableSeeder extends Seeder
+class DeltaCriterionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class DeltaCriteriaTableSeeder extends Seeder
      */
     public function run()
     {
-        DeltaCriterion::create([
+        DB::table('delta_criterions')->insert([
 
             'main_title' => 'ΛΕΙΤΟΥΡΓΙΚΟΤΗΤΑ ΔΙΕΠΑΦΗΣ - ΑΙΣΘΗΤΙΚΗ - ΑΛΛΗΛΕΠΙΔΡΑΣΗ (τεχνική δομή])<br>([ευκολία στην πρόσβαση, δομή-πλοήγηση, απεικόνιση, τεχνική δομή)',
 

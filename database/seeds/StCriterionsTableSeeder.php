@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class StCriteriaTableSeeder extends Seeder
+class StCriterionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class StCriteriaTableSeeder extends Seeder
      */
     public function run()
     {
-        StCriterion::create([
+        DB::table('st_criterions')->insert([
 
             'main_title' => 'ΑΛΛΗΛΕΠΙΔΡΑΣΗ ΜΕ ΤΟΥΣ ΧΡΗΣΤΕΣ',
 

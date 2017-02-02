@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BetaCriteriaTableSeeder extends Seeder
+class BetaCriterionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +12,7 @@ class BetaCriteriaTableSeeder extends Seeder
     public function run()
     {
         
-        BetaCriterion::create([
+        DB::table('beta_criterions')->insert([
             'main_title' => 'ΤΑΥΤΟΤΗΤΑ - ΕΝΗΜΕΡΩΣΗ ΙΣΤΟΤΟΠΟΥ:<br> (στοιχεία επικοινωνίας, συνέπεια σκοπού – στόχων, τακτική και συνεχής ενημέρωση)',
             
             'bk1_title' => 'α) Αναφέρεται ο υπεύθυνος/δημιουργός του ιστότοπου (ή η ομάδα υπευθύνων/δημιουργών).<br>β) Αναφέρεται το χρονικό διάστημα που δημιουργήθηκε ο ιστότοπος.<br>γ) Αναφέρονται τα στοιχεία επικοινωνίας με τον/τους κατόχους του ιστότοπου (ταχυδρομική διεύθυνση, τηλέφωνο, φαξ, e-mail).',

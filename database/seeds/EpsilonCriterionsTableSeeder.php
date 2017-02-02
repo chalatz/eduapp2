@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class EpsilonCriteriaTableSeeder extends Seeder
+class EpsilonCriterionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class EpsilonCriteriaTableSeeder extends Seeder
      */
     public function run()
     {
-        EpsilonCriterion::create([
+        DB::table('epsilon_criterions')->insert([
             'main_title' => 'ΠΡΟΣΩΠΙΚΑ ΔΕΔΟΜΕΝΑ:<br>(τήρηση βασικών αρχών προστασίας προσωπικών δεδομένων και δικαιωμάτων πνευματικής ιδιοκτησίας)',
 
             'ek1_title' => 'Σε ποιο βαθμό τηρούνται στον ιστότοπο οι βασικές αρχές προστασίας προσωπικών δεδομένων (φωτογραφίες, βίντεο, λεζάντες και ονοματεπώνυμα ή ατομικά στοιχεία μαθητών);',
