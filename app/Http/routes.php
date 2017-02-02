@@ -97,7 +97,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
     Route::post('assigns/store-manual-a', ['as' => 'assignments.store_manual_a', 'uses' => 'AssignmentsController@store_manual_a']);
 
+    Route::get('evals/init', ['as' => 'evals_init', 'uses' => 'EvaluationsController@init']);
+
     // ---- EVALUATIONS --- //
+    Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
