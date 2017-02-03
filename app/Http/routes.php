@@ -102,6 +102,8 @@ Route::group(['middleware' => 'web'], function () {
     // ---- EVALUATIONS --- //
     Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);
 
+    Route::put('can_evaluate/{id}', ['as' => 'can_evaluate_submit', 'uses' => 'EvaluationsController@can_evaluate_submit']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

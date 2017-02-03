@@ -38,6 +38,15 @@ class EvaluationsController extends Controller
 
     }
 
+    public function can_evaluate_submit(Request $request, $id)
+    {
+        $this->validate($request, [
+            'can_evaluate' => 'required',
+            'why_cannot_evaluate' => 'required_if:can_evaluate,no',
+        ]);
+
+    }
+
     public function init()
     {
         $status = 'off';
