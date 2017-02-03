@@ -103,6 +103,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);
 
     Route::put('can_evaluate/{id}', ['as' => 'can_evaluate_submit', 'uses' => 'EvaluationsController@can_evaluate_submit']);
+    Route::put('is_educational/{id}', ['as' => 'is_educational_submit', 'uses' => 'EvaluationsController@is_educational_submit']);
+    Route::put('site_comment_submit/{id}', ['as' => 'site_comment_submit', 'uses' => 'EvaluationsController@site_comment_submit']);
+
+    Route::get('evaluate/a/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_a_edit', 'uses' => 'EvaluationsController@edit']);
+
+    Route::patch('evaluation/a/update/{id}', ['as' => 'evaluation.update', 'uses' => 'EvaluationsController@update']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

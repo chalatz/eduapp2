@@ -37,7 +37,7 @@
             
             <div class="panel panel-default" style="margin: 1em 0">
                 <div class="panel-body">
-                <p class="lead">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</p>
+                    <p class="lead">Βαθμολογήσατε {{ $sites_meter }} από {{ $evaluations_count }} Ιστότοπους</p>
                     <div class="progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $sites_percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $sites_percent }}%;">
                             {{ $sites_percent }}%
@@ -88,10 +88,143 @@
                             @include('evaluations.can_evaluate_form')
                         @endif
 
+                        @if($evaluation->can_evaluate == 'yes')
+                            @if($evaluation->is_educational == 'yes')
+                                
+                                <div class="site-total-grade-wrapper">
+                                    @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
+                                        <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
+                                        <span class="site-total-grade">{{ $evaluation->total_grade }}</span>
+                                    @else
+                                        <p class="lead">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</p>
+                                    @endif
+                                </div>
+
+                                @if($evaluation->finalized != 'yes')
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+                                            <p class="lead">Βαθμολογήσατε {{ $meter }} από 5 άξονες</p>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent }}%;">
+                                                    {{ $percent }}%
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+
+                                            <a href="{{ route('evaluate_a_edit', [Auth::user()->id, 'beta', $grader->id, $evaluation->site_id]) }}" type="button" class="btn btn-info btn-block btn-lg">
+                                                Β Άξονας (Ταυτότητα - Ενημέρωση)
+                                            </a>
+                                            <div class="criteron-check">
+                                                @if($evaluation->beta_grade > 0)
+                                                    <div class="info-block green white-font" style="width:{{ $evaluation->beta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
+                                                @else
+                                                    <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+                                            <a href="{{ route('evaluate_a_edit', [Auth::user()->id, 'gama', $grader->id, $evaluation->site_id]) }}" type="button" class="btn btn-info btn-block btn-lg">
+                                                Γ Άξονας (Περιεχόμενο)
+                                            </a>
+                                            <div class="criteron-check">
+                                                @if($evaluation->beta_grade > 0)
+                                                    <div class="info-block green white-font" style="width:{{ $evaluation->gama_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
+                                                @else
+                                                    <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
+                                                @endif
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+
+                                            <a href="{{ route('evaluate_a_edit', [Auth::user()->id, 'delta', $grader->id, $evaluation->site_id]) }}" type="button" class="btn btn-info btn-block btn-lg">
+                                                Δ Άξονας (Διεπαφή - Αισθητική)
+                                            </a>
+                                            <div class="criteron-check">
+                                                @if($evaluation->beta_grade > 0)
+                                                    <div class="info-block green white-font" style="width:{{ $evaluation->delta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
+                                                @else
+                                                    <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
+                                                @endif
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+
+                                            <a href="{{ route('evaluate_a_edit', [Auth::user()->id, 'epsilon', $grader->id, $evaluation->site_id]) }}" type="button" class="btn btn-info btn-block btn-lg">
+                                                Ε Άξονας (Προσωπικά Δεδομένα)
+                                            </a>                                            
+                                            <div class="criteron-check">
+                                                @if($evaluation->beta_grade > 0)
+                                                    <div class="info-block green white-font" style="width:{{ $evaluation->epsilon_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
+                                                @else
+                                                    <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
+                                                @endif
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="panel panel-default" style="margin: 1em 0">
+                                        <div class="panel-body">
+                                            <a href="{{ route('evaluate_a_edit', [Auth::user()->id, 'st', $grader->id, $evaluation->site_id]) }}" type="button" class="btn btn-info btn-block btn-lg">
+                                                ΣΤ Άξονας (Αλληλεπίδραση)
+                                            </a> 
+                                            <div class="criteron-check">
+                                                @if($evaluation->beta_grade > 0)
+                                                    <div class="info-block green white-font" style="width:{{ $evaluation->st_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
+                                                @else
+                                                    <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
+                                                @endif
+                                            </div>
+                                            
+                                        </div>
+                                    </div>                                                                                                                                                                                    
+
+                                @else
+                                    <p>Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο.</p>
+                                @endif
+
+                                @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
+                                    <div class="row">                                                   
+                                        <p>Οριστική Υποβολή Βαθμολογίας</p>
+                                        <div>Μόνον εφόσον είστε <strong>απολύτως σίγουρος</strong> πατήστε την Οριστική Υποβολή Βαθμολογίας.</div>                        
+                                    </div>                                   
+                                @endif                                
+
+                            @else
+                                @include('evaluations.is_educational_form')
+                            @endif
+
+                        @endif
+                        @if($evaluation->can_evaluate == 'no')
+                            <div class="flash-message flash-error">
+                                Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας ανατεθεί άλλος Ιστότοπος.
+                            </div>
+                        @endif
+
                     </div>
 
-
-                    <div class="panel-footer">Panel footer</div>
+                    @if($evaluation->can_evaluate == 'yes' && $evaluation->finalized != 'yes')
+                        <div class="panel-footer">
+                            @include('evaluations.site_comment_form')
+                        </div>
+                    @endif                    
 
                 </div>
 

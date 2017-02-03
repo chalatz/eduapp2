@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-10">
-        {!! Form::model($evaluation, ['method' => 'PUT','route' => ['can_evaluate_submit', $evaluation->id], 'class' => 'form-horizontal', 'id' => 'confirmCanEvaluate-'.$site_index, 'name' => 'confirmCanEvaluate-'.$site_index]) !!}
+        {!! Form::model($evaluation, ['method' => 'PUT','route' => ['can_evaluate_submit', $evaluation->id], 'class' => 'form-horizontal', 'id' => 'confirmCanEvaluate-'.$site_index, 'name' => 'confirmCanEvaluate-'.$site_index, 'data-parsley-validate']) !!}
 
             <div class="col-md-12 form-group{{ $errors->has('can_evaluate') ? ' has-error' : '' }}">
                 {{ Form::label('can_evaluate', 'Αποδέχεστε να αξιολογήσετε αυτόν τον ιστότοπο;') }}
@@ -8,7 +8,7 @@
                     '' => 'Επιλέξτε...',
                     'yes' => 'Ναι',
                     'no' => 'Όχι',
-                ], null, array('class' => 'form-control', 'id' => 'can_evaluate-'.$site_index)) }}
+                ], null, ['class' => 'form-control', 'id' => 'can_evaluate-'.$site_index, 'required']) }}
 
                 <div><strong>Μόνο</strong> εάν αποδεχτείτε, θα μπορέσετε να προχωρήσετε στην αξιολόγησή του.</div>
 

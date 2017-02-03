@@ -14,6 +14,8 @@ class Evaluation extends Model
         'why_cannot_evaluate',
         'is_educational',
         'why_not_educational',
+        'assigned_at',
+        'assigned_until',
 
         'bk1',
         'bk2',
@@ -80,6 +82,35 @@ class Evaluation extends Model
         'st_comment',
 
         'total_grade',
+
+    ];
+
+    public static $rules = [
+
+        'bk1' => 'sometimes|required',
+        'bk2' => 'sometimes|required',
+        'bk3' => 'sometimes|required',
+
+        'gk1' => 'sometimes|required',
+        'gk2' => 'sometimes|required',
+        'gk3' => 'sometimes|required',
+        'gk4' => 'sometimes|required',
+        'gk5' => 'sometimes|required',
+
+        'dk1' => 'sometimes|required',
+        'dk2' => 'sometimes|required',
+        'dk3' => 'sometimes|required',
+        'dk4' => 'sometimes|required',
+        'dk5' => 'sometimes|required',
+
+        'ek1' => 'sometimes|required',
+        'ek2' => 'sometimes|required',
+        'ek3' => 'sometimes|required',
+
+        'stk1' => 'sometimes|required',
+        'stk2' => 'sometimes|required',
+        'stk3' => 'sometimes|required',
+        'stk4' => 'sometimes|required',
 
     ];
 
