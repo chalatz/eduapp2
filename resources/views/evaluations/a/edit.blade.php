@@ -16,7 +16,7 @@
             </div>
         </div>
 
-        <p><a href="{{ route('evaluation_a.show') }}">&larr; Επιστροφή στις Αναθέσεις Μου</a></p>
+        <p><strong><a href="{{ route('evaluation_a.show') }}">&larr; Επιστροφή στις Αναθέσεις Μου</a></strong></p>
 
         <p class="lead">Βαθμός: <span class="label label-success">{{ $evaluation->total_grade }}%</span></p>
 
@@ -32,7 +32,7 @@
 
         {{ Form::close() }}
 
-        <p><a href="{{ route('evaluation_a.show') }}">&larr; Επιστροφή στις Αναθέσεις Μου</a></p>
+        <p><strong><a href="{{ route('evaluation_a.show') }}">&larr; Επιστροφή στις Αναθέσεις Μου</a></strong></p>
 
     </div>
 </div>

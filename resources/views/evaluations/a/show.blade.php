@@ -121,7 +121,12 @@
                                             </a>
                                             <div class="criteron-check">
                                                 @if($evaluation->beta_grade > 0)
-                                                    <div class="info-block green white-font" style="width:{{ $evaluation->beta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
+                                                    <div>Ο Βαθμός σας: <strong>{{ $evaluation->beta_grade }}%</strong></div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->beta_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->beta_grade }}%;">
+                                                            {{ $evaluation->beta_grade }}%
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
                                                 @endif
@@ -137,7 +142,12 @@
                                             </a>
                                             <div class="criteron-check">
                                                 @if($evaluation->beta_grade > 0)
-                                                    <div class="info-block green white-font" style="width:{{ $evaluation->gama_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
+                                                    <div>Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->gama_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->gama_grade }}%;">
+                                                            {{ $evaluation->gama_grade }}%
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
                                                 @endif
@@ -154,7 +164,12 @@
                                             </a>
                                             <div class="criteron-check">
                                                 @if($evaluation->beta_grade > 0)
-                                                    <div class="info-block green white-font" style="width:{{ $evaluation->delta_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
+                                                    <div>Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->delta_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->delta_grade }}%;">
+                                                            {{ $evaluation->delta_grade }}%
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
                                                 @endif
@@ -171,7 +186,12 @@
                                             </a>                                            
                                             <div class="criteron-check">
                                                 @if($evaluation->beta_grade > 0)
-                                                    <div class="info-block green white-font" style="width:{{ $evaluation->epsilon_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
+                                                    <div>Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->epsilon_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->epsilon_grade }}%;">
+                                                            {{ $evaluation->epsilon_grade }}%
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
                                                 @endif
@@ -187,7 +207,12 @@
                                             </a> 
                                             <div class="criteron-check">
                                                 @if($evaluation->beta_grade > 0)
-                                                    <div class="info-block green white-font" style="width:{{ $evaluation->st_grade }}%">Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
+                                                    <div>Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->st_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->st_grade }}%;">
+                                                            {{ $evaluation->st_grade }}%
+                                                        </div>
+                                                    </div>
                                                 @else
                                                     <p class="lead text-danger">Δεν έχετε καταχωρήσει ακόμη Βαθμολογία</p>
                                                 @endif

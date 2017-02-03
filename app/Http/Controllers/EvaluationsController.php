@@ -10,6 +10,11 @@ use App\The_sites;
 use App\The_graders;
 use App\Assignment;
 use App\Evaluation;
+use App\BetaCriterion;
+use App\GamaCriterion;
+use App\DeltaCriterion;
+use App\EpsilonCriterion;
+use App\StCriterion;
 
 use Carbon\Carbon;
 
@@ -64,8 +69,59 @@ class EvaluationsController extends Controller
         $input = $request->all();
         
         $evaluation = Evaluation::find($id);
+
+        //$total_grade = $evaluation->total_grade;
+
+        if(isset($input['bk1'])){
+            $input['beta_grade'] = $input['bk1'] * (BetaCriterion::first()->bk1_weight / 5) +
+                                   $input['bk2'] * (BetaCriterion::first()->bk2_weight / 5) +
+                                   $input['bk3'] * (BetaCriterion::first()->bk3_weight / 5);
+        }
+
+        if(isset($input['gk1'])){
+            $input['gama_grade'] = $input['gk1'] * (GamaCriterion::first()->gk1_weight / 5) + 
+                                   $input['gk2'] * (GamaCriterion::first()->gk2_weight / 5) + 
+                                   $input['gk3'] * (GamaCriterion::first()->gk3_weight / 5) +
+                                   $input['gk4'] * (GamaCriterion::first()->gk4_weight / 5) +
+                                   $input['gk5'] * (GamaCriterion::first()->gk5_weight / 5);            
+            
+        }
+
+        if(isset($input['dk1'])){
+            $input['delta_grade'] = $input['dk1'] * (DeltaCriterion::first()->dk1_weight / 5) + 
+                                    $input['dk2'] * (DeltaCriterion::first()->dk2_weight / 5) + 
+                                    $input['dk3'] * (DeltaCriterion::first()->dk3_weight / 5) +
+                                    $input['dk4'] * (DeltaCriterion::first()->dk4_weight / 5) +
+                                    $input['dk5'] * (DeltaCriterion::first()->dk5_weight / 5);            
+        }
+
+        if(isset($input['ek1'])){
+            $input['epsilon_grade'] = $input['ek1'] * (EpsilonCriterion::first()->ek1_weight / 5) + 
+                                      $input['ek2'] * (EpsilonCriterion::first()->ek2_weight / 5) + 
+                                      $input['ek3'] * (EpsilonCriterion::first()->ek3_weight / 5);            
+        }
+
+        if(isset($input['stk1'])){
+            $input['st_grade'] = $input['stk1'] * (StCriterion::first()->stk1_weight / 5) + 
+                                 $input['stk2'] * (StCriterion::first()->stk2_weight / 5) + 
+                                 $input['stk3'] * (StCriterion::first()->stk3_weight / 5) +
+                                 $input['stk4'] * (StCriterion::first()->stk4_weight / 5);            
+        }        
+
+        $evaluation->fill($input)->save();
+
+        $beta_grade = $evaluation->beta_grade * (BetaCriterion::first()->weight / 100);
+        $gama_grade = $evaluation->gama_grade * (GamaCriterion::first()->weight / 100);
+        $delta_grade = $evaluation->delta_grade * (DeltaCriterion::first()->weight / 100);
+        $epsilon_grade = $evaluation->epsilon_grade * (EpsilonCriterion::first()->weight / 100);
+        $st_grade = $evaluation->st_grade * (StCriterion::first()->weight / 100);
         
-        $total_grade = $evaluation->total_grade;
+        $evaluation->total_grade = $beta_grade + $gama_grade + $delta_grade + $epsilon_grade + $st_grade;
+        $evaluation->save();
+
+        alert()->success('Επιτυχής καταχώριση Βαθμολογίας.');
+
+        return redirect()->route('evaluation_a.show');
 
     }
 
