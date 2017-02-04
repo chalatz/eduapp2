@@ -62,5 +62,7 @@ class Kernel extends HttpKernel
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'is_ninja' => \App\Http\Middleware\IsNinja::class,
         'site_submissions_open' => \App\Http\Middleware\SiteSubmissionsOpen::class,
+        'can_evaluate_a' => \App\Http\Middleware\CanEvaluateA::class,
+        'must_own_evaluation_a' => \App\Http\Middleware\MustOwnEvaluationA::class,
     ];
 }

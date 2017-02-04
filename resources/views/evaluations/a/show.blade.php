@@ -21,14 +21,12 @@
                         }
                     ?>
                     
-                    <div class="btn-group" role="group">
-                        @if($evaluation->can_evaluate != 'no')
-                            <a href="#" type="button" class="btn btn-default btn-lg">
-                                <div><strong>{{$i}}η ανάθεση</strong></div>
-                                <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
-                                <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>                            
-                            </a>
-                        @endif
+                    <div class="btn-group" role="group">                
+                        <a href="#" type="button" class="btn btn-default btn-lg">
+                            <div><strong>{{$i}}η ανάθεση</strong></div>
+                            <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
+                            <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>                            
+                        </a>
                     </div>                            
                 @endforeach
             </div>
@@ -236,11 +234,6 @@
                                 @include('evaluations.is_educational_form')
                             @endif
 
-                        @endif
-                        @if($evaluation->can_evaluate == 'no')
-                            <div class="flash-message flash-error">
-                                Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας ανατεθεί άλλος Ιστότοπος.
-                            </div>
                         @endif
 
                     </div>

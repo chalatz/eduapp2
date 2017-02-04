@@ -30,6 +30,8 @@ class EvaluationsController extends Controller
     public function __construct()
         {
             $this->middleware('verified');
+            $this->middleware('can_evaluate_a', ['except' => 'init']);
+            $this->middleware('must_own_evaluation_a', ['only' => 'edit']);
 
         }
 
@@ -40,7 +42,7 @@ class EvaluationsController extends Controller
         $site = $user->site;
         $grader = $user->grader;
 
-        $evaluations = Evaluation::where('grader_id', $grader->id)->get();
+        $evaluations = Evaluation::where('grader_id', $grader->id)->where('can_evaluate', '!=', 'no')->get();
 
         return view ('evaluations.a.show', compact('evaluations', 'user', 'site', 'grader'));
 
@@ -145,6 +147,8 @@ class EvaluationsController extends Controller
 
         if($request->can_evaluate == 'no'){
             $evaluation->total_grade = -1;
+            alert()->info('Δεν έχετε αποδεχτεί να αξιολογήσετε αυτόν τον Ιστότοπο. Θα σας ανατεθεί άλλος Ιστότοπος.')
+                ->persistent('Το κατάλαβα');
         }
 
         if($request->can_evaluate == 'yes' && $evaluation->total_grade < 10 && $evaluation->is_educational == 'na'){
