@@ -44,7 +44,9 @@ class EvaluationsController extends Controller
 
         $evaluations = Evaluation::where('grader_id', $grader->id)->where('can_evaluate', '!=', 'no')->get();
 
-        return view ('evaluations.a.show', compact('evaluations', 'user', 'site', 'grader'));
+        $colors = ['success', 'info', 'warning','success', 'info', 'warning','success', 'info', 'warning'];
+
+        return view ('evaluations.a.show', compact('evaluations', 'user', 'site', 'grader', 'colors'));
 
     }
 
@@ -124,6 +126,31 @@ class EvaluationsController extends Controller
         alert()->success('Επιτυχής καταχώριση Βαθμολογίας.');
 
         return redirect()->route('evaluation_a.show');
+
+    }
+
+    public function evaluation_a_finalize($id)
+    {
+        $evaluation = Evaluation::find($id);
+        
+        $grader_id = $evaluation->grader_id;
+        
+        $grader = Grader::find($grader_id);
+        
+        $user = $grader->user;
+        
+        if(Auth::user()->id != $user->id){
+            return redirect()->route('home');
+        }
+        
+        $evaluation->finalized = 'yes';
+        $evaluation->finalized_at = Carbon::today();
+
+        $evaluation->save();
+
+        alert()->success('Επιτυχής καταχώριση Οριστικής Υποβολής Βαθμολογίας.');
+
+        return redirect()->back();
 
     }
 

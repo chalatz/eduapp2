@@ -33,9 +33,9 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                    {{ Form::button('Υποβολή', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                    {{ Form::button('Υποβολή', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg', 'onclick' => "return confirm('Εϊστε σίγουρος;');"]) }}
                 </div>
-            </div>                                         
+            </div>
 
         {{ Form::close() }}
     </div>

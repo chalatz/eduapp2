@@ -110,6 +110,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::patch('evaluation/a/update/{id}', ['as' => 'evaluation.update', 'uses' => 'EvaluationsController@update']);
 
+    Route::get('evaluate/a/finalize/{id}', ['as' => 'evaluation_a.finalize', 'uses' => 'EvaluationsController@evaluation_a_finalize']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

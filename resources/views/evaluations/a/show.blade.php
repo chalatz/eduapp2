@@ -20,9 +20,9 @@
                             $sites_meter++;
                         }
                     ?>
-                    
+                    <?php $color_btn = $colors[$i - 1] ?>
                     <div class="btn-group" role="group">                
-                        <a href="#" type="button" class="btn btn-default btn-lg">
+                        <a href="#evaluation-{{ $i }}" type="button" class="btn btn-{{ $color_btn }} btn-lg">
                             <div><strong>{{$i}}η ανάθεση</strong></div>
                             <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
                             <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>                            
@@ -58,9 +58,10 @@
 
                  <?php $site_index++ ?>
 
-                 <div class="panel panel-default">
+                 <?php $color_panel = $colors[$site_index - 1] ?>
+                 <div class="panel panel-{{ $color_panel }}">
 
-                    <div class="panel-heading">
+                    <div class="panel-heading" id="evaluation-{{ $site_index }}">
                         <div style="font-size: 1.7em;" class="panel-title">
                             <span class="label label-default">{{ $site_index }}η</span> Ανάθεση
                         </div>
@@ -104,7 +105,7 @@
                                         <div class="panel-body">
                                             <p class="lead">Βαθμολογήσατε {{ $meter }} από 5 άξονες</p>
                                             <div class="progress">
-                                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent }}%;">
+                                                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ $percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $percent }}%;">
                                                     {{ $percent }}%
                                                 </div>
                                             </div>
@@ -217,18 +218,21 @@
                                             </div>
                                             
                                         </div>
-                                    </div>                                                                                                                                                                                    
+                                    </div>
+
+                                    @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
+                                        <a href="{{ route('evaluation_a.finalize', $evaluation->id) }}" type="button" class="btn btn-success btn-block btn-lg" onclick="return confirm('Εϊστε σίγουρος;');">
+                                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Οριστική Υποβολή Βαθμολογίας
+                                        </a>
+                                        <p class="help-block">
+                                            Μόνον εφόσον είστε <strong>απολύτως σίγουρος</strong> πατήστε την Οριστική Υποβολή Βαθμολογίας.
+                                        </p>                                 
+                                    @endif                                                                                                                                                                                    
 
                                 @else
                                     <p>Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο.</p>
                                 @endif
-
-                                @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
-                                    <div class="row">                                                   
-                                        <p>Οριστική Υποβολή Βαθμολογίας</p>
-                                        <div>Μόνον εφόσον είστε <strong>απολύτως σίγουρος</strong> πατήστε την Οριστική Υποβολή Βαθμολογίας.</div>                        
-                                    </div>                                   
-                                @endif                                
+                                                                
 
                             @else
                                 @include('evaluations.is_educational_form')
