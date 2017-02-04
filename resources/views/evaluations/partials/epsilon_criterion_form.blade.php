@@ -182,6 +182,12 @@
             </tbody>
         </table>
 
+        <p class="help-block">
+            <strong>Επεξηγήσεις:</strong><br>
+            {!! $criteria->ek3_1_explain !!}<br>
+            {!! $criteria->ek3_2_explain !!}
+        </p>        
+
         <div class="col-md-12 form-group{{ $errors->has('ek3') ? ' has-error' : '' }}">
             <label for="ek3" class="text-primary" style="font-size: 1.5em;">Εκ3 ({{ $criteria->ek3_weight }}%) *</label>
             {{ Form::select('ek3',[

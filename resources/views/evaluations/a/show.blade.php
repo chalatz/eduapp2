@@ -92,8 +92,9 @@
                                 
                                 <div class="site-total-grade-wrapper">
                                     @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0)
-                                        <span class="site-total-grade-label">Βαθμολογία Ιστότοπου:</span>
-                                        <span class="site-total-grade">{{ $evaluation->total_grade }}</span>
+                                        <blockquote>
+                                            <p style="font-size: 1.4em;">Βαθμολογία Ιστότοπου: <span class="label label-success">{{ $evaluation->total_grade }}%</span></p>
+                                        </blockquote>
                                     @else
                                         <p class="lead">Πρέπει να βαθμολογήσετε όλους τους άξονες για να δείτε τη Βαθμολογία.</p>
                                     @endif
@@ -230,7 +231,7 @@
                                     @endif                                                                                                                                                                                    
 
                                 @else
-                                    <p>Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο.</p>
+                                    <p class="lead bg-success" style="padding: 1em;">Έχετε υποβάλλει οριστική βαθμολογία για αυτόν τον Ιστότοπο, στις <span style="text-decoration: underline">{{ date('d/m/y', strtotime($evaluation->finalized_at)) }}</span> </p>
                                 @endif
                                                                 
 

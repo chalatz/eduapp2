@@ -182,6 +182,13 @@
             </tbody>
         </table>
 
+        <p class="help-block">
+            <strong>Επεξηγήσεις:</strong><br>
+            <strong>β)</strong> {!! $criteria->dk3_2_explain !!}<br>
+            <strong>γ)</strong> {!! $criteria->dk3_3_explain !!}<br>
+            <strong>δ)</strong> {!! $criteria->dk3_4_explain !!}
+        </p>
+
         <div class="col-md-12 form-group{{ $errors->has('dk3') ? ' has-error' : '' }}">
             <label for="dk3" class="text-primary" style="font-size: 1.5em;">Δκ3 ({{ $criteria->dk3_weight }}%) *</label>
             {{ Form::select('dk3',[
@@ -248,6 +255,12 @@
             </tbody>
         </table>
 
+        <p class="help-block">
+            <strong>Επεξηγήσεις:</strong><br>
+            <strong>β)</strong> {!! $criteria->dk4_2_explain !!}<br>
+            <strong>γ)</strong> {!! $criteria->dk4_3_explain !!}
+        </p>        
+
         <div class="col-md-12 form-group{{ $errors->has('dk4') ? ' has-error' : '' }}">
             <label for="dk4" class="text-primary" style="font-size: 1.5em;">Δκ4 ({{ $criteria->dk4_weight }}%) *</label>
             {{ Form::select('dk4',[
@@ -313,6 +326,12 @@
                 </tr>
             </tbody>
         </table>
+
+        <p class="help-block">
+            <strong>Επεξηγήσεις:</strong><br>
+            <strong>α)</strong> {!! $criteria->dk5_1_explain !!}<br>
+            <strong>δ)</strong> {!! $criteria->dk5_4_explain !!}
+        </p>        
 
         <div class="col-md-12 form-group{{ $errors->has('dk5') ? ' has-error' : '' }}">
             <label for="dk5" class="text-primary" style="font-size: 1.5em;">Δκ5 ({{ $criteria->dk5_weight }}%) *</label>
