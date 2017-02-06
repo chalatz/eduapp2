@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 use App\User;
+use App\Grader;
+use App\Site;
+use App\Assignment;
 use App\Suggestion;
+use App\Evaluation;
+use App\Summary_A;
 
 use Auth;
+
+use DB;
 
 class AdminController extends Controller
 {
@@ -75,6 +82,53 @@ class AdminController extends Controller
         dd($suggestion->id);
 
         $user->save();
+
+    }
+
+    public function create_summary_a()
+    {
+        $status = 'on';
+        
+        if($status == 'on'){
+
+            $sites = DB::table('assignments')->groupBy('site_id')->get();
+
+            dd(count($sites));
+
+            foreach(Assignment::all() as $assignment){
+
+                //$summary = Summary_A::where('grader_id', $assignment->grader_id)->first();                
+                
+                if(Summary_A::where('grader_id', $assignment->grader_id)->count() == 0){
+                    $data = [];
+                    $data['grader_id'] = $assignment->grader_id;
+                    $data['grader_name'] = Grader::find($assignment->grader_id)->last_name .' '. Grader::find($assignment->grader_id)->first_name;
+                    $data['grader_email'] = Grader::find($assignment->grader_id)->user->email;
+                    $data['sites_count'] = Assignment::where('grader_id', $assignment->grader_id)->count();
+                    $data['site_titles'] = Site::find($assignment->site_id)->title;
+                    $data['site_urls'] = Site::find($assignment->site_id)->url;
+
+                    Summary_A::create($data);
+
+                    unset($data);
+                } else {
+
+                    $summary = Summary_A::where('grader_id', $assignment->grader_id)->first();
+
+                    //$summary->site_titles .= '{||}' . Site::find($assignment->site_id)->title;
+                    //$summary->site_urls .= '{||}' . Site::find($assignment->site_id)->url;
+
+                    $summary->site_titles = '{||}';
+
+                    $summary->save();
+
+                }
+
+            }
+
+        } else {
+            return 'status: off';
+        }
 
     }
 
