@@ -30,6 +30,7 @@ class EvaluationsController extends Controller
     public function __construct()
         {
             $this->middleware('verified');
+            $this->middleware('phase_a', ['except' => 'init']);
             $this->middleware('can_evaluate_a', ['except' => 'init']);
             $this->middleware('must_own_evaluation_a', ['only' => 'edit']);
 
@@ -73,8 +74,6 @@ class EvaluationsController extends Controller
         $input = $request->all();
         
         $evaluation = Evaluation::find($id);
-
-        //$total_grade = $evaluation->total_grade;
 
         if(isset($input['bk1'])){
             $input['beta_grade'] = $input['bk1'] * (BetaCriterion::first()->bk1_weight / 5) +
@@ -121,6 +120,7 @@ class EvaluationsController extends Controller
         $st_grade = $evaluation->st_grade * (StCriterion::first()->weight / 100);
         
         $evaluation->total_grade = $beta_grade + $gama_grade + $delta_grade + $epsilon_grade + $st_grade;
+        
         $evaluation->save();
 
         alert()->success('Επιτυχής καταχώριση Βαθμολογίας.');

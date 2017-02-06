@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'site_submissions_open' => \App\Http\Middleware\SiteSubmissionsOpen::class,
         'can_evaluate_a' => \App\Http\Middleware\CanEvaluateA::class,
         'must_own_evaluation_a' => \App\Http\Middleware\MustOwnEvaluationA::class,
+        'phase_a' => \App\Http\Middleware\PhaseA::class,
     ];
 }

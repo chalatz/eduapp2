@@ -6,7 +6,7 @@ use Closure;
 
 use App\Config;
 
-class SiteSubmissionsOpen
+class PhaseA
 {
     /**
      * Handle an incoming request.
@@ -17,16 +17,16 @@ class SiteSubmissionsOpen
      */
     public function handle($request, Closure $next)
     {
-        //Check if the site submissions are open
         $config = Config::first();
 
-        if($config->site_submissions){
+        if($config->phase_a_gradings){
             return $next($request);
         }
 
-        alert()->error('Η υποβολή Υποψηφιοτήτων και προτάσεων Αξιολογητών Α έχει λήξει.')
+        alert()->error('Η Φάση Α έχει λήξει.')
                 ->persistent('Εντάξει');
 
         return redirect()->route('home');
+
     }
 }

@@ -24,8 +24,13 @@
                     <div class="btn-group" role="group">                
                         <a href="#evaluation-{{ $i }}" type="button" class="btn btn-{{ $color_btn }} btn-lg">
                             <div><strong>{{$i}}η ανάθεση</strong></div>
-                            <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
-                            <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>                            
+                            @if($evaluation->assigned_at)
+                                <div>Ημερομηνία Ανάθεσης: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_at)) }}</strong></div>
+                                <div>Αξιολόγηση μέχρι: <strong>{{ date('d/m/y', strtotime($evaluation->assigned_until)) }}</strong></div>
+                            @else
+                                <div><strong>-</strong></div>
+                                <div><strong>-</strong></div>
+                            @endif
                         </a>
                     </div>                            
                 @endforeach
