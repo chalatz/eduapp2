@@ -163,8 +163,9 @@ class EvaluationsController extends Controller
 
         $data = [];
 
-        $data['assigned_at'] = Carbon::today();
-        $data['assigned_until'] = Carbon::today()->addDays(7);
+        //$data['assigned_at'] = Carbon::today();
+        //$data['assigned_until'] = Carbon::today()->addDays(7);
+
         $data['can_evaluate'] = $request->can_evaluate;
         if($request->why_cannot_evaluate){
             $data['why_cannot_evaluate'] = $request->why_cannot_evaluate;
@@ -183,6 +184,7 @@ class EvaluationsController extends Controller
         }
 
         if($request->can_evaluate == 'yes'){
+            $data['why_cannot_evaluate'] = null;
             alert()->success('Ευχαριστούμε για την αποδοχή!', 'Επιτυχία');
         }
 
@@ -213,6 +215,7 @@ class EvaluationsController extends Controller
         }
 
         if($request->is_educational == 'yes'){
+            $data['why_not_educational'] = null;
             $evaluation->total_grade = 0;
         }
         

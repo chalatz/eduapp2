@@ -36,9 +36,6 @@ class CreateEpsilonCriterionsTable extends Migration
             $table->text('ek2_5_title');
 
             $table->text('ek3_1_title');
-            $table->text('ek3_2_title');
-            $table->text('ek3_3_title');
-            $table->text('ek3_4_title');
             $table->text('ek3_5_title');            
 
             $table->text('ek3_1_explain');

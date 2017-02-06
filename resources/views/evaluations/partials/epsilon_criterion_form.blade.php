@@ -163,9 +163,9 @@
                 <tr class="bg-info">
                     <th colspan="2"></th>
                     <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                    <th>4</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>5</th>
                 </tr>
             </thead>
@@ -174,9 +174,9 @@
                     <td style="font-size: 1.2em"><strong>Εκ3</strong></td>
                     <td><strong>{!! $criteria->ek3_title !!}</strong></td>
                     <td><strong>{!! $criteria->ek3_1_title !!}</strong></td>
-                    <td><strong>{!! $criteria->ek3_2_title !!}</strong></td>
-                    <td><strong>{!! $criteria->ek3_3_title !!}</strong></td>
-                    <td><strong>{!! $criteria->ek3_4_title !!}</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                     <td><strong>{!! $criteria->ek3_5_title !!}</strong></td>
                 </tr>
             </tbody>
@@ -191,11 +191,8 @@
         <div class="col-md-12 form-group{{ $errors->has('ek3') ? ' has-error' : '' }}">
             <label for="ek3" class="text-primary" style="font-size: 1.5em;">Εκ3 ({{ $criteria->ek3_weight }}%) *</label>
             {{ Form::select('ek3',[
-                '' => 'Βαθμολογήστε (1 έως 5)',
+                '' => 'Βαθμολογήστε (1 ή 5)',
                 1 => '1',
-                2 => '2',
-                3 => '3',
-                4 => '4',
                 5 => '5',
             ], null, ['class' => 'form-control', 'id' => 'ek3', 'required']) }}
 

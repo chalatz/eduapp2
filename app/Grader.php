@@ -133,6 +133,20 @@ class Grader extends Model
 
   }
 
+    public function has_eval_a(){
+
+        //  the user is grader A and has sites to evaluate in Phase A
+        if($this->user->hasRole('grader_a')){
+            $evaluation = Evaluation::where('grader_id', $this->id)->first();
+            if($evaluation){
+                return true;
+            }
+        }
+
+        return false;
+
+    } 
+
     public function scopeAlpha($query)
     {
         $graders = Grader::all();

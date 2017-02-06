@@ -146,7 +146,7 @@
                                                 Γ Άξονας (Περιεχόμενο)
                                             </a>
                                             <div class="criteron-check">
-                                                @if($evaluation->beta_grade > 0)
+                                                @if($evaluation->gama_grade > 0)
                                                     <div>Ο Βαθμός σας: <strong>{{ $evaluation->gama_grade }}%</strong></div>
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->gama_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->gama_grade }}%;">
@@ -168,7 +168,7 @@
                                                 Δ Άξονας (Διεπαφή - Αισθητική)
                                             </a>
                                             <div class="criteron-check">
-                                                @if($evaluation->beta_grade > 0)
+                                                @if($evaluation->delta_grade > 0)
                                                     <div>Ο Βαθμός σας: <strong>{{ $evaluation->delta_grade }}%</strong></div>
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->delta_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->delta_grade }}%;">
@@ -190,7 +190,7 @@
                                                 Ε Άξονας (Προσωπικά Δεδομένα)
                                             </a>                                            
                                             <div class="criteron-check">
-                                                @if($evaluation->beta_grade > 0)
+                                                @if($evaluation->epsilon_grade > 0)
                                                     <div>Ο Βαθμός σας: <strong>{{ $evaluation->epsilon_grade }}%</strong></div>
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->epsilon_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->epsilon_grade }}%;">
@@ -211,7 +211,7 @@
                                                 ΣΤ Άξονας (Αλληλεπίδραση)
                                             </a> 
                                             <div class="criteron-check">
-                                                @if($evaluation->beta_grade > 0)
+                                                @if($evaluation->st_grade > 0)
                                                     <div>Ο Βαθμός σας: <strong>{{ $evaluation->st_grade }}%</strong></div>
                                                     <div class="progress">
                                                         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ $evaluation->st_grade }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $evaluation->st_grade }}%;">

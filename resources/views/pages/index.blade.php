@@ -11,7 +11,9 @@
 
                 @include('pages.partials.info')
 
-                @include('pages.partials.registers')
+                @include('pages.partials.start_evals')
+
+                @include('pages.partials.registers')                
 
             @else
 

@@ -426,7 +426,7 @@ class GradersController extends Controller
 
     return response()->download($pathToFile);
 
-  }  
+  }
 
   private function addSuggestion($user_id, $grader_email)
   {

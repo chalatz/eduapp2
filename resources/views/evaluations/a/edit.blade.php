@@ -18,8 +18,6 @@
 
         <p><strong><a href="{{ route('evaluation_a.show') }}">&larr; Επιστροφή στις Αναθέσεις Μου</a></strong></p>
 
-        <p class="lead">Βαθμός: <span class="label label-success">{{ $evaluation->total_grade }}%</span></p>
-
         {!! Form::model($evaluation, ['method' => 'PATCH','route' => ['evaluation.update', $evaluation->id], 'class' => 'form-horizontal', 'id' => 'evaluation_update', 'name' => 'evaluation_update', 'data-parsley-validate']) !!}
 
             @include('evaluations.partials.' .$criterion. '_criterion_form')
