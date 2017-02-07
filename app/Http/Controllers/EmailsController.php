@@ -26,14 +26,14 @@ class EmailsController extends Controller
 
     public function send_to_graders_a_to_begin()
     {
-        $status = 'on';
+        $status = 'off';
 
         if($status == 'on'){
 
             $summaries = Summary_A::all();
 
-            $from = 1;
-            $to = 1;
+            $from = 60;
+            $to = 60;
 
             foreach($summaries as $summary){
                 if($summary->id >= $from && $summary->id <= $to){            
