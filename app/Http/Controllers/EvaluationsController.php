@@ -254,6 +254,8 @@ class EvaluationsController extends Controller
 
                 $data['site_id'] = $assignment->site_id;
                 $data['grader_id'] = $assignment->grader_id;
+                $data['assigned_at'] = '2017-02-07';
+                $data['assigned_until'] = '2017-02-17';
 
                 Evaluation::create($data);
 

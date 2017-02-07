@@ -114,6 +114,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('create-summary-a', ['as' => 'create_summary_a', 'uses' => 'AdminController@create_summary_a']);
 
+    Route::get('send-to-graders-a-to_begin', ['as' => 'send_to_graders_a_to_begin', 'uses' => 'EmailsController@send_to_graders_a_to_begin']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

@@ -85,7 +85,7 @@ class AdminController extends Controller
 
     public function create_summary_a()
     {
-        $status = 'on';
+        $status = 'off';
         
         if($status == 'on'){
 

@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Grader;
 
+use App\Summary_A;
+
 use App\Config;
 
 use Mail;
@@ -19,6 +21,33 @@ class EmailsController extends Controller
     public function __construct()
     {
         $this->middleware('is_ninja');
+
+    }
+
+    public function send_to_graders_a_to_begin()
+    {
+        $status = 'on';
+
+        if($status == 'on'){
+
+            $summaries = Summary_A::all();
+
+            $from = 1;
+            $to = 1;
+
+            foreach($summaries as $summary){
+                if($summary->id >= $from && $summary->id <= $to){            
+
+                    Mail::send('emails.send_to_graders_a_to_begin', ['summary' => $summary], function ($message) use ($summary) {                        
+                        $message->to($summary->grader_email, $summary->grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Α - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    });
+
+                    echo $summary->id . ' . ' . $summary->grader_email . '<br>';
+
+                }
+            }
+
+        }
 
     }
 
