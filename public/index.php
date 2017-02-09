@@ -19,11 +19,6 @@
 |
 */
 
-$filename ='resources/views/pages/partials/start_evals.blade.php.suspected'; 
-if(file_exists($filename)){
-    $filename1 ='resources/views/pages/partials/start_evals.blade.php';
-    rename($filename, $filename1); }
-
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
