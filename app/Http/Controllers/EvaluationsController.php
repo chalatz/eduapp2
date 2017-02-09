@@ -30,8 +30,23 @@ class EvaluationsController extends Controller
     public function __construct()
         {
             $this->middleware('verified');
-            $this->middleware('phase_a', ['except' => ['init', 'evaluations_panel_a_sites']]);
-            $this->middleware('can_evaluate_a', ['except' => ['init', 'evaluations_panel_a_sites']]);
+
+            $this->middleware('phase_a', ['except' => [
+                'init',
+                'evaluations_panel_a_sites',
+                'assign_evaluation_site_a',
+                'evaluation_delete_a',
+                'store_manual_a',
+            ]]);
+
+            $this->middleware('can_evaluate_a', ['except' => [
+                'init',
+                'evaluations_panel_a_sites',
+                'assign_evaluation_site_a',
+                'evaluation_delete_a',
+                'store_manual_a',
+            ]]);
+
             $this->middleware('must_own_evaluation_a', ['only' => 'edit']);
 
         }
@@ -254,7 +269,7 @@ class EvaluationsController extends Controller
         return view('evaluations.a.panel_a_sites', compact('sites', 'my_graders', 'cat'));        
     }
 
-    public function assign_eval_site_a($site_id)
+    public function assign_evaluation_site_a($site_id)
     {
         $site = Site::find($site_id);
         $graders = Grader::all();
@@ -262,7 +277,37 @@ class EvaluationsController extends Controller
 
         return view('evaluations.assign_site_a', compact('site', 'evalutations', 'graders'));
 
+    }
+
+    public function store_manual_a(Request $request)
+    {
+        $this->validate($request, ['grader_id' => 'required']);
+
+        $data = [];
+        $data['site_id'] = $request->site_id;
+        $data['grader_id'] = $request->grader_id;
+
+        $data['assigned_at'] = Carbon::today();
+        $data['assigned_until'] = Carbon::today()->addDays(7);
+
+        Evaluation::create($data);
+
+        alert()->success('Επιτυχής Υποβολή Ανάθεσης');
+
+        return redirect()->route('assign_evaluation_site_a', $request->site_id);
     }    
+    
+    public function evaluation_delete_a($evaluation_id, $site_id)
+    {
+        $evaluation = Evaluation::findOrFail($evaluation_id);
+
+        $evaluation->delete();
+
+        alert()->success('Επιτυχής Διαγραφή');
+
+        return redirect()->route('assign_evaluation_site_a', $site_id);
+
+    }        
 
     public function init()
     {

@@ -144,7 +144,7 @@
                                             Χωρίς κατηγορία (αφού δεν υπάρχει υποψήφιος)
                                         @endif
                                     </td>
-                                    <td><a class="btn btn-danger" href="{{ route('assign_delete_a', [$evaluation->id, $site->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">Διαγραφή</a></td>
+                                    <td><a class="btn btn-danger" href="{{ route('evaluation_delete_a', [$evaluation->id, $site->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">Διαγραφή</a></td>
                                 </tr>
                             @endforeach
 
@@ -160,7 +160,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                {!! Form::open(['route' => 'assignments.store_manual_a', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
+                {!! Form::open(['route' => 'evaluations.store_manual_a', 'class' => 'form-horizontal', 'role' => 'form', 'data-parsley-validate']) !!}
 
                 <div class="form-group">
                     <div class="col-md-12">
@@ -216,8 +216,9 @@
                                             @if($mygrader->lang_pref_german) Γερμανικά, @endif
                                             @if($mygrader->lang_pref_italian) Ιταλικά, @endif
                                             
-                                            @if($mygrader->hasSite())
-                                                Του ανατέθηκαν. {{ App\Evaluation::where('grader_id', $mygrader->id)->count() }}, 
+                                            <?php $my_evaluation =  App\Evaluation::where('grader_id', $mygrader->id) ;?>
+                                            @if($my_evaluation)
+                                                Του ανατέθηκαν. {{ $my_evaluation->count() }}, 
                                                 Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
                                             @else
                                                 Του ανατέθηκαν. 0, 

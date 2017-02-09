@@ -24,6 +24,13 @@ class AssignmentsController extends Controller
 
         $this->middleware('is_member');
 
+        $this->middleware('is_ninja', ['only' => [
+            'assignments_panel_a_sites',
+            'assign_site_a',
+            'store_manual_a',
+            'assign_delete_a',
+        ]]);
+
     }
 
     public function assignments_panel_a_sites($cat)
