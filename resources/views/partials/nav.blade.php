@@ -77,7 +77,7 @@
                       </ul>
                   </li>
 
-                  <li><a href="{{ route('assignments_panel_a_sites', 'all') }}">Αναθέσεις Α</a></li>                 
+                  {{-- <li><a href="{{ route('assignments_panel_a_sites', 'all') }}">Αναθέσεις Α</a></li> --}}
                 @endif                                
 
               @endif

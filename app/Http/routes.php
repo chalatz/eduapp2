@@ -91,7 +91,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
     Route::get('assigns_a/{type}', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
 
-    Route::get('panel/assignments/a/sites/{cat}', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
+    //Route::get('panel/assignments/a/sites/{cat}', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
     Route::get('assign/site/a/{site_id}', ['as' => 'assign_site_a', 'uses' => 'AssignmentsController@assign_site_a']);
 
     Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
@@ -115,6 +115,12 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('create-summary-a', ['as' => 'create_summary_a', 'uses' => 'AdminController@create_summary_a']);
 
     Route::get('send-to-graders-a-to_begin', ['as' => 'send_to_graders_a_to_begin', 'uses' => 'EmailsController@send_to_graders_a_to_begin']);
+
+    // ---- MANAGE EVALUATIONS --- //
+    Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
+    Route::get('assign_eval/site/a/{site_id}', ['as' => 'assign_eval_site_a', 'uses' => 'EvaluationsController@assign_eval_site_a']);
+
+    Route::get('admin/sites/grades/a', ['as' => 'sites_grades_a', 'uses' => 'MembersController@sites_grades_a']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

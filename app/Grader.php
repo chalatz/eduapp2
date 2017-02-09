@@ -133,7 +133,7 @@ class Grader extends Model
 
   }
 
-    public function has_eval_a(){
+    public function has_to_grade_a(){
 
         //  the user is grader A and has sites to evaluate in Phase A
         if($this->user->hasRole('grader_a')){

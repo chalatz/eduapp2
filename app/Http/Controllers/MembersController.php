@@ -9,6 +9,7 @@ use Auth;
 use App\Site;
 use App\Grader;
 use App\Suggestion;
+use App\Evaluation;
 
 use Illuminate\Http\Request;
 
@@ -123,6 +124,24 @@ class MembersController extends Controller
     $site->save();
 
     return response()->json(['message' => $request['site_id']]);
+
+  }
+
+  public function sites_grades_a()
+  {
+
+    $sites = Site::all();
+
+    $max_evals = 0;
+
+    foreach($sites as $site){
+      $evals_count = Evaluation::where('site_id', $site->id)->count();
+      if($evals_count > $max_evals){
+          $max_evals = $evals_count;
+      }
+    }
+
+    return view('members.sites_grades_a', compact('sites', 'max_evals'));
 
   }
   

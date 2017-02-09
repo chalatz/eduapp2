@@ -11,7 +11,7 @@
 
                 @include('pages.partials.info')
 
-                @include('pages.partials.start_evals')
+                @include('pages.partials.start_gradings')
 
                 @include('pages.partials.registers')                
 

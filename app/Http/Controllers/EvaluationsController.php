@@ -30,8 +30,8 @@ class EvaluationsController extends Controller
     public function __construct()
         {
             $this->middleware('verified');
-            $this->middleware('phase_a', ['except' => 'init']);
-            $this->middleware('can_evaluate_a', ['except' => 'init']);
+            $this->middleware('phase_a', ['except' => ['init', 'evaluations_panel_a_sites']]);
+            $this->middleware('can_evaluate_a', ['except' => ['init', 'evaluations_panel_a_sites']]);
             $this->middleware('must_own_evaluation_a', ['only' => 'edit']);
 
         }
@@ -240,6 +240,29 @@ class EvaluationsController extends Controller
         return redirect()->back();
 
     }
+
+    public function evaluations_panel_a_sites($cat)
+    {
+        if($cat == 'all'){
+            $sites = Site::all();            
+        } else {
+            $sites = Site::where('cat_id', $cat)->get();
+        }
+
+        $my_graders = Grader::all();
+
+        return view('evaluations.a.panel_a_sites', compact('sites', 'my_graders', 'cat'));        
+    }
+
+    public function assign_eval_site_a($site_id)
+    {
+        $site = Site::find($site_id);
+        $graders = Grader::all();
+        $evalutations = Evaluation::where('site_id', $site->id)->get();
+
+        return view('evaluations.assign_site_a', compact('site', 'evalutations', 'graders'));
+
+    }    
 
     public function init()
     {
