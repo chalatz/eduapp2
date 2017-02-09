@@ -120,8 +120,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
     Route::get('assign-evaluation/site/a/{site_id}', ['as' => 'assign_evaluation_site_a', 'uses' => 'EvaluationsController@assign_evaluation_site_a']);
     Route::get('evaluation/a/delete/{evaluation_id}/site/{site_id}', ['as' => 'evaluation_delete_a', 'uses' => 'EvaluationsController@evaluation_delete_a']);
-        Route::post('evaluations/store-manual-a', ['as' => 'evaluations.store_manual_a', 'uses' => 'EvaluationsController@store_manual_a']);
+    Route::post('evaluations/store-manual-a', ['as' => 'evaluations.store_manual_a', 'uses' => 'EvaluationsController@store_manual_a']);
     Route::get('admin/sites/grades/a', ['as' => 'sites_grades_a', 'uses' => 'MembersController@sites_grades_a']);
+
+    Route::get('send-extra-to-grader-a/{evaluation_id}', ['as' => 'send_extra_to_grader_a', 'uses' => 'EmailsController@send_extra_to_grader_a']);
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
