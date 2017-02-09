@@ -29,22 +29,22 @@
                 </a>
             </div>
             <div class="btn-group" role="group">
-                <a href="{{ route('assignments_panel_a_sites', '2') }}" type="button" class="btn btn-success btn-lg">
+                <a href="{{ route('evaluations_panel_a_sites', '2') }}" type="button" class="btn btn-success btn-lg">
                     Κατηγορία 2
                 </a>
             </div>
            <div class="btn-group" role="group">
-                <a href="{{ route('assignments_panel_a_sites', '3') }}" type="button" class="btn btn-info btn-lg">
+                <a href="{{ route('evaluations_panel_a_sites', '3') }}" type="button" class="btn btn-info btn-lg">
                     Κατηγορία 3
                 </a>
             </div>
            <div class="btn-group" role="group">
-                <a href="{{ route('assignments_panel_a_sites', '4') }}" type="button" class="btn btn-warning btn-lg">
+                <a href="{{ route('evaluations_panel_a_sites', '4') }}" type="button" class="btn btn-warning btn-lg">
                     Κατηγορία 4
                 </a>
             </div>
            <div class="btn-group" role="group">
-                <a href="{{ route('assignments_panel_a_sites', '6') }}" type="button" class="btn btn-danger btn-lg">
+                <a href="{{ route('evaluations_panel_a_sites', '6') }}" type="button" class="btn btn-danger btn-lg">
                     Κατηγορία 6
                 </a>
             </div>                                  
