@@ -115,6 +115,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('create-summary-a', ['as' => 'create_summary_a', 'uses' => 'AdminController@create_summary_a']);
 
     Route::get('send-to-graders-a-to_begin', ['as' => 'send_to_graders_a_to_begin', 'uses' => 'EmailsController@send_to_graders_a_to_begin']);
+    Route::get('send-to-late-graders-a', ['as' => 'send_to_late_graders_a', 'uses' => 'EmailsController@send_to_late_graders_a']);
 
     // ---- MANAGE EVALUATIONS --- //
     Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
