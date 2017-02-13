@@ -94,6 +94,10 @@
                             @endif
                             <h4>{{ $grader->last_name }} {{ $grader->first_name }}</h4>
 
+                            <p style="font-size: 1.1em; padding-left: 2em;">
+                                <strong>{{ $grader->user->email }}</strong>
+                            </p>
+
                             <?php $assigned_sites = App\Evaluation::where('grader_id', $grader->id)->count(); ?>
 
                             @if($grader->hasSite())
@@ -120,7 +124,7 @@
                             @endif
 
                             @if($evaluation->is_educational == 'no')
-                                <p style="font-weight: bold; background-color: red; color: darkorange; padding: .5em">
+                                <p style="font-weight: bold; background-color: darkorange; color: #111; padding: .5em">
                                     Δεν Βρήκε τον Ιστότοπο Εκπαιδευτικό επειδή:<br>
                                     {!! nl2br(e($evaluation->why_not_educational)) !!}
                                 </p>

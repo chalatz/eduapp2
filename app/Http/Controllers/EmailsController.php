@@ -57,17 +57,21 @@ class EmailsController extends Controller
 
     public function send_to_late_graders_a()
     {
-        $status = 'on';
+        $status = 'off';
 
         if($status == 'on'){
 
             $evaluations = Evaluation::distinct()->select('grader_id')->where('can_evaluate', '=', 'na')->groupBy('grader_id')->get();
             
+            $i = 0;            
+
             foreach($evaluations as $evaluation){
                 
                 $grader = Grader::find($evaluation->grader_id);
 
                 if($grader){
+
+                    $i++;
 
                     $grader_email = $grader->user->email;
 
@@ -75,14 +79,18 @@ class EmailsController extends Controller
                     $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
                     $data['grader_email'] = $grader_email;
 
-                    // Mail::send('emails.send_to_late_graders_a', ['data' => $data], function ($message) use ($data) {                        
-                    //     $message->to($data['grader_email'], $data['grader_email'])->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΚΡΙΣΗ - ' .Config::first()->index. 'ος ΔΕΕΙ');
-                    // });
+                    Mail::send('emails.send_to_late_graders_a', ['data' => $data], function ($message) use ($data) {                        
+                        $message->to($data['grader_email'], $data['grader_email'])->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΚΡΙΣΗ - ' .Config::first()->index. 'ος ΔΕΕΙ');
+                    });
+
+                    echo $i . ' -- ' . $grader->id . '. ' . $grader_email . '<br>';                    
 
                 }
 
             }
 
+        } else {
+            return 'status: off';
         }
 
     }    
