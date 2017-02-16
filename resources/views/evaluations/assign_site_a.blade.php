@@ -17,7 +17,7 @@
 <div style="padding: 0 2em;">
 
         <p style="font-size: 1.5em">
-            <a href="{{ route('evaluations_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+            <a href="{{ url()->previous() }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
         </p>
 
     <div class="row">
@@ -262,7 +262,7 @@
         </div>
 
         <p style="font-size: 1.5em">
-            <a href="{{ route('evaluations_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+            <a href="{{ url()->previous() }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
         </p>
 
 </div>

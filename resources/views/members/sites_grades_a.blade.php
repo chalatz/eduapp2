@@ -24,6 +24,7 @@
             <th>Βαθμός {{$i}}</th>
         @endfor
         <th>Διαφορά</th>
+        <th>Ανάθεση Α</th>
     </tr>
   </thead>
 
@@ -104,6 +105,10 @@
             ?>
 
             <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
+
+            <td>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'assign_evaluation_site_a']) }}" role="button">Ανάθεση σε Αξ .Α</a>
+            </td>
 
         </tr>
 

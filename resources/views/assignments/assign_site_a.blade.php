@@ -16,9 +16,10 @@
 </h1>
 <div style="padding: 0 2em;">
 
-        <p style="font-size: 1.5em">
-            <a href="{{ route('assignments_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
-        </p>
+
+    <p style="font-size: 1.5em">
+        <a href="{{ route('assignments_panel_a_sites', $site->cat_id) }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+    </p>
 
     <div class="row">
         <div class="col-md-12">
