@@ -16,9 +16,14 @@
 </h1>
 <div style="padding: 0 2em;">
 
-        <p style="font-size: 1.5em">
-            <a href="{{ url()->previous() }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
-        </p>
+    <p style="font-size: 1.5em">
+        @if($from == 'sites_grades_a')
+            <a href="{{ route('sites_grades_a') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        @endif
+        @if($from == 'evaluations_panel_a_sites')
+            <a href="{{ route('evaluations_panel_a_sites', 'all') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        @endif        
+    </p>
 
     <div class="row">
         <div class="col-md-12">
@@ -261,9 +266,14 @@
             </div>
         </div>
 
-        <p style="font-size: 1.5em">
-            <a href="{{ url()->previous() }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
-        </p>
+    <p style="font-size: 1.5em">
+        @if($from == 'sites_grades_a')
+            <a href="{{ route('sites_grades_a') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        @endif
+        @if($from == 'evaluations_panel_a_sites')
+            <a href="{{ route('evaluations_panel_a_sites', 'all') }}">&larr; Επιστροφή στις Αναθέσεις Α</a>
+        @endif        
+    </p>
 
 </div>
 

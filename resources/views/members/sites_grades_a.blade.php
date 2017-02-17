@@ -10,6 +10,34 @@
 
 <h1 class="bg-success" style="padding: .5em 1em; margin-bottom: 1.5em">Φάση Α - Βαθμολογίες Υποψήφιων Ιστότοπων</h1>
 
+<div style="padding: .5em 1em; margin-bottom: 1.5em">
+    <div class="row">
+        <div class="col-md-12" style="font-size: 1.5em">
+            <span class="label label-default" style="background: green; color: #fff; margin-right: 2em">
+                Διαφορά μικρότερη από 20%
+            </span>
+            <span class="label label-default" style="background: red; color: #fff; margin-right: 2em">
+                Διαφορά μεγαλύτερη από 20%
+            </span>
+            <span class="label label-default" style="background: orange; color: #111; margin-right: 2em">
+                Έχει βαθμολογήσει μόνο ο ένας
+            </span>
+            <span class="label label-default" style="background: black; color: #fff; margin-right: 2em">
+                Δεν έχει βαθμολογήσει κανένας
+            </span>
+            <span class="label label-default" style="background: #b2beb5; color: #111; margin-right: 2em">
+                Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί
+            </span>                                           
+        </div>
+    </div>
+</div>
+
+<div style="padding: .5em 1em; margin-bottom: 1.5em; font-size: 1.5em; background: #eee;">
+    <p class="lead">Βαθμός:</p>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <strong>-1</strong>: Δεν έχει αποδεχτεί, <strong>1</strong>: Έχει κρίνει τον ιστότοπο μη εκπαιδευτικό, <strong>2</strong>: Έχει αποδεχτεί αλλά δεν έχει προχωρήσει
+</div>
+
 <table id="sitesgrades-a-table" class="table table-striped admin-table">
 
   <thead>
@@ -82,7 +110,7 @@
             @endif
 
             <?php
-                $bgc = '#fff';
+                //$bgc = '#fff';
                 $dif = abs($tg_rsorted[0] - $tg_rsorted[1]);
                 if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20 ) ) {
                     $bgc = '#dd514c';
@@ -107,7 +135,7 @@
             <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
 
             <td>
-                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'assign_evaluation_site_a']) }}" role="button">Ανάθεση σε Αξ .Α</a>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ .Α</a>
             </td>
 
         </tr>
@@ -119,7 +147,21 @@
 
   <tfoot>
 
-</tfoot>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        @for($i = 1; $i <= $max_evals; $i++)
+            <th></th>
+        @endfor
+        @for($i = 1; $i <= $max_evals; $i++)
+            <th></th>
+        @endfor
+        <th></th>
+        <th></th>
+    </tr>
+
+  </tfoot>
 
 </table>
 

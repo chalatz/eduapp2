@@ -141,7 +141,9 @@ class MembersController extends Controller
       }
     }
 
-    return view('members.sites_grades_a', compact('sites', 'max_evals'));
+    $from = 'sites_grades_a';
+
+    return view('members.sites_grades_a', compact('sites', 'max_evals', 'from'));
 
   }
   

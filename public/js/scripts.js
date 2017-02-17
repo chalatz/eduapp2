@@ -285,6 +285,58 @@
   } );
   // End Evaluations panel -----
 
+  // Evaluations A panel -----
+  // Setup - add a text input to each footer cell
+  $('#sitesgrades-a-table tfoot th').each( function () {
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="'+title+'" />' );
+  } );
+
+  var sitesgrades_a_table = $('#sitesgrades-a-table').DataTable({
+    initComplete: function ()
+      {
+        var r = $('#sitesgrades-a-table tfoot tr');
+        r.find('th').each(function(){
+          $(this).css('padding', 8);
+        });
+        $('#sitesgrades-a-table thead').append(r);
+        $('#search_0').css('text-align', 'center');
+      },
+    "dom": 'lfriptip',
+    "language": {
+        "sProcessing":   "Επεξεργασία...",
+        "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
+        "sZeroRecords":  "Δεν βρέθηκαν εγγραφές που να ταιριάζουν",
+        "sInfo":         "Εμφανίζονται _START_ εως _END_ από _TOTAL_ εγγραφές",
+        "sInfoEmpty":    "Εμφανίζονται 0 έως 0 από 0 εγγραφές",
+        "sInfoFiltered": "(φιλτραρισμένες από _MAX_ συνολικά εγγραφές)",
+        "sInfoPostFix":  "",
+        "sSearch":       "Αναζήτηση:",
+        "sUrl":          "",
+        "oPaginate": {
+            "sFirst":    "Πρώτη",
+            "sPrevious": "Προηγούμενη",
+            "sNext":     "Επόμενη",
+            "sLast":     "Τελευταία"
+        }
+    },
+    "pageLength": 1000
+  });
+
+  // Apply the search
+  sitesgrades_a_table.columns().every( function () {
+      var that = this;
+
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+          if ( that.search() !== this.value ) {
+              that
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+  } );
+  // End Evaluations A panel -----  
+
   $('#submissions-stats-table').dataTable({
         paging: false,
         searching: false,

@@ -80,7 +80,7 @@
                 @if($site->cat_id == 3 && $site->secondary_edu_id > 0)
                     <p><strong>Βαθμίδα: </strong>{{ $secondary_schools::all()[$site->secondary_edu_id] }}</p>
                 @endif                              
-                <a class="btn btn-primary btn-block" href="{{ route('assign_evaluation_site_a', $site->id) }}" role="button">Ανάθεση</a>
+                <a class="btn btn-primary btn-block" href="{{ route('assign_evaluation_site_a', [$site->id, 'evaluations_panel_a_sites']) }}" role="button">Ανάθεση</a>
             </td>
 
             @if(App\Evaluation::where('site_id', $site->id)->count() > 0)

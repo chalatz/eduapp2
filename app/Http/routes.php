@@ -119,7 +119,7 @@ Route::group(['middleware' => 'web'], function () {
 
     // ---- MANAGE EVALUATIONS --- //
     Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
-    Route::get('assign-evaluation/site/a/{site_id}', ['as' => 'assign_evaluation_site_a', 'uses' => 'EvaluationsController@assign_evaluation_site_a']);
+    Route::get('assign-evaluation/site/a/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_a', 'uses' => 'EvaluationsController@assign_evaluation_site_a']);
     Route::get('evaluation/a/delete/{evaluation_id}/site/{site_id}', ['as' => 'evaluation_delete_a', 'uses' => 'EvaluationsController@evaluation_delete_a']);
     Route::post('evaluations/store-manual-a', ['as' => 'evaluations.store_manual_a', 'uses' => 'EvaluationsController@store_manual_a']);
     Route::get('admin/sites/grades/a', ['as' => 'sites_grades_a', 'uses' => 'MembersController@sites_grades_a']);

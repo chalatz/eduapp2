@@ -266,16 +266,18 @@ class EvaluationsController extends Controller
 
         $my_graders = Grader::all();
 
-        return view('evaluations.a.panel_a_sites', compact('sites', 'my_graders', 'cat'));        
+        $from = 'evaluations_panel_a_sites';
+
+        return view('evaluations.a.panel_a_sites', compact('sites', 'my_graders', 'cat', 'from'));
     }
 
-    public function assign_evaluation_site_a($site_id)
+    public function assign_evaluation_site_a($site_id, $from)
     {
         $site = Site::find($site_id);
         $graders = Grader::all();
         $evalutations = Evaluation::where('site_id', $site->id)->get();
 
-        return view('evaluations.assign_site_a', compact('site', 'evalutations', 'graders'));
+        return view('evaluations.assign_site_a', compact('site', 'evalutations', 'graders', 'from'));
 
     }
 
@@ -294,7 +296,7 @@ class EvaluationsController extends Controller
 
         alert()->success('Επιτυχής Υποβολή Ανάθεσης');
 
-        return redirect()->route('assign_evaluation_site_a', $request->site_id);
+        return redirect()->back();
     }    
     
     public function evaluation_delete_a($evaluation_id, $site_id)
@@ -305,7 +307,7 @@ class EvaluationsController extends Controller
 
         alert()->success('Επιτυχής Διαγραφή');
 
-        return redirect()->route('assign_evaluation_site_a', $site_id);
+        return redirect()->back();
 
     }        
 
