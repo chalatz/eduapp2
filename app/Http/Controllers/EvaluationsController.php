@@ -35,6 +35,8 @@ class EvaluationsController extends Controller
                 'init',
                 'evaluations_panel_a_sites',
                 'assign_evaluation_site_a',
+                'assign_evaluation_site_a_grader_b_with_site',
+                //'assign_evaluation_site_a_grader_b_without_site',
                 'evaluation_delete_a',
                 'store_manual_a',
             ]]);
@@ -43,6 +45,8 @@ class EvaluationsController extends Controller
                 'init',
                 'evaluations_panel_a_sites',
                 'assign_evaluation_site_a',
+                'assign_evaluation_site_a_grader_b_with_site',
+                //'assign_evaluation_site_a_grader_b_without_site',
                 'evaluation_delete_a',
                 'store_manual_a',
             ]]);
@@ -280,6 +284,26 @@ class EvaluationsController extends Controller
         return view('evaluations.assign_site_a', compact('site', 'evalutations', 'graders', 'from'));
 
     }
+
+    public function assign_evaluation_site_a_grader_b_with_site($site_id, $from)
+    {
+        $site = Site::find($site_id);
+        $graders = Grader::where('approved', 1)->get();
+        $evalutations = Evaluation::where('site_id', $site->id)->get();
+
+        return view('evaluations.assign_evaluation_site_a_grader_b_with_site', compact('site', 'evalutations', 'graders', 'from'));
+
+    }  
+
+    public function assign_evaluation_site_a_grader_b_without_site($site_id, $from)
+    {
+        $site = Site::find($site_id);
+        $graders = Grader::where('approved', 1)->get();
+        $evalutations = Evaluation::where('site_id', $site->id)->get();
+
+        return view('evaluations.assign_evaluation_site_a_grader_b_without_site', compact('site', 'evalutations', 'graders', 'from'));
+
+    }      
 
     public function store_manual_a(Request $request)
     {

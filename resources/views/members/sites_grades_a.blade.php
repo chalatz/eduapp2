@@ -53,6 +53,7 @@
         @endfor
         <th>Διαφορά</th>
         <th>Ανάθεση Α</th>
+        <th>Ανάθεση Β</th>
     </tr>
   </thead>
 
@@ -135,7 +136,11 @@
             <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
 
             <td>
-                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ .Α</a>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ. Α</a>
+            </td>
+
+            <td>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a_grader_b_with_site', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ. Β με Ιστότοπο</a>
             </td>
 
         </tr>
@@ -157,6 +162,7 @@
         @for($i = 1; $i <= $max_evals; $i++)
             <th></th>
         @endfor
+        <th></th>
         <th></th>
         <th></th>
     </tr>
