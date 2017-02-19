@@ -23,7 +23,7 @@ class CanEvaluateA
 
         $evaluation = Evaluation::where('grader_id', $user->grader->id)->first();
 
-        if($user->hasRole('grader_a') && $evaluation){
+        if(($user->hasRole('grader_a') || $user->hasRole('grader_b')) && $evaluation){
             return $next($request);
         }
 

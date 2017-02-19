@@ -136,7 +136,7 @@ class Grader extends Model
     public function has_to_grade_a(){
 
         //  the user is grader A and has sites to evaluate in Phase A
-        if($this->user->hasRole('grader_a')){
+        if($this->user->hasRole('grader_a') || $this->user->hasRole('grader_b')){
             $evaluation = Evaluation::where('grader_id', $this->id)->first();
             if($evaluation){
                 return true;
