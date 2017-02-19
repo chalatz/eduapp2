@@ -142,9 +142,14 @@
                                         </p>
                                         <p>
                                             <a class="btn btn-info" href="{{ route('send_extra_to_grader_a', [$evaluation->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">
-                                                Αποστολή email για την Ανάθεση
+                                                Αποστολή email για την Ανάθεση (ΝΕΑ - Αξιολογητής Α)
                                             </a>
                                         </p>
+                                        <p>
+                                            <a class="btn btn-warning" href="{{ route('send_extra_to_grader_20pc', [$evaluation->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">
+                                                Αποστολή email για την Ανάθεση (20%)
+                                            </a>
+                                        </p>                                        
                                     </td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
                                     <td @if($grader->hasSite() && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>

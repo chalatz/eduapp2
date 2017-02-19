@@ -119,6 +119,30 @@ class EmailsController extends Controller
         return redirect()->back();
     }
 
+    public function send_extra_to_grader_20pc($evaluation_id)
+    {
+        $evaluation = Evaluation::find($evaluation_id);
+
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+
+        $grader_email = $grader->user->email;
+
+        $data = [];
+        $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+        $data['site_url'] = $site->url;
+        $data['site_title'] = $site->title;
+        $data['grader_email'] = $grader_email;
+
+        Mail::send('emails.send_extra_to_grader_20pc', ['data' => $data], function ($message) use ($data) {                       
+            $message->to($data['grader_email'], $data['grader_email'])->subject('ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΤΡΙΤΟ ΑΞΙΟΛΟΓΗΤΗ ' .Config::first()->index. 'ου ΔΕΕΙ');
+        });
+
+        alert()->success('Επιτυχής Αποστολή email');
+
+        return redirect()->back();
+    }    
+
     public function send_to_past_graders()
     {
         $status = 'off';

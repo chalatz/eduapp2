@@ -140,7 +140,7 @@
             </td>
 
             <td>
-                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a_grader_b_with_site', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ. Β με Ιστότοπο</a>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a_grader_b', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ. Β</a>
             </td>
 
         </tr>

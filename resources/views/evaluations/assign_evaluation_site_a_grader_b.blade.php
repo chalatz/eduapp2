@@ -12,7 +12,7 @@
 @inject('secondary_schools', 'App\Http\Utilities\SecondaryEdu')
 
 <h1 class="bg-success" style="padding: .5em 1em; margin-bottom: 1.5em">
-    Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Β με ιστότοπο
+    Φάση Α - Αναθέσεις Ιστότοπου σε Αξιολογητές Β
 </h1>
 <div style="padding: 0 2em;">
 
@@ -136,15 +136,21 @@
                                 <tr>
                                     <td>
                                         {{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}
+                                        <p>Κωδικός: {{ $grader->code() }} (Φαίνεται αν είναι μόνο Αξ. Β ή και τα δύο)</p>
                                         <p @if($assigned_sites > $his_sites) style="background: lightcoral; padding: 6px;" @endif>
                                             Του ανατέθηκαν: {{ $assigned_sites }}<br>
                                             Του αναλογούν: {{ $his_sites }}
                                         </p>
                                         <p>
                                             <a class="btn btn-info" href="{{ route('send_extra_to_grader_a', [$evaluation->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">
-                                                Αποστολή email για την Ανάθεση
+                                                Αποστολή email για την Ανάθεση (ΝΕΑ - Αξιολογητής Α)
                                             </a>
                                         </p>
+                                        <p>
+                                            <a class="btn btn-warning" href="{{ route('send_extra_to_grader_20pc', [$evaluation->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">
+                                                Αποστολή email για την Ανάθεση (20%)
+                                            </a>
+                                        </p>                                         
                                     </td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
                                     <td @if($grader->hasSite() && $site->cat_id != $grader->sites->first()->cat_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>
@@ -187,57 +193,54 @@
                     
                         <select name="grader_id" id="grader_id" class="js-example-basic-single select2" "required">
 
-                            <option value="">Επιλέξτε Αξιολογητή Α...</option>
+                            <option value="">Επιλέξτε Αξιολογητή Β...</option>
 
                             @foreach($graders as $mygrader)
 
-                                @if($mygrader->hasSite())
+                                @if($mygrader->hasSite()))
+                                    <?php $grader_cat_id =  $mygrader->sites->first()->cat_id; ?>
+                                @else
+                                    <?php $grader_cat_id =  0; ?>
+                                @endif
 
-                                    @if($mygrader->hasSite()))
-                                        <?php $grader_cat_id =  $mygrader->sites->first()->cat_id; ?>
-                                    @else
-                                        <?php $grader_cat_id =  0; ?>
-                                    @endif
+                                @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id)
+                                    <option value="{{ $mygrader->id }}">
+                                        @if(!$mygrader->hasSite()) ΧΥ - @endif
+                                        {{ $mygrader->last_name }} {{ $mygrader->first_name }},
+                                        {{ $mygrader->code() }},  
+                                        Περ. {{ $mygrader->district_id }},
+                                        @if($mygrader->hasSite())                                             
+                                            Κατ. {{ $mygrader->sites->first()->cat_id }}, 
+                                        @endif
+                                        Ειδ. {{ $specialties::all()[$mygrader->specialty_id] }},
+                                        Επιθυμεί. {{ $mygrader->desired_category }}, 
+                                        Εμπειρία. 
+                                        @foreach(explode('|', $mygrader->teaching_xp) as $xp_index)
+                                            {{ $xp::all()[$xp_index] }}, 
+                                        @endforeach
 
-                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id)
-                                        <option value="{{ $mygrader->id }}">
-                                            @if(!$mygrader->hasSite()) ΧΥ - @endif
-                                            {{ $mygrader->last_name }} {{ $mygrader->first_name }}, 
-                                            Περ. {{ $mygrader->district_id }},
-                                            @if($mygrader->hasSite())                                             
-                                                Κατ. {{ $mygrader->sites->first()->cat_id }}, 
-                                            @endif
-                                            Ειδ. {{ $specialties::all()[$mygrader->specialty_id] }},
-                                            Επιθυμεί. {{ $mygrader->desired_category }}, 
-                                            Εμπειρία. 
-                                            @foreach(explode('|', $mygrader->teaching_xp) as $xp_index)
-                                                {{ $xp::all()[$xp_index] }}, 
-                                            @endforeach
+                                        Ξένες Γλώσσες. 
+                                        @if($mygrader->english) Αγγλικά - {{ $mygrader->english_level }}, @endif
+                                        @if($mygrader->french) Γαλλικά - {{ $mygrader->french_level }}, @endif
+                                        @if($mygrader->german) Γερμανικά - {{ $mygrader->german_level }}, @endif
+                                        @if($mygrader->italian) Ιταλικά - {{ $mygrader->italian_level }}, @endif
 
-                                            Ξένες Γλώσσες. 
-                                            @if($mygrader->english) Αγγλικά - {{ $mygrader->english_level }}, @endif
-                                            @if($mygrader->french) Γαλλικά - {{ $mygrader->french_level }}, @endif
-                                            @if($mygrader->german) Γερμανικά - {{ $mygrader->german_level }}, @endif
-                                            @if($mygrader->italian) Ιταλικά - {{ $mygrader->italian_level }}, @endif
-
-                                            Ξένες Γλώσσες - Προτιμήσεις. 
-                                            @if($mygrader->lang_pref_english) Αγγλικά, @endif
-                                            @if($mygrader->lang_pref_french) Γαλλικά, @endif
-                                            @if($mygrader->lang_pref_german) Γερμανικά, @endif
-                                            @if($mygrader->lang_pref_italian) Ιταλικά, @endif
-                                            
-                                            <?php $my_evaluation =  App\Evaluation::where('grader_id', $mygrader->id) ;?>
-                                            @if($my_evaluation)
-                                                Του ανατέθηκαν. {{ $my_evaluation->count() }}, 
-                                                Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
-                                            @else
-                                                Του ανατέθηκαν. 0, 
-                                                Του αναλογούν. 
-                                            @endif
-                                            
-                                        </option>
-
-                                    @endif
+                                        Ξένες Γλώσσες - Προτιμήσεις. 
+                                        @if($mygrader->lang_pref_english) Αγγλικά, @endif
+                                        @if($mygrader->lang_pref_french) Γαλλικά, @endif
+                                        @if($mygrader->lang_pref_german) Γερμανικά, @endif
+                                        @if($mygrader->lang_pref_italian) Ιταλικά, @endif
+                                        
+                                        <?php $my_evaluation =  App\Evaluation::where('grader_id', $mygrader->id) ;?>
+                                        @if($my_evaluation)
+                                            Του ανατέθηκαν. {{ $my_evaluation->count() }}, 
+                                            Του αναλογούν. {{ $mygrader->suggestions_count * 2 }}
+                                        @else
+                                            Του ανατέθηκαν. 0, 
+                                            Του αναλογούν. 
+                                        @endif
+                                        
+                                    </option>
 
                                 @endif
 
