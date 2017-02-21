@@ -26,6 +26,13 @@ class EmailsController extends Controller
     {
         $this->middleware('is_member');
 
+        $this->middleware('is_ninja', ['only' => [
+          'send_to_graders_a_to_begin',
+          'send_to_late_graders_a',
+          'send_to_graders_a_who_did_not_finish',
+          'send_to_sites_about_late_graders_a',
+        ]]);
+
     }
 
     public function send_to_graders_a_to_begin()
@@ -57,7 +64,7 @@ class EmailsController extends Controller
 
     public function send_to_late_graders_a()
     {
-        $status = 'off';
+        $status = 'on';
 
         if($status == 'on'){
 
@@ -79,9 +86,11 @@ class EmailsController extends Controller
                     $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
                     $data['grader_email'] = $grader_email;
 
-                    Mail::send('emails.send_to_late_graders_a', ['data' => $data], function ($message) use ($data) {                        
-                        $message->to($data['grader_email'], $data['grader_email'])->subject('ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΚΡΙΣΗ - ' .Config::first()->index. 'ος ΔΕΕΙ');
-                    });
+                    //if($i == 1){
+                        Mail::send('emails.send_to_late_graders_a', ['data' => $data], function ($message) use ($data) {                        
+                            $message->to($data['grader_email'],$data['grader_email'])->subject('Α ΦΑΣΗ. ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΚΡΙΣΗ - ' .Config::first()->index. 'ος ΔΕΕΙ');
+                        });
+                    //}
 
                     echo $i . ' -- ' . $grader->id . '. ' . $grader_email . '<br>';                    
 
@@ -93,7 +102,107 @@ class EmailsController extends Controller
             return 'status: off';
         }
 
-    }    
+    }
+
+    public function send_to_graders_a_who_did_not_finish()
+    {
+        $status = 'on';
+
+        if($status == 'on'){
+
+            $evaluations = Evaluation::distinct()->select('grader_id')
+            ->where('can_evaluate', '=', 'yes')
+            ->where('total_grade', '=', 2)
+            ->groupBy('grader_id')->get();
+            
+            $i = 0;            
+
+            foreach($evaluations as $evaluation){
+                
+                $grader = Grader::find($evaluation->grader_id);
+
+                if($grader){
+
+                    $i++;
+
+                    $grader_email = $grader->user->email;
+
+                    $data = [];
+                    $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+                    $data['grader_email'] = $grader_email;
+
+                    //if($i == 1){
+                        Mail::send('emails.send_to_graders_a_who_did_not_finish', ['data' => $data], function ($message) use ($data) {                        
+                            $message->to($data['grader_email'], $data['grader_email'])->subject('Α ΦΑΣΗ. ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΟΛΟΚΛΗΡΩΣΗ ΒΑΘΜΟΛΟΓΙΑΣ - ' .Config::first()->index. 'ος ΔΕΕΙ');
+                        });
+                    //}
+
+                    echo $i . ' -- ' . $grader->id . '. ' . $grader_email . '<br>';                    
+
+                }
+
+            }
+
+        } else {
+            return 'status: off';
+        }
+
+    }
+
+    public function send_to_sites_about_late_graders_a()
+    {
+        $status = 'on';
+
+        if($status == 'on'){
+
+            $sites = Site::all();
+
+            $i = 0;
+
+            foreach($sites as $site){
+
+                $grader = $site->user->suggestedGrader();
+
+                $evaluations_not_accepted = Evaluation::where('grader_id', $grader->id)
+                                            ->where('can_evaluate', 'na')
+                                            ->get();
+
+                $evaluations_not_finished = Evaluation::where('grader_id', $grader->id)
+                                            ->where('can_evaluate', 'yes')
+                                            ->where('total_grade', 2)
+                                            ->get();
+
+                if($evaluations_not_accepted->count() > 0 || $evaluations_not_finished->count() > 0){
+
+                    if($site->user->email != $grader->user->email){
+
+                        $i++;
+
+                        $site_email = $site->user->email;
+
+                        $data = [];
+                        $data['site_name'] = $site->responsible;
+                        $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+                        $data['site_email'] = $site_email;
+
+                        //if($i == 1){
+                            Mail::send('emails.send_to_sites_about_late_graders_a', ['data' => $data], function ($message) use ($data) {                        
+                                $message->to($data['site_email'], $data['site_email'])->subject('Α ΦΑΣΗ. ΜΗ ΟΛΟΚΛΗΡΩΣΗ ΑΞΙΟΛΟΓΗΣΗΣ ΑΠΟ ΑΞΙΟΛΟΓΗΤΗ Α - ' .Config::first()->index. 'ος ΔΕΕΙ');
+                            });
+                        //}
+
+                        echo $i . ' -- ' . $grader->id . '. ' . $site->id . '<br>';
+                    }
+
+                }
+
+            }
+
+        } else {
+            return "status: off";
+        }
+
+    }
 
     public function send_extra_to_grader_a($evaluation_id)
     {
@@ -174,7 +283,7 @@ class EmailsController extends Controller
 
     public function send_to_graders_a_without_sites()
     {
-        $status = 'on';
+        $status = 'off';
 
         if($status == 'on'){
 

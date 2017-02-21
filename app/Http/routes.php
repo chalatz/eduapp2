@@ -116,6 +116,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('send-to-graders-a-to_begin', ['as' => 'send_to_graders_a_to_begin', 'uses' => 'EmailsController@send_to_graders_a_to_begin']);
     Route::get('send-to-late-graders-a', ['as' => 'send_to_late_graders_a', 'uses' => 'EmailsController@send_to_late_graders_a']);
+    Route::get('send-to-graders-a-who-did-not-finish', ['as' => 'send_to_graders_a_who_did_not_finish', 'uses' => 'EmailsController@send_to_graders_a_who_did_not_finish']);
+    Route::get('send-to-sites-about-late-graders-a', ['as' => 'send_to_sites_about_late_graders_a', 'uses' => 'EmailsController@send_to_sites_about_late_graders_a']);
 
     // ---- MANAGE EVALUATIONS --- //
     Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
@@ -134,5 +136,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
     Route::get('panormighty', ['as' => 'ajax_url', 'uses' => 'TestController@panormighty']);
+
+    // ----- NINJA STUFF ----- //
+    Route::get('ninja-menu', ['as' => 'ninja_menu', 'uses' => 'AdminController@ninja_menu']);
 
 });

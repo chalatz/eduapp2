@@ -27,6 +27,10 @@ class AdminController extends Controller
           'destroy_suggestion_a',
         ]]);
 
+        $this->middleware('is_ninja', ['only' => [
+          'ninja_menu',
+        ]]);
+
     }
 
     public function masquerade(Request $request, $user_id)
@@ -121,6 +125,12 @@ class AdminController extends Controller
         } else {
             return 'status: off';
         }
+
+    }
+
+    public function ninja_menu()
+    {
+        return view('pages.ninja_menu');
 
     }
 

@@ -80,7 +80,11 @@
                   <li><a href="{{ route('evaluations_panel_a_sites', 'all') }}">Αναθέσεις Α</a></li>
 
                   <li><a href="{{ route('sites_grades_a') }}">Βαθμολογίες και Αναθέσεις Α</a></li>
-                @endif                                
+                @endif
+
+                @if(Auth::user()->hasRole('ninja'))
+                  <li><a href="{{ route('ninja_menu') }}">Ninja stuff</a></li>
+                @endif                              
 
               @endif
 
