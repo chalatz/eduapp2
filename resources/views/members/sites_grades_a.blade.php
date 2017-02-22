@@ -68,7 +68,7 @@
         <tr>
 
             <td>i{{ sprintf("%03d", $site->id) }}</td>
-            <td><a href="{{ $site->urk }}" target="_blank">{{ $site->title }}</a></td>
+            <td><a href="{{ $site->url }}" target="_blank">{{ $site->title }}</a></td>
             <td>{{ $site->cat_id }}</td>
             <?php $i = 0; ?>
             @foreach($evaluations as $evaluation)

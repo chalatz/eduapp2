@@ -191,7 +191,7 @@ class EmailsController extends Controller
                             });
                         //}
 
-                        echo $i . ' -- ' . $grader->id . '. ' . $site->id . '<br>';
+                        echo $i . ' -- ' . $grader->id . '. ' . $site->id . ' . '. $site_email . '<br>';
                     }
 
                 }
