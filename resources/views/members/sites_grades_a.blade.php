@@ -124,12 +124,12 @@
                 $dif = abs($tg_rsorted[0] - $tg_rsorted[1]);
                 $status = '';                                                                              
                 
-                if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20 ) ) {
+                if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) >= 20 ) ) {
                     $bgc = '#dd514c';
                     $status = 'both_graded_gt_20pc';
                 }
 
-                if($dif <= 20 && (abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20)) {
+                if($dif <= 20 && (abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) >= 20)) {
                     $bgc = '#5eb95e';
                     $status = 'both_graded';
                 }
@@ -154,7 +154,8 @@
 
             <td data-status="{{ $status }}" style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">
                  @if($status == 'both_graded')
-                    {{ $dif }}
+                    {{ $dif }}<br>
+                    ok
                 @endif
                 @if($status == 'both_graded_gt_20pc')                    
                     {{ $dif }}<br>
