@@ -126,6 +126,7 @@
                 
                 if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20 ) ) {
                     $bgc = '#dd514c';
+                    $status = 'both_graded_gt_20pc';
                 }
 
                 if($dif <= 20 && (abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20)) {
@@ -135,20 +136,33 @@
 
                 if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) >= 20) {
                     $bgc = '#F37B1D';
+                    $status = '--';
                 }
                 if(abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) <= 1) {
                     $bgc = '#F37B1D';
+                    $status = '--';
                 }
                 if(abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) == 0) {
                     $bgc = '#b2beb5';
+                    $status = '--';
                 }
                 if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) == 0) {
                     $bgc = '#000';
+                    $status = '--';
                 }
             ?>
 
             <td data-status="{{ $status }}" style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">
-                 {{ $dif }}
+                 @if($status == 'both_graded')
+                    {{ $dif }}
+                @endif
+                @if($status == 'both_graded_gt_20pc')                    
+                    {{ $dif }}<br>
+                    &gt; 20%
+                @endif
+                @if($status == '--')
+                    --
+                @endif
             </td>
 
             @foreach($evaluations as $evaluation)
