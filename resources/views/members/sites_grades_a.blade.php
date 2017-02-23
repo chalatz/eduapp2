@@ -93,7 +93,6 @@
             <?php 
                 $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; 
             ?>
-            <?php $evs = array(); // $evs stands for evaluations ?>                        
             @foreach($evaluations as $evaluation)
                 <?php
                     $tg[$j] = $evaluation->total_grade;
@@ -104,8 +103,7 @@
 
             <?php
                 $tg_rsorted = $tg;
-                $evs_sorted = $evs;
-                array_multisort($tg_rsorted, $evs_sorted);
+                rsort($tg_rsorted);
             ?>
 
             @foreach($evaluations as $evaluation)

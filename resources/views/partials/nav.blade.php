@@ -77,8 +77,6 @@
                       </ul>
                   </li>
 
-                  <li><a href="{{ route('evaluations_panel_a_sites', 'all') }}">Αναθέσεις Α</a></li>
-
                   <li><a href="{{ route('sites_grades_a') }}">Βαθμολογίες και Αναθέσεις Α</a></li>
                 @endif
 

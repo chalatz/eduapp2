@@ -120,7 +120,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-to-sites-about-late-graders-a', ['as' => 'send_to_sites_about_late_graders_a', 'uses' => 'EmailsController@send_to_sites_about_late_graders_a']);
 
     // ---- MANAGE EVALUATIONS --- //
-    Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
+    // Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
 
     Route::get('assign-evaluation/site/a/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_a', 'uses' => 'EvaluationsController@assign_evaluation_site_a']);
     Route::get('assign-evaluation/site/a/grader/b/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_a_grader_b', 'uses' => 'EvaluationsController@assign_evaluation_site_a_grader_b']);
