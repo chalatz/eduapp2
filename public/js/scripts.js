@@ -466,6 +466,8 @@
 
   });
 
+  // $('td[data-status=both_graded]').parent('tr')
+
   // Ajax test
 //   $('#ajax-btn').on('click', function(e){
 

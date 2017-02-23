@@ -114,4 +114,35 @@ class Evaluation extends Model
 
     ];
 
+    public function grades_a()
+    {
+        $output = 'na';
+
+        if($this->can_evaluate == 'yes' && $this->is_educational == 'yes' && $this->beta_grade > 0 && $this->gama_grade > 0 && $this->delta_grade > 0 && $this->epsilon_grade > 0 && $this->st_grade > 0){
+            $output = 'Έχει αξιολογήσει | 0';
+        }
+
+        if($this->can_evaluate == 'no'){
+            $output = 'Δεν έχει αποδεχθεί | -1 ';
+        }
+
+        if($this->can_evaluate == 'na'){
+            $output = 'Δεν έχει ξεκινήσει | 3';
+        }
+
+        if($this->can_evaluate == 'yes'){
+            if($this->beta_grade == 0 || $this->gama_grade == 0 || $this->delta_grade == 0 || $this->epsilon_grade == 0 || $this->st_grade == 0 || $this->is_educational == 'na'){
+                $output = 'Έχει αποδεχθεί, αλλά δεν έχει ολοκληρώσει | - 2';
+            }
+        }        
+
+        if($this->can_evaluate == 'yes' && $this->is_educational == 'no'){
+            $output = 'Δεν τον βρήκε εκπαιδευτικό | 1';
+        }
+
+        return $output;
+
+    }
+
+
 }

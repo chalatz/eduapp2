@@ -25,7 +25,7 @@
             <span class="label label-default" style="background: black; color: #fff; margin-right: 2em">
                 Δεν έχει βαθμολογήσει κανένας
             </span>
-            <span class="label label-default" style="background: #b2beb5; color: #111; margin-right: 2em">
+            <span class="label label-default" style="background: lightgray; color: #111; margin-right: 2em">
                 Έχει βαθμολογήσει μόνο ο ένας, χωρίς ο άλλος να ασχοληθεί
             </span>                                           
         </div>
@@ -50,8 +50,11 @@
         @endfor
         @for($i = 1; $i <= $max_evals; $i++)
             <th>Βαθμός {{$i}}</th>
-        @endfor
+        @endfor       
         <th>Διαφορά</th>
+        @for($i = 1; $i <= $max_evals; $i++)
+            <th>Παρατηρήσεις {{$i}}</th>
+        @endfor         
         <th>Ανάθεση Α</th>
         <th>Ανάθεση Β</th>
     </tr>
@@ -87,15 +90,23 @@
             @endif
 
             <?php // tg stands for total grades ?>
-            <?php $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; ?>                        
+            <?php 
+                $tg = array(); $j = 0; $tg[0] = ''; $tg[1] = ''; 
+            ?>
+            <?php $evs = array(); // $evs stands for evaluations ?>                        
             @foreach($evaluations as $evaluation)
                 <?php
                     $tg[$j] = $evaluation->total_grade;
+                    $evs[$j] = $evaluation;
                     $j = $j + 1;
                 ?>
             @endforeach
 
-            <?php $tg_rsorted = $tg; rsort($tg_rsorted); ?>
+            <?php
+                $tg_rsorted = $tg;
+                $evs_sorted = $evs;
+                array_multisort($tg_rsorted, $evs_sorted);
+            ?>
 
             @foreach($evaluations as $evaluation)
                 <td @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) style="color: green; font-weight: bold" @endif>
@@ -111,14 +122,19 @@
             @endif
 
             <?php
-                //$bgc = '#fff';
+                $bgc = '#eee';
                 $dif = abs($tg_rsorted[0] - $tg_rsorted[1]);
+                $status = '';                                                                              
+                
                 if( $dif > 20 && ( abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20 ) ) {
                     $bgc = '#dd514c';
                 }
+
                 if($dif <= 20 && (abs($tg_rsorted[0]) >= 20 || abs($tg_rsorted[1]) >= 20)) {
                     $bgc = '#5eb95e';
+                    $status = 'both_graded';
                 }
+
                 if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) >= 20) {
                     $bgc = '#F37B1D';
                 }
@@ -133,7 +149,22 @@
                 }
             ?>
 
-            <td style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">{{ $dif }}</td>
+            <td data-status="{{ $status }}" style="background: {{ $bgc }}; color: #fff; padding: .5em; text-align: center; font-weight: bold;">
+                 {{ $dif }}
+            </td>
+
+            @foreach($evaluations as $evaluation)
+                <td>
+                    {{ $evaluation->grades_a() }}
+                </td>
+            @endforeach
+
+            @if($max_evals > $eval_count)
+                <?php $remaining = $max_evals - $eval_count; ?>                 
+                <?php for($i = 0; $i < $remaining; $i++): ?>
+                    <td></td>
+                <?php endfor; ?>
+            @endif            
 
             <td>
                 <a class="btn btn-primary" href="{{ route('assign_evaluation_site_a', [$site->id, 'sites_grades_a']) }}" role="button">Ανάθεση σε Αξ. Α</a>
@@ -163,6 +194,9 @@
             <th></th>
         @endfor
         <th></th>
+        @for($i = 1; $i <= $max_evals; $i++)
+            <th></th>
+        @endfor        
         <th></th>
         <th></th>
     </tr>

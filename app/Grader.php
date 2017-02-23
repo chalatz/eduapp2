@@ -145,7 +145,7 @@ class Grader extends Model
 
         return false;
 
-    } 
+    }
 
     public function scopeAlpha($query)
     {
