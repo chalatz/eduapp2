@@ -77,7 +77,11 @@
             @foreach($evaluations as $evaluation)
                 <?php $grader = App\Grader::find($evaluation->grader_id) ?>
                 @if($grader)
-                    <td>{{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }})</td>
+                    <td>
+                        {{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }})
+                        <br>
+                        προθεσμία: <strong>{{ date('d/m/Y', strtotime($evaluation->assigned_until)) }}</strong>
+                    </td>
                 @else
                     <td>--</td>
                 @endif
@@ -169,6 +173,14 @@
             @foreach($evaluations as $evaluation)
                 <td>
                     {{ $evaluation->grades_a() }}
+                    @if($evaluation->can_evaluate == 'no')
+                        <br>-------<br>
+                        {!! $evaluation->why_cannot_evaluate !!}
+                    @endif
+                    @if($evaluation->is_educational == 'no')
+                        <br>-------<br>
+                        {!! $evaluation->why_not_educational !!}
+                    @endif                    
                 </td>
             @endforeach
 
