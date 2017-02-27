@@ -174,7 +174,7 @@
                 <td>
                     {{ $evaluation->grades_a() }}
                     @if($evaluation->can_evaluate == 'no')
-                        <br>-------<br>
+                        <br>---------<br>
                         {!! $evaluation->why_cannot_evaluate !!}
                     @endif
                     @if($evaluation->is_educational == 'no')
