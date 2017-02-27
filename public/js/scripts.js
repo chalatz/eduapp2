@@ -473,6 +473,35 @@
   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(8).find('input').css('width', '4em');
   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(9).find('input').css('width', '4em');
 
+  toggle_it = function(){
+
+      $('.toggle-me').hide();
+
+      $('.toggle-it').on('click', function(){
+        var toggle_it = $(this),
+            toggle_me = toggle_it.siblings('.toggle-me');
+
+        toggle_me.slideToggle('slow', function(){
+
+            if(toggle_me.is(':visible')){
+                toggle_it
+                    .removeClass('btn-info')
+                    .addClass('btn-warning')
+                    .html('<i class="fa fa-minus-circle" aria-hidden="true"></i> Λιγότερα...');
+            } else {
+                toggle_it
+                    .removeClass('btn-warning')
+                    .addClass('btn-info')
+                    .html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Περισσότερα...');
+            }
+
+        });
+      });
+
+  };
+
+  toggle_it();
+
   // $('td[data-status=both_graded]').parent('tr')
 
   // Ajax test

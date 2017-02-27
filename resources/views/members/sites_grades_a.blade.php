@@ -174,12 +174,28 @@
                 <td>
                     {{ $evaluation->grades_a() }}
                     @if($evaluation->can_evaluate == 'no')
-                        <br>---------<br>
-                        {!! $evaluation->why_cannot_evaluate !!}
+                        <p>
+                            
+                            <p class="toggle-me">
+                                <br>------------------<br>
+                                {!! $evaluation->why_cannot_evaluate !!}
+                            </p>
+                            <button type="button" class="btn btn-info btn-block toggle-it">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i> Περισσότερα...
+                            </button>
+                        </p>
+                        
                     @endif
                     @if($evaluation->is_educational == 'no')
-                        <br>-------<br>
-                        {!! $evaluation->why_not_educational !!}
+                        <p>
+                            <p class="toggle-me">
+                                <br>------------------<br>
+                                {!! $evaluation->why_not_educational !!}
+                            </p>
+                            <button type="button" class="btn btn-info btn-block toggle-it">
+                                <i class="fa fa-plus-circle" aria-hidden="true"></i> Περισσότερα...
+                            </button>
+                        </p>
                     @endif                    
                 </td>
             @endforeach
