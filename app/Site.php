@@ -63,4 +63,33 @@ class Site extends Model
         'i_agree' => 'sometimes|accepted',
     ];
 
+    public function disq()
+    {
+        $grader_user = User::where('email', $this->user->suggestion->grader_email)->first();
+
+        $suggestion = $this->user->suggestion;
+
+        $grader_user = User::where('email', $suggestion->grader_email)->first();
+
+        $grader = $grader_user->grader;
+
+        $evaluations = Evaluation::where('grader_id', $grader->id)->get();
+
+        $count = $evaluations->count(); 
+
+        $i = 0;
+        foreach($evaluations as $evaluation){
+            if($evaluation->complete()){
+                $i++;
+            }
+        }
+
+        if($i >= $count || $i >= 2){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

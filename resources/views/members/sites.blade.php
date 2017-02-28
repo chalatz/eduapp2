@@ -56,7 +56,9 @@
       @if($site->user->hasRole('site'))
 
         <tr>
-          <td>i{{ sprintf("%03d", $site->id) }}</td>
+          <td>
+            i{{ sprintf("%03d", $site->id) }}
+          </td>
           <td>{{ $site->title }}</td>
           <td><a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></td>
           <td>{{ $site->cat_id }}</td>

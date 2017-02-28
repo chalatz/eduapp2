@@ -114,6 +114,15 @@ class Evaluation extends Model
 
     ];
 
+    public function complete()
+    {
+        if($this->can_evaluate == 'yes' && $this->is_educational == 'yes' && $this->beta_grade > 0 && $this->gama_grade > 0 && $this->delta_grade > 0 && $this->epsilon_grade > 0 && $this->st_grade > 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function grades_a()
     {
         $output = 'na';
