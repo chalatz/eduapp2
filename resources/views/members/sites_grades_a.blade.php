@@ -49,9 +49,9 @@
             <th>Αξιολ. {{$i}}</th>
         @endfor
         @for($i = 1; $i <= $max_evals; $i++)
-            <th>Βαθμός {{$i}}</th>
+            <th class="narrow-col">Βαθμός {{$i}}</th>
         @endfor       
-        <th>Διαφορά</th>
+        <th class="narrow-col">Διαφορά</th>
         @for($i = 1; $i <= $max_evals; $i++)
             <th>Παρατηρήσεις {{$i}}</th>
         @endfor         
