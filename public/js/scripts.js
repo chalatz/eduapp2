@@ -466,13 +466,6 @@
 
   });
 
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(0).find('input').css('width', '4em');
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(2).find('input').css('width', '4em');
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(6).find('input').css('width', '4em');
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(7).find('input').css('width', '4em');
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(8).find('input').css('width', '4em');
-//   $('#sitesgrades-a-table thead').find('tr').eq(1).find('th').eq(9).find('input').css('width', '4em');
-
     narrow_cols = function(){
         var first_row_ths = $('#sitesgrades-a-table thead').find('tr').eq(0).find('th'),
             second_row_ths = $('#sitesgrades-a-table thead').find('tr').eq(1).find('th');

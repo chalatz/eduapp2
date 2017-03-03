@@ -85,9 +85,9 @@ class Site extends Model
         }
 
         if($i >= $count || $i >= 2){
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
 
     }

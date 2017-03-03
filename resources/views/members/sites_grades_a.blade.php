@@ -42,9 +42,9 @@
 
   <thead>
     <tr>
-        <th>Κωδικός</th>
+        <th class="narrow-col">Κωδικός</th>
         <th>Επωνυμία</th>
-        <th>Κατηγορία</th>
+        <th class="narrow-col">Κατηγορία</th>
         @for($i = 1; $i <= $max_evals; $i++)
             <th>Αξιολ. {{$i}}</th>
         @endfor
@@ -70,7 +70,10 @@
 
         <tr>
 
-            <td>i{{ sprintf("%03d", $site->id) }}</td>
+            <td @if(!$site->disq()) style="background: green; color: white" @else style="background: red; color: white" @endif>
+                i{{ sprintf("%03d", $site->id) }}<br>
+                @if(!$site->disq()) Βαθμολόγησε Α @else Αποκλείεται @endif
+            </td>
             <td><a href="{{ $site->url }}" target="_blank">{{ $site->title }}</a></td>
             <td>{{ $site->cat_id }}</td>
             <?php $i = 0; ?>

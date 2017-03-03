@@ -56,8 +56,9 @@
       @if($site->user->hasRole('site'))
 
         <tr>
-          <td>
-            i{{ sprintf("%03d", $site->id) }}
+          <td @if(!$site->disq()) style="background: green; color: white" @else style="background: red; color: white" @endif>
+              i{{ sprintf("%03d", $site->id) }}<br>
+              @if(!$site->disq()) Βαθμολόγησε Α @else Αποκλείεται @endif
           </td>
           <td>{{ $site->title }}</td>
           <td><a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></td>
