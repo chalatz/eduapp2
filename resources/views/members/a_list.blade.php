@@ -30,67 +30,69 @@
 </div>
 
 <h1 class="bg-{{ $cat_color[$cat_id] }}" style="padding: .5em 1em; margin-bottom: 1.5em">Φάση Α - Αποτελέσματα Κατηγορίας {{ $cat_id }}</h1>
+<div class="container">
+    <table id="a-list-table" class="table table-striped admin-table">
 
-<table id="a-list-table" class="table table-striped admin-table">
+    <thead>
+        <tr>
+            <th>Κωδικός</th>
+            <th>Επωνυμία</th>
+            <th>URL</th>
+            <th>Βαθμός 1</th>
+            <th>Βαθμός 2</th>
+            <th>Μ.Ο</th>
+        </tr>
+    </thead>
 
-  <thead>
-    <tr>
-        <th>Κωδικός</th>
-        <th>Επωνυμία</th>
-        <th>URL</th>
-        <th>Βαθμός 1</th>
-        <th>Βαθμός 2</th>
-        <th>Μ.Ο</th>
-    </tr>
-  </thead>
+    <tbody>
+        @foreach($sites as $site)
+            @if(!$site->disq() && $site->graded('a'))
 
-  <tbody>
-    @foreach($sites as $site)
-        @if(!$site->disq() && $site->graded('a'))
+                <tr>
 
-            <tr>
+                    <td>
+                        i{{ sprintf("%03d", $site->id) }}
+                    </td>
 
-                <td>
-                    i{{ sprintf("%03d", $site->id) }}
-                </td>
+                    <td>
+                        {{ $site->title }}
+                    </td>
 
-                <td>
-                    {{ $site->title }}
-                </td>
+                    <td>
+                        <a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a>
+                    </td>
 
-                <td>
-                    <a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a>
-                </td>
+                    <?php $total_grades = $site->total_grades('a') ?>
 
-                <?php $total_grades = $site->total_grades('a') ?>
+                    <td>
+                        {{ $total_grades[0] }}
+                    </td>
 
-                <td>
-                    {{ $total_grades[0] }}
-                </td>
+                    <td>
+                        {{ $total_grades[1] }}
+                    </td>
 
-                <td>
-                    {{ $total_grades[1] }}
-                </td>
+                    <td @if(abs($total_grades[0] - $total_grades[1]) > 20) class="bg-danger" @endif>
+                        <?php $mo = ($total_grades[0] + $total_grades[1]) / 2; ?>
+                        {{ $mo }}
+                    </td>                
 
-                <td @if(abs($total_grades[0] - $total_grades[1]) > 20) class="bg-danger" @endif>
-                    <?php $mo = ($total_grades[0] + $total_grades[1]) / 2; ?>
-                    {{ $mo }}
-                </td>                
+                </tr>
+        
+            @endif
+        @endforeach
+    </tbody>
 
-            </tr>
-    
-        @endif
-    @endforeach
-  </tbody>
+    <tfoot>
 
-  <tfoot>
+        <tr>
 
-    <tr>
+        </tr>
 
-    </tr>
+    </tfoot>
 
-  </tfoot>
+    </table>
 
-</table>
+</div>
 
 @endsection
