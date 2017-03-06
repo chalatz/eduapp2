@@ -78,6 +78,17 @@
                   </li>
 
                   <li><a href="{{ route('sites_grades_a') }}">Βαθμολογίες και Αναθέσεις Α</a></li>
+
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          Αποτελέσματα <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('admin.a_list', 1) }}">Φάση Α</a></li>
+                      </ul>
+                  </li>
+
                 @endif
 
                 @if(Auth::user()->hasRole('ninja'))

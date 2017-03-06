@@ -345,7 +345,14 @@
             { "orderData": 2, "targets": 0 },
             { "targets": 2, "visible": false }
         ]
-  });    
+  });
+
+  $('#a-list-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "order": [[ 5, "desc" ]]
+  });      
 
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');

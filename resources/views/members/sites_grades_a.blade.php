@@ -65,7 +65,7 @@
 
       @if($site->user->hasRole('site'))
 
-        <?php $evaluations = APp\Evaluation::where('site_id', $site->id)->get(); ?>
+        <?php $evaluations = App\Evaluation::where('site_id', $site->id)->get(); ?>
         <?php $eval_count = $evaluations->count(); ?>
 
         <tr>

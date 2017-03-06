@@ -132,6 +132,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-extra-to-grader-a/{evaluation_id}', ['as' => 'send_extra_to_grader_a', 'uses' => 'EmailsController@send_extra_to_grader_a']);
     Route::get('send-extra-to-grader-20pc/{evaluation_id}', ['as' => 'send_extra_to_grader_20pc', 'uses' => 'EmailsController@send_extra_to_grader_20pc']);
 
+    // ---- RESULTS --- //
+    Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);    
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

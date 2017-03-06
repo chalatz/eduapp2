@@ -92,4 +92,45 @@ class Site extends Model
 
     }
 
+    // the site is graded ok
+    public function graded($phase)
+    {
+        if($phase == 'a'){
+            $evaluations = Evaluation::where('site_id', $this->id)->get();
+        }
+
+        $counter = 0;
+
+        foreach($evaluations as $evaluation){
+
+            if($evaluation->complete()){
+                $counter++;
+            }
+
+        }            
+
+        if($evaluations->count() >= 2 && $counter >= 2){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public function total_grades($phase)
+    {
+        if($phase == 'a'){
+            $evaluations = Evaluation::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
+        }
+
+        $total_grades = [];
+
+        foreach($evaluations as $evaluation){
+            $total_grades[] = $evaluation->total_grade;
+        }
+
+        return $total_grades;
+
+    }
+
 }
