@@ -42,6 +42,11 @@
 
   <thead>
     <tr>
+        @if(Auth::user()->hasRole('admin'))
+            <th class="narrow-col">
+                Μεταμφίεση
+            </th>
+        @endif
         <th class="narrow-col">Κωδικός</th>
         <th>Επωνυμία</th>
         <th class="narrow-col">Κατηγορία</th>
@@ -70,6 +75,12 @@
 
         <tr>
 
+            @if(Auth::user()->hasRole('admin'))
+                <td>
+                    <a href="{{ route('admin.masquerade', $site->user->id) }}" target="_blank">Μεταμφίεση</a>
+                </td>
+            @endif
+
             <td @if(!$site->disq()) style="background: green; color: white" @else style="background: red; color: white" @endif>
                 i{{ sprintf("%03d", $site->id) }}<br>
                 @if(!$site->disq()) Βαθμολόγησε Α @else Αποκλείεται @endif
@@ -84,6 +95,10 @@
                         {{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }})
                         <br>
                         προθεσμία: <strong>{{ date('d/m/Y', strtotime($evaluation->assigned_until)) }}</strong>
+                        @if(Auth::user()->hasRole('admin'))              
+                            <br>
+                            <a href="{{ route('admin.masquerade', $grader->user->id) }}" target="_blank">Μεταμφίεση</a>
+                        @endif
                     </td>
                 @else
                     <td>--</td>
@@ -228,6 +243,9 @@
   <tfoot>
 
     <tr>
+        @if(Auth::user()->hasRole('admin'))
+            <th></th>
+        @endif
         <th></th>
         <th></th>
         <th></th>
