@@ -135,7 +135,7 @@
                                 @endif
                                 <tr>
                                     <td>
-                                        {{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}
+                                        {{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }}), {{ $specialties::all()[$grader->specialty_id] }}
                                         <p @if($assigned_sites > $his_sites) style="background: lightcoral; padding: 6px;" @endif>
                                             Του ανατέθηκαν: {{ $assigned_sites }}<br>
                                             Του αναλογούν: {{ $his_sites }}
@@ -207,7 +207,7 @@
                                     @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id)
                                         <option value="{{ $mygrader->id }}">
                                             @if(!$mygrader->hasSite()) ΧΥ - @endif
-                                            {{ $mygrader->last_name }} {{ $mygrader->first_name }}, 
+                                            {{ $mygrader->last_name }} {{ $mygrader->first_name }} ({{ $mygrader->code() }}), 
                                             Περ. {{ $mygrader->district_id }},
                                             @if($mygrader->hasSite())                                             
                                                 Κατ. {{ $mygrader->sites->first()->cat_id }}, 
