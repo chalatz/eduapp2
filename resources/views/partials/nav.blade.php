@@ -64,7 +64,7 @@
                       </ul>
                   </li>
 
-                    <li class="dropdown">
+                  <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                           <i class="fa fa-bar-chart" aria-hidden="true"></i> Στατιστικά <span class="caret"></span>
                       </a>
@@ -92,7 +92,18 @@
                 @endif
 
                 @if(Auth::user()->hasRole('ninja'))
-                  <li><a href="{{ route('ninja_menu') }}">Ninja stuff</a></li>
+
+                  <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                          Ninja <span class="caret"></span>
+                      </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('ninja_menu') }}">emails</a></li>
+                        <li><a href="{{ route('admin.a_list', 1) }}">Φάση Α</a></li>
+                      </ul>
+                  </li>
+
                 @endif                              
 
               @endif

@@ -29,6 +29,7 @@ class AdminController extends Controller
 
         $this->middleware('is_ninja', ['only' => [
           'ninja_menu',
+          'a_list',
         ]]);
 
     }
@@ -127,6 +128,14 @@ class AdminController extends Controller
         }
 
     }
+
+  public function a_list($cat_id = 1){
+
+      $sites = Site::where('cat_id', $cat_id)->get();
+
+      return view('ninja.a_list', compact('sites', 'cat_id'));
+
+  }      
 
     public function ninja_menu()
     {

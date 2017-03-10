@@ -142,5 +142,6 @@ Route::group(['middleware' => 'web'], function () {
 
     // ----- NINJA STUFF ----- //
     Route::get('ninja-menu', ['as' => 'ninja_menu', 'uses' => 'AdminController@ninja_menu']);
+    Route::get('ninja/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'AdminController@a_list']);
 
 });
