@@ -516,6 +516,20 @@
 
   toggle_it();
 
+  var the_first = function(table, ceiling){
+
+    var the_rows = $(table + ' tr');
+
+    the_rows.each(function(index){
+        if(index == ceiling){
+            console.log($(this).children('.td-mo').text());
+        }
+    });
+
+  };
+
+  the_first('#a-list-table', 10);
+
   // $('td[data-status=both_graded]').parent('tr')
 
   // Ajax test

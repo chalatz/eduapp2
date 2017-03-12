@@ -78,7 +78,7 @@
                         {{ $total_grades[1] }}
                     </td>
 
-                    <td @if(abs($total_grades[0] - $total_grades[1]) > 20) class="bg-danger" @endif>
+                    <td class="td-mo @if(abs($total_grades[0] - $total_grades[1]) > 20) bg-danger @endif ">
                         <?php $mo = ($total_grades[0] + $total_grades[1]) / 2; ?>
                         {{ $mo }}
                     </td>                
