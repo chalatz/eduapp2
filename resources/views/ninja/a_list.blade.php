@@ -49,7 +49,7 @@
 
                 <tr>
 
-                    <td>
+                    <td @if($site->disq()) style="background: red; color: white;" @endif>
                         i{{ sprintf("%03d", $site->id) }}
                         @if($site->disq())
                             <p>Αποκλείεται</p>

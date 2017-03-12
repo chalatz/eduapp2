@@ -46,12 +46,18 @@
 
     <tbody>
         @foreach($sites as $site)
-            @if(!$site->disq() && $site->graded('a'))
+            {{-- @if(!$site->disq() && $site->graded('a')) --}}
 
                 <tr>
 
-                    <td>
+                    <td @if($site->disq()) style="background: red; color: white;" @endif @if(!$site->graded('a')) style="background: orange;" @endif>
                         i{{ sprintf("%03d", $site->id) }}
+                        @if($site->disq())
+                            <p>Αποκλείεται</p>
+                        @endif
+                        @if(!$site->graded('a'))
+                            <p>Δεν βαθμολογήθηκε</p>
+                        @endif
                     </td>
 
                     <td>
@@ -79,7 +85,7 @@
 
                 </tr>
         
-            @endif
+            {{-- @endif --}}
         @endforeach
     </tbody>
 
