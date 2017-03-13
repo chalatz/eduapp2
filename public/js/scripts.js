@@ -518,12 +518,23 @@
 
   var the_first = function(table, ceiling){
 
-    var the_rows = $(table + ' tr');
+    var the_rows = $(table + ' tr'),
+        last_grade = 0;
 
     the_rows.each(function(index){
-        if(index == ceiling){
-            console.log($(this).children('.td-mo').text());
+        var current_row = $(this),
+        current_mo = current_row.children('.td-mo').text() * 1;
+
+        if(index === ceiling){
+            last_grade = current_mo;
         }
+        
+        if(index > 0){
+            if( index <= ceiling || current_mo == last_grade ){
+                current_row.css('font-weight','bold');
+            }
+        }
+
     });
 
   };
