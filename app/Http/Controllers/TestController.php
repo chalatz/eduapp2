@@ -126,9 +126,12 @@ class TestController extends Controller
 
         $i = 0;
         foreach($evaluations as $evaluation){
+            echo $evaluation->id . '<br>';
             $arr[$i] = $evaluation->id;
             $i++;
         }
+
+        echo '<p>----------------------</p>';
 
         $arr[count($arr)] = 560;
 

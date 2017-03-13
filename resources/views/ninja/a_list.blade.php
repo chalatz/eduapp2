@@ -46,10 +46,11 @@
 
     <tbody>
         @foreach($sites as $site)
+            {{-- @if(!$site->disq() && $site->graded('a')) --}}
 
                 <tr>
 
-                    <td @if($site->disq()) style="background: red; color: white;" @endif>
+                    <td @if($site->disq()) style="background: red; color: white;" @endif @if(!$site->graded('a')) style="background: orange;" @endif>
                         i{{ sprintf("%03d", $site->id) }}
                         @if($site->disq())
                             <p>Αποκλείεται</p>
@@ -57,6 +58,8 @@
                         @if(!$site->graded('a'))
                             <p>Δεν βαθμολογήθηκε</p>
                         @endif
+                        <br>
+                        <a href="{{ route('admin.masquerade', $site->user->id) }}" target="_blank">Μεταμφίεση</a>
                     </td>
 
                     <td>
@@ -77,13 +80,14 @@
                         {{ $total_grades[1] }}
                     </td>
 
-                    <td @if(abs($total_grades[0] - $total_grades[1]) > 20) class="bg-danger" @endif>
+                    <td class="td-mo @if(abs($total_grades[0] - $total_grades[1]) > 20) bg-danger @endif ">
                         <?php $mo = ($total_grades[0] + $total_grades[1]) / 2; ?>
                         {{ $mo }}
                     </td>                
 
                 </tr>
         
+            {{-- @endif --}}
         @endforeach
     </tbody>
 

@@ -101,6 +101,7 @@
 
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('ninja_menu') }}">emails</a></li>
+                        <li><a href="{{ route('ninja.a_list', 1) }}">Φάση Α (με αποκλειόμενους)</a></li>
                       </ul>
                   </li>
 
