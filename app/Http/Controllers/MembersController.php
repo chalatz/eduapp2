@@ -153,7 +153,15 @@ class MembersController extends Controller
 
       return view('members.a_list', compact('sites', 'cat_id'));
 
-  }  
+  }
+
+  public function a_list_ok($cat_id = 1){
+
+      $sites = Site::where('cat_id', $cat_id)->get();
+
+      return view('members.a_list_ok', compact('sites', 'cat_id'));
+
+  }   
   
 
 }
