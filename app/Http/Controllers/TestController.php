@@ -10,7 +10,8 @@ use App\Http\Controllers\Controller;
 use App\Suggestion;
 use App\Site;
 use App\Grader;
-use app\User;
+use App\User;
+use App\Evaluation;
 
 use App\Http\Utilities\Category;
 use App\Http\Utilities\District;
@@ -113,6 +114,42 @@ class TestController extends Controller
 
         } else {
             return "status: off";
+        }
+
+    }
+
+    public function deleted_evaluations()
+    {
+        $evaluations = Evaluation::all();
+
+        $arr = [];
+
+        $i = 0;
+        foreach($evaluations as $evaluation){
+            $arr[$i] = $evaluation->id;
+            $i++;
+        }
+
+        $arr[count($arr)] = 560;
+
+        //echo $arr[count($arr)-1];
+
+        for($j = 0; $j < count($arr)-1; $j++){
+            $diff = abs($arr[$j] - $arr[$j + 1]);
+            //echo $arr[$j] . '<br>';
+            if($diff != 1){
+                echo $arr[$j] . '<br>';
+            }
+        }
+
+        echo '<p>----------------------</p>';
+
+        for($j = 0; $j < count($arr)-1; $j++){
+            $diff = abs($arr[$j] - $arr[$j + 1]);
+            //echo $arr[$j] . '<br>';
+            if($diff != 1){
+                echo $arr[$j]+1 . '<br>';
+            }
         }
 
     }

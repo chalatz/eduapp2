@@ -139,6 +139,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
     Route::get('panormighty', ['as' => 'ajax_url', 'uses' => 'TestController@panormighty']);
+    Route::get('deleted-evaluations', ['as' => 'deleted_evaluations', 'uses' => 'TestController@deleted_evaluations']);
 
     // ----- NINJA STUFF ----- //
     Route::get('ninja-menu', ['as' => 'ninja_menu', 'uses' => 'AdminController@ninja_menu']);

@@ -91,7 +91,10 @@
             @foreach($evaluations as $evaluation)
                 <?php $grader = App\Grader::find($evaluation->grader_id) ?>
                 @if($grader)
-                    <td>
+                    <td @if($evaluation->deleted) style="background: lightcoral" @endif)>
+                        @if($evaluation->deleted)
+                            <p style="font-weight: bold; text-decoration: underline">x-- Έχει διαγραφεί η Ανάθεση</p>
+                        @endif
                         {{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }})
                         <br>
                         προθεσμία: <strong>{{ date('d/m/Y', strtotime($evaluation->assigned_until)) }}</strong>
