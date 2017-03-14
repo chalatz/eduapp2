@@ -157,4 +157,64 @@ class TestController extends Controller
 
     }
 
+    public function evb()
+    {
+        $graders = Grader::where('approved', 'yes')->get();
+
+        $g = array();
+        $i = 0;
+
+        foreach ($graders as $grader) {
+
+            if(!$grader->user->hasRole('member')){
+
+                $g[$i]['id'] = $grader->id;
+                $g[$i]['district'] = $grader->grader_district_id;
+                $g[$i]['desired_cats'] = explode('|', $grader->desired_category);
+                $evaluations = Evaluation::where('grader_id', $grader->id)->get();
+                $past_evals = [];
+                foreach ($evaluations as $evaluation) {
+                    $past_evals[] = $evaluation->site_id;
+                }
+                $g[$i]['past_evals'] = $past_evals;
+
+                $i++;
+
+            }
+
+        }
+
+        $winners = '162|133|177|53|113|192|84|234|56|127|84|';
+
+        $winners .= '75|24|146|191|136|17|9|217|86|126|'; 
+
+        $winners .= '207|148|141|215|208|87|23|72|23|27|';
+        
+        $winners .= '31|28|188|152|41|68|160|59|189|';
+
+        $winners .= '15|230|172|76|6|131|52|4|124|223';
+
+        $site_ids = explode('|', $winners);
+        $s = [];
+        $j = 0;
+
+        foreach($site_ids as $id){
+            $site = Site::find($id);            
+            $the_grader = $site->user->suggestedGrader();
+            $s[$j]['grader'] = $the_grader->id;
+            $s[$j]['id'] = $id;
+            $s[$j]['cat'] = $site->cat_id;
+            $s[$j]['district'] = $site->district_id;
+            $j++;
+        }
+
+        echo "<pre>";
+        print_r($s);
+        echo "</pre>";
+
+        // file_put_contents('C:\\laragon\\www\\eduapp2\\the_b_graders.inc', serialize($g));
+        // file_put_contents('C:\\laragon\\www\\eduapp2\\the_b_sites.inc', serialize($s));      
+
+    }
+
 }

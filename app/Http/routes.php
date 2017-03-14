@@ -142,6 +142,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('panormighty', ['as' => 'ajax_url', 'uses' => 'TestController@panormighty']);
     Route::get('deleted-evaluations', ['as' => 'deleted_evaluations', 'uses' => 'TestController@deleted_evaluations']);
 
+    Route::get('evb', ['as' => 'evb', 'uses' => 'TestController@evb']);
+
     // ----- NINJA STUFF ----- //
     Route::get('ninja-menu', ['as' => 'ninja_menu', 'uses' => 'AdminController@ninja_menu']);
     Route::get('ninja/a-list/{cat_id}', ['as' => 'ninja.a_list', 'uses' => 'AdminController@a_list']);
