@@ -88,16 +88,21 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/send-to-graders-a-without-sites', ['as' => 'admin.send_to_graders_a_without_sites', 'uses' => 'EmailsController@send_to_graders_a_without_sites']);
 
     // ---- ASSIGNMENTS --- //
-    Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
-    Route::get('assigns_a/{type}', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
+    // Route::get('assign-tables/{type}', ['as' => 'assigns-tables', 'uses' => 'AssignmentsController@assigns_tables']);
+    // Route::get('assigns_a/{type}', ['as' => 'assigns_a', 'uses' => 'AssignmentsController@assigns_a']);
 
-    Route::get('panel/assignments/a/sites/{cat}', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
-    Route::get('assign/site/a/{site_id}', ['as' => 'assign_site_a', 'uses' => 'AssignmentsController@assign_site_a']);
+    // Route::get('panel/assignments/a/sites/{cat}', ['as' => 'assignments_panel_a_sites', 'uses' => 'AssignmentsController@assignments_panel_a_sites']);
+    // Route::get('assign/site/a/{site_id}', ['as' => 'assign_site_a', 'uses' => 'AssignmentsController@assign_site_a']);
 
-    Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
-    Route::post('assigns/store-manual-a', ['as' => 'assignments.store_manual_a', 'uses' => 'AssignmentsController@store_manual_a']);
+    // Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
+    // Route::post('assigns/store-manual-a', ['as' => 'assignments.store_manual_a', 'uses' => 'AssignmentsController@store_manual_a']);
 
-    Route::get('evals/init', ['as' => 'evals_init', 'uses' => 'EvaluationsController@init']);
+    // Route::get('evals/init', ['as' => 'evals_init', 'uses' => 'EvaluationsController@init']);
+
+    Route::get('panel/assignments/b/sites/{cat}', ['as' => 'assignments_panel_b_sites', 'uses' => 'AssignmentsController@assignments_panel_b_sites']);    
+    Route::get('assign/site/b/{site_id}', ['as' => 'assign_site_b', 'uses' => 'AssignmentsController@assign_site_b']);
+    Route::post('assigns/store-manual-b', ['as' => 'assignments.store_manual_b', 'uses' => 'AssignmentsController@store_manual_b']);    
+    Route::get('assignment/b/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_b', 'uses' => 'AssignmentsController@assign_delete_b']);
 
     // ---- EVALUATIONS --- //
     Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);

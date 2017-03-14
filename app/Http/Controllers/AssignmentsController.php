@@ -9,6 +9,7 @@ use App\Suggestion;
 use App\The_sites;
 use App\The_graders;
 use App\Assignment;
+use App\Assignment_b;
 
 use DB;
 
@@ -44,7 +45,28 @@ class AssignmentsController extends Controller
         $my_graders = Grader::all();
 
         return view('assignments.panel_a_sites', compact('sites', 'my_graders', 'cat'));
-    }    
+    }
+
+    public function assignments_panel_b_sites($cat)
+    {
+        if($cat == 'all'){
+            $sites = Site::all();            
+        } else {
+            $sites = Site::where('cat_id', $cat)->get();
+        }
+
+        $winners = '162|133|177|53|113|192|84|234|56|127|84|';
+        $winners .= '75|24|146|191|136|17|9|217|86|126|'; 
+        $winners .= '207|148|141|215|208|87|23|72|23|27|';
+        $winners .= '31|28|188|152|41|68|160|59|189|';
+        $winners .= '15|230|172|76|6|131|52|4|124|223';
+
+        $winners_ids = explode('|', $winners);
+
+        $my_graders = Grader::where('approved', 'yes')->get();
+
+        return view('assignments.panel_b_sites', compact('sites', 'my_graders', 'cat', 'winners_ids'));
+    }       
 
     public function assign_site_a($site_id)
     {
@@ -55,6 +77,16 @@ class AssignmentsController extends Controller
         return view('assignments.assign_site_a', compact('site', 'assignments', 'graders'));
 
     }
+
+    public function assign_site_b($site_id)
+    {
+        $site = Site::find($site_id);
+        $graders = Grader::where('approved', 'yes')->get();
+        $assignments = Assignment_b::where('site_id', $site->id)->get();
+
+        return view('assignments.assign_site_b', compact('site', 'assignments', 'graders'));
+
+    }    
 
     public function store_manual_a(Request $request)
     {
@@ -71,6 +103,21 @@ class AssignmentsController extends Controller
         return redirect()->route('assign_site_a', $request->site_id);
     }
 
+    public function store_manual_b(Request $request)
+    {
+        $this->validate($request, ['grader_id' => 'required']);
+
+        $data = [];
+        $data['site_id'] = $request->site_id;
+        $data['grader_id'] = $request->grader_id;
+
+        Assignment_b::create($data);
+
+        alert()->success('Επιτυχής Υποβολή Ανάθεσης');
+
+        return redirect()->route('assign_site_b', $request->site_id);
+    }    
+
     public function assign_delete_a($assignment_id, $site_id)
     {
         $assignment = Assignment::findOrFail($assignment_id);
@@ -82,6 +129,18 @@ class AssignmentsController extends Controller
         return redirect()->route('assign_site_a', $site_id);
 
     }
+
+    public function assign_delete_b($assignment_id, $site_id)
+    {
+        $assignment = Assignment_b::findOrFail($assignment_id);
+
+        $assignment->delete();
+
+        alert()->success('Επιτυχής Διαγραφή');
+
+        return redirect()->route('assign_site_b', $site_id);
+
+    }    
 
     public function assigns_a($type)
     {
