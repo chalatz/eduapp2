@@ -20,7 +20,7 @@
     @foreach($cats as $cat)
         
         <div class="btn-group" role="group">
-            <a href="{{ route('admin.a_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
+            <a href="{{ route('ninja.a_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
                 Κατηγορία {{ $cat }}
             </a>
         </div>
