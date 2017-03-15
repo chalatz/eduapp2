@@ -171,6 +171,10 @@
                     $bgc = '#b2beb5';
                     $status = '--';
                 }
+                if(abs($tg_rsorted[0]) >= 20 && abs($tg_rsorted[1]) == 2) {
+                    $bgc = '#b2beb5';
+                    $status = '--';
+                }
                 if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) == 0) {
                     $bgc = '#000';
                     $status = '--';
