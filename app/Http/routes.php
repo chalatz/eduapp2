@@ -124,6 +124,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-to-graders-a-who-did-not-finish', ['as' => 'send_to_graders_a_who_did_not_finish', 'uses' => 'EmailsController@send_to_graders_a_who_did_not_finish']);
     Route::get('send-to-sites-about-late-graders-a', ['as' => 'send_to_sites_about_late_graders_a', 'uses' => 'EmailsController@send_to_sites_about_late_graders_a']);
 
+    Route::get('send-to-graders-b-to_begin', ['as' => 'send_to_graders_b_to_begin', 'uses' => 'EmailsController@send_to_graders_b_to_begin']);
+
+
     // ---- MANAGE EVALUATIONS --- //
     // Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);
 

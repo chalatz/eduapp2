@@ -10,6 +10,7 @@ use App\The_sites;
 use App\The_graders;
 use App\Assignment;
 use App\Assignment_b;
+use App\Config;
 
 use DB;
 
@@ -55,11 +56,7 @@ class AssignmentsController extends Controller
             $sites = Site::where('cat_id', $cat)->get();
         }
 
-        $winners = '162|133|177|53|113|192|84|234|56|127|84|';
-        $winners .= '75|24|146|191|136|17|9|217|86|126|'; 
-        $winners .= '207|148|141|215|208|87|23|72|23|27|';
-        $winners .= '31|28|188|152|41|68|160|59|189|';
-        $winners .= '15|230|172|76|6|131|52|4|124|223';
+        $winners = Config::first()->winners_a;
 
         $winners_ids = explode('|', $winners);
 
