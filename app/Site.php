@@ -79,7 +79,7 @@ class Site extends Model
 
         $i = 0;
         foreach($evaluations as $evaluation){
-            if($evaluation->complete()){
+            if($evaluation->complete() || $evaluation->total_grade == 1){
                 $i++;
             }
         }

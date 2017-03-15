@@ -62,6 +62,33 @@ class EmailsController extends Controller
 
     }
 
+    public function send_to_graders_b_to_begin()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $summaries = Summary_A::all();
+
+            $from = 60;
+            $to = 60;
+
+            foreach($summaries as $summary){
+                if($summary->id >= $from && $summary->id <= $to){            
+
+                    Mail::send('emails.send_to_graders_b_to_begin', ['summary' => $summary], function ($message) use ($summary) {                        
+                        $message->to($summary->grader_email, $summary->grader_email)->subject('ΠΡΟΣΚΛΗΣΗ ΓΙΑ ΚΡΙΣΗ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    });
+
+                    echo $summary->id . ' . ' . $summary->grader_email . '<br>';
+
+                }
+            }
+
+        }
+
+    }    
+
     public function send_to_late_graders_a()
     {
         $status = 'on';

@@ -94,7 +94,9 @@ class AdminController extends Controller
         
         if($status == 'on'){
 
-            foreach(Assignment::all() as $assignment){
+            $assignments = Assignment_b::all();
+
+            foreach(Assignment_b::all() as $assignment){
 
                 $summary = Summary_A::where('grader_id', $assignment->grader_id)->first();                
                 
