@@ -106,14 +106,14 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('evaluations/b/init', ['as' => 'evals_init', 'uses' => 'Evaluations_bController@init']);
 
-    // ---- EVALUATIONS --- //
+    // ---- EVALUATIONS A --- //
     Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);
 
     Route::put('can_evaluate/{id}', ['as' => 'can_evaluate_submit', 'uses' => 'EvaluationsController@can_evaluate_submit']);
     Route::put('is_educational/{id}', ['as' => 'is_educational_submit', 'uses' => 'EvaluationsController@is_educational_submit']);
     Route::put('site_comment_submit/{id}', ['as' => 'site_comment_submit', 'uses' => 'EvaluationsController@site_comment_submit']);
 
-    Route::get('evaluate/a/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_a_edit', 'uses' => 'EvaluationsController@edit']);
+    Route::get('evaluate/a/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_edit', 'uses' => 'EvaluationsController@edit']);
 
     Route::patch('evaluation/a/update/{id}', ['as' => 'evaluation.update', 'uses' => 'EvaluationsController@update']);
 
@@ -125,6 +125,19 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-to-late-graders-a', ['as' => 'send_to_late_graders_a', 'uses' => 'EmailsController@send_to_late_graders_a']);
     Route::get('send-to-graders-a-who-did-not-finish', ['as' => 'send_to_graders_a_who_did_not_finish', 'uses' => 'EmailsController@send_to_graders_a_who_did_not_finish']);
     Route::get('send-to-sites-about-late-graders-a', ['as' => 'send_to_sites_about_late_graders_a', 'uses' => 'EmailsController@send_to_sites_about_late_graders_a']);
+
+    // ---- EVALUATIONS B --- //
+    Route::get('evaluate/b/show', ['as' => 'evaluation_b.show', 'uses' => 'Evaluations_bController@show']);
+
+    Route::put('can_evaluate_b/{id}', ['as' => 'can_evaluate_b_submit', 'uses' => 'Evaluations_bController@can_evaluate_submit']);
+    Route::put('is_educational_b/{id}', ['as' => 'is_educational_b_submit', 'uses' => 'Evaluations_bController@is_educational_submit']);
+    Route::put('site_comment_submit_b/{id}', ['as' => 'site_comment_submit_b', 'uses' => 'Evaluations_bController@site_comment_submit']);
+
+    Route::get('evaluate/b/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_b_edit', 'uses' => 'Evaluations_bController@edit']);
+    
+    Route::patch('evaluation/b/update/{id}', ['as' => 'evaluation_b.update', 'uses' => 'Evaluations_bController@update']);
+
+    Route::get('evaluate/b/finalize/{id}', ['as' => 'evaluation_b.finalize', 'uses' => 'Evaluations_bController@evaluation_b_finalize']);
 
     Route::get('send-to-graders-b-to_begin', ['as' => 'send_to_graders_b_to_begin', 'uses' => 'EmailsController@send_to_graders_b_to_begin']);
 

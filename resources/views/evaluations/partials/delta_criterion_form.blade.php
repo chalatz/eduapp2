@@ -375,7 +375,7 @@
 
     <div class="panel-body">
         <div class="col-md-12 form-group{{ $errors->has('delta_comment') ? ' has-error' : '' }}">
-            {{ Form::label('delta_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Γ Άξονα:') }}
+            {{ Form::label('delta_comment', 'Σχόλια - Παρατηρήσεις - Προτάσεις για τον Δ Άξονα:') }}
 
             {{ Form::textarea('delta_comment', null, ['rows' => 3, 'cols' => '50','class' => 'form-control', 'id' => 'delta_comment', 'placeholder' => 'Προαιρετικά σχόλια για τον Άξονα.']) }}                                            
 

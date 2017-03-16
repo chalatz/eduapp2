@@ -42,7 +42,7 @@ class Evaluations_bController extends Controller
                 'store_manual_b',
             ]]);
 
-            $this->middleware('can_evaluate_a', ['except' => [
+            $this->middleware('can_evaluate_b', ['except' => [
                 'init',
                 'evaluations_panel_b_sites',
                 'assign_evaluation_site_b',
@@ -70,13 +70,13 @@ class Evaluations_bController extends Controller
 
         $colors = ['success', 'info', 'warning','success', 'info', 'warning','success', 'info', 'warning'];
 
-        return view ('evaluations.a.show', compact('evaluations', 'user', 'site', 'grader', 'colors'));
+        return view ('evaluations.b.show', compact('evaluations', 'user', 'site', 'grader', 'colors'));
 
     }
 
     public function edit($user_id, $criterion, $grader_id, $site_id)
     {
-        $evaluation = Evaluation::where('grader_id', $grader_id)->where('site_id', $site_id)->first();        
+        $evaluation = Evaluation_b::where('grader_id', $grader_id)->where('site_id', $site_id)->first();        
         
         if($evaluation->can_evaluate =='no' || $evaluation->finalized == 'yes'){
             return redirect()->route('home');
@@ -88,7 +88,7 @@ class Evaluations_bController extends Controller
         
         $grader = Grader::where('user_id', $user_id)->first();
 
-        return view('evaluations.a.edit', compact('evaluation', 'criterion'));
+        return view('evaluations.b.edit', compact('evaluation', 'criterion'));
 
     }
 
@@ -96,7 +96,7 @@ class Evaluations_bController extends Controller
     {
         $input = $request->all();
         
-        $evaluation = Evaluation::find($id);
+        $evaluation = Evaluation_b::find($id);
 
         if(isset($input['bk1'])){
             $input['beta_grade'] = $input['bk1'] * (BetaCriterion::first()->bk1_weight / 5) +
@@ -148,13 +148,13 @@ class Evaluations_bController extends Controller
 
         alert()->success('Επιτυχής καταχώριση Βαθμολογίας.');
 
-        return redirect()->route('evaluation_a.show');
+        return redirect()->route('evaluation_b.show');
 
     }
 
-    public function evaluation_a_finalize($id)
+    public function evaluation_b_finalize($id)
     {
-        $evaluation = Evaluation::find($id);
+        $evaluation = Evaluation_b::find($id);
         
         $grader_id = $evaluation->grader_id;
         
@@ -194,7 +194,7 @@ class Evaluations_bController extends Controller
             $data['why_cannot_evaluate'] = $request->why_cannot_evaluate;
         }
 
-        $evaluation = Evaluation::find($id);
+        $evaluation = Evaluation_b::find($id);
 
         if($request->can_evaluate == 'no'){
             $evaluation->total_grade = -1;
@@ -231,7 +231,7 @@ class Evaluations_bController extends Controller
             $data['why_not_educational'] = $request->why_not_educational;
         }
 
-        $evaluation = Evaluation::find($id);
+        $evaluation = Evaluation_b::find($id);
 
         if($request->is_educational == 'no'){
             $evaluation->total_grade = 1;
@@ -252,7 +252,7 @@ class Evaluations_bController extends Controller
 
     public function site_comment_submit(Request $request, $id)
     {
-        $evaluation = Evaluation::find($id);
+        $evaluation = Evaluation_b::find($id);
 
         $evaluation->site_comment = $request->site_comment;
 
