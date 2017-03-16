@@ -10,6 +10,7 @@ use App\User;
 use App\Grader;
 use App\Site;
 use App\Assignment;
+use App\Assignment_b;
 use App\Suggestion;
 use App\Evaluation;
 use App\Summary_A;
@@ -30,6 +31,8 @@ class AdminController extends Controller
         $this->middleware('is_ninja', ['only' => [
           'ninja_menu',
           'a_list',
+          'create_summary_a',
+          'destroy_suggestion_a',
         ]]);
 
     }
@@ -90,7 +93,7 @@ class AdminController extends Controller
 
     public function create_summary_a()
     {
-        $status = 'off';
+        $status = 'on';
         
         if($status == 'on'){
 
@@ -105,8 +108,7 @@ class AdminController extends Controller
                     $data['grader_id'] = $assignment->grader_id;
                     $data['grader_name'] = Grader::find($assignment->grader_id)->last_name .' '. Grader::find($assignment->grader_id)->first_name;
                     $data['grader_email'] = Grader::find($assignment->grader_id)->user->email;
-                    $data['sites_count'] = Assignment::where('grader_id', $assignment->grader_id)->count();
-                     
+                    $data['sites_count'] = Assignment_b::where('grader_id', $assignment->grader_id)->count();                     
 
                     $data['site_titles'] = Site::find($assignment->site_id)->title;
                     $data['site_urls'] = Site::find($assignment->site_id)->url;
