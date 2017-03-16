@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+use App\Config;
+
+class PhaseB
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        $config = Config::first();
+
+        if($config->phase_b_gradings){
+            return $next($request);
+        }
+
+        alert()->error('Η Φάση Β έχει λήξει.')
+                ->persistent('Εντάξει');
+
+        return redirect()->route('home');
+
+    }
+}

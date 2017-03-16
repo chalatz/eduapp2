@@ -97,12 +97,14 @@ Route::group(['middleware' => 'web'], function () {
     // Route::get('assignment/a/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_a', 'uses' => 'AssignmentsController@assign_delete_a']);
     // Route::post('assigns/store-manual-a', ['as' => 'assignments.store_manual_a', 'uses' => 'AssignmentsController@store_manual_a']);
 
-    // Route::get('evals/init', ['as' => 'evals_init', 'uses' => 'EvaluationsController@init']);
+    // Route::get('evaluations/a/init', ['as' => 'evals_init', 'uses' => 'EvaluationsController@init']);
 
     Route::get('panel/assignments/b/sites/{cat}', ['as' => 'assignments_panel_b_sites', 'uses' => 'AssignmentsController@assignments_panel_b_sites']);    
     Route::get('assign/site/b/{site_id}', ['as' => 'assign_site_b', 'uses' => 'AssignmentsController@assign_site_b']);
     Route::post('assigns/store-manual-b', ['as' => 'assignments.store_manual_b', 'uses' => 'AssignmentsController@store_manual_b']);    
     Route::get('assignment/b/delete/{assignment_id}/site/{site_id}', ['as' => 'assign_delete_b', 'uses' => 'AssignmentsController@assign_delete_b']);
+
+    Route::get('evaluations/b/init', ['as' => 'evals_init', 'uses' => 'Evaluations_bController@init']);
 
     // ---- EVALUATIONS --- //
     Route::get('evaluate/a/show', ['as' => 'evaluation_a.show', 'uses' => 'EvaluationsController@show']);

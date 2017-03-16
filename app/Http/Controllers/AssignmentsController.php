@@ -26,11 +26,12 @@ class AssignmentsController extends Controller
 
         $this->middleware('is_member');
 
-        $this->middleware('is_ninja', ['only' => [
+        $this->middleware('is_ninja', ['except' => [
             'assignments_panel_a_sites',
             'assign_site_a',
             'store_manual_a',
             'assign_delete_a',
+            'assignments_panel_b_sites',
             'assign_site_b',
             'store_manual_b',
             'assign_delete_b',
