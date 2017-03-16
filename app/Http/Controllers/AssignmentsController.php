@@ -31,6 +31,9 @@ class AssignmentsController extends Controller
             'assign_site_a',
             'store_manual_a',
             'assign_delete_a',
+            'assign_site_b',
+            'store_manual_b',
+            'assign_delete_b',
         ]]);
 
     }
@@ -78,7 +81,9 @@ class AssignmentsController extends Controller
     public function assign_site_b($site_id)
     {
         $site = Site::find($site_id);
-        $graders = Grader::where('approved', 'yes')->get();
+
+        $graders = Grader::where('approved', 1)->get();
+
         $assignments = Assignment_b::where('site_id', $site->id)->get();
 
         return view('assignments.assign_site_b', compact('site', 'assignments', 'graders'));
