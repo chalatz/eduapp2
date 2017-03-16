@@ -80,7 +80,7 @@ class MembersController extends Controller
 
         $grader->save();
 
-        alert()->success('Μην ξεχνάς ότι ξέρουμε ποιος είσαι.', 'Επιτυχής Έκγριση!')
+        alert()->success('Μην ξεχνάς ότι ξέρουμε ποιος είσαι.', 'Επιτυχής Έγκριση!')
                 ->persistent('Το κατάλαβα');
 
         return redirect()->back();
