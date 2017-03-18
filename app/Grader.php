@@ -87,6 +87,9 @@ class Grader extends Model
         if($this->user->hasRole('grader_a')){
             $grader_code = 'Α' . sprintf("%03d", $this->id);
         }
+        if($this->user->hasRole('grader_b')){
+            $grader_code = 'Β' . sprintf("%03d", $this->id);
+        }
         if($this->approved && $this->user->hasRole('grader_b')){
             $grader_code = 'Β' . sprintf("%03d", $this->id);
         }

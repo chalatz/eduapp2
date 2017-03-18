@@ -121,9 +121,25 @@
                         <tbody>
 
                             @foreach(App\Assignment_b::where('site_id', $site->id)->get() as $assignment)
-                                <?php $grader = App\Grader::find($assignment->grader_id); ?>
+                                <?php $grader = App\Grader::find($assignment->grader_id); ?>                                
 
                                 <?php $assigned_sites = App\Assignment_b::where('grader_id', $grader->id)->count(); ?>
+
+                                <?php $assigns_a = App\Evaluation::where('grader_id', $grader->id)->count(); ?>
+
+                                <?php $the_bg_2 = ''; $the_bg_1 = ''; ?>
+
+                                @if($assigns_a == 2)
+                                    <?php $the_bg_1 = 'style="background-color: orange; padding: .3em"' ?>
+                                @endif
+                                @if($assigns_a > 2)
+                                    <?php $the_bg_1 = 'style="background-color: red; color: white; padding: .3em"' ?>
+                                @endif
+
+                                @if($assigned_sites > 2)
+                                    <?php $the_bg_2 = 'style="background-color: red; color: white; padding: .3em"' ?>
+                                @endif
+
                                 @if($grader->hasSite())
                                     <?php $his_sites = $grader->suggestions_count * 2; ?>
                                 @else
@@ -131,13 +147,16 @@
                                 @endif
                                 <tr>
                                     <td>
-                                        {{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }}
-                                        <p>
+                                        {{ $grader->last_name }} {{ $grader->first_name }}, {{ $specialties::all()[$grader->specialty_id] }} ({{ $grader->code() }})
+                                        @if(!$grader->approved)
+                                         <span style="font-weight: bold; background-color: #111; color: #fff; padding: .2em">Δεν έχει εγκριθεί</span>
+                                        @endif
+                                        <p <?php echo $the_bg_2; ?>>
                                             <strong>Αναθέσεις Φάσης Β:</strong> {{ App\Assignment_b::where('grader_id', $grader->id)->count() }}
                                         </p>
 
-                                        <p>
-                                            <strong>Αναθέσεις Φάσης Α:</strong> {{ App\Assignment::where('grader_id', $grader->id)->count() }}
+                                        <p <?php echo $the_bg_1; ?>>
+                                            <strong>Αναθέσεις Φάσης Α:</strong> {{ $assigns_a }}
                                         </p>
                                     </td>
                                     <td @if($site->district_id != $grader->district_id) style="background-color: lightgreen" @else style="background-color: lightcoral" @endif>{{ $grader->district_id }}</td>
@@ -220,7 +239,7 @@
                                             @if($mygrader->lang_pref_german) Γερμανικά, @endif
                                             @if($mygrader->lang_pref_italian) Ιταλικά, @endif
 
-                                            Φάση Α: {{ App\Assignment::where('grader_id', $mygrader->id)->count() }} 
+                                            Φάση Α: {{ App\Evaluation::where('grader_id', $mygrader->id)->count() }} 
                                             Φάση Β: {{ App\Assignment_b::where('grader_id', $mygrader->id)->count() }}                                         
                                             
                                         </option>

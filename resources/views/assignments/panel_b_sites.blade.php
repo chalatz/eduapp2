@@ -92,14 +92,32 @@
                                 @if($site->grader_id == $grader->id)
                                     <h3 style="background:red; color:white; padding: 6px;">ΠΡΟΣΟΧΗ: Του ανατέθηκε ο Ιστότοπός του!!!</h3>
                                 @endif
-                                <h4>{{ $grader->last_name }} {{ $grader->first_name }}</h4>
+                                @if(!$grader->approved)
+                                    <h3 style="background:red; color:white; padding: 6px;">Δεν έχει εγκριθεί</h3>
+                                @endif
+                                <h4>{{ $grader->last_name }} {{ $grader->first_name }} ({{ $grader->code() }}) </h4>
 
-                                <p>
-                                    <strong>Αναθέσεις Φάσης Β:</strong> {{ App\Assignment_b::where('grader_id', $grader->id)->count() }}
+                                <?php $assigns_b = App\Assignment_b::where('grader_id', $grader->id)->count(); ?>
+                                <?php $assigns_a = App\Evaluation::where('grader_id', $grader->id)->count(); ?>
+                                <?php $the_bg_2 = ''; $the_bg_1 = ''; ?>
+
+                                @if($assigns_a == 2)
+                                    <?php $the_bg_1 = 'style="background-color: orange; padding: .3em"' ?>
+                                @endif
+                                @if($assigns_a > 2)
+                                    <?php $the_bg_1 = 'style="background-color: red; color: white; padding: .3em"' ?>
+                                @endif
+
+                                @if($assigns_b > 2)
+                                    <?php $the_bg_2 = 'style="background-color: red; color: white; padding: .3em"' ?>
+                                @endif                                
+
+                                <p <?php echo $the_bg_2; ?>>
+                                    <strong>Αναθέσεις Φάσης Β:</strong> {{ $assigns_b }}
                                 </p>
 
-                                <p>
-                                    <strong>Αναθέσεις Φάσης Α:</strong> {{ App\Assignment::where('grader_id', $grader->id)->count() }}
+                                <p <?php echo $the_bg_1; ?>>
+                                    <strong>Αναθέσεις Φάσης Α:</strong> {{ $assigns_a }}
                                 </p>
 
                                 <p><strong>Κωδικός: </strong>{{ $grader->id }}</p>
