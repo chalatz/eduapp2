@@ -64,8 +64,6 @@ class AssignmentsController extends Controller
 
         $winners_ids = explode('|', $winners);
 
-        //$my_graders = Grader::where('approved', 1)->get();
-
         return view('assignments.panel_b_sites', compact('sites', 'cat', 'winners_ids'));
     }       
 

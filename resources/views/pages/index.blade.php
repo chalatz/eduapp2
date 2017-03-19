@@ -19,6 +19,14 @@
                     </p>
                 @endif
 
+                @if(App\Config::first()->phase_b_gradings && Auth::user()->grader && Auth::user()->grader->has_to_grade_b())
+                    <p>
+                        <a href="{{ route('evaluation_b.show') }}" type="button" class="btn btn-warning btn-lg btn-block">
+                            Β Φάση: Έναρξη Αξιολόγησης
+                        </a>
+                    </p>
+                @endif                
+
                 @include('pages.partials.registers')                
 
             @else

@@ -138,7 +138,7 @@ class Grader extends Model
 
     public function has_to_grade_a(){
 
-        //  the user is grader A and has sites to evaluate in Phase A
+        //  the user is grader and has sites to evaluate in Phase A
         if($this->user->hasRole('grader_a') || $this->user->hasRole('grader_b')){
             $evaluation = Evaluation::where('grader_id', $this->id)->first();
             if($evaluation){
@@ -149,6 +149,20 @@ class Grader extends Model
         return false;
 
     }
+
+    public function has_to_grade_b(){
+
+        //  the user is grader and has sites to evaluate in Phase B
+        if($this->user->hasRole('grader_a') || $this->user->hasRole('grader_b')){
+            $evaluation = Evaluation_b::where('grader_id', $this->id)->first();
+            if($evaluation){
+                return true;
+            }
+        }
+
+        return false;
+
+    }    
 
     public function scopeAlpha($query)
     {

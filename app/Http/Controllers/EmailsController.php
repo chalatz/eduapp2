@@ -28,6 +28,7 @@ class EmailsController extends Controller
 
         $this->middleware('is_ninja', ['only' => [
           'send_to_graders_a_to_begin',
+          'send_to_graders_b_to_begin',
           'send_to_late_graders_a',
           'send_to_graders_a_who_did_not_finish',
           'send_to_sites_about_late_graders_a',
@@ -64,14 +65,14 @@ class EmailsController extends Controller
 
     public function send_to_graders_b_to_begin()
     {
-        $status = 'off';
+        $status = 'on';
 
         if($status == 'on'){
 
             $summaries = Summary_A::all();
 
-            $from = 60;
-            $to = 60;
+            $from = 1;
+            $to = 100;
 
             foreach($summaries as $summary){
                 if($summary->id >= $from && $summary->id <= $to){            
@@ -85,6 +86,10 @@ class EmailsController extends Controller
                 }
             }
 
+            return "emails sent";
+
+        } else {
+            return "status: off";
         }
 
     }    

@@ -125,6 +125,8 @@ class AdminController extends Controller
 
                 }
 
+                return "summaries created";
+
             }
 
         } else {
