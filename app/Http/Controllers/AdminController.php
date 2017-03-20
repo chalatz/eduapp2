@@ -99,7 +99,7 @@ class AdminController extends Controller
 
             $assignments = Assignment_b::all();
 
-            foreach(Assignment_b::all() as $assignment){
+            foreach($assignments as $assignment){
 
                 $summary = Summary_A::where('grader_id', $assignment->grader_id)->first();                
                 
@@ -125,9 +125,9 @@ class AdminController extends Controller
 
                 }
 
-                return "summaries created";
-
             }
+            
+            return "summaries created";
 
         } else {
             return 'status: off';
