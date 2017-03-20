@@ -16,6 +16,8 @@ use App\Evaluation;
 use App\Http\Utilities\Category;
 use App\Http\Utilities\District;
 
+use Mail;
+
 use Auth;
 
 class TestController extends Controller

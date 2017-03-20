@@ -32,6 +32,7 @@ class EmailsController extends Controller
           'send_to_late_graders_a',
           'send_to_graders_a_who_did_not_finish',
           'send_to_sites_about_late_graders_a',
+          'send_to_sites_about_end_of_phase_a',
         ]]);
 
     }
@@ -282,7 +283,45 @@ class EmailsController extends Controller
         alert()->success('Επιτυχής Αποστολή email');
 
         return redirect()->back();
-    }    
+    }
+
+    public function send_to_sites_about_end_of_phase_a()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $sites = Site::all();
+
+            $from = 201;
+            $to = 250;
+
+            $winners = explode('|', Config::first()->winners_a); 
+
+            foreach($sites as $site){
+                if($site->id >= $from && $site->id <= $to){
+                    $data = [];
+                    $data['site_email'] = $site->contact_email;
+                    $data['site_title'] = $site->title;
+                    $data['winner'] = false;
+                    if(in_array($site->id, $winners)){
+                        $data['winner'] = true;
+                    }
+                    Mail::send('emails.send_to_sites_about_end_of_phase_a', ['data' => $data], function ($message) use ($data) {                        
+                        $message->to($data['site_email'], $data['site_email'])->subject('ΑΠΟΤΕΛΕΣΜΑΤΑ ΦΑΣΗΣ Α - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    });
+
+                    echo $site->id .'- ' . $data['site_email'] . '<br>';
+
+                }
+            }
+
+        } else {
+            return "status: off";
+        }
+
+
+    }  
 
     public function send_to_past_graders()
     {
