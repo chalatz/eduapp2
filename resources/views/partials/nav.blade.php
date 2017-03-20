@@ -77,9 +77,7 @@
                       </ul>
                   </li>
 
-                  <li><a href="{{ route('sites_grades_a') }}">Βαθμολογίες και Αναθέσεις Α</a></li>
-
-                  <li><a href="{{ route('assignments_panel_b_sites', 'all') }}">Αναθέσεις Β</a></li>
+                  {{-- <li><a href="{{ route('sites_grades_a') }}">Βαθμολογίες και Αναθέσεις Α</a></li> --}}
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

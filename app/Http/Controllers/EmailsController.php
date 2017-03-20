@@ -72,7 +72,7 @@ class EmailsController extends Controller
             $summaries = Summary_A::all();
 
             $from = 1;
-            $to = 100;
+            $to = 1;
 
             foreach($summaries as $summary){
                 if($summary->id >= $from && $summary->id <= $to){            
