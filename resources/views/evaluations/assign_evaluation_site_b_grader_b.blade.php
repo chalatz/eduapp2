@@ -114,6 +114,7 @@
                                 <th>Αξιολογητής</th>
                                 <th>Περιφέρεια</th>
                                 <th>Κατηγορία</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -176,6 +177,7 @@
                                             Χωρίς κατηγορία (αφού δεν υπάρχει υποψήφιος)
                                         @endif
                                     </td>
+                                    <td><a class="btn btn-danger" href="{{ route('evaluation_delete_b', [$evaluation->id, $site->id]) }}" role="button" onclick="return confirm('Εϊστε σίγουρος;');">Διαγραφή</a></td>                                    
                                 </tr>
                             @endforeach
 

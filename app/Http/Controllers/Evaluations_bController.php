@@ -315,7 +315,19 @@ class Evaluations_bController extends Controller
         alert()->success('Επιτυχής Υποβολή Ανάθεσης');
 
         return redirect()->back();
-    }           
+    }
+
+    public function evaluation_delete_b($evaluation_id, $site_id)
+    {
+        $evaluation = Evaluation_b::findOrFail($evaluation_id);
+
+        $evaluation->delete();
+
+        alert()->success('Επιτυχής Διαγραφή');
+
+        return redirect()->back();
+
+    }               
 
     public function init()
     {

@@ -161,6 +161,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/sites/grades/b', ['as' => 'sites_grades_b', 'uses' => 'MembersController@sites_grades_b']);
     Route::get('assign-evaluation/site/b/grader/b/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_b_grader_b', 'uses' => 'Evaluations_bController@assign_evaluation_site_b_grader_b']);    
     Route::post('evaluations/store-manual-b', ['as' => 'evaluations.store_manual_b', 'uses' => 'Evaluations_bController@store_manual_b']);
+    Route::get('evaluation/b/delete/{evaluation_id}/site/{site_id}', ['as' => 'evaluation_delete_b', 'uses' => 'Evaluations_bController@evaluation_delete_b']);
 
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);
