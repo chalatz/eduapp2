@@ -289,17 +289,17 @@ class Evaluations_bController extends Controller
 
     }
 
-    public function assign_evaluation_site_a_grader_b($site_id, $from)
+    public function assign_evaluation_site_b_grader_b($site_id, $from)
     {
         $site = Site::find($site_id);
         $graders = Grader::where('approved', 1)->get();
-        $evalutations = Evaluation::where('site_id', $site->id)->get();
+        $evalutations = Evaluation_b::where('site_id', $site->id)->get();
 
-        return view('evaluations.assign_evaluation_site_a_grader_b', compact('site', 'evalutations', 'graders', 'from'));
+        return view('evaluations.assign_evaluation_site_b_grader_b', compact('site', 'evalutations', 'graders', 'from'));
 
     }      
 
-    public function store_manual_a(Request $request)
+    public function store_manual_b(Request $request)
     {
         $this->validate($request, ['grader_id' => 'required']);
 
@@ -310,24 +310,12 @@ class Evaluations_bController extends Controller
         $data['assigned_at'] = Carbon::today();
         $data['assigned_until'] = Carbon::today()->addDays(7);
 
-        Evaluation::create($data);
+        Evaluation_b::create($data);
 
         alert()->success('Επιτυχής Υποβολή Ανάθεσης');
 
         return redirect()->back();
-    }    
-    
-    public function evaluation_delete_a($evaluation_id, $site_id)
-    {
-        $evaluation = Evaluation::findOrFail($evaluation_id);
-
-        $evaluation->delete();
-
-        alert()->success('Επιτυχής Διαγραφή');
-
-        return redirect()->back();
-
-    }        
+    }           
 
     public function init()
     {

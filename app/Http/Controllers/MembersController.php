@@ -6,10 +6,13 @@ use Carbon\Carbon;
 
 use Auth;
 
+use App\Config;
+
 use App\Site;
 use App\Grader;
 use App\Suggestion;
 use App\Evaluation;
+use App\Evaluation_b;
 
 use Illuminate\Http\Request;
 
@@ -146,6 +149,30 @@ class MembersController extends Controller
     return view('members.sites_grades_a', compact('sites', 'max_evals', 'from'));
 
   }
+
+  public function sites_grades_b()
+  {
+
+    $sites = Site::all();
+
+    $max_evals = 0;
+
+    $winners_a = explode('|', Config::first()->winners_a);
+
+    foreach($sites as $site){
+      if(in_array($site->id, $winners_a)){
+        $evals_count = Evaluation_b::where('site_id', $site->id)->count();
+        if($evals_count > $max_evals){
+            $max_evals = $evals_count;
+        }
+      }
+    }
+
+    $from = 'sites_grades_b';
+
+    return view('members.sites_grades_b', compact('sites', 'max_evals', 'from', 'winners_a'));
+
+  }  
 
   public function a_list($cat_id = 1){
 

@@ -155,6 +155,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-extra-to-grader-a/{evaluation_id}', ['as' => 'send_extra_to_grader_a', 'uses' => 'EmailsController@send_extra_to_grader_a']);
     Route::get('send-extra-to-grader-20pc/{evaluation_id}', ['as' => 'send_extra_to_grader_20pc', 'uses' => 'EmailsController@send_extra_to_grader_20pc']);
 
+    Route::get('send-extra-to-grader-b/{evaluation_id}', ['as' => 'send_extra_to_grader_b', 'uses' => 'EmailsController@send_extra_to_grader_b']);
+    Route::get('send-extra-to-grader-b-20pc/{evaluation_id}', ['as' => 'send_extra_to_grader_b_20pc', 'uses' => 'EmailsController@send_extra_to_grader_b_20pc']);
+
+    Route::get('admin/sites/grades/b', ['as' => 'sites_grades_b', 'uses' => 'MembersController@sites_grades_b']);
+    Route::get('assign-evaluation/site/b/grader/b/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_b_grader_b', 'uses' => 'Evaluations_bController@assign_evaluation_site_b_grader_b']);    
+    Route::post('evaluations/store-manual-b', ['as' => 'evaluations.store_manual_b', 'uses' => 'Evaluations_bController@store_manual_b']);
+
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);
     Route::get('admin/a-list/ok/{cat_id}', ['as' => 'admin.a_list_ok', 'uses' => 'MembersController@a_list_ok']);    
