@@ -156,9 +156,7 @@
                     $bgc = '#5eb95e';
                     $status = 'both_graded';
                 }
-
                 
-
                 if(abs($tg_rsorted[0]) == 0 && abs($tg_rsorted[1]) >= 20) {
                     $bgc = '#F37B1D';
                     $status = '--';
