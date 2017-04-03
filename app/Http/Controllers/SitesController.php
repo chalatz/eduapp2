@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Site;
 use Auth;
 
+use App\Config;
+
+use App\Evaluation;
+use App\Evaluation_b;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -146,4 +151,41 @@ class SitesController extends Controller
     {
         //
     }
+
+    public function summary()
+    {
+        $user = Auth::user();
+
+        $site = $user->site;
+
+        if($site){
+
+            $winners_a = explode('|', Config::first()->winners_a);
+
+            $mo = [];       
+
+            $evaluations_a = Evaluation::where('site_id', $site->id)->get();
+            
+            if($evaluations_a){
+                $phase = 'a';
+
+                $total_grades_a = $site->total_grades('a');
+
+                $mo['a'] = ($total_grades_a[0] + $total_grades_a[1]) / 2;
+            }      
+
+            if(in_array($site->id, $winners_a)){
+                $phase = 'b';
+
+                $evaluations_b = Evaluation_b::where('site_id', $site->id)->get();
+
+                $total_grades_b = $site->total_grades('b');
+            }
+
+            return view('sites.summary', compact('mo'));            
+            
+        }        
+
+    }
+
 }

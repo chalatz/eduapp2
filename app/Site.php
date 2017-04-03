@@ -123,6 +123,10 @@ class Site extends Model
             $evaluations = Evaluation::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
         }
 
+        if($phase == 'b'){
+            $evaluations = Evaluation_b::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
+        }        
+
         $total_grades = [];
 
         foreach($evaluations as $evaluation){

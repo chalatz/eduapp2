@@ -167,6 +167,8 @@ Route::group(['middleware' => 'web'], function () {
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);
     Route::get('admin/a-list/ok/{cat_id}', ['as' => 'admin.a_list_ok', 'uses' => 'MembersController@a_list_ok']);    
+    
+    Route::get('my-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
