@@ -32,6 +32,7 @@ class EmailsController extends Controller
           'send_to_graders_a_to_begin',
           'send_to_graders_b_to_begin',
           'send_to_late_graders_a',
+          'send_to_late_graders_b',
           'send_to_graders_a_who_did_not_finish',
           'send_to_sites_about_late_graders_a',
           'send_to_sites_about_end_of_phase_a',
@@ -138,6 +139,58 @@ class EmailsController extends Controller
         }
 
     }
+
+    public function send_to_late_graders_b()
+    {
+        $status = 'on';
+
+        if($status == 'on'){
+
+            $evaluations = Evaluation_b::all();
+            
+            $i = 0;
+
+            $grader_ids = [];      
+
+            foreach($evaluations as $evaluation){
+
+                if(!$evaluation->complete()){
+                    $grader_ids[] = $evaluation->grader_id;
+                }                          
+
+            }
+
+            $the_grader_ids = array_unique($grader_ids);
+
+            foreach($the_grader_ids as $grader_id){
+                
+                $grader = Grader::find($grader_id);
+
+                if($grader){
+
+                    $i++;
+
+                    $grader_email = $grader->user->email;
+
+                    $data = [];
+                    $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+                    $data['grader_email'] = $grader_email;
+
+                    Mail::send('emails.send_to_late_graders_b', ['data' => $data], function ($message) use ($data) {                        
+                        $message->to($data['grader_email'],$data['grader_email'])->subject('Β ΦΑΣΗ. ΥΠΕΝΘΥΜΙΣΗ ΓΙΑ ΚΡΙΣΗ - ' .Config::first()->index. 'ος ΔΕΕΙ');
+                    });
+
+                    echo $i . ' -- ' . $grader->id . '. ' . $grader_email . '<br>';                    
+
+                }                
+
+            }
+
+        } else {
+            return 'status: off';
+        }        
+
+    }    
 
     public function send_to_graders_a_who_did_not_finish()
     {
