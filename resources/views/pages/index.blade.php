@@ -25,7 +25,15 @@
                             Β Φάση: Έναρξη Αξιολόγησης
                         </a>
                     </p>
-                @endif                
+                @endif
+
+                @if(App\Config::first()->end_of_gradings && Auth::user()->hasRole('site'))
+                    <p>
+                        <a style="font-size: 2em" href="{{ route('site.summary') }}" type="button" class="btn btn-info btn-lg btn-block">
+                            <i class="fa fa-eye" aria-hidden="true"></i> Δείτε τη Βαθμολογία σας και τυχόν σχόλια
+                        </a>
+                    </p>
+                @endif                               
 
                 @include('pages.partials.registers')                
 

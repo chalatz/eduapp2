@@ -33,6 +33,8 @@ class SitesController extends Controller
 
         $this->middleware('can_create_site', ['only' => 'create']);
 
+        $this->middleware('gradings_over', ['only' => 'summary']);
+
     }
 
     /**
@@ -158,34 +160,42 @@ class SitesController extends Controller
 
         $site = $user->site;
 
-        if($site){
+        $site_id = $site->id;
 
-            $winners_a = explode('|', Config::first()->winners_a);
+        $winners_a = explode('|', Config::first()->winners_a);
 
-            $mo = [];       
+        $mo = [];
+        $phase = [];
+        $phase['a'] = false;     
+        $phase['b'] = false;     
+        $phase['c'] = false;     
 
-            $evaluations_a = Evaluation::where('site_id', $site->id)->get();
-            
-            if($evaluations_a){
-                $phase = 'a';
+        $evaluations_a = Evaluation::where('site_id', $site->id)->get();
+        
+        if($evaluations_a){
+            $phase['a'] = true;
 
-                $total_grades_a = $site->total_grades('a');
+            $max_phase = 'Α';
 
-                $mo['a'] = ($total_grades_a[0] + $total_grades_a[1]) / 2;
-            }      
+            $total_grades_a = $site->total_grades('a');
 
-            if(in_array($site->id, $winners_a)){
-                $phase = 'b';
+            $mo['a'] = ($total_grades_a[0] + $total_grades_a[1]) / 2;
+        }      
 
-                $evaluations_b = Evaluation_b::where('site_id', $site->id)->get();
+        if(in_array($site->id, $winners_a)){
+            $phase['b'] = true;
 
-                $total_grades_b = $site->total_grades('b');
-            }
+            $max_phase = 'Β';
 
-            return view('sites.summary', compact('mo'));            
-            
-        }        
+            $evaluations_b = Evaluation_b::where('site_id', $site->id)->get();
 
+            $total_grades_b = $site->total_grades('b');
+
+            $mo['b'] = ($total_grades_b[0] + $total_grades_b[1]) / 2;
+        }
+
+        return view('sites.summary', compact('mo', 'phase', 'max_phase', 'site_id'));            
+                   
     }
 
 }
