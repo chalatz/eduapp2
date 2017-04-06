@@ -27,6 +27,14 @@
                     </p>
                 @endif
 
+                @if(App\Config::first()->phase_c_gradings && Auth::user()->grader && Auth::user()->grader->has_to_grade_c())
+                    <p>
+                        <a href="{{ route('evaluation_c.show') }}" type="button" class="btn btn-danger btn-lg btn-block">
+                            Γ Φάση: Έναρξη Αξιολόγησης
+                        </a>
+                    </p>
+                @endif                
+
                 @if(App\Config::first()->end_of_gradings && Auth::user()->hasRole('site'))
                     <p>
                         <a style="font-size: 2em" href="{{ route('site.summary') }}" type="button" class="btn btn-info btn-lg btn-block">

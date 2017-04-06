@@ -68,6 +68,8 @@ class Kernel extends HttpKernel
         'can_evaluate_b' => \App\Http\Middleware\CanEvaluateB::class,
         'must_own_evaluation_b' => \App\Http\Middleware\MustOwnEvaluationB::class,
         'phase_b' => \App\Http\Middleware\PhaseB::class,
-        'gradings_over' => \App\Http\Middleware\GradingsOver::class,        
+        'gradings_over' => \App\Http\Middleware\GradingsOver::class,
+        'phase_c' => \App\Http\Middleware\PhaseC::class,
+        'must_own_evaluation_c' => \App\Http\Middleware\MustOwnEvaluationC::class,        
     ];
 }

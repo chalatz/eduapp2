@@ -136,12 +136,25 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('evaluate/b/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_b_edit', 'uses' => 'Evaluations_bController@edit']);
     
     Route::patch('evaluation/b/update/{id}', ['as' => 'evaluation_b.update', 'uses' => 'Evaluations_bController@update']);
-
+    
     Route::get('evaluate/b/finalize/{id}', ['as' => 'evaluation_b.finalize', 'uses' => 'Evaluations_bController@evaluation_b_finalize']);
 
     Route::get('send-to-graders-b-to_begin', ['as' => 'send_to_graders_b_to_begin', 'uses' => 'EmailsController@send_to_graders_b_to_begin']);
     Route::get('send-to-sites-about-end-of-phase-a', ['as' => 'send_to_sites_about_end_of_phase_a', 'uses' => 'EmailsController@send_to_sites_about_end_of_phase_a']);
     Route::get('send-to-late-graders-b', ['as' => 'send_to_late_graders_b', 'uses' => 'EmailsController@send_to_late_graders_b']);
+
+    // ---- EVALUATIONS C --- //
+    Route::get('evaluate/c/show', ['as' => 'evaluation_c.show', 'uses' => 'Evaluations_cController@show']);
+
+    Route::put('can_evaluate_c/{id}', ['as' => 'can_evaluate_c_submit', 'uses' => 'Evaluations_cController@can_evaluate_submit']);
+    Route::put('is_educational_c/{id}', ['as' => 'is_educational_c_submit', 'uses' => 'Evaluations_cController@is_educational_submit']);
+    Route::put('site_comment_submit_c/{id}', ['as' => 'site_comment_submit_c', 'uses' => 'Evaluations_cController@site_comment_submit']);
+
+    Route::get('evaluate/c/user/{user_id}/criterion/{criterion}/grader/{grader_id}/site/{site_id}', ['as' =>'evaluate_c_edit', 'uses' => 'Evaluations_cController@edit']);
+
+    Route::patch('evaluation/c/update/{id}', ['as' => 'evaluation_c.update', 'uses' => 'Evaluations_cController@update']);
+
+    Route::get('evaluate/c/finalize/{id}', ['as' => 'evaluation_c.finalize', 'uses' => 'Evaluations_cController@evaluation_c_finalize']);    
 
     // ---- MANAGE EVALUATIONS --- //
     // Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);

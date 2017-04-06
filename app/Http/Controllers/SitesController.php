@@ -9,6 +9,7 @@ use App\Config;
 
 use App\Evaluation;
 use App\Evaluation_b;
+use App\Evaluation_c;
 
 use Illuminate\Http\Request;
 
@@ -163,6 +164,7 @@ class SitesController extends Controller
         $site_id = $site->id;
 
         $winners_a = explode('|', Config::first()->winners_a);
+        $winners_b = explode('|', Config::first()->winners_b);
 
         $mo = [];
         $phase = [];
@@ -193,6 +195,18 @@ class SitesController extends Controller
 
             $mo['b'] = ($total_grades_b[0] + $total_grades_b[1]) / 2;
         }
+
+        if(in_array($site->id, $winners_b)){
+            $phase['c'] = true;
+
+            $max_phase = 'Γ';
+
+            $evaluations_b = Evaluation_c::where('site_id', $site->id)->get();
+
+            $total_grades_c = $site->total_grades('c');
+
+            $mo['c'] = ($total_grades_c[0] + $total_grades_c[1]) / 2;
+        }        
 
         return view('sites.summary', compact('mo', 'phase', 'max_phase', 'site_id'));            
                    

@@ -162,7 +162,21 @@ class Grader extends Model
 
         return false;
 
-    }    
+    } 
+
+    public function has_to_grade_c(){
+
+        //  the user is grader and has sites to evaluate in Phase B
+        if($this->user->hasRole('member') && $this->user->hasRole('grader_b')){
+            $evaluation = Evaluation_c::where('grader_id', $this->id)->first();
+            if($evaluation){
+                return true;
+            }
+        }
+
+        return false;
+
+    }       
 
     public function scopeAlpha($query)
     {
