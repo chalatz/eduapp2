@@ -120,8 +120,11 @@
 
                         <tbody>
 
+                            <?php $assigned_grader_ids = []; ?>
                             @foreach(App\Evaluation_b::where('site_id', $site->id)->get() as $evaluation)
-                                <?php $grader = App\Grader::find($evaluation->grader_id); ?>                                
+                                <?php $grader = App\Grader::find($evaluation->grader_id); ?>
+
+                                <?php $assigned_grader_ids[] = $grader->id; ?>
 
                                 <?php $assigned_sites = App\Evaluation_b::where('grader_id', $grader->id)->count(); ?>
 
@@ -222,7 +225,7 @@
                                         <?php $grader_cat_id =  0; ?>
                                     @endif
 
-                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id)
+                                    @if($mygrader->id != $site->grader_id && $mygrader->district_id != $site->district_id && $grader_cat_id != $site->cat_id && !in_array($mygrader->id, $assigned_grader_ids))
                                         <option value="{{ $mygrader->id }}">
                                             @if(!$mygrader->hasSite()) ΧΥ - @endif
                                             {{ $mygrader->last_name }} {{ $mygrader->first_name }}, 
