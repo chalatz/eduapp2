@@ -188,6 +188,16 @@ class MembersController extends Controller
 
       return view('members.a_list_ok', compact('sites', 'cat_id'));
 
+  }
+
+  public function b_list($cat_id = 1){
+
+      $sites = Site::where('cat_id', $cat_id)->get();
+
+      $winners_a = explode('|', Config::first()->winners_a);
+
+      return view('members.b_list', compact('sites', 'cat_id', 'winners_a'));
+
   }   
   
 

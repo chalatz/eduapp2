@@ -352,7 +352,14 @@
         searching: false,
         info: false,
         "order": [[ 5, "desc" ]]
-  });      
+  });
+
+  $('#b-list-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "order": [[ 5, "desc" ]]
+  });        
 
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');
@@ -540,6 +547,7 @@
   };
 
   the_first('#a-list-table', 10);
+  the_first('#b-list-table', 4);
 
   // $('td[data-status=both_graded]').parent('tr')
 

@@ -99,6 +99,14 @@ class Site extends Model
             $evaluations = Evaluation::where('site_id', $this->id)->get();
         }
 
+        if($phase == 'b'){
+            $evaluations = Evaluation_b::where('site_id', $this->id)->get();
+        }
+
+        if($phase == 'c'){
+            $evaluations = Evaluation_c::where('site_id', $this->id)->get();
+        }                 
+
         $counter = 0;
 
         foreach($evaluations as $evaluation){

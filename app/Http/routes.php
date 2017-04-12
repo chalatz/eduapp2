@@ -180,6 +180,7 @@ Route::group(['middleware' => 'web'], function () {
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);
     Route::get('admin/a-list/ok/{cat_id}', ['as' => 'admin.a_list_ok', 'uses' => 'MembersController@a_list_ok']);    
+    Route::get('admin/b-list/{cat_id}', ['as' => 'admin.b_list', 'uses' => 'MembersController@b_list']);
     
     Route::get('my-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
 
