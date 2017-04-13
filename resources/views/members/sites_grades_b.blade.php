@@ -130,8 +130,13 @@
             ?>
 
             @foreach($evaluations as $evaluation)
-                <td @if($evaluation->beta_grade > 0 && $evaluation->gama_grade > 0 && $evaluation->delta_grade > 0 && $evaluation->epsilon_grade > 0 && $evaluation->st_grade > 0) style="color: green; font-weight: bold" @endif>
-                    {{ $evaluation->total_grade }}
+                <td @if($evaluation->complete()) style="color: green; font-weight: bold" @endif>
+                    @if($evaluation->complete() && !Auth::user()->hasRole('admin'))
+                        μην κοιτάς
+                    @endif
+                    @if(!$evaluation->complete() || Auth::user()->hasRole('admin'))
+                        {{ $evaluation->total_grade }}
+                    @endif
                 </td>
             @endforeach
 
