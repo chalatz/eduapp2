@@ -28,7 +28,7 @@ class Evaluations_cController extends Controller
         {
             $this->middleware('verified');
 
-            $this->middleware('is_member');
+            $this->middleware('is_grader_b');
 
             $this->middleware('phase_c');
 
@@ -164,7 +164,7 @@ class Evaluations_cController extends Controller
         $data = [];
 
         $data['assigned_at'] = Carbon::today();
-        $data['assigned_until'] = Carbon::today()->addDays(7);
+        $data['assigned_until'] = Carbon::today()->addDays(2);
 
         $data['can_evaluate'] = $request->can_evaluate;
         if($request->why_cannot_evaluate){

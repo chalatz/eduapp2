@@ -386,7 +386,32 @@ class EmailsController extends Controller
         alert()->success('Επιτυχής Αποστολή email');
 
         return redirect()->back();
-    }    
+    }        
+
+    public function send_extra_to_grader_c()
+    {
+        $grader_ids = [227, 247, 183, 171, 315];
+
+        foreach($grader_ids as $grader_id){
+
+            $grader = Grader::find($grader_id);
+
+            $grader_email = $grader->user->email;
+
+            $data = [];
+            $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+            $data['grader_email'] = $grader_email;
+
+            Mail::send('emails.send_extra_to_grader_c', ['data' => $data], function ($message) use ($data) {                        
+                $message->to($data['grader_email'], $data['grader_email'])->subject('ΦΑΣΗ Γ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΟΥ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β ' .Config::first()->index. 'ου ΔΕΕΙ');
+            });   
+
+        }
+
+        alert()->success('Επιτυχής Αποστολή email');
+
+        return redirect()->back();
+    }
 
     public function send_to_sites_about_end_of_phase_a()
     {

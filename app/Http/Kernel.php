@@ -59,6 +59,7 @@ class Kernel extends HttpKernel
         'edit_and_suggest_self' => \App\Http\Middleware\EditAndSuggestSelf::class,
         'can_create_site' => \App\Http\Middleware\CanCreateSite::class,
         'is_member' => \App\Http\Middleware\IsMember::class,
+        'is_grader_b' => \App\Http\Middleware\IsGraderB::class,
         'is_admin' => \App\Http\Middleware\IsAdmin::class,
         'is_ninja' => \App\Http\Middleware\IsNinja::class,
         'site_submissions_open' => \App\Http\Middleware\SiteSubmissionsOpen::class,
