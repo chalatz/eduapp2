@@ -86,6 +86,7 @@
 
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('admin.b_list', 1) }}">Φάση Β</a></li>                      
+                        <li><a href="{{ route('admin.c_list', 1) }}">Φάση Γ</a></li>                      
                         <li><a href="{{ route('admin.a_list', 1) }}">Φάση Α (με αποκλειόμενους)</a></li>
                         <li><a href="{{ route('admin.a_list_ok', 1) }}">Φάση Α (χωρίς αποκλειόμενους)</a></li>
                       </ul>

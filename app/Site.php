@@ -145,6 +145,11 @@ class Site extends Model
             $total_grades[] = $evaluation->total_grade;
         }
 
+        if(count($total_grades) < 2){
+            $total_grades[0] = 0;
+            $total_grades[1] = 0;
+        }
+
         return $total_grades;
 
     }
