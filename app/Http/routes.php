@@ -172,7 +172,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('send-extra-to-grader-b/{evaluation_id}', ['as' => 'send_extra_to_grader_b', 'uses' => 'EmailsController@send_extra_to_grader_b']);
     Route::get('send-extra-to-grader-b-20pc/{evaluation_id}', ['as' => 'send_extra_to_grader_b_20pc', 'uses' => 'EmailsController@send_extra_to_grader_b_20pc']);
 
+    Route::get('send-extra-c-to-grader-b/{evaluation_id}', ['as' => 'send_extra_c_to_grader_b', 'uses' => 'EmailsController@send_extra_c_to_grader_b']);
+
     Route::get('send-extra-to-grader-c', ['as' => 'send_extra_to_grader_c', 'uses' => 'EmailsController@send_extra_to_grader_c']);
+    Route::get('send-extra-c-to-grader-b-20pc/{evaluation_id}', ['as' => 'send_extra_c_to_grader_b_20pc', 'uses' => 'EmailsController@send_extra_c_to_grader_b_20pc']);
 
     Route::get('admin/sites/grades/b', ['as' => 'sites_grades_b', 'uses' => 'MembersController@sites_grades_b']);
     Route::get('assign-evaluation/site/b/grader/b/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_b_grader_b', 'uses' => 'Evaluations_bController@assign_evaluation_site_b_grader_b']);    
@@ -180,6 +183,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('evaluation/b/delete/{evaluation_id}/site/{site_id}', ['as' => 'evaluation_delete_b', 'uses' => 'Evaluations_bController@evaluation_delete_b']);
 
     Route::get('admin/sites/grades/c', ['as' => 'sites_grades_c', 'uses' => 'MembersController@sites_grades_c']);
+    Route::get('assign-evaluation/site/c/grader/b/{site_id}/from/{from}', ['as' => 'assign_evaluation_site_c_grader_b', 'uses' => 'Evaluations_cController@assign_evaluation_site_c_grader_b']);    
+    Route::post('evaluations/store-manual-c', ['as' => 'evaluations.store_manual_c', 'uses' => 'Evaluations_cController@store_manual_c']);
 
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);

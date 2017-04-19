@@ -241,4 +241,32 @@ class Evaluations_cController extends Controller
 
     }
 
+    public function assign_evaluation_site_c_grader_b($site_id, $from)
+    {
+        $site = Site::find($site_id);
+        $graders = Grader::where('approved', 1)->get();
+        $evalutations = Evaluation_c::where('site_id', $site->id)->get();
+
+        return view('evaluations.assign_evaluation_site_c_grader_b', compact('site', 'evalutations', 'graders', 'from'));
+
+    }
+
+    public function store_manual_c(Request $request)
+    {
+        $this->validate($request, ['grader_id' => 'required']);
+
+        $data = [];
+        $data['site_id'] = $request->site_id;
+        $data['grader_id'] = $request->grader_id;
+
+        $data['assigned_at'] = Carbon::today();
+        $data['assigned_until'] = Carbon::today()->addDays(2);
+
+        Evaluation_c::create($data);
+
+        alert()->success('Επιτυχής Υποβολή Ανάθεσης');
+
+        return redirect()->back();
+    }        
+
 }  

@@ -16,6 +16,8 @@ use App\Evaluation;
 
 use App\Evaluation_b;
 
+use App\Evaluation_c;
+
 use App\Config;
 
 use Mail;
@@ -386,7 +388,55 @@ class EmailsController extends Controller
         alert()->success('Επιτυχής Αποστολή email');
 
         return redirect()->back();
-    }        
+    }
+
+    public function send_extra_c_to_grader_b($evaluation_id)
+    {
+        $evaluation = Evaluation_c::find($evaluation_id);
+
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+
+        $grader_email = $grader->user->email;
+
+        $data = [];
+        $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+        $data['site_url'] = $site->url;
+        $data['site_title'] = $site->title;
+        $data['grader_email'] = $grader_email;
+
+        Mail::send('emails.send_extra_c_to_grader_b', ['data' => $data], function ($message) use ($data) {                        
+            $message->to($data['grader_email'], $data['grader_email'])->subject('ΦΑΣΗ Γ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΑΞΙΟΛΟΓΗΤΗ Β ' .Config::first()->index. 'ου ΔΕΕΙ');
+        });
+
+        alert()->success('Επιτυχής Αποστολή email');
+
+        return redirect()->back();
+    }
+
+    public function send_extra_c_to_grader_b_20pc($evaluation_id)
+    {
+        $evaluation = Evaluation_c::find($evaluation_id);
+
+        $grader = Grader::find($evaluation->grader_id);
+        $site = Site::find($evaluation->site_id);
+
+        $grader_email = $grader->user->email;
+
+        $data = [];
+        $data['grader_name'] = $grader->last_name .' '. $grader->first_name;
+        $data['site_url'] = $site->url;
+        $data['site_title'] = $site->title;
+        $data['grader_email'] = $grader_email;
+
+        Mail::send('emails.send_extra_c_to_grader_b_20pc', ['data' => $data], function ($message) use ($data) {                       
+            $message->to($data['grader_email'], $data['grader_email'])->subject('ΦΑΣΗ Γ - ΑΝΑΘΕΣΗ ΙΣΤΟΤΟΠΩΝ ΣΕ ΤΡΙΤΟ ΑΞΙΟΛΟΓΗΤΗ ' .Config::first()->index. 'ου ΔΕΕΙ');
+        });
+
+        alert()->success('Επιτυχής Αποστολή email');
+
+        return redirect()->back();
+    }              
 
     public function send_extra_to_grader_c()
     {

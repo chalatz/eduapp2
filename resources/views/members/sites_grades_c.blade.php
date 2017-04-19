@@ -59,7 +59,10 @@
         <th class="narrow-col">Διαφορά</th>
         @for($i = 1; $i <= $max_evals; $i++)
             <th>Παρατηρήσεις {{$i}}</th>
-        @endfor         
+        @endfor
+
+        <th>Ανάθεση Γ</th>
+               
     </tr>
   </thead>
 
@@ -232,7 +235,11 @@
                 <?php for($i = 0; $i < $remaining; $i++): ?>
                     <td></td>
                 <?php endfor; ?>
-            @endif            
+            @endif
+
+            <td>
+                <a class="btn btn-primary" href="{{ route('assign_evaluation_site_c_grader_b', [$site->id, 'sites_grades_c']) }}" role="button">Ανάθεση σε Αξ. Β</a>
+            </td>                        
 
         </tr>
 
@@ -259,7 +266,8 @@
         <th></th>
         @for($i = 1; $i <= $max_evals; $i++)
             <th></th>
-        @endfor        
+        @endfor
+        <th></th>       
     </tr>
 
   </tfoot>
