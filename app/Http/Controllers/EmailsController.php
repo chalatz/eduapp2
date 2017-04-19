@@ -390,7 +390,7 @@ class EmailsController extends Controller
 
     public function send_extra_to_grader_c()
     {
-        $grader_ids = [227, 247, 183, 171, 315];
+        $grader_ids = [68, 183, 155, 159];
 
         foreach($grader_ids as $grader_id){
 
