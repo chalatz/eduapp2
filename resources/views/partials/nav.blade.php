@@ -77,7 +77,7 @@
                       </ul>
                   </li>
 
-                  <li><a href="{{ route('sites_grades_b') }}">Βαθμολογίες και Αναθέσεις Β</a></li>
+                  <li><a href="{{ route('sites_grades_c') }}">Βαθμολογίες και Αναθέσεις Γ</a></li>
 
                     <li class="dropdown">
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

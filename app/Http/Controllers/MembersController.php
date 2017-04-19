@@ -13,6 +13,7 @@ use App\Grader;
 use App\Suggestion;
 use App\Evaluation;
 use App\Evaluation_b;
+use App\Evaluation_c;
 
 use Illuminate\Http\Request;
 
@@ -174,7 +175,31 @@ class MembersController extends Controller
 
     return view('members.sites_grades_b', compact('sites', 'max_evals', 'from', 'winners_a'));
 
-  }  
+  }
+
+  public function sites_grades_c()
+  {
+
+    $sites = Site::all();
+
+    $max_evals = 0;
+
+    $winners_b = explode('|', Config::first()->winners_b);
+
+    foreach($sites as $site){
+      if(in_array($site->id, $winners_b)){
+        $evals_count = Evaluation_c::where('site_id', $site->id)->count();
+        if($evals_count > $max_evals){
+            $max_evals = $evals_count;
+        }
+      }
+    }
+
+    $from = 'sites_grades_c';
+
+    return view('members.sites_grades_c', compact('sites', 'max_evals', 'from', 'winners_b'));
+
+  }    
 
   public function a_list($cat_id = 1){
 
