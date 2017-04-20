@@ -366,6 +366,13 @@
         searching: false,
         info: false,
         "order": [[ 5, "desc" ]]
+  });
+
+$('#c-list-ok-table').dataTable({
+        paging: false,
+        searching: false,
+        info: false,
+        "order": [[ 9, "desc" ]]
   });          
 
   // Styling staff

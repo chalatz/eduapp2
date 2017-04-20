@@ -235,7 +235,17 @@ class MembersController extends Controller
 
       return view('members.c_list', compact('sites', 'cat_id', 'winners_b'));
 
-  }       
+  }
+
+  public function c_list_ok($cat_id = 1){
+
+      $sites = Site::where('cat_id', $cat_id)->get();
+
+      $winners_b = explode('|', Config::first()->winners_b);
+
+      return view('members.c_list_ok', compact('sites', 'cat_id', 'winners_b'));
+
+  }         
   
 
 }

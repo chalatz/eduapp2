@@ -154,4 +154,42 @@ class Site extends Model
 
     }
 
+    public function final_grades()
+    {
+        $total_grades_a = [];
+        $total_grades_b = [];
+        $total_grades_c = [];
+        $final_grades = [];
+
+        $evaluations_a = Evaluation::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
+        $evaluations_b = Evaluation_b::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
+        $evaluations_c = Evaluation_c::where('site_id', $this->id)->orderBy('total_grade', 'desc')->get();
+        
+        foreach($evaluations_a as $evaluation_a){
+            $total_grades_a[] = $evaluation_a->total_grade;
+        }
+
+        foreach($evaluations_b as $evaluation_b){
+            $total_grades_b[] = $evaluation_b->total_grade;
+        }
+
+        foreach($evaluations_c as $evaluation_c){
+            $total_grades_c[] = $evaluation_c->total_grade;
+        }
+
+        $final_grades[] = $total_grades_a[0];                
+        $final_grades[] = $total_grades_a[1];
+
+        $final_grades[] = $total_grades_b[0];                
+        $final_grades[] = $total_grades_b[1];                
+
+        $final_grades[] = $total_grades_c[0];                
+        $final_grades[] = $total_grades_c[1];
+
+        rsort($final_grades);
+
+        return $final_grades;                
+
+    }
+
 }
