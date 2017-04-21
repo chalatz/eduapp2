@@ -28,7 +28,11 @@ class MembersController extends Controller
 
       $this->middleware('is_member');
 
-      $this->middleware('is_admin', ['only' => ['b_list', 'c_list']]);
+      $this->middleware('is_admin', ['only' => [
+        'b_list', 
+        'c_list',
+        'c_list_ok',
+        ]]);
 
   }
 
