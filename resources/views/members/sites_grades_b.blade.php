@@ -131,10 +131,10 @@
 
             @foreach($evaluations as $evaluation)
                 <td @if($evaluation->complete()) style="color: green; font-weight: bold" @endif>
-                    @if($evaluation->complete() && !Auth::user()->hasRole('admin'))
+                    @if($evaluation->complete() && !Auth::user()->hasRole('member'))
                         μην κοιτάς
                     @endif
-                    @if(!$evaluation->complete() || Auth::user()->hasRole('admin'))
+                    @if(!$evaluation->complete() || Auth::user()->hasRole('member'))
                         {{ $evaluation->total_grade }}
                     @endif
                 </td>

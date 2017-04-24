@@ -28,11 +28,11 @@ class MembersController extends Controller
 
       $this->middleware('is_member');
 
-      $this->middleware('is_admin', ['only' => [
-        'b_list', 
-        'c_list',
-        'c_list_ok',
-        ]]);
+      // $this->middleware('is_admin', ['only' => [
+      //   'b_list', 
+      //   'c_list',
+      //   'final_list',
+      //   ]]);
 
   }
 
@@ -241,13 +241,13 @@ class MembersController extends Controller
 
   }
 
-  public function c_list_ok($cat_id = 1){
+  public function final_list($cat_id = 1){
 
       $sites = Site::where('cat_id', $cat_id)->get();
 
       $winners_b = explode('|', Config::first()->winners_b);
 
-      return view('members.c_list_ok', compact('sites', 'cat_id', 'winners_b'));
+      return view('members.final_list', compact('sites', 'cat_id', 'winners_b'));
 
   }         
   

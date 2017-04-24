@@ -77,16 +77,26 @@
                       </ul>
                   </li>
 
-                  <li><a href="{{ route('sites_grades_c') }}">Βαθμολογίες και Αναθέσεις Γ</a></li>
-
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                          Αποτελέσματα <span class="caret"></span>
-                      </a>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Βαθμολογίες και Αναθέσεις <span class="caret"></span>
+                    </a>
 
                       <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ route('sites_grades_c') }}">Φάση Γ</a></li>                      
+                        <li><a href="{{ route('sites_grades_b') }}">Φάση Β</a></li>                      
+                      </ul>
+                  </li>
+
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Αποτελέσματα <span class="caret"></span>
+                    </a>
+
+                      <ul class="dropdown-menu" role="menu">
+                      <li><a href="{{ route('admin.final_list', 1) }}">Τελικά!</a></li>
+                        <li><a href="{{ route('admin.c_list', 1) }}">Φάση Γ</a></li>
                         <li><a href="{{ route('admin.b_list', 1) }}">Φάση Β</a></li>                      
-                        <li><a href="{{ route('admin.c_list', 1) }}">Φάση Γ</a></li>                      
                         <li><a href="{{ route('admin.a_list', 1) }}">Φάση Α (με αποκλειόμενους)</a></li>
                         <li><a href="{{ route('admin.a_list_ok', 1) }}">Φάση Α (χωρίς αποκλειόμενους)</a></li>
                       </ul>
