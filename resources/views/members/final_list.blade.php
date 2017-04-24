@@ -99,7 +99,7 @@
 
                     <td>
                         <?php $the_grade = ($the_grades[1] + $the_grades[2] + $the_grades[3] + $the_grades[4]) / 4; ?>
-                        {{ $the_grade }}
+                        <strong>{{ $the_grade }}</strong>
                     </td>                
 
                 </tr>
