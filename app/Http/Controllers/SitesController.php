@@ -201,11 +201,12 @@ class SitesController extends Controller
 
             $max_phase = 'Γ';
 
-            $evaluations_b = Evaluation_c::where('site_id', $site->id)->get();
+            $site = Site::find($site_id);
 
-            $total_grades_c = $site->total_grades('c');
+            $the_grades = $site->final_grades();
 
-            $mo['c'] = ($total_grades_c[0] + $total_grades_c[1]) / 2;
+            $mo['c'] = ($the_grades[1] + $the_grades[2] + $the_grades[3] + $the_grades[4]) / 4;
+            
         }        
 
         return view('sites.summary', compact('mo', 'phase', 'max_phase', 'site_id'));            
