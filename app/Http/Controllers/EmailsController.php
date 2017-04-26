@@ -39,6 +39,7 @@ class EmailsController extends Controller
           'send_to_sites_about_late_graders_a',
           'send_to_sites_about_end_of_phase_a',
           'send_to_sites_about_end_of_phase_b',
+          'send_to_sites_about_end_of_phase_c',
         ]]);
 
     }
@@ -518,6 +519,35 @@ class EmailsController extends Controller
                 $data['site_creator'] = $site->creator;
 
                 Mail::send('emails.send_to_sites_about_end_of_phase_b', ['data' => $data], function ($message) use ($data) {                        
+                    $message->to($data['site_email'], $data['site_email'])->subject('ΑΝΑΚΟΙΝΩΣΗ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                });
+
+                echo $site->id .'- ' . $data['site_email'] . ' - '. $data['site_creator'] .'<br>';
+
+            }
+
+        } else {
+            return "status: off";
+        }
+
+    }
+
+    public function send_to_sites_about_end_of_phase_c()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $winners = explode('|', Config::first()->winners_c);          
+
+            foreach($winners as $site_id){
+                $site = Site::find($site_id);
+                $data = [];
+                $data['site_email'] = $site->contact_email;
+                $data['site_title'] = $site->title;
+                $data['site_creator'] = $site->creator;
+
+                Mail::send('emails.send_to_sites_about_end_of_phase_b', ['data' => $data], function ($message) use ($data) {                        
                     $message->to($data['site_email'], $data['site_email'])->subject('ΑΝΑΚΟΙΝΩΣΗ ΓΙΑ ΤΗ ΦΑΣΗ Γ - ' .Config::first()->index. 'ου ΔΕΕΙ');
                 });
 
@@ -529,8 +559,7 @@ class EmailsController extends Controller
             return "status: off";
         }
 
-
-    }      
+    }          
 
     public function send_to_past_graders()
     {

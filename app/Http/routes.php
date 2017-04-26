@@ -157,6 +157,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('evaluate/c/finalize/{id}', ['as' => 'evaluation_c.finalize', 'uses' => 'Evaluations_cController@evaluation_c_finalize']);    
 
     Route::get('send-to-sites-about-end-of-phase-b', ['as' => 'send_to_sites_about_end_of_phase_b', 'uses' => 'EmailsController@send_to_sites_about_end_of_phase_b']);
+    Route::get('send-to-sites-about-end-of-phase-c', ['as' => 'send_to_sites_about_end_of_phase_c', 'uses' => 'EmailsController@send_to_sites_about_end_of_phase_c']);
 
     // ---- MANAGE EVALUATIONS --- //
     // Route::get('panel/evaluations/a/sites/{cat}', ['as' => 'evaluations_panel_a_sites', 'uses' => 'EvaluationsController@evaluations_panel_a_sites']);

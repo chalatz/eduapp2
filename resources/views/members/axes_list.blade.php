@@ -2,11 +2,11 @@
 
 @section('content')
 
-<?php $cats = [1,2,3,4,6]; ?>
+<?php $cats = [0,1,2,3,4,6]; ?>
 
 <?php $cat_color = [] ?>
 <?php 
-    $cat_color[0] = 'default';
+    $cat_color[0] = 'danger';
     $cat_color[1] = 'primary';
     $cat_color[2] = 'info';
     $cat_color[3] = 'success';
@@ -21,7 +21,11 @@
         
         <div class="btn-group" role="group">
             <a href="{{ route('admin.axes_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
-                Κατηγορία {{ $cat }}
+                @if($cat == 0)
+                    Όλα
+                @else
+                    Κατηγορία {{ $cat }}
+                @endif
             </a>
         </div>
 
@@ -30,7 +34,11 @@
 </div>
 
 <h1 class="bg-{{ $cat_color[$cat_id] }}" style="padding: .5em 1em; margin-bottom: 1.5em">
-    Άξονες - Αποτελέσματα Κατηγορίας {{ $cat_id }} 
+    @if($cat == 0)
+        Άξονες - Όλα
+    @else
+        Άξονες - Αποτελέσματα Κατηγορίας {{ $cat_id }}
+    @endif
 </h1>
 <div class="container">
     <table id="axes-list-table" class="table table-striped admin-table">

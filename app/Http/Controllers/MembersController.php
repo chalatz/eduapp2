@@ -252,8 +252,12 @@ class MembersController extends Controller
   }
 
   public function axes_list($cat_id = 1)
-  {        
-      $sites = Site::where('cat_id', $cat_id)->get();
+  {   
+      if($cat_id == 0){
+        $sites = Site::all();
+      } else {     
+        $sites = Site::where('cat_id', $cat_id)->get();
+      }
 
       $winners_a = explode('|', Config::first()->winners_a);
       $winners_b = explode('|', Config::first()->winners_b);
