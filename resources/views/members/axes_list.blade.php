@@ -21,7 +21,7 @@
         
         <div class="btn-group" role="group">
             <a href="{{ route('admin.axes_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
-                @if($cat == 0)
+                @if($cat_id == 0)
                     Όλα
                 @else
                     Κατηγορία {{ $cat }}
@@ -34,7 +34,7 @@
 </div>
 
 <h1 class="bg-{{ $cat_color[$cat_id] }}" style="padding: .5em 1em; margin-bottom: 1.5em">
-    @if($cat == 0)
+    @if($cat_id == 0)
         Άξονες - Όλα
     @else
         Άξονες - Αποτελέσματα Κατηγορίας {{ $cat_id }}
