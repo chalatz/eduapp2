@@ -538,7 +538,7 @@ class EmailsController extends Controller
 
         if($status == 'on'){
 
-            $winners = explode('|', Config::first()->winners_c);          
+            $winners = explode('|', Config::first()->winners_a);          
 
             foreach($winners as $site_id){
                 $site = Site::find($site_id);
@@ -547,11 +547,11 @@ class EmailsController extends Controller
                 $data['site_title'] = $site->title;
                 $data['site_creator'] = $site->creator;
 
-                Mail::send('emails.send_to_sites_about_end_of_phase_b', ['data' => $data], function ($message) use ($data) {                        
-                    $message->to($data['site_email'], $data['site_email'])->subject('ΑΝΑΚΟΙΝΩΣΗ ΓΙΑ ΤΗ ΦΑΣΗ Γ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                Mail::send('emails.send_to_sites_about_end_of_phase_c', ['data' => $data], function ($message) use ($data) {                        
+                    $message->to($data['site_email'], $data['site_email'])->subject('ΤΕΛΙΚΑ ΑΠΟΤΕΛΕΣΜΑΤΑ - ' .Config::first()->index. 'ου ΔΕΕΙ');
                 });
 
-                echo $site->id .'- ' . $data['site_email'] . ' - '. $data['site_creator'] .'<br>';
+                echo $site->id .'| ' . $data['site_email'] . ' - '. $data['site_creator'] .'<br>';
 
             }
 

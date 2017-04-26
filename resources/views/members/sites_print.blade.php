@@ -45,7 +45,7 @@
           <td>i{{ sprintf("%03d", $site->id) }}</td>
           <td>{{ $site->title }}</td>
           <td><a href="{{ $site->url }}" target="_blank">{{ $site->url }}</a></td>
-          <td>{{ $site->cat_id }}</td>
+          <td>{{ $categories::all()[$site->cat_id] }}</td>
           <td>{{ $site->creator }}</td>
           <td>{{ $site->responsible }}</td>
           <td>{{ $site->responsible_type }}</td>
