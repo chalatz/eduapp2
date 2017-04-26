@@ -2,7 +2,7 @@
 
 @section('content')
 
-<?php $cats = [0,1,2,3,4,6]; ?>
+<?php $cats = [1,2,3,4,6]; ?>
 
 <?php $cat_color = [] ?>
 <?php 
@@ -17,15 +17,17 @@
 
 <div class="btn-group btn-group-justified" role="group" aria-label="...">
 
+    <div class="btn-group" role="group">
+        <a href="{{ route('admin.axes_list', 0) }}" type="button" class="btn btn-danger btn-lg">
+            Όλα
+        </a>
+    </div>
+
     @foreach($cats as $cat)
         
         <div class="btn-group" role="group">
             <a href="{{ route('admin.axes_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
-                @if($cat == 0)
-                    Όλα
-                @else
-                    Κατηγορία {{ $cat }}
-                @endif
+                Κατηγορία {{ $cat }}
             </a>
         </div>
 
