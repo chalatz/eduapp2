@@ -21,7 +21,7 @@
         
         <div class="btn-group" role="group">
             <a href="{{ route('admin.axes_list', $cat) }}" type="button" class="btn btn-{{ $cat_color[$cat] }} btn-lg">
-                @if($cat_id == 0)
+                @if($cat == 0)
                     Όλα
                 @else
                     Κατηγορία {{ $cat }}
