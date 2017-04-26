@@ -195,6 +195,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('admin/c-list/{cat_id}', ['as' => 'admin.c_list', 'uses' => 'MembersController@c_list']);
     Route::get('admin/final-list/{cat_id}', ['as' => 'admin.final_list', 'uses' => 'MembersController@final_list']);
     
+    Route::get('admin/axes-list/{cat_id}', ['as' => 'admin.axes_list', 'uses' => 'MembersController@axes_list']);
+    
     Route::get('my-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
 
     // ----- TESTING ----- //

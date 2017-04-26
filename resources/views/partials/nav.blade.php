@@ -94,7 +94,8 @@
                     </a>
 
                       <ul class="dropdown-menu" role="menu">
-                      <li><a href="{{ route('admin.final_list', 1) }}">Τελικά!</a></li>
+                        <li><a href="{{ route('admin.final_list', 1) }}">Τελικά!</a></li>
+                        <li><a href="{{ route('admin.axes_list', 1) }}">Άξονες</a></li>
                         <li><a href="{{ route('admin.c_list', 1) }}">Φάση Γ</a></li>
                         <li><a href="{{ route('admin.b_list', 1) }}">Φάση Β</a></li>                      
                         <li><a href="{{ route('admin.a_list', 1) }}">Φάση Α (με αποκλειόμενους)</a></li>

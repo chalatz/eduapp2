@@ -368,12 +368,67 @@
         "order": [[ 5, "desc" ]]
   });
 
-$('#c-list-ok-table').dataTable({
+  $('#c-list-ok-table').dataTable({
         paging: false,
         searching: false,
         info: false,
         "order": [[ 9, "desc" ]]
-  });          
+  });
+
+  // Axes Report -----
+  // Setup - add a text input to each footer cell
+  $('#axes-list-table tfoot th').each( function () {
+      var title = $(this).text();
+      $(this).html( '<input type="text" placeholder="'+title+'" />' );
+  } );
+
+  var axes_list_table = $('#axes-list-table').DataTable({
+    initComplete: function ()
+      {
+        var r = $('#axes-list-table tfoot tr');
+        r.find('th').each(function(){
+          $(this).css('padding', 8);
+        });
+        $('#axes-list-table thead').append(r);
+        $('#search_0').css('text-align', 'center');
+      },
+      paging: false,
+        
+    "dom": 'lfriptip',
+    "language": {
+        "sProcessing":   "Επεξεργασία...",
+        "sLengthMenu":   "Εμφάνισε _MENU_ εγγραφές",
+        "sZeroRecords":  "Δεν βρέθηκαν εγγραφές που να ταιριάζουν",
+        "sInfo":         "Εμφανίζονται _START_ εως _END_ από _TOTAL_ εγγραφές",
+        "sInfoEmpty":    "Εμφανίζονται 0 έως 0 από 0 εγγραφές",
+        "sInfoFiltered": "(φιλτραρισμένες από _MAX_ συνολικά εγγραφές)",
+        "sInfoPostFix":  "",
+        "sSearch":       "Αναζήτηση:",
+        "sUrl":          "",
+        "oPaginate": {
+            "sFirst":    "Πρώτη",
+            "sPrevious": "Προηγούμενη",
+            "sNext":     "Επόμενη",
+            "sLast":     "Τελευταία"
+        }
+    },
+    "pageLength": 1000
+  });
+
+  // Apply the search
+  axes_list_table.columns().every( function () {
+      var that = this;
+
+      $( 'input', this.footer() ).on( 'keyup change', function () {
+          if ( that.search() !== this.value ) {
+              that
+                  .search( this.value )
+                  .draw();
+          }
+      } );
+  } );
+  // End Evaluations A panel -----  
+        
 
   // Styling staff
   $('.dataTables_wrapper .dataTables_length').addClass('col-sm-2');
@@ -494,9 +549,9 @@ $('#c-list-ok-table').dataTable({
 
   });
 
-    narrow_cols = function(){
-        var first_row_ths = $('#sitesgrades-a-table thead').find('tr').eq(0).find('th'),
-            second_row_ths = $('#sitesgrades-a-table thead').find('tr').eq(1).find('th');
+    narrow_cols = function(table_thead){
+        var first_row_ths = $(table_thead).find('tr').eq(0).find('th'),
+            second_row_ths = $(table_thead).find('tr').eq(1).find('th');
 
         first_row_ths.each(function(index){
             if($(this).hasClass('narrow-col')){
@@ -506,7 +561,8 @@ $('#c-list-ok-table').dataTable({
 
     };
 
-    narrow_cols();
+    narrow_cols('#sitesgrades-a-table thead');
+    narrow_cols('#axes-list-table');
 
   toggle_it = function(){
 

@@ -249,7 +249,22 @@ class MembersController extends Controller
 
       return view('members.final_list', compact('sites', 'cat_id', 'winners_b'));
 
-  }         
+  }
+
+  public function axes_list($cat_id = 1)
+  {        
+      $sites = Site::where('cat_id', $cat_id)->get();
+
+      $winners_a = explode('|', Config::first()->winners_a);
+      $winners_b = explode('|', Config::first()->winners_b);
+
+      // $site = Site::find(84);
+
+      // dd($site->axes());
+
+      return view('members.axes_list', compact('sites', 'cat_id', 'winners_a', 'winners_b'));
+
+  }        
   
 
 }
