@@ -38,7 +38,7 @@
     <thead>
         <tr>
             <th class="narrow-col">Κωδικός</th>
-            <th class="narrow-col">Φάση</th>
+            <th class="narrow-col">Πέρασε στη Φάση</th>
             <th>Επωνυμία</th>
             <th>URL</th>
             <th class="narrow-col">Β Άξονας</th>

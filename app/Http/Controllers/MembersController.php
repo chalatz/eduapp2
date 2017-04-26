@@ -258,10 +258,6 @@ class MembersController extends Controller
       $winners_a = explode('|', Config::first()->winners_a);
       $winners_b = explode('|', Config::first()->winners_b);
 
-      // $site = Site::find(84);
-
-      // dd($site->axes());
-
       return view('members.axes_list', compact('sites', 'cat_id', 'winners_a', 'winners_b'));
 
   }        
