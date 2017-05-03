@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use App\Config;
-
 use Auth;
 
-class GradingsOver
+class Survey_ok
 {
     /**
      * Handle an incoming request.
@@ -19,10 +17,7 @@ class GradingsOver
      */
     public function handle($request, Closure $next)
     {
-        //Check if the gradings are over
-        $config = Config::first();
-
-        if(Auth::check() && $config->end_of_gradings && Auth::user()->hasRole('site')){
+        if(Auth::check() && Auth::user()->hasRole('site') && Auth::user()->site->survey_ok){
             return $next($request);
         }
 

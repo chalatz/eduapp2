@@ -35,6 +35,7 @@ class SitesController extends Controller
         $this->middleware('can_create_site', ['only' => 'create']);
 
         $this->middleware('gradings_over', ['only' => 'summary']);
+        $this->middleware('survey_ok', ['only' => 'summary']);
 
     }
 
@@ -211,6 +212,28 @@ class SitesController extends Controller
 
         return view('sites.summary', compact('mo', 'phase', 'max_phase', 'site_id'));            
                    
+    }
+
+    public function store_survey(Request $request)
+    {
+        $this->validate($request, [
+            'survey_key' => 'required',
+        ]);
+
+        if($request->survey_key == Config::first()->survey_key){
+
+            $site = $request->user()->site;
+            $site->survey_ok = 1;
+            $site->save();
+
+            alert()->success('Το κλειδί που δώσατε είναι σωστό!', 'Επιτυχία');
+
+        } else {
+            alert()->error('Το κλειδί που δώσατε δεν είναι το σωστό.')->persistent('Εντάξει');
+        }
+
+        return redirect()->route('home');
+
     }
 
 }

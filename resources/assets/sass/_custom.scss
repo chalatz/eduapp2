@@ -34,3 +34,25 @@ a.btn.btn-block {
     padding-top: .5em;
     background: #eee;
 }
+
+.attention-block {
+    $attention-block-bg-color: dimgray;
+    $attention-block-text-color: #fff;
+    background-color: $attention-block-bg-color;
+    color: white;
+    font-size: 1.3em;
+    padding: 0.5em;
+    margin: 1em 0;
+    border-radius: 8px;
+
+    .highlighter {
+        background-color: #fff;
+        color: $attention-block-bg-color;
+        padding: 0.1em 0.2em;
+    }
+
+    a {
+        color: #fff;
+        text-decoration: underline;
+    }
+}

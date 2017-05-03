@@ -1658,4 +1658,19 @@ a.btn.btn-block {
   padding-top: .5em;
   background: #eee; }
 
+.attention-block {
+  background-color: dimgray;
+  color: white;
+  font-size: 1.3em;
+  padding: 0.5em;
+  margin: 1em 0;
+  border-radius: 8px; }
+  .attention-block .highlighter {
+    background-color: #fff;
+    color: dimgray;
+    padding: 0.1em 0.2em; }
+  .attention-block a {
+    color: #fff;
+    text-decoration: underline; }
+
 /*# sourceMappingURL=app.css.map */
