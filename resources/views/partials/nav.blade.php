@@ -84,7 +84,8 @@
 
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ route('sites_grades_c') }}">Φάση Γ</a></li>                      
-                        <li><a href="{{ route('sites_grades_b') }}">Φάση Β</a></li>                      
+                        <li><a href="{{ route('sites_grades_b') }}">Φάση Β</a></li> 
+                        <li><a href="{{ route('sites_grades_a') }}">Φάση Α</a></li>                      
                       </ul>
                   </li>
 
