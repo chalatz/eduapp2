@@ -215,6 +215,47 @@ class Grader extends Model
         }
            
     }
+
+    // The grader has graded at least once
+    public function has_graded(){
+
+        $counter = 0;
+
+        $evaluations_a = Evaluation::where('grader_id', $this->id)->get();
+        $evaluations_b = Evaluation_b::where('grader_id', $this->id)->get();
+        $evaluations_c = Evaluation_c::where('grader_id', $this->id)->get();
+
+        if($evaluations_a){
+            foreach($evaluations_a as $evaluation_a){
+                if($evaluation_a->complete()){
+                    $counter++;
+                }
+            }
+        }
+
+        if($evaluations_b){
+            foreach($evaluations_b as $evaluation_b){
+                if($evaluation_b->complete()){
+                    $counter++;
+                }
+            }
+        }
+
+        if($evaluations_c){
+            foreach($evaluations_c as $evaluation_c){
+                if($evaluation_c->complete()){
+                    $value++;
+                }
+            }
+        }                
+
+        if($counter > 0){
+            return true;
+        }
+
+        return false;                
+
+    }
     
 
   public static $rules = [

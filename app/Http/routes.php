@@ -190,7 +190,9 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('evaluations/store-manual-c', ['as' => 'evaluations.store_manual_c', 'uses' => 'Evaluations_cController@store_manual_c']);
 
     // ---- SURVEY --- //
-    Route::post('store-survey', ['as' => 'store_survey', 'uses' => 'SitesController@store_survey']);   
+    Route::post('store-survey', ['as' => 'store_survey', 'uses' => 'SitesController@store_survey']);
+
+    Route::get('send_survey_to_sites', ['as' => 'send_survey_to_sites', 'uses' => 'EmailsController@send_survey_to_sites']);       
 
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);

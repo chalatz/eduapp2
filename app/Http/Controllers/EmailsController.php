@@ -631,5 +631,37 @@ class EmailsController extends Controller
 
     }
 
+    public function send_survey_to_sites()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $sites = Site::all();
+
+            $from = 201;
+            $to = 250; 
+
+            foreach($sites as $site){
+                if(!$site->disq() && $site->id >= $from && $site->id <= $to){
+                    $data = [];
+                    $data['site_email'] = $site->contact_email;
+                    
+                    Mail::send('emails.send_to_sites_about_end_of_phase_a', ['data' => $data], function ($message) use ($data) {                        
+                        $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    });
+
+                    echo $site->id .'- ' . $data['site_email'] . '<br>';
+
+                }
+            }
+
+        } else {
+            return "status: off";
+        }
+
+
+    }    
+
 
 }
