@@ -20,6 +20,8 @@ use Mail;
 
 use Auth;
 
+use PDF;
+
 class TestController extends Controller
 {
     public function ajax_test()
@@ -216,6 +218,16 @@ class TestController extends Controller
 
         // file_put_contents('C:\\laragon\\www\\eduapp2\\the_b_graders.inc', serialize($g));
         // file_put_contents('C:\\laragon\\www\\eduapp2\\the_b_sites.inc', serialize($s));      
+
+    }
+
+    public function pdf_test()
+    {
+        // $pdf = PDF::loadView('pdfs.test')->setPaper('a4', 'landscape')->setWarnings(false);
+
+        // return $pdf->download('test.pdf');
+
+        return view('pdfs.test');
 
     }
 

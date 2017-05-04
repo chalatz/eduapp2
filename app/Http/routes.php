@@ -210,6 +210,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
     Route::get('panormighty', ['as' => 'ajax_url', 'uses' => 'TestController@panormighty']);
     Route::get('deleted-evaluations', ['as' => 'deleted_evaluations', 'uses' => 'TestController@deleted_evaluations']);
+    Route::get('pdf-test', ['as' => 'pdf_test', 'uses' => 'TestController@pdf_test']);    
 
     Route::get('evb', ['as' => 'evb', 'uses' => 'TestController@evb']);
 
