@@ -673,7 +673,7 @@ class EmailsController extends Controller
 
     public function send_survey_to_graders()
     {
-        $status = 'on';
+        $status = 'off';
 
         if($status == 'on'){
 
