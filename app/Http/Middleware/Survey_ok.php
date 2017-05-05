@@ -17,7 +17,7 @@ class Survey_ok
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->hasRole('site') && Auth::user()->site->survey_ok){
+        if(Auth::user()->survey_ok){
             return $next($request);
         }
 

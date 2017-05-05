@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-md-11 col-md-offset-1">
                 <p class="lead">
-                    Βαθμός Φάσης Γ: <span class="label label-danger" style="font-size: 1.1em;">{{ $mo['c'] }}</span>
+                    Βαθμός Φάσης Γ: <span class="label label-warning" style="font-size: 1.1em;">{{ $mo['c'] }}</span>
                 </p>
                 <h3>Σχόλια Αξιολογητών από τη Φάση Γ:</h3>
                 <?php $evaluations = App\Evaluation_c::where('site_id', $site_id)->get(); ?>

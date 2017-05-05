@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Evaluation;
+use App\Evaluation_b;
+use App\Evaluation_c;
+
 use App\Http\Requests\CreateGraderRequest;
 use App\Http\Requests\CreateGraderBRequest;
 use App\Http\Requests\EditGraderRequest;
@@ -45,6 +49,8 @@ class GradersController extends Controller
       $this->middleware('edit_and_suggest_self', ['only' => [
             'edit_and_suggest_self',
         ]]);
+
+      $this->middleware('survey_ok', ['only' => 'summary']);
 
   }
 
@@ -448,6 +454,81 @@ class GradersController extends Controller
       }
 
       return $suggestion;
+  }
+
+  public function summary()
+  {
+      $user = Auth::user();
+
+      $grader = $user->grader;
+
+      $grader_id = $grader->id;
+
+      $evaluations_a = Evaluation::where('grader_id', $grader_id)->get();
+      $evaluations_b = Evaluation_b::where('grader_id', $grader_id)->get();
+      $evaluations_c = Evaluation_c::where('grader_id', $grader_id)->get();
+
+      $evaluations = [];
+
+      if($evaluations_a){
+          foreach($evaluations_a as $evaluation_a){
+              if($evaluation_a->complete()){
+                  $evaluations[] = $evaluation_a;
+              }
+          }
+      }
+      if($evaluations_b){
+          foreach($evaluations_b as $evaluation_b){
+              if($evaluation_b->complete()){
+                  $evaluations[] = $evaluation_b;
+              }
+          }
+      }
+      if($evaluations_c){
+          foreach($evaluations_c as $evaluation_c){
+              if($evaluation_c->complete()){
+                  $evaluations[] = $evaluation_c;
+              }
+          }
+      }
+
+      $site_ids = [];
+
+      foreach($evaluations as $evaluation){
+          $site_ids[] = $evaluation->site_id;
+      }
+
+      $evs = [];
+
+      foreach($site_ids as $site_id){
+          $evs_a = Evaluation::where('site_id', $site_id)->where('grader_id','!=', $grader_id)->get();
+          if($evs_a){
+              foreach($evs_a as $ev_a){
+                  if($ev_a->complete()){
+                      $evs[] = $ev_a;
+                  }
+              }
+          }
+        $evs_b = Evaluation_b::where('site_id', $site_id)->where('grader_id','!=', $grader_id)->get();
+        if($evs_b){
+            foreach($evs_b as $ev_b){
+                if($ev_b->complete()){
+                    $evs[] = $ev_b;
+                }
+            }
+        }
+        $evs_c = Evaluation_c::where('site_id', $site_id)->where('grader_id','!=', $grader_id)->get();
+        if($evs_c){
+            foreach($evs_c as $ev_c){
+                if($ev_c->complete()){
+                    $evs[] = $ev_c;
+                }
+            }
+        }        
+      }
+
+      return view('graders.summary', compact('evs', 'evaluations'));                               
+
   }
 
 }

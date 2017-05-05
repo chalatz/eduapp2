@@ -190,7 +190,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('evaluations/store-manual-c', ['as' => 'evaluations.store_manual_c', 'uses' => 'Evaluations_cController@store_manual_c']);
 
     // ---- SURVEY --- //
-    Route::post('store-survey', ['as' => 'store_survey', 'uses' => 'SitesController@store_survey']);
+    Route::post('store-survey', ['as' => 'store_survey', 'uses' => 'UsersController@store_survey']);
 
     Route::get('send_survey_to_sites', ['as' => 'send_survey_to_sites', 'uses' => 'EmailsController@send_survey_to_sites']);       
 
@@ -203,7 +203,8 @@ Route::group(['middleware' => 'web'], function () {
     
     Route::get('admin/axes-list/{cat_id}', ['as' => 'admin.axes_list', 'uses' => 'MembersController@axes_list']);
     
-    Route::get('my-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
+    Route::get('site-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
+    Route::get('grader-summary', ['as' => 'grader.summary', 'uses' => 'GradersController@summary']);    
 
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);

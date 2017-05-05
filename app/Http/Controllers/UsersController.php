@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use Hash;
+use App\Config;
 
 class UsersController extends Controller
 {
@@ -108,5 +109,27 @@ class UsersController extends Controller
     public function account_actions(){
         return view('pages.user_account_actions');
     }
+
+    public function store_survey(Request $request)
+    {
+        $this->validate($request, [
+            'survey_key' => 'required',
+        ]);
+
+        if($request->survey_key == Config::first()->survey_key){
+
+            $user = $request->user();
+            $user->survey_ok = 1;
+            $user->save();
+
+            alert()->success('Το κλειδί που δώσατε είναι σωστό!', 'Επιτυχία');
+
+        } else {
+            alert()->error('Το κλειδί που δώσατε δεν είναι το σωστό.')->persistent('Εντάξει');
+        }
+
+        return redirect()->route('home');
+
+    }    
 
 }

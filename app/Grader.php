@@ -244,7 +244,7 @@ class Grader extends Model
         if($evaluations_c){
             foreach($evaluations_c as $evaluation_c){
                 if($evaluation_c->complete()){
-                    $value++;
+                    $counter++;
                 }
             }
         }                

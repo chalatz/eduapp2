@@ -124,4 +124,21 @@ class User extends Authenticatable
 
     }
 
+    // the user has site or is Grader A/B who has graded
+    public function can_see_summary()
+    {
+        if($this->hasRole('site')){
+            return true;
+        }
+
+        if($this->hasRole('grader_a') || $this->hasRole('grader_b')){
+            if($this->grader->has_graded()){
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
 } // end Class
