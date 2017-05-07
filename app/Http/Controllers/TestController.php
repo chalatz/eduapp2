@@ -24,6 +24,12 @@ use PDF;
 
 class TestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('is_ninja');
+
+    }
+
     public function ajax_test()
     {
         return view('pages.ajax_test');
@@ -223,9 +229,9 @@ class TestController extends Controller
 
     public function pdf_test()
     {
-        // $pdf = PDF::loadView('pdfs.test')->setPaper('a4', 'landscape')->setWarnings(false);
+        $pdf = PDF::loadView('pdfs.test')->setPaper('a4', 'landscape')->setWarnings(false);
 
-        // return $pdf->download('test.pdf');
+        return $pdf->download('test.pdf');
 
         return view('pdfs.test');
 
