@@ -5,28 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Βεβαίωση</title>
     
-    <style>
-    
-        @font-face {
-            font-family: 'Open Sans';
-            src: url({{ asset('fonts/OpenSans-Regular.ttf') }});
-            font-weight: normal;
-        }
-
-        @font-face {
-            font-family: 'Open Sans';
-            src: url({{ asset('fonts/OpenSans-Bold.ttf') }});
-            font-weight: bold;
-        }
-
-        @font-face {
-            font-family: 'Open Sans';
-            src: url({{ asset('fonts/OpenSans-Italic.ttf') }});
-            font-weight: italic;
-        }                
+    <style>               
 
         body {
-            font-family: 'Open Sans', 'DejaVu Sans';
+            font-family: 'DejaVu Sans';
         }
 
         .main {
