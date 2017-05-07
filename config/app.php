@@ -161,6 +161,7 @@ return [
 
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         'Laracasts\Flash\FlashServiceProvider',
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
         'Flash' => 'Laracasts\Flash\Flash',
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
