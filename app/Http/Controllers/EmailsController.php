@@ -40,6 +40,8 @@ class EmailsController extends Controller
           'send_to_sites_about_end_of_phase_a',
           'send_to_sites_about_end_of_phase_b',
           'send_to_sites_about_end_of_phase_c',
+          'send_survey_to_sites',
+          'send_survey_to_graders',
         ]]);
 
     }
@@ -639,29 +641,72 @@ class EmailsController extends Controller
 
             $sites = Site::all();
 
-            $from = 201;
-            $to = 250; 
+            $from = 0;
+            $to = 0; 
 
             foreach($sites as $site){
                 if(!$site->disq() && $site->id >= $from && $site->id <= $to){
                     $data = [];
                     $data['site_email'] = $site->contact_email;
                     
-                    Mail::send('emails.send_to_sites_about_end_of_phase_a', ['data' => $data], function ($message) use ($data) {                        
-                        $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
-                    });
+                    // Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
+                    //     $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    // });
 
                     echo $site->id .'- ' . $data['site_email'] . '<br>';
 
                 }
             }
 
+            $data = [];
+            $data['site_email'] = 'chralatz@gmail.com';
+            
+            Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
+                $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+            });            
+
         } else {
             return "status: off";
         }
 
+    }
 
-    }    
+    public function send_survey_to_graders()
+    {
+        $status = 'off';
+
+        if($status == 'on'){
+
+            $graders = Grader::all();
+
+            $from = 0;
+            $to = 0;
+
+            foreach($graders as $grader){
+                if($grader->has_graded() && $grader->id >= $from && $grader->id <= $to){
+                    $data = [];
+                    $data['grader_email'] = $grader->user->email;
+                    
+                    // Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
+                    //     $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    // });
+
+                    echo $grader->id .'- ' . $data['grader_email'] . '<br>';
+                }
+            }
+
+            $data = [];
+            $data['grader_email'] = 'chralatz@gmail.com';
+            
+            Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
+                $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+            });            
+
+        } else {
+            return "status: off";
+        }
+
+    }   
 
 
 }

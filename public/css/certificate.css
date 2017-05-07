@@ -1,0 +1,30 @@
+body {
+    font-family: DejaVu Sans;
+}
+
+.main {
+    width: 1123px;
+    height: 794px;
+    margin: 0 auto;
+    background-image: url(../img/certificate-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    outline: 1px solid black;
+}
+
+.info {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+    top: 270px;
+}
+
+.title {
+    color: rgb(0,112,192);
+}
+
+.info p {
+    font-size: 18px;
+    line-height: 36px;
+}

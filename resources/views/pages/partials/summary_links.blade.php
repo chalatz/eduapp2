@@ -29,7 +29,7 @@
                 <ul>
                     <li>δείτε τη βαθμολογία σας εφόσον είστε υποψήφιος</li>
                     <li>δείτε τις βαθμολογίες των άλλων Αξιολογητών των Ιστότοπων που τυχόν έχετε αξιολογήσει</li>
-                    <li>κατεβάστε τις βεβαιώσεις συμμετοχής σας</li>
+                    <li>κατεβάσετε τις βεβαιώσεις συμμετοχής σας</li>
                 </ul>
                 θα πρέπει πρώτα να συμπληρώσετε το <a href="https://goo.gl/forms/SYiQYVIpyhxEgENL2" target="_blank">ερωτηματολόγιο</a> στη διεύθυνση <a href="https://goo.gl/forms/SYiQYVIpyhxEgENL2" target="_blank">https://goo.gl/forms/SYiQYVIpyhxEgENL2</a>
             </p>

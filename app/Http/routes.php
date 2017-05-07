@@ -192,7 +192,8 @@ Route::group(['middleware' => 'web'], function () {
     // ---- SURVEY --- //
     Route::post('store-survey', ['as' => 'store_survey', 'uses' => 'UsersController@store_survey']);
 
-    Route::get('send_survey_to_sites', ['as' => 'send_survey_to_sites', 'uses' => 'EmailsController@send_survey_to_sites']);       
+    Route::get('send-survey-to-sites', ['as' => 'send_survey_to_sites', 'uses' => 'EmailsController@send_survey_to_sites']);       
+    Route::get('send-survey-to-graders', ['as' => 'send_survey_to_graders', 'uses' => 'EmailsController@send_survey_to_graders']);       
 
     // ---- RESULTS --- //
     Route::get('admin/a-list/{cat_id}', ['as' => 'admin.a_list', 'uses' => 'MembersController@a_list']);
@@ -211,6 +212,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);
     Route::get('panormighty', ['as' => 'ajax_url', 'uses' => 'TestController@panormighty']);
     Route::get('deleted-evaluations', ['as' => 'deleted_evaluations', 'uses' => 'TestController@deleted_evaluations']);
+    Route::get('pdf-test', ['as' => 'pdf_test', 'uses' => 'TestController@pdf_test']);    
 
     Route::get('evb', ['as' => 'evb', 'uses' => 'TestController@evb']);
 
