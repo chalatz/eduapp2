@@ -649,21 +649,21 @@ class EmailsController extends Controller
                     $data = [];
                     $data['site_email'] = $site->contact_email;
                     
-                    // Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
-                    //     $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
-                    // });
+                    Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
+                        $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ΒΑΘΜΟΛΟΓΙΕΣ - ΒΕΒΑΙΩΣΕΙΣ ΣΥΜΜΕΤΟΧΗΣ ' .Config::first()->index. 'ου ΔΕΕΙ');
+                    });
 
                     echo $site->id .'- ' . $data['site_email'] . '<br>';
 
                 }
             }
 
-            $data = [];
-            $data['site_email'] = 'chralatz@gmail.com';
+            // $data = [];
+            // $data['site_email'] = 'chralatz@gmail.com';
             
-            Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
-                $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
-            });            
+            // Mail::send('emails.send_survey_to_sites', ['data' => $data], function ($message) use ($data) {                        
+            //     $message->to($data['site_email'], $data['site_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ΒΑΘΜΟΛΟΓΙΕΣ - ΒΕΒΑΙΩΣΕΙΣ ΣΥΜΜΕΤΟΧΗΣ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+            // });            
 
         } else {
             return "status: off";
@@ -684,23 +684,25 @@ class EmailsController extends Controller
 
             foreach($graders as $grader){
                 if($grader->has_graded() && $grader->id >= $from && $grader->id <= $to){
-                    $data = [];
-                    $data['grader_email'] = $grader->user->email;
-                    
-                    // Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
-                    //     $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
-                    // });
+                    if(!$grader->user->hasRole('site')){
+                        $data = [];
+                        $data['grader_email'] = $grader->user->email;
+                        
+                        Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
+                            $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ΒΑΘΜΟΛΟΓΙΕΣ - ΒΕΒΑΙΩΣΕΙΣ ΣΥΜΜΕΤΟΧΗΣ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+                        });
 
-                    echo $grader->id .'- ' . $data['grader_email'] . '<br>';
+                        echo $grader->id .'- ' . $data['grader_email'] . '<br>';
+                    }
                 }
             }
 
-            $data = [];
-            $data['grader_email'] = 'chralatz@gmail.com';
+            // $data = [];
+            // $data['grader_email'] = 'chralatz@gmail.com';
             
-            Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
-                $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ' .Config::first()->index. 'ου ΔΕΕΙ');
-            });            
+            // Mail::send('emails.send_survey_to_graders', ['data' => $data], function ($message) use ($data) {                        
+            //     $message->to($data['grader_email'], $data['grader_email'])->subject('ΕΡΩΤΗΜΑΤΟΛΟΓΙΟ - ΒΑΘΜΟΛΟΓΙΕΣ - ΒΕΒΑΙΩΣΕΙΣ ΣΥΜΜΕΤΟΧΗΣ - ' .Config::first()->index. 'ου ΔΕΕΙ');
+            // });            
 
         } else {
             return "status: off";
