@@ -73,5 +73,6 @@ class Kernel extends HttpKernel
         'phase_c' => \App\Http\Middleware\PhaseC::class,
         'must_own_evaluation_c' => \App\Http\Middleware\MustOwnEvaluationC::class,
         'survey_ok' => \App\Http\Middleware\Survey_ok::class,       
+        'can_see_certificates' => \App\Http\Middleware\CanSeeCertificates::class,       
     ];
 }

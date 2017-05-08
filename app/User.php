@@ -141,4 +141,22 @@ class User extends Authenticatable
 
     }
 
+    public function has_certificates()
+    {
+        if($this->hasRole('site') && !$this->site->disq()){
+            return true;
+        }
+
+        if($this->hasRole('grader_a') || $this->hasRole('grader_b')){
+            if($this->grader->has_graded()){
+                return true;
+            }
+        }
+
+        if($this->hasRole('member') && $this->hasRole('grader_b')){
+            return true;
+        }
+        
+    }
+
 } // end Class

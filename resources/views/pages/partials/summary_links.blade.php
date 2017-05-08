@@ -21,7 +21,14 @@
                     <i class="fa fa-eye" aria-hidden="true"></i> Δείτε τις βαθμολογίες των άλλων Αξιολογητών των Ιστότοπων που έχετε αξιολογήσει και τυχόν σχόλια
                 </a>
             </p>
-        @endif        
+        @endif
+        @if(Auth::user()->has_certificates())
+            <p>
+                <a style="font-size: 2em" href="{{ route('get_certificates') }}" type="button" class="btn btn-success btn-lg btn-block">
+                    <i class="fa fa-download" aria-hidden="true"></i> Κατεβάστε τις Βεβαιώσεις Συμμετοχής σας
+                </a>
+            </p>
+        @endif                
     @else
         <div class="attention-block">
             <p>
