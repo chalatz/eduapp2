@@ -10,3 +10,5 @@ composer.lock
 composer.phar
 storage/fonts
 storage/fonts/*
+/storage/fonts
+/storage/fonts/*
