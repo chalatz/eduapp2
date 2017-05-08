@@ -207,6 +207,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('site-summary', ['as' => 'site.summary', 'uses' => 'SitesController@summary']);    
     Route::get('grader-summary', ['as' => 'grader.summary', 'uses' => 'GradersController@summary']);    
 
+    // ---- CERTIFICATES --- //
+    Route::get('certificate/{type}', ['as' => 'make_certificate', 'uses' => 'PdfController@make_certificate']);
+    Route::get('get-certificates', ['as' => 'get_certificates', 'uses' => 'PdfController@get_certificates']);
+
     // ----- TESTING ----- //
     Route::get('ajax-test', ['as' => 'ajax_test', 'uses' => 'TestController@ajax_test']);
     Route::get('ajax-url/{district_id}', ['as' => 'ajax_url', 'uses' => 'TestController@ajax_url']);

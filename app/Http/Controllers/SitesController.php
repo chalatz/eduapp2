@@ -35,6 +35,7 @@ class SitesController extends Controller
         $this->middleware('can_create_site', ['only' => 'create']);
 
         $this->middleware('gradings_over', ['only' => 'summary']);
+        
         $this->middleware('survey_ok', ['only' => 'summary']);
 
     }

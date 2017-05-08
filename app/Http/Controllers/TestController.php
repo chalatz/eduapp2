@@ -229,9 +229,9 @@ class TestController extends Controller
 
     public function pdf_test()
     {
-        $pdf = PDF::loadView('pdfs.test')->setPaper('a4', 'landscape')->setWarnings(false);
+        // $pdf = PDF::loadView('pdfs.test')->setPaper('a4', 'landscape')->setWarnings(false);
 
-        return $pdf->download('test.pdf');
+        // return $pdf->download('test.pdf');
 
         return view('pdfs.test');
 
