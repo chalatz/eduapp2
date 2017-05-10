@@ -34,6 +34,7 @@ class AdminController extends Controller
           'create_summary_a',
           'destroy_suggestion_a',
           'sites',
+          'graders',
         ]]);
 
     }
