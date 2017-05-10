@@ -33,6 +33,7 @@ class AdminController extends Controller
           'a_list',
           'create_summary_a',
           'destroy_suggestion_a',
+          'sites',
         ]]);
 
     }
@@ -141,7 +142,23 @@ class AdminController extends Controller
 
       return view('ninja.a_list', compact('sites', 'cat_id'));
 
-  }      
+  }
+
+    public function sites()
+    {
+        $sites = Site::all();
+
+        return view('ninja.sites', compact('sites'));
+
+    }
+
+    public function graders()
+    {
+        $graders = Grader::all();
+
+        return view('ninja.graders', compact('graders'));
+
+    }            
 
     public function ninja_menu()
     {
