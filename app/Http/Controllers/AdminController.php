@@ -35,6 +35,7 @@ class AdminController extends Controller
           'destroy_suggestion_a',
           'sites',
           'graders',
+          'mask',
         ]]);
 
     }
@@ -159,7 +160,12 @@ class AdminController extends Controller
 
         return view('ninja.graders', compact('graders'));
 
-    }            
+    }
+
+    public function mask($user_id){
+        Auth::loginUsingId($user_id);
+        return redirect()->route('home');
+    }               
 
     public function ninja_menu()
     {
