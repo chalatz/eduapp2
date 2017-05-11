@@ -179,9 +179,4 @@ class PagesController extends Controller
         return view('pages.test');
     }
 
-    public function mask($user_id){
-        Auth::loginUsingId($user_id);
-        return redirect()->route('home');
-    }
-
 }
