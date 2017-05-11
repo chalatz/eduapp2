@@ -116,7 +116,9 @@ class SitesController extends Controller
     {
         $site = Site::find($id);
 
-        return view('sites.forms.edit', compact('site'));
+        $end_of_gradings = Config::first()->end_of_gradings;
+
+        return view('sites.forms.edit', compact('site', 'end_of_gradings'));
     }
 
     /**
