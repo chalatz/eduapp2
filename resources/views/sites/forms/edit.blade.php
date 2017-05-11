@@ -22,7 +22,14 @@
 
             <div class="form-group">
                 <div class="col-md-12">
-                    {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                    @if($end_of_gradings == 0 || Session::has('ninja_id') || Auth::user()->hasRole('member'))
+                        {{ Form::button('Αποθήκευση', ['type' => 'submit', 'class' => 'btn btn-primary btn-block btn-lg']) }}
+                    @else
+                        {{ Form::button('Αποθήκευση', ['type' => 'button', 'class' => 'btn btn-primary btn-block btn-lg', 'disabled' => 'disabled']) }}                        
+                        <p class="text-danger lead">
+                            <strong>Η επεξεργασία Υποψηφιοτήτων έχει λήξει</strong>
+                        </p>
+                    @endif
                 </div>
             </div>
 

@@ -225,5 +225,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ninja/a-list/{cat_id}', ['as' => 'ninja.a_list', 'uses' => 'AdminController@a_list']);
     Route::get('ninja/sites', ['as' => 'ninja.sites', 'uses' => 'AdminController@sites']);
     Route::get('ninja/graders', ['as' => 'ninja.graders', 'uses' => 'AdminController@graders']);
+    
+    //Route::get('mask/{user_id}', ['as' => 'mask', 'uses' => 'PagesController@mask']);
 
 });

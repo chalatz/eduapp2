@@ -6,6 +6,10 @@ use App\Http\Requests\Request;
 
 use App\Grader;
 
+use App\Config;
+
+use Auth;
+
 class EditGraderRequest extends Request
 {
     /**
@@ -19,7 +23,11 @@ class EditGraderRequest extends Request
 
         $grader = Grader::find($grader_id);
 
-        return $this->user()->id == $grader->user_id;
+        if(Auth::user()->hasRole('member') || Request::session()->has('ninja_id')){
+            return $this->user()->id == $grader->user_id;
+        }     
+
+        return Config::first()->end_of_gradings == 0 && $this->user()->id == $grader->user_id;
     }
 
     /**

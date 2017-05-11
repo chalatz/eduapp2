@@ -6,6 +6,8 @@ use App\Grader;
 use App\Suggestion;
 use Auth;
 
+use App\Config;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -236,14 +238,18 @@ class GradersController extends Controller
   {
       $grader = Grader::find($id);
 
-      return view('graders.forms.edit', compact('grader'));
+      $end_of_gradings = Config::first()->end_of_gradings;
+
+      return view('graders.forms.edit', compact('grader','end_of_gradings'));
   }
 
   public function edit_b($id)
   {
       $grader = Grader::find($id);
 
-      return view('graders.forms.edit_b', compact('grader'));
+      $end_of_gradings = Config::first()->end_of_gradings;
+
+      return view('graders.forms.edit_b', compact('grader','end_of_gradings'));
   }
 
   public function edit_and_suggest_self($id)

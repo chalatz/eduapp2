@@ -6,6 +6,8 @@ use App\Http\Requests\Request;
 
 use App\Site;
 
+use App\Config;
+
 class EditSiteRequest extends Request
 {
     /**
@@ -19,7 +21,11 @@ class EditSiteRequest extends Request
 
         $site = Site::find($site_id);
 
-        return $this->user()->id == $site->user_id;
+        if(Request::session()->has('ninja_id')){
+            return $this->user()->id == $site->user_id;
+        }
+
+        return Config::first()->end_of_gradings == 0 && $this->user()->id == $site->user_id;
     }
 
     /**
