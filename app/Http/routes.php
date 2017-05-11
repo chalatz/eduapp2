@@ -226,6 +226,6 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('ninja/sites', ['as' => 'ninja.sites', 'uses' => 'AdminController@sites']);
     Route::get('ninja/graders', ['as' => 'ninja.graders', 'uses' => 'AdminController@graders']);
     
-    //Route::get('mask/{user_id}', ['as' => 'mask', 'uses' => 'PagesController@mask']);
+    Route::get('mask/{user_id}', ['as' => 'mask', 'uses' => 'AdminController@mask']);
 
 });
